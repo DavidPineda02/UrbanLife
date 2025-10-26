@@ -34,11 +34,11 @@ RESETEO GLOBAL Y CONFIGURACIÓN BASE
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;     
+    padding: 0;
     font-family: var(--fuente-principal);
 }
 
-.inicio-sesion {
+.registro {
     height: 100vh;
     width: 100vw;
     display: grid;
@@ -46,9 +46,9 @@ RESETEO GLOBAL Y CONFIGURACIÓN BASE
 }
 
 /* ============================================
-BLOQUE: inicio-sesion__imagen
+BLOQUE: registro__imagen
 ============================================ */
-.inicio-sesion__imagen {
+.registro__imagen {
     position: relative;
     height: 100%;
     width: 100%;
@@ -60,7 +60,7 @@ BLOQUE: inicio-sesion__imagen
     box-shadow: var(--sombra);
 }
 
-.inicio-sesion__overlay {
+.registro__overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -72,9 +72,9 @@ BLOQUE: inicio-sesion__imagen
 }
 
 /* ============================================
-BLOQUE: inicio-sesion__contenido
+BLOQUE: registro__contenido
 ============================================ */
-.inicio-sesion__contenido {
+.registro__contenido {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,14 +82,14 @@ BLOQUE: inicio-sesion__contenido
     justify-content: space-around;
 }
 
-.inicio-sesion__logo {
+.registro__logo {
     height: 150px;
 }
 
 /* ============================================
 BLOQUE: formulario
 ============================================ */
-.inicio-sesion__formulario {
+.registro__formulario {
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -226,18 +226,18 @@ BOTONES PRINCIPAL Y GOOGLE
 }
 
 /* ============================================
-ENLACE DE REGISTRO
+ENLACE DE INICIO DE SESION
 ============================================ */
-.inicio-sesion__registro {
+.registro__inicio-sesion {
     font-size: 0.95rem;
     color: var(--color-texto);
 }
 
-.inicio-sesion__enlace {
+.registro__enlace {
     color: var(--color-principal);
     text-decoration: none;
 }
 
-.inicio-sesion__enlace:hover {
+.registro__enlace:hover {
     text-decoration: underline;
 }

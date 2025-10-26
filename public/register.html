@@ -4,18 +4,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>UrbanLife</title>
-        <link rel="stylesheet" href="/components/login.css">
+        <link rel="stylesheet" href="/components/register.css">
         <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     </head>
     <body>
-        <main class="inicio-sesion">
-            <section class="inicio-sesion__imagen">
-                <div class="inicio-sesion__overlay"></div>
+        <main class="registro">
+            <section class="registro__imagen">
+                <div class="registro__overlay"></div>
             </section>
-            <section class="inicio-sesion__contenido">
-                <img class="inicio-sesion__logo" src="/assets/img/LogoPage.png" alt="Logo de UrbanLife">
-                <div class="inicio-sesion__formulario">
+            <section class="registro__contenido">
+                <img class="registro__logo" src="/assets/img/LogoPage.png" alt="Logo de UrbanLife">
+                <div class="registro__formulario">
                     <form class="formulario__form" action="#">
+                        <div class="formulario__grupo">
+                            <label for="user" class="formulario__etiqueta">Usuario</label>
+                            <input id="user" type="text" placeholder="Ingrese su usuario"
+                                class="formulario__campo">
+                        </div>
                         <div class="formulario__grupo">
                             <label for="email" class="formulario__etiqueta">Correo electrónico</label>
                             <input id="email" type="email" placeholder="Ingrese su correo electrónico"
@@ -35,12 +40,11 @@
                                 <input type="checkbox" class="formulario__checkbox">
                                 <span class="formulario__texto">Recordar contraseña</span>
                             </label>
-                            <a href="#" class="formulario__enlace">¿Olvidaste tu contraseña?</a>
                         </div>
 
                         <div class="formulario__botones">
                             <a href="#" class="formulario__boton formulario__boton--principal">
-                                Iniciar Sesion
+                                Registrarse
                             </a>
 
                             <a href="#" class="formulario__boton formulario__boton--google">
@@ -59,15 +63,15 @@
                                         d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
                                         fill="#EB4335" />
                                 </svg>
-                                <span>Iniciar Sesion con Google</span>
+                                <span>Registrarse con Google</span>
                             </a>
                         </div>
                     </form>
                 </div>
 
-                <p class="inicio-sesion__registro">
-                    ¿No tienes una cuenta?
-                    <a class="inicio-sesion__enlace" href="register.html"><strong>Registrarse</strong></a>
+                <p class="registro__inicio-sesion">
+                    ¿Ya tienes una cuenta?
+                    <a class="registro__enlace" href="login.html"><strong>Iniciar Sesion</strong></a>
                 </p>
             </section>
         </main>
