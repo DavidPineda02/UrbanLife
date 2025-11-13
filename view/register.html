@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UrbanLife</title>
-    <link rel="stylesheet" href="css/components/autenticacion.css">
+    <link rel="stylesheet" href="../css/components/autenticacion.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 </head>
 <body>
@@ -16,6 +16,10 @@
             <img class="autenticacion__logo" src="/assets/img/LogoPage.png" alt="Logo de UrbanLife">
             <div class="formulario">
                 <form class="formulario__form" action="#">
+                    <!-- <div class="formulario__grupo">
+                        <label for="user" class="formulario__etiqueta">Usuario</label>
+                        <input id="user" type="text" placeholder="Ingrese su usuario" class="formulario__campo">
+                    </div> -->
                     <div class="formulario__grupo">
                         <label for="email" class="formulario__etiqueta">Correo electrónico</label>
                         <input id="email" type="email" placeholder="Ingrese su correo electrónico" class="formulario__campo">
@@ -26,16 +30,21 @@
                             <input id="password" type="password" placeholder="Ingrese su contraseña" class="formulario__campo">
                         </div>
                     </div>
+                    <div class="formulario__grupo">
+                        <label for="password" class="formulario__etiqueta">Confirmar Contraseña</label>
+                        <div class="formulario__campo--password">
+                            <input id="password" type="password" placeholder="Ingrese su contraseña" class="formulario__campo">
+                        </div>
+                    </div>
                     <div class="formulario__acciones">
                         <label class="formulario__recordar">
                             <input type="checkbox" class="formulario__checkbox">
                             <span class="formulario__texto">Recordar contraseña</span>
                         </label>
-                        <a href="#" class="formulario__enlace">¿Olvidaste tu contraseña?</a>
                     </div>
                     <div class="formulario__botones">
                         <a href="#" class="formulario__boton formulario__boton--principal">
-                            Iniciar Sesion
+                            Registrarse
                         </a>
                         <a href="#" class="formulario__boton formulario__boton--google">
                             <svg class="formulario__icono-google" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" fill="none">
@@ -44,13 +53,13 @@
                                 <path d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782" fill="#FBBC05" />
                                 <path d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251" fill="#EB4335" />
                             </svg>
-                            <span class="formulario__boton--contenido">Iniciar Sesion con Google</span>
+                            <span>Registrarse con Google</span>
                         </a>
                     </div>
                 </form>
             </div>
             <p class="autenticacion__links">
-                ¿No tienes una cuenta? <a class="autenticacion__enlace" href="view/register.html"><strong>Registrarse</strong></a>
+                ¿Ya tienes una cuenta? <a class="autenticacion__enlace" href="../index.html"><strong>Iniciar Sesion</strong></a>
             </p>
         </section>
     </main>

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    /* Colores */
+    --color-principal: #000000;
+    --color-secundario: #ffffff;
+    --color-fondo-input: #f7f8fa;
+    --color-texto: #111111;
+    --color-texto-secundario: #222222;
+    --color-borde: #dddddd;
+    --color-hover: #222222;
+    --color-overlay: rgba(0, 0, 0, 0.6);
+
+    /* Fuentes */
+    --fuente-principal: "Open Sans", sans-serif;
+
+    /* Espaciado */
+    --espacio-peq: 0.5rem;
+    --espacio-med: 1rem;
+    --espacio-grande: 2rem;
+
+    /* Bordes */
+    --radio: 10px;
+    --radio-grande: 20px;
+
+    /* Sombras */
+    --sombra: 10px 0 15px rgba(0, 0, 0, 0.5);
+
+    /* Tamaños de fuente */
+    --font-size-peq: 0.83rem;
+    --font-size-med: 0.9rem;
+    --font-size-grande: 1rem;
+    --font-size-muy-grande: 1.1rem;
+    --font-size-extra-grande: 1.5rem;
+    --font-size-xs: 14px;
+    --font-size-s: 15px;
+    --font-size-m: 0.95rem;
+
+    /* Peso de fuente */
+    --font-weight-normal: 500;
+    --font-weight-bold: 600;
+}

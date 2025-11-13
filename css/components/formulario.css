@@ -1,0 +1,149 @@
+/* ============================================
+BLOQUE: formulario
+============================================ */
+.formulario {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--espacio-med);
+}
+
+.formulario__etiqueta {
+    font-weight: var(--font-weight-normal);
+    margin-bottom: 0.4rem;
+    color: var(--color-texto-secundario);
+    display: block;
+    margin-top: 10px;
+    font-size: var(--font-size-s);
+}
+
+.formulario__campo {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: none;
+    outline: none;
+    background-color: var(--color-fondo-input);
+    border-radius: var(--radio);
+    font-size: var(--font-size-peq);
+    margin-bottom: 1rem;
+    transition: box-shadow 0.2s ease;
+    font-weight: var(--font-weight-normal);
+}
+
+.formulario__campo:focus {
+    box-shadow: 0 0 0 2px var(--color-principal);
+}
+
+.formulario__campo--password {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.formulario__icono {
+    position: absolute;
+    right: 1rem;
+    color: #888;
+    cursor: pointer;
+    font-size: var(--font-size-muy-grande);
+}
+
+/* ============================================
+ELEMENTOS: Acciones, checkbox, enlaces
+============================================ */
+.formulario__acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-grande);
+    margin-bottom: 1rem;
+}
+
+.formulario__recordar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.formulario__checkbox {
+    accent-color: var(--color-principal);
+    transform: scale(1.2);
+}
+
+.formulario__texto {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-texto);
+}
+
+.formulario__enlace {
+    color: var(--color-principal);
+    text-decoration: none;
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-xs);
+}
+
+.formulario__enlace:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+BOTONES PRINCIPAL Y GOOGLE
+============================================ */
+.formulario__botones {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.formulario__boton {
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 12px;
+    font-size: var(--font-size-grande);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: var(--font-weight-normal);
+}
+
+.formulario__boton--principal {
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+    height: 50px;
+    margin-top: var(--espacio-grande);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-bold);
+}
+
+.formulario__boton--principal:hover {
+    background-color: var(--color-hover);
+}
+
+.formulario__boton--google {
+    background-color: var(--color-secundario);
+    border: 1px solid var(--color-borde);
+    color: #333;
+    height: 50px;
+}
+
+.formulario__boton--google span {
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-bold);
+}
+
+.formulario__boton--google:hover {
+    background-color: #f7f7f7;
+}
+
+.formulario__icono-google {
+    width: 22px;
+    height: 22px;
+}
