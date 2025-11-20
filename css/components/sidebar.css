@@ -1,0 +1,71 @@
+@import url(../customproperties.css);
+
+/* BLOQUE: sidebar */
+.sidebar {
+    height: 100vh;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 9px rgba(0, 0, 0, 0.3);
+    border-top-right-radius: var(--radio-grande);
+    border-bottom-right-radius: var(--radio-grande);
+}
+
+/* ELEMENTO: marca/logo */
+.sidebar__brand {
+    padding: 25px;
+    text-align: center;
+}
+
+.sidebar__gradient-line {
+    height: 2.3px;
+    background: linear-gradient(90deg,rgba(230, 230, 230, 1) 0%, rgba(189, 189, 189, 1) 50%, rgba(230, 230, 230, 1) 100%);
+}
+
+.sidebar__logo {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ELEMENTO: contenedor de navegación */
+.sidebar__nav {
+    flex: 1;
+    padding: 20px 0;
+}
+
+/* ELEMENTO: lista de ítems */
+.sidebar__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ELEMENTO: ítem individual */
+.sidebar__item {
+    margin-bottom: 8px;
+}
+
+.sidebar__text {
+    font-size: var(--font-size-m);
+}
+
+/* ELEMENTO: enlace de navegación */
+.sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #000000;
+    transition: all 0.02s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar__link:hover {
+    background: linear-gradient(90deg,rgb(255, 186, 186) 0%, rgb(255, 146, 146) 50%, rgb(255, 186, 186) 100%);
+    border-left-color: #ce0000;
+    font-weight: 600;
+}
+

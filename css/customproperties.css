@@ -39,4 +39,10 @@
     /* Peso de fuente */
     --font-weight-normal: 500;
     --font-weight-bold: 600;
+
+    /* Color Gradiente */
+    --gradiente-linea: linear-gradient( 90deg,
+    rgba(230, 230, 230, 1) 0%, 
+    rgba(189, 189, 189, 1) 50%, 
+    rgba(230, 230, 230, 1) 100% )
 }
