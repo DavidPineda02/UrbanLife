@@ -15,6 +15,7 @@
     --fuente-principal: "Open Sans", sans-serif;
 
     /* Espaciado */
+    --espaciado-med-px: 15px;
     --espacio-peq: 0.5rem;
     --espacio-med: 1rem;
     --espacio-grande: 2rem;

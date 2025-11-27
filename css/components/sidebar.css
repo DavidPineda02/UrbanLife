@@ -2,13 +2,18 @@
 
 /* BLOQUE: sidebar */
 .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
     height: 100vh;
-    color: black;
+    width: 14%;
     display: flex;
     flex-direction: column;
+    /* color: black;
     box-shadow: 2px 0 9px rgba(0, 0, 0, 0.3);
     border-top-right-radius: var(--radio-grande);
-    border-bottom-right-radius: var(--radio-grande);
+    border-bottom-right-radius: var(--radio-grande); */
+    overflow-y: auto;
 }
 
 /* ELEMENTO: marca/logo */
@@ -18,25 +23,31 @@
 }
 
 .sidebar__gradient-line {
-    height: 2.3px;
+    height: 2px;
     background: linear-gradient(90deg,rgba(230, 230, 230, 1) 0%, rgba(189, 189, 189, 1) 50%, rgba(230, 230, 230, 1) 100%);
 }
 
 .sidebar__logo {
-    width: 80%;
+    width: 90%;
     height: auto;
     display: block;
     margin: 0 auto;
+    padding-bottom: var(--espaciado-med-px);
+    padding-top: var(--espaciado-med-px);
 }
 
 /* ELEMENTO: contenedor de navegación */
 .sidebar__nav {
-    flex: 1;
+    margin-top: var(--espaciado-med-px);
     padding: 20px 0;
 }
 
 /* ELEMENTO: lista de ítems */
 .sidebar__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -44,7 +55,7 @@
 
 /* ELEMENTO: ítem individual */
 .sidebar__item {
-    margin-bottom: 8px;
+    margin-bottom: 20px;
 }
 
 .sidebar__text {
@@ -54,18 +65,25 @@
 /* ELEMENTO: enlace de navegación */
 .sidebar__link {
     display: flex;
+    width: 200px;
     align-items: center;
     gap: 12px;
-    padding: 12px 20px;
+    padding: 15px 30px;
     text-decoration: none;
-    color: #000000;
-    transition: all 0.02s ease;
+    /* color: #f46545;
+    color: #f8956f;
+    color: #E42727; */
+    color: black;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: var(--radio);
+    transition: all 0.03s ease;
     border-left: 3px solid transparent;
+    background: white;
 }
 
 .sidebar__link:hover {
-    background: linear-gradient(90deg,rgb(255, 186, 186) 0%, rgb(255, 146, 146) 50%, rgb(255, 186, 186) 100%);
-    border-left-color: #ce0000;
+    background: linear-gradient(90deg,rgba(255, 122, 122, 1) 0%, rgba(255, 168, 168, 1) 50%, rgba(255, 199, 199, 1) 100%);
+    border-left-color: #E42727;
     font-weight: 600;
 }
 

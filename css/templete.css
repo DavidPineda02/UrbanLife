@@ -11,6 +11,11 @@
 body {
     height: 100vh;
     width: 100vw;
-    display: grid;
-    grid-template-columns: 14% 86%;
+}
+
+main {
+    margin-left: 14%;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
 }
