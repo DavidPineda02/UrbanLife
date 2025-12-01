@@ -1,51 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/templete.css">
-        <title>Inicio</title>
-    </head>
-    <body>
-        <aside class="sidebar">
-            <div class="sidebar__brand">
-                <img src="/assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/templete.css">
+    <title>Inicio</title>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar__brand">
+            <img src="/assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
+        </div>
+        <div class="sidebar__gradient-line"></div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__list">
+                <li class="sidebar__item">
+                    <a href="#" class="sidebar__link">
+                        <i class="fa-solid fa-sack-dollar sidebar__icon"></i>
+                        <span class="sidebar__text">Ganancias</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a href="#" class="sidebar__link">
+                        <i class="fa-solid fa-bag-shopping sidebar__icon"></i>
+                        <span class="sidebar__text">Productos</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a href="#" class="sidebar__link">
+                        <i class="fa-solid fa-cart-shopping sidebar__icon"></i>
+                        <span class="sidebar__text">Ventas</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a href="#" class="sidebar__link">
+                        <i class="fa-solid fa-box sidebar__icon"></i>
+                        <span class="sidebar__text">Compras</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="dashboard">
+        <section class="dashboard__cards">
+            <div class="card">
+                <h3 class="card__title">Ventas del dia</h3>
+                <p class="card__value">$ 450.000</p>
             </div>
-            <div class="sidebar__gradient-line"></div>
-            <nav class="sidebar__nav">
-                <ul class="sidebar__list">
-                    <li class="sidebar__item">
-                        <a href="#" class="sidebar__link">
-                            <i class="fa-solid fa-sack-dollar sidebar__icon"></i>
-                            <span class="sidebar__text">Ganancias</span>
-                        </a>
-                    </li>
-                    <li class="sidebar__item">
-                        <a href="#" class="sidebar__link">
-                            <i class="fa-solid fa-bag-shopping sidebar__icon"></i>
-                            <span class="sidebar__text">Productos</span>
-                        </a>
-                    </li>
-                    <li class="sidebar__item">
-                        <a href="#" class="sidebar__link">
-                            <i class="fa-solid fa-circle-user sidebar__icon"></i>
-                            <span class="sidebar__text">Clientes</span>
-                        </a>
-                    </li>
-                    <li class="sidebar__item">
-                        <a href="#" class="sidebar__link">
-                            <i class="fa-solid fa-box sidebar__icon"></i>
-                            <span class="sidebar__text">Proveedores</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-        <main>
-          <div>
-            
-          </div>
-        </main>
-        <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
-    </body>
+
+            <div class="card">
+                <h3 class="card__title">Productos activos</h3>
+                <p class="card__value">128</p>
+            </div>
+
+            <div class="card">
+                <h3 class="card__title">Ganancias del mes</h3>
+                <p class="card__value">$ 3.200.000</p>
+            </div>
+
+            <div class="card">
+                <h3 class="card__title">Proveedores</h3>
+                <p class="card__value">16</p>
+            </div>
+        </section>
+        <section class="dashboard__charts">
+
+            <div class="chart chart--bars">
+                <h3 class="chart__title">Ventas por dia</h3>
+
+                <div class="bars">
+                    <div class="bars__item" style="height: 70%"></div>
+                    <div class="bars__item" style="height: 40%"></div>
+                    <div class="bars__item" style="height: 85%"></div>
+                    <div class="bars__item" style="height: 55%"></div>
+                    <div class="bars__item" style="height: 95%"></div>
+                    <div class="bars__item" style="height: 60%"></div>
+                </div>
+            </div>
+
+            <div class="chart chart--line">
+                <h3 class="chart__title">Tendencia mensual</h3>
+
+                <div class="line-chart">
+                    <span style="--p1:30%; --p2:55%"></span>
+                    <span style="--p1:55%; --p2:40%"></span>
+                    <span style="--p1:40%; --p2:80%"></span>
+                    <span style="--p1:80%; --p2:60%"></span>
+                    <span style="--p1:60%; --p2:90%"></span>
+                </div>
+            </div>
+
+            <div class="chart chart--pie">
+                <h3 class="chart__title">Distribucion de categorias</h3>
+
+                <div class="pie">
+                    <div class="pie__slice pie__slice--1"></div>
+                    <div class="pie__slice pie__slice--2"></div>
+                    <div class="pie__slice pie__slice--3"></div>
+                </div>
+
+                <div class="pie-legend">
+                    <span><span class="legend-box lb1"></span> Accesorios</span>
+                    <span><span class="legend-box lb2"></span> Ropa Hombre</span>
+                    <span><span class="legend-box lb3"></span> Ropa Mujer</span>
+                </div>
+            </div>
+
+            <div class="chart chart--hbars">
+                <h3 class="chart__title">Ranking de ventas</h3>
+
+                <div class="hbars">
+                    <div class="hbars__item">
+                        <span class="hbars__label">Camisetas</span>
+                        <div class="hbars__bar" style="width: 85%"></div>
+                    </div>
+
+                    <div class="hbars__item">
+                        <span class="hbars__label">Gorras</span>
+                        <div class="hbars__bar" style="width: 60%"></div>
+                    </div>
+
+                    <div class="hbars__item">
+                        <span class="hbars__label">Accesorios</span>
+                        <div class="hbars__bar" style="width: 90%"></div>
+                    </div>
+
+                    <div class="hbars__item">
+                        <span class="hbars__label">Pantalones</span>
+                        <div class="hbars__bar" style="width: 40%"></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
+</body>
+
 </html>

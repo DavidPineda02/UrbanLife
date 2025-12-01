@@ -14,8 +14,186 @@ body {
 }
 
 main {
-    margin-left: 14%;
+    margin-left: 15%;
     padding: 20px;
     height: 100vh;
     overflow-y: auto;
+}
+
+/* CONTENEDOR GENERAL */
+.dashboard {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* TARJETAS */
+.dashboard__cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: #fff;
+    padding: 25px;
+    border-radius: var(--radio-grande);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.card__title {
+    font-size: var(--font-size-m);
+    color: #555;
+}
+
+.card__value {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+}
+
+/* GRAFICAS */
+.dashboard__charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+}
+
+.chart {
+    background: #fff;
+    padding: 25px;
+    border-radius: var(--radio-grande);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.chart__title {
+    margin-bottom: 15px;
+    font-size: var(--font-size-m);
+}
+
+/* ---- GRAFICO DE BARRAS ---- */
+.bars {
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    padding: 0 10px;
+}
+
+.bars__item {
+    width: 30px;
+    background: linear-gradient(180deg, #ff8a8a, #ff4c4c);
+    border-radius: 10px;
+}
+
+/* ---- GRAFICO DE LINEA CSS ---- */
+.line-chart {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.line-chart span {
+    position: relative;
+    width: 100%;
+}
+
+.line-chart span::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: var(--p1);
+    width: 100%;
+    height: 3px;
+    background: red;
+    transform: translateY(50%);
+}
+
+.line-chart span::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: var(--p2);
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+    transform: translateY(50%);
+}
+
+/* =========================== */
+/* ==== GRAFICA DE PASTEL ==== */
+/* =========================== */
+
+.chart--pie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.pie {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    position: relative;
+    background: conic-gradient(
+        #ff4c4c 0deg 140deg,
+        #ff9b73 140deg 260deg,
+        #ffd36b 260deg 360deg
+    );
+}
+
+.pie-legend {
+    display: flex;
+    gap: 20px;
+    font-size: var(--font-size-s);
+}
+
+.legend-box {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 3px;
+}
+
+.lb1 { background: #ff4c4c; }
+.lb2 { background: #ff9b73; }
+.lb3 { background: #ffd36b; }
+
+/* ================================ */
+/* ==== BARRAS HORIZONTALES ======= */
+/* ================================ */
+
+.chart--hbars {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.hbars {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.hbars__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hbars__label {
+    width: 110px;
+    font-size: var(--font-size-s);
+}
+
+.hbars__bar {
+    height: 14px;
+    background: linear-gradient(90deg, #ff8f8f, #ff4c4c);
+    border-radius: 10px;
+    transition: width 0.3s ease;
 }
