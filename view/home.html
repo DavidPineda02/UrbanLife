@@ -80,14 +80,14 @@
                     </a>
                 </li>
             </ul>
-        </nav>
+        </nav> 
         <div class="sidebar__profile">
             <a href="#" class="sidebar__profile-link">
                 <div class="sidebar__profile-avatar">
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div class="sidebar__profile-info">
-                    <span class="sidebar__profile-name">Mi Perfil</span>
+                    <span class="sidebar__profile-name">David Tarde</span>
                     <span class="sidebar__profile-role">Administrador</span>
                 </div>
                 <i class="fa-solid fa-chevron-right sidebar__profile-arrow"></i>
@@ -121,27 +121,58 @@
             <div class="chart chart--bars">
                 <h3 class="chart__title">Ventas por Semana</h3>
 
-                <div class="bars">
-                    <div class="bars__item" style="height: 70%">
-                        <p class="item__percentage">70%</p>
+                <div class="bars-container">
+                    <div class="bars__axis-y">
+                        <span class="bars__axis-label">500</span>
+                        <span class="bars__axis-label">400</span>
+                        <span class="bars__axis-label">300</span>
+                        <span class="bars__axis-label">200</span>
+                        <span class="bars__axis-label">100</span>
+                        <span class="bars__axis-label">0</span>
                     </div>
-                    <div class="bars__item" style="height: 40%">
-                        <p class="item__percentage">40%</p>
-                    </div>
-                    <div class="bars__item" style="height: 85%">
-                        <p class="item__percentage">85%</p>
-                    </div>
-                    <div class="bars__item" style="height: 55%">
-                        <p class="item__percentage">55%</p>
-                    </div>
-                    <div class="bars__item" style="height: 95%">
-                        <p class="item__percentage">95%</p>
-                    </div>
-                    <div class="bars__item" style="height: 60%">
-                        <p class="item__percentage">60%</p>
-                    </div>
-                    <div class="bars__item" style="height: 75%">
-                        <p class="item__percentage">75%</p>
+
+                    <div class="bars__chart-area">
+                        <div class="bars__grid">
+                            <div class="bars__grid-line"></div>
+                            <div class="bars__grid-line"></div>
+                            <div class="bars__grid-line"></div>
+                            <div class="bars__grid-line"></div>
+                            <div class="bars__grid-line"></div>
+                        </div>
+
+                        <div class="bars">
+                            <div class="bars__item" style="--bar-height: 70%" data-value="350">
+                                <span class="bars__value">350</span>
+                            </div>
+                            <div class="bars__item" style="--bar-height: 40%" data-value="200">
+                                <span class="bars__value">200</span>
+                            </div>
+                            <div class="bars__item" style="--bar-height: 85%" data-value="425">
+                                <span class="bars__value">425</span>
+                            </div>
+                            <div class="bars__item" style="--bar-height: 55%" data-value="275">
+                                <span class="bars__value">275</span>
+                            </div>
+                            <div class="bars__item" style="--bar-height: 95%" data-value="475">
+                                <span class="bars__value">475</span>
+                            </div>
+                            <div class="bars__item" style="--bar-height: 60%" data-value="300">
+                                <span class="bars__value">300</span>
+                            </div>
+                            <div class="bars__item" style="--bar-height: 75%" data-value="375">
+                                <span class="bars__value">375</span>
+                            </div>
+                        </div>
+
+                        <div class="bars__axis-x">
+                            <span class="bars__day">Lun</span>
+                            <span class="bars__day">Mar</span>
+                            <span class="bars__day">Mié</span>
+                            <span class="bars__day">Jue</span>
+                            <span class="bars__day">Vie</span>
+                            <span class="bars__day">Sáb</span>
+                            <span class="bars__day">Dom</span>
+                        </div>
                     </div>
                 </div>
             </div>
