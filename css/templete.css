@@ -77,7 +77,7 @@ main {
     display: flex;
     align-items: flex-end;
     gap: 15px;
-    padding: 0 10px;
+    padding : 0 10px;
 }
 
 .bars__item {
@@ -195,5 +195,5 @@ main {
     height: 14px;
     background: linear-gradient(90deg, #ff8f8f, #ff4c4c);
     border-radius: 10px;
-    transition: width 0.3s ease;
+    transition: 0.3s ease;
 }

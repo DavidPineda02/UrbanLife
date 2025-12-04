@@ -13,35 +13,86 @@
         <div class="sidebar__brand">
             <img src="/assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
         </div>
-        <div class="sidebar__gradient-line"></div>
+        <!-- <div class="sidebar__gradient-line"></div> -->
         <nav class="sidebar__nav">
             <ul class="sidebar__list">
                 <li class="sidebar__item">
-                    <a href="#" class="sidebar__link">
-                        <i class="fa-solid fa-sack-dollar sidebar__icon"></i>
-                        <span class="sidebar__text">Ganancias</span>
+                    <a href="#" class="sidebar__link sidebar__link--active">
+                        <div class="sidebar__link-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="sidebar__link-text">Ganancias</span>
+                        <i class="fa-solid fa-chevron-right sidebar__link-arrow"></i>
                     </a>
                 </li>
                 <li class="sidebar__item">
                     <a href="#" class="sidebar__link">
-                        <i class="fa-solid fa-bag-shopping sidebar__icon"></i>
-                        <span class="sidebar__text">Productos</span>
+                        <div class="sidebar__link-avatar">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <span class="sidebar__link-text">Productos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__link-arrow"></i>
                     </a>
                 </li>
                 <li class="sidebar__item">
                     <a href="#" class="sidebar__link">
-                        <i class="fa-solid fa-cart-shopping sidebar__icon"></i>
-                        <span class="sidebar__text">Ventas</span>
+                        <div class="sidebar__link-avatar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="sidebar__link-text">Ventas</span>
+                        <i class="fa-solid fa-chevron-right sidebar__link-arrow"></i>
                     </a>
                 </li>
                 <li class="sidebar__item">
                     <a href="#" class="sidebar__link">
-                        <i class="fa-solid fa-box sidebar__icon"></i>
-                        <span class="sidebar__text">Compras</span>
+                        <div class="sidebar__link-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span class="sidebar__link-text">Clientes</span>
+                        <i class="fa-solid fa-chevron-right sidebar__link-arrow"></i>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a href="#" class="sidebar__link">
+                        <div class="sidebar__link-avatar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <span class="sidebar__link-text">Compras</span>
+                        <i class="fa-solid fa-chevron-right sidebar__link-arrow"></i>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a href="#" class="sidebar__link">
+                        <div class="sidebar__link-avatar">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="sidebar__link-text">Proveedores</span>
+                        <i class="fa-solid fa-chevron-right sidebar__link-arrow"></i>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a href="#" class="sidebar__link">
+                        <div class="sidebar__link-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__link-text">Gastos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__link-arrow"></i>
                     </a>
                 </li>
             </ul>
         </nav>
+        <div class="sidebar__profile">
+            <a href="#" class="sidebar__profile-link">
+                <div class="sidebar__profile-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="sidebar__profile-info">
+                    <span class="sidebar__profile-name">Mi Perfil</span>
+                    <span class="sidebar__profile-role">Administrador</span>
+                </div>
+                <i class="fa-solid fa-chevron-right sidebar__profile-arrow"></i>
+            </a>
+        </div>
     </aside>
     <main class="dashboard">
         <section class="dashboard__cards">
@@ -51,8 +102,8 @@
             </div>
 
             <div class="card">
-                <h3 class="card__title">Productos activos</h3>
-                <p class="card__value">128</p>
+                <h3 class="card__title">Egresos Proveedores</h3>
+                <p class="card__value">$ 500.000</p>
             </div>
 
             <div class="card">
@@ -61,22 +112,37 @@
             </div>
 
             <div class="card">
-                <h3 class="card__title">Proveedores</h3>
-                <p class="card__value">16</p>
+                <h3 class="card__title">Productos activos</h3>
+                <p class="card__value">128</p>
             </div>
         </section>
         <section class="dashboard__charts">
 
             <div class="chart chart--bars">
-                <h3 class="chart__title">Ventas por dia</h3>
+                <h3 class="chart__title">Ventas por Semana</h3>
 
                 <div class="bars">
-                    <div class="bars__item" style="height: 70%"></div>
-                    <div class="bars__item" style="height: 40%"></div>
-                    <div class="bars__item" style="height: 85%"></div>
-                    <div class="bars__item" style="height: 55%"></div>
-                    <div class="bars__item" style="height: 95%"></div>
-                    <div class="bars__item" style="height: 60%"></div>
+                    <div class="bars__item" style="height: 70%">
+                        <p class="item__percentage">70%</p>
+                    </div>
+                    <div class="bars__item" style="height: 40%">
+                        <p class="item__percentage">40%</p>
+                    </div>
+                    <div class="bars__item" style="height: 85%">
+                        <p class="item__percentage">85%</p>
+                    </div>
+                    <div class="bars__item" style="height: 55%">
+                        <p class="item__percentage">55%</p>
+                    </div>
+                    <div class="bars__item" style="height: 95%">
+                        <p class="item__percentage">95%</p>
+                    </div>
+                    <div class="bars__item" style="height: 60%">
+                        <p class="item__percentage">60%</p>
+                    </div>
+                    <div class="bars__item" style="height: 75%">
+                        <p class="item__percentage">75%</p>
+                    </div>
                 </div>
             </div>
 
@@ -114,7 +180,7 @@
                 <div class="hbars">
                     <div class="hbars__item">
                         <span class="hbars__label">Camisetas</span>
-                        <div class="hbars__bar" style="width: 85%"></div>
+                        <div class="hbars__bar" style="width: 75%"></div>
                     </div>
 
                     <div class="hbars__item">
@@ -124,7 +190,7 @@
 
                     <div class="hbars__item">
                         <span class="hbars__label">Accesorios</span>
-                        <div class="hbars__bar" style="width: 90%"></div>
+                        <div class="hbars__bar" style="width: 70%"></div>
                     </div>
 
                     <div class="hbars__item">

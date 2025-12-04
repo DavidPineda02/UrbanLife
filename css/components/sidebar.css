@@ -9,10 +9,6 @@
     width: 15%;
     display: flex;
     flex-direction: column;
-    /* color: black;
-    box-shadow: 2px 0 9px rgba(0, 0, 0, 0.3);
-    border-top-right-radius: var(--radio-grande);
-    border-bottom-right-radius: var(--radio-grande); */
     overflow-y: auto;
 }
 
@@ -20,15 +16,16 @@
 .sidebar__brand {
     padding: 10px;
     text-align: center;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.08);
 }
 
 .sidebar__gradient-line {
     height: 2px;
-    background: linear-gradient(90deg,rgba(230, 230, 230, 1) 0%, rgba(189, 189, 189, 1) 50%, rgba(230, 230, 230, 1) 100%);
+    background: linear-gradient(90deg, rgba(230, 230, 230, 1) 0%, rgba(189, 189, 189, 1) 50%, rgba(230, 230, 230, 1) 100%);
 }
 
 .sidebar__logo {
-    width: 90%;
+    width: 80%;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -40,50 +37,174 @@
 .sidebar__nav {
     margin-top: var(--espaciado-med-px);
     padding: 20px 0;
+    flex: 1;
 }
 
-/* ELEMENTO: lista de ítems */
+/* ========================================
+   ELEMENTO: Lista de navegación
+   ======================================== */
 .sidebar__list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     list-style: none;
-    padding: 0;
+    padding: 0 20px;
     margin: 0;
+    gap: 12px;
 }
 
 /* ELEMENTO: ítem individual */
 .sidebar__item {
-    margin-bottom: 20px;
-}
-
-.sidebar__text {
-    font-size: var(--font-size-m);
+    width: 100%;
 }
 
 /* ELEMENTO: enlace de navegación */
 .sidebar__link {
     display: flex;
-    width: 200px;
     align-items: center;
     gap: 12px;
-    padding: 15px 30px;
+    padding: 12px 16px;
     text-decoration: none;
-    /* color: #f46545;
-    color: #f8956f;
-    color: #E42727; */
-    color: black;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    border-radius: var(--radio);
-    transition: all 0.03s ease;
-    border-left: 3px solid transparent;
+    color: #333;
     background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
 }
 
+/* Hover - sombra roja */
 .sidebar__link:hover {
-    background: linear-gradient(90deg,rgba(255, 122, 122, 1) 0%, rgba(255, 168, 168, 1) 50%, rgba(255, 199, 199, 1) 100%);
-    border-left-color: #E42727;
-    font-weight: 600;
-} 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(228, 39, 39, 0.2);
+    border-color: rgba(228, 39, 39, 0.3);
+}
 
+/* Active (al hacer clic) - sombra roja */
+.sidebar__link:focus {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(228, 39, 39, 0.3);
+    border-color: rgba(228, 39, 39, 0.4);
+}
+
+/* Avatar circular del enlace */
+.sidebar__link-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E42727 0%, #ff6b6b 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(228, 39, 39, 0.3);
+}
+
+/* Texto del enlace */
+.sidebar__link-text {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Flecha del enlace */
+.sidebar__link-arrow {
+    color: #ccc;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.sidebar__link:hover .sidebar__link-arrow {
+    color: #E42727;
+    transform: translateX(3px);
+}
+
+/* ========================================
+   ELEMENTO: Perfil del usuario (fondo del sidebar)
+   ======================================== */
+.sidebar__profile {
+    margin-top: auto;
+    padding: 20px;
+    border-top: 1.5px solid rgba(0, 0, 0, 0.08);
+    background: linear-gradient(180deg, transparent 0%, rgba(228, 39, 39, 0.03) 100%);
+}
+
+.sidebar__profile-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #333;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(228, 39, 39, 0.1);
+    border: 1px solid rgba(228, 39, 39, 0.1);
+    transition: all 0.3s ease;
+}
+
+.sidebar__profile-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(228, 39, 39, 0.2);
+    border-color: rgba(228, 39, 39, 0.3);
+}
+
+.sidebar__profile-link:focus {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(228, 39, 39, 0.3);
+    border-color: rgba(228, 39, 39, 0.4);
+}
+
+.sidebar__profile-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E42727 0%, #ff6b6b 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(228, 39, 39, 0.3);
+}
+
+.sidebar__profile-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.sidebar__profile-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar__profile-role {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+}
+
+.sidebar__profile-arrow {
+    color: #ccc;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.sidebar__profile-link:hover .sidebar__profile-arrow {
+    color: #E42727;
+    transform: translateX(3px);
+}
