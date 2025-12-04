@@ -13,7 +13,6 @@
         <div class="sidebar__brand">
             <img src="/assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
         </div>
-        <!-- <div class="sidebar__gradient-line"></div> -->
         <nav class="sidebar__nav">
             <ul class="sidebar__list">
                 <li class="sidebar__item">
@@ -149,10 +148,6 @@
                     <div class="card__icon card__icon--info">
                         <i class="fa-solid fa-box-open"></i>
                     </div>
-                    <!-- <div class="card__badge card__badge--neutral">
-                        <i class="fa-solid fa-minus"></i>
-                        <span>0%</span>
-                    </div> -->
                 </div>
                 <div class="card__body">
                     <h3 class="card__title">Productos activos</h3>
@@ -221,15 +216,45 @@
                 </div>
             </div>
 
-            <div class="chart chart--line">
-                <h3 class="chart__title">Tendencia mensual</h3>
+            <div class="chart chart--grouped">
+                <h3 class="chart__title">Resumen Semanal</h3>
 
-                <div class="line-chart">
-                    <span style="--p1:30%; --p2:55%"></span>
-                    <span style="--p1:55%; --p2:40%"></span>
-                    <span style="--p1:40%; --p2:80%"></span>
-                    <span style="--p1:80%; --p2:60%"></span>
-                    <span style="--p1:60%; --p2:90%"></span>
+                <div class="weekly-summary">
+                    <div class="weekly-summary__item">
+                        <div class="weekly-summary__header">
+                            <span class="weekly-summary__dot weekly-summary__dot--income"></span>
+                            <span class="weekly-summary__label">Ingresos</span>
+                        </div>
+                        <div class="weekly-summary__bar-container">
+                            <div class="weekly-summary__bar weekly-summary__bar--income" style="--width: 85%">
+                                <span class="weekly-summary__value">$ 5.150.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="weekly-summary__item">
+                        <div class="weekly-summary__header">
+                            <span class="weekly-summary__dot weekly-summary__dot--expense"></span>
+                            <span class="weekly-summary__label">Egresos</span>
+                        </div>
+                        <div class="weekly-summary__bar-container">
+                            <div class="weekly-summary__bar weekly-summary__bar--expense" style="--width: 55%">
+                                <span class="weekly-summary__value">$ 3.030.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="weekly-summary__item">
+                        <div class="weekly-summary__header">
+                            <span class="weekly-summary__dot weekly-summary__dot--profit"></span>
+                            <span class="weekly-summary__label">Ganancias</span>
+                        </div>
+                        <div class="weekly-summary__bar-container">
+                            <div class="weekly-summary__bar weekly-summary__bar--profit" style="--width: 40%">
+                                <span class="weekly-summary__value">$ 2.120.000</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

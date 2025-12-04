@@ -325,41 +325,221 @@ main {
     border-top: 2px solid #eee;
 }
 
-/* ---- GRAFICO DE LINEA CSS ---- */
-.line-chart {
-    position: relative;
-    height: 200px;
-    width: 100%;
+/* ---- GRAFICO DE BARRAS AGRUPADAS ---- */
+.chart--grouped {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart__header-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.line-chart span {
-    position: relative;
-    width: 100%;
+.chart__header-row .chart__title {
+    margin-bottom: 0;
 }
 
-.line-chart span::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: var(--p1);
-    width: 100%;
-    height: 3px;
-    background: red;
-    transform: translateY(50%);
+.chart__legend {
+    display: flex;
+    gap: 15px;
 }
 
-.line-chart span::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: var(--p2);
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #666;
+}
+
+.legend-dot {
     width: 10px;
     height: 10px;
-    background: red;
-    border-radius: 50%;
-    transform: translateY(50%);
+    border-radius: 3px;
+}
+
+.legend-dot--income {
+    background: linear-gradient(135deg, #00b894, #55efc4);
+}
+
+.legend-dot--expense {
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+}
+
+.legend-dot--profit {
+    background: linear-gradient(135deg, #f39c12, #f1c40f);
+}
+
+.grouped-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.grouped-bars__row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.grouped-bars__label {
+    width: 35px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.grouped-bars__container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.grouped-bars__bar {
+    height: 14px;
+    width: var(--width);
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.grouped-bars__bar:hover {
+    transform: scaleX(1.02);
+    filter: brightness(1.1);
+}
+
+.grouped-bars__bar span {
+    position: absolute;
+    right: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.grouped-bars__bar:hover span {
+    opacity: 1;
+}
+
+.grouped-bars__bar--income {
+    background: linear-gradient(90deg, #00b894, #55efc4);
+    box-shadow: 0 2px 8px rgba(0, 184, 148, 0.3);
+}
+
+.grouped-bars__bar--expense {
+    background: linear-gradient(90deg, #ff4757, #ff6b81);
+    box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+}
+
+.grouped-bars__bar--profit {
+    background: linear-gradient(90deg, #f39c12, #f1c40f);
+    box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
+}
+
+/* ---- RESUMEN SEMANAL TOTALES ---- */
+.weekly-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 10px 0;
+}
+
+.weekly-summary__item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.weekly-summary__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.weekly-summary__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+}
+
+.weekly-summary__dot--income {
+    background: linear-gradient(135deg, #00b894, #55efc4);
+}
+
+.weekly-summary__dot--expense {
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+}
+
+.weekly-summary__dot--profit {
+    background: linear-gradient(135deg, #f39c12, #f1c40f);
+}
+
+.weekly-summary__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+.weekly-summary__bar-container {
+    width: 100%;
+    height: 28px;
+    background: #f1f2f6;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.weekly-summary__bar {
+    height: 100%;
+    width: var(--width);
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.weekly-summary__bar:hover {
+    filter: brightness(1.1);
+    transform: scaleY(1.05);
+}
+
+.weekly-summary__bar--income {
+    background: linear-gradient(90deg, #00b894, #55efc4);
+    box-shadow: 0 3px 12px rgba(0, 184, 148, 0.4);
+}
+
+.weekly-summary__bar--expense {
+    background: linear-gradient(90deg, #ff4757, #ff6b81);
+    box-shadow: 0 3px 12px rgba(255, 71, 87, 0.4);
+}
+
+.weekly-summary__bar--profit {
+    background: linear-gradient(90deg, #f39c12, #f1c40f);
+    box-shadow: 0 3px 12px rgba(243, 156, 18, 0.4);
+}
+
+.weekly-summary__value {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    font-weight: 700;
+    color: #000000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.weekly-summary__bar:hover .weekly-summary__value {
+    opacity: 1;
 }
 
 /* =========================== */
