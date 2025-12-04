@@ -96,24 +96,68 @@
     </aside>
     <main class="dashboard">
         <section class="dashboard__cards">
-            <div class="card">
-                <h3 class="card__title">Ventas del dia</h3>
-                <p class="card__value">$ 450.000</p>
+            <div class="card card--income">
+                <div class="card__header">
+                    <div class="card__icon card__icon--income">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                    <div class="card__badge card__badge--up">
+                        <i class="fa-solid fa-caret-up"></i>
+                        <span>12%</span>
+                    </div>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title">Ventas del día</h3>
+                    <p class="card__value">$ 450.000</p>
+                </div>
             </div>
 
-            <div class="card">
-                <h3 class="card__title">Egresos Proveedores</h3>
-                <p class="card__value">$ 500.000</p>
+            <div class="card card--expense">
+                <div class="card__header">
+                    <div class="card__icon card__icon--expense">
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+                    </div>
+                    <div class="card__badge card__badge--down">
+                        <i class="fa-solid fa-caret-up"></i>
+                        <span>8%</span>
+                    </div>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title">Egresos Proveedores</h3>
+                    <p class="card__value">$ 500.000</p>
+                </div>
             </div>
 
-            <div class="card">
-                <h3 class="card__title">Ganancias del mes</h3>
-                <p class="card__value">$ 3.200.000</p>
+            <div class="card card--profit">
+                <div class="card__header">
+                    <div class="card__icon card__icon--profit">
+                        <i class="fa-solid fa-sack-dollar"></i>
+                    </div>
+                    <div class="card__badge card__badge--up">
+                        <i class="fa-solid fa-caret-up"></i>
+                        <span>23%</span>
+                    </div>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title">Ganancias del mes</h3>
+                    <p class="card__value">$ 3.200.000</p>
+                </div>
             </div>
 
-            <div class="card">
-                <h3 class="card__title">Productos activos</h3>
-                <p class="card__value">128</p>
+            <div class="card card--info">
+                <div class="card__header">
+                    <div class="card__icon card__icon--info">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <!-- <div class="card__badge card__badge--neutral">
+                        <i class="fa-solid fa-minus"></i>
+                        <span>0%</span>
+                    </div> -->
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title">Productos activos</h3>
+                    <p class="card__value">128</p>
+                </div>
             </div>
         </section>
         <section class="dashboard__charts">
