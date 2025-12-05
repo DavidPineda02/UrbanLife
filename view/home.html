@@ -79,7 +79,7 @@
                     </a>
                 </li>
             </ul>
-        </nav> 
+        </nav>
         <div class="sidebar__profile">
             <a href="#" class="sidebar__profile-link">
                 <div class="sidebar__profile-avatar">
@@ -259,18 +259,43 @@
             </div>
 
             <div class="chart chart--pie">
-                <h3 class="chart__title">Distribucion de categorias</h3>
+                <h3 class="chart__title">Stock por Categoría</h3>
 
-                <div class="pie">
-                    <div class="pie__slice pie__slice--1"></div>
-                    <div class="pie__slice pie__slice--2"></div>
-                    <div class="pie__slice pie__slice--3"></div>
+                <div class="pie-container">
+                    <div class="pie-donut">
+                        <div class="pie-donut__center">
+                            <span class="pie-donut__total-label">Total</span>
+                            <span class="pie-donut__total-value">128</span>
+                            <span class="pie-donut__total-unit">productos</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="pie-legend">
-                    <span><span class="legend-box lb1"></span> Accesorios</span>
-                    <span><span class="legend-box lb2"></span> Ropa Hombre</span>
-                    <span><span class="legend-box lb3"></span> Ropa Mujer</span>
+                    <div class="pie-legend__item">
+                        <div class="pie-legend__indicator pie-legend__indicator--1"></div>
+                        <div class="pie-legend__info">
+                            <span class="pie-legend__label">Accesorios</span>
+                            <span class="pie-legend__value">52 unidades</span>
+                        </div>
+                        <span class="pie-legend__percent">41%</span>
+                    </div>
+                    <div class="pie-legend__item">
+                        <div class="pie-legend__indicator pie-legend__indicator--2"></div>
+                        <div class="pie-legend__info">
+                            <span class="pie-legend__label">Ropa Hombre</span>
+                            <span class="pie-legend__value">44 unidades</span>
+                        </div>
+                        <span class="pie-legend__percent">34%</span>
+                    </div>
+                    <div class="pie-legend__item">
+                        <div class="pie-legend__indicator pie-legend__indicator--3"></div>
+                        <div class="pie-legend__info">
+                            <span class="pie-legend__label">Ropa Mujer</span>
+                            <span class="pie-legend__value">32 unidades</span>
+                        </div>
+                        <span class="pie-legend__percent">25%</span>
+                    </div>
                 </div>
             </div>
 

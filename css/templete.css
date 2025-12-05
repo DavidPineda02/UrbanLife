@@ -39,9 +39,9 @@ main {
     background: #fff;
     padding: 12px;
     border-radius: var(--radio-grande);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.04);
     position: relative;
     overflow: hidden;
 }
@@ -59,7 +59,7 @@ main {
 
 .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
 /* Variantes de color para cada tipo de tarjeta */
@@ -97,7 +97,7 @@ main {
     justify-content: center;
     font-size: 14px;
     color: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .card__icon--income {
@@ -178,7 +178,7 @@ main {
     background: #fff;
     padding: 25px;
     border-radius: var(--radio-grande);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .chart__title {
@@ -230,7 +230,7 @@ main {
 .bars__grid-line {
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, rgba(0,0,0,0.06), rgba(0,0,0,0.1), rgba(0,0,0,0.06));
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.06));
 }
 
 .bars {
@@ -269,7 +269,7 @@ main {
     left: 0;
     right: 0;
     height: 50%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.25) 0%, transparent 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 100%);
     border-radius: 8px 8px 0 0;
 }
 
@@ -287,7 +287,7 @@ main {
     opacity: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
     white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .bars__value::after {
@@ -535,7 +535,7 @@ main {
     color: #000000;
     opacity: 0;
     transition: opacity 0.3s ease;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .weekly-summary__bar:hover .weekly-summary__value {
@@ -549,39 +549,172 @@ main {
 .chart--pie {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 18px;
+    gap: 24px;
 }
 
-.pie {
-    width: 160px;
-    height: 160px;
+.chart--pie .chart__title {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.pie-container {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+}
+
+.pie-donut {
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     position: relative;
-    background: conic-gradient(
-        #ff4c4c 0deg 140deg,
-        #ff9b73 140deg 260deg,
-        #ffd36b 260deg 360deg
-    );
+    background: conic-gradient(#ff4757 0deg 148deg,
+            #f39c12 148deg 270deg,
+            #00b894 270deg 360deg);
+    box-shadow:
+        0 8px 32px rgba(255, 71, 87, 0.25),
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 -2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
 }
 
+.pie-donut:hover {
+    transform: scale(1.03);
+    box-shadow:
+        0 12px 40px rgba(255, 71, 87, 0.3),
+        0 6px 20px rgba(0, 0, 0, 0.15),
+        inset 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pie-donut::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    border-radius: 50%;
+    background: conic-gradient(rgba(255, 255, 255, 0.15) 0deg 148deg,
+            rgba(255, 255, 255, 0.1) 148deg 270deg,
+            rgba(255, 255, 255, 0.2) 270deg 360deg);
+    pointer-events: none;
+}
+
+.pie-donut__center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.pie-donut__total-label {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pie-donut__total-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2d3436;
+    line-height: 1;
+}
+
+.pie-donut__total-unit {
+    font-size: 10px;
+    color: #888;
+    font-weight: 500;
+    text-transform: lowercase;
+}
+
+/* Leyenda Profesional */
 .pie-legend {
     display: flex;
-    gap: 20px;
-    font-size: var(--font-size-s);
+    flex-direction: column;
+    gap: 12px;
 }
 
-.legend-box {
+.pie-legend__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.pie-legend__item:hover {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: translateX(4px);
+}
+
+.pie-legend__indicator {
     width: 14px;
     height: 14px;
-    display: inline-block;
-    margin-right: 4px;
-    border-radius: 3px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-.lb1 { background: #ff4c4c; }
-.lb2 { background: #ff9b73; }
-.lb3 { background: #ffd36b; }
+.pie-legend__indicator--1 {
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+}
+
+.pie-legend__indicator--2 {
+    background: linear-gradient(135deg, #f39c12, #f1c40f);
+}
+
+.pie-legend__indicator--3 {
+    background: linear-gradient(135deg, #00b894, #55efc4);
+}
+
+.pie-legend__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.pie-legend__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2d3436;
+}
+
+.pie-legend__value {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+}
+
+.pie-legend__percent {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2d3436;
+    background: rgba(0, 0, 0, 0.04);
+    padding: 4px 10px;
+    border-radius: 6px;
+}
 
 /* ================================ */
 /* ==== BARRAS HORIZONTALES ======= */
