@@ -1,0 +1,124 @@
+/* ========================= */
+/* ===== GRAFICO PASTEL ==== */
+/* ========================= */
+
+.grafico--pastel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pastel-contenedor {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.pastel-dona {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    position: relative;
+    background: conic-gradient(#ff4757 0deg 148deg,
+            #f39c12 148deg 270deg,
+            #00b894 270deg 360deg);
+}
+
+.pastel-dona__centro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.pastel-dona__total-etiqueta {
+    font-size: 10px;
+    color: #888;
+    font-weight: 500;
+}
+
+.pastel-dona__total-valor {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+}
+
+.pastel-dona__total-unidad {
+    font-size: 9px;
+    color: #888;
+}
+
+/* Leyenda */
+.pastel-leyenda {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pastel-leyenda__elemento {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+.pastel-leyenda__elemento:hover {
+    background: #f0f0f0;
+}
+
+.pastel-leyenda__indicador {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.pastel-leyenda__indicador--1 {
+    background: #ff4757;
+}
+
+.pastel-leyenda__indicador--2 {
+    background: #f39c12;
+}
+
+.pastel-leyenda__indicador--3 {
+    background: #00b894;
+}
+
+.pastel-leyenda__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.pastel-leyenda__etiqueta {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.pastel-leyenda__valor {
+    font-size: 11px;
+    color: #888;
+}
+
+.pastel-leyenda__porcentaje {
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    background: #e8e8e8;
+    padding: 4px 8px;
+    border-radius: 4px;
+}

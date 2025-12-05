@@ -1,0 +1,22 @@
+/* ======================= */
+/* ===== LAYOUT TABLERO == */
+/* ======================= */
+
+.tablero {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.tablero__tarjetas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.tablero__graficos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}

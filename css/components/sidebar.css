@@ -6,22 +6,17 @@
     top: 0;
     left: 0;
     height: 100vh;
-    width: 15%;
+    width: 17%;
     display: flex;
     flex-direction: column;
-    overflow-y:scroll
+    overflow-y: scroll;
 }
 
 /* ELEMENTO: marca/logo */
-.sidebar__brand {
+.sidebar__marca {
     padding: 10px;
     text-align: center;
     border-bottom: 1.5px solid rgba(0, 0, 0, 0.08);
-}
-
-.sidebar__gradient-line {
-    height: 2px;
-    background: linear-gradient(90deg, rgba(230, 230, 230, 1) 0%, rgba(189, 189, 189, 1) 50%, rgba(230, 230, 230, 1) 100%);
 }
 
 .sidebar__logo {
@@ -43,7 +38,7 @@
 /* ========================================
    ELEMENTO: Lista de navegación
    ======================================== */
-.sidebar__list {
+.sidebar__lista {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,12 +50,12 @@
 }
 
 /* ELEMENTO: ítem individual */
-.sidebar__item {
+.sidebar__elemento {
     width: 100%;
 }
 
 /* ELEMENTO: enlace de navegación */
-.sidebar__link {
+.sidebar__enlace {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -74,22 +69,22 @@
     transition: all 0.3s ease;
 }
 
-/* Hover - sombra roja */
-.sidebar__link:hover {
+/* Hover */
+.sidebar__enlace:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(228, 39, 39, 0.2);
     border-color: rgba(228, 39, 39, 0.3);
 }
 
-/* Active (al hacer clic) - sombra roja */
-.sidebar__link:focus {
+/* Active (al hacer clic) */
+.sidebar__enlace:focus {
     transform: translateY(0);
     box-shadow: 0 4px 15px rgba(228, 39, 39, 0.3);
     border-color: rgba(228, 39, 39, 0.4);
 }
 
 /* Avatar circular del enlace */
-.sidebar__link-avatar {
+.sidebar__enlace-avatar {
     width: 42px;
     height: 42px;
     border-radius: 50%;
@@ -104,7 +99,7 @@
 }
 
 /* Texto del enlace */
-.sidebar__link-text {
+.sidebar__enlace-texto {
     flex: 1;
     font-size: 14px;
     font-weight: 600;
@@ -115,13 +110,13 @@
 }
 
 /* Flecha del enlace */
-.sidebar__link-arrow {
+.sidebar__enlace-flecha {
     color: #ccc;
     font-size: 12px;
     transition: all 0.3s ease;
 }
 
-.sidebar__link:hover .sidebar__link-arrow {
+.sidebar__enlace:hover .sidebar__enlace-flecha {
     color: #E42727;
     transform: translateX(3px);
 }
@@ -129,14 +124,14 @@
 /* ========================================
    ELEMENTO: Perfil del usuario (fondo del sidebar)
    ======================================== */
-.sidebar__profile {
+.sidebar__perfil {
     margin-top: auto;
     padding: 20px;
     border-top: 1.5px solid rgba(0, 0, 0, 0.08);
     background: linear-gradient(180deg, transparent 0%, rgba(228, 39, 39, 0.03) 100%);
 }
 
-.sidebar__profile-link {
+.sidebar__perfil-enlace {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -150,19 +145,19 @@
     transition: all 0.3s ease;
 }
 
-.sidebar__profile-link:hover {
+.sidebar__perfil-enlace:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(228, 39, 39, 0.2);
     border-color: rgba(228, 39, 39, 0.3);
 }
 
-.sidebar__profile-link:focus {
+.sidebar__perfil-enlace:focus {
     transform: translateY(0);
     box-shadow: 0 4px 15px rgba(228, 39, 39, 0.3);
     border-color: rgba(228, 39, 39, 0.4);
 }
 
-.sidebar__profile-avatar {
+.sidebar__perfil-avatar {
     width: 42px;
     height: 42px;
     border-radius: 50%;
@@ -176,14 +171,14 @@
     box-shadow: 0 3px 10px rgba(228, 39, 39, 0.3);
 }
 
-.sidebar__profile-info {
+.sidebar__perfil-info {
     display: flex;
     flex-direction: column;
     flex: 1;
     min-width: 0;
 }
 
-.sidebar__profile-name {
+.sidebar__perfil-nombre {
     font-size: 14px;
     font-weight: 600;
     color: #1a1a1a;
@@ -192,19 +187,19 @@
     text-overflow: ellipsis;
 }
 
-.sidebar__profile-role {
+.sidebar__perfil-rol {
     font-size: 12px;
     color: #888;
     margin-top: 2px;
 }
 
-.sidebar__profile-arrow {
+.sidebar__perfil-flecha {
     color: #ccc;
     font-size: 12px;
     transition: all 0.3s ease;
 }
 
-.sidebar__profile-link:hover .sidebar__profile-arrow {
+.sidebar__perfil-enlace:hover .sidebar__perfil-flecha {
     color: #E42727;
     transform: translateX(3px);
 }

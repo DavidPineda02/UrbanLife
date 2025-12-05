@@ -1,0 +1,93 @@
+/* =================== */
+/* ===== TARJETAS ==== */
+/* =================== */
+
+.tarjeta {
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.tarjeta:hover {
+    border-color: #ccc;
+}
+
+/* Header de la tarjeta */
+.tarjeta__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/* Iconos */
+.tarjeta__icono {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+.tarjeta__icono--ingreso {
+    background: #00b894;
+}
+
+.tarjeta__icono--egreso {
+    background: #ff4757;
+}
+
+.tarjeta__icono--ganancia {
+    background: #f39c12;
+}
+
+.tarjeta__icono--info {
+    background: #3498db;
+}
+
+/* Insignias de tendencia */
+.tarjeta__insignia {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.tarjeta__insignia--arriba {
+    background: #e8f8f5;
+    color: #00b894;
+}
+
+.tarjeta__insignia--abajo {
+    background: #ffeaea;
+    color: #ff4757;
+}
+
+.tarjeta__insignia--abajo i {
+    transform: rotate(180deg);
+}
+
+/* Cuerpo de la tarjeta */
+.tarjeta__cuerpo {
+    margin-bottom: 0;
+}
+
+.tarjeta__titulo {
+    font-size: 12px;
+    color: #888;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.tarjeta__valor {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+}

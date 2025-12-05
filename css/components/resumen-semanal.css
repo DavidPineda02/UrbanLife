@@ -1,0 +1,88 @@
+/* ========================= */
+/* ===== RESUMEN SEMANAL === */
+/* ========================= */
+
+.grafico--agrupado {
+    display: flex;
+    flex-direction: column;
+}
+
+.resumen-semanal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.resumen-semanal__elemento {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.resumen-semanal__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.resumen-semanal__punto {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.resumen-semanal__punto--ingreso {
+    background: #00b894;
+}
+
+.resumen-semanal__punto--egreso {
+    background: #ff4757;
+}
+
+.resumen-semanal__punto--ganancia {
+    background: #f39c12;
+}
+
+.resumen-semanal__etiqueta {
+    font-size: 13px;
+    font-weight: 500;
+    color: #555;
+}
+
+.resumen-semanal__barra-contenedor {
+    width: 100%;
+    height: 24px;
+    background: #f0f0f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.resumen-semanal__barra {
+    height: 100%;
+    width: var(--ancho);
+    border-radius: 6px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.resumen-semanal__barra--ingreso {
+    background: #00b894;
+}
+
+.resumen-semanal__barra--egreso {
+    background: #ff4757;
+}
+
+.resumen-semanal__barra--ganancia {
+    background: #f39c12;
+}
+
+.resumen-semanal__valor {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+}

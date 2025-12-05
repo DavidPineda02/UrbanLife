@@ -1,0 +1,143 @@
+/* ================================ */
+/* ===== PRODUCTOS MAS RENTABLES == */
+/* ================================ */
+
+.grafico--margen {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.grafico__subtitulo {
+    font-size: 11px;
+    color: #888;
+    margin-top: -10px;
+}
+
+.margen-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.margen-elemento {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #f8f8f8;
+    border-radius: 10px;
+}
+
+.margen-elemento:hover {
+    background: #f0f0f0;
+}
+
+.margen-elemento--alto {
+    background: #e8f8f5;
+}
+
+.margen-elemento--alto:hover {
+    background: #d5f5e3;
+}
+
+/* Iconos de producto */
+.margen-elemento__icono {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #fff;
+    flex-shrink: 0;
+    background: #00b894;
+}
+
+.margen-elemento__icono--2 {
+    background: #3498db;
+}
+
+.margen-elemento__icono--3 {
+    background: #9b59b6;
+}
+
+.margen-elemento__icono--4 {
+    background: #f39c12;
+}
+
+.margen-elemento__icono--5 {
+    background: #e17055;
+}
+
+/* Contenido principal */
+.margen-elemento__contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.margen-elemento__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.margen-elemento__nombre {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.margen-elemento__porcentaje {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    min-width: 45px;
+    text-align: center;
+}
+
+.margen-elemento__porcentaje--alto {
+    background: #d5f5e3;
+    color: #00b894;
+}
+
+.margen-elemento__porcentaje--medio {
+    background: #dbeafe;
+    color: #3498db;
+}
+
+.margen-elemento__porcentaje--bajo {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+/* Barra de progreso */
+.margen-elemento__barra-contenedor {
+    width: 100%;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.margen-elemento__barra {
+    height: 100%;
+    width: var(--ancho-barra);
+    border-radius: 3px;
+}
+
+.margen-elemento__barra--alto {
+    background: #00b894;
+}
+
+.margen-elemento__barra--medio {
+    background: #3498db;
+}
+
+.margen-elemento__barra--bajo {
+    background: #f39c12;
+}
