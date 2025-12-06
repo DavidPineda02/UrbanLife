@@ -33,15 +33,15 @@
 }
 
 .resumen-semanal__punto--ingreso {
-    background: #00b894;
+    background: var(--color-ingreso);
 }
 
 .resumen-semanal__punto--egreso {
-    background: #ff4757;
+    background: var(--color-egreso);
 }
 
 .resumen-semanal__punto--ganancia {
-    background: #f39c12;
+    background: var(--color-ganancia);
 }
 
 .resumen-semanal__etiqueta {
@@ -53,15 +53,15 @@
 .resumen-semanal__barra-contenedor {
     width: 100%;
     height: 24px;
-    background: #f0f0f0;
-    border-radius: 6px;
+    background: var(--color-fondo-gris-hover);
+    border-radius: var(--radio-pequeno);
     overflow: hidden;
 }
 
 .resumen-semanal__barra {
     height: 100%;
     width: var(--ancho);
-    border-radius: 6px;
+    border-radius: var(--radio-pequeno);
     position: relative;
     display: flex;
     align-items: center;
@@ -70,19 +70,19 @@
 }
 
 .resumen-semanal__barra--ingreso {
-    background: #00b894;
+    background: var(--color-ingreso);
 }
 
 .resumen-semanal__barra--egreso {
-    background: #ff4757;
+    background: var(--color-egreso);
 }
 
 .resumen-semanal__barra--ganancia {
-    background: #f39c12;
+    background: var(--color-ganancia);
 }
 
 .resumen-semanal__valor {
     font-size: 11px;
     font-weight: 600;
-    color: #fff;
+    color: var(--color-blanco);
 }
