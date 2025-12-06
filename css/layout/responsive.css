@@ -1,0 +1,752 @@
+    /* ============================================ */
+    /* ===== MEDIA QUERIES - DISEÑO RESPONSIVO === */
+    /* ============================================ */
+
+    /* 
+   BREAKPOINTS ESPECÍFICOS:
+   - Desktop Grande: > 1024px (estilos base)
+   - Laptop: <= 1024px
+   - Tablet: <= 768px
+   - Mobile L: <= 425px
+   - Mobile M: <= 375px
+   - Mobile S: <= 320px
+   
+   Solo HTML y CSS, sin JavaScript
+*/
+
+    /* ============================================ */
+    /* ===== LAPTOP (<= 1024px) ================== */
+    /* ============================================ */
+    @media screen and (max-width: 1024px) {
+
+        /* ---------- SIDEBAR MÁS GRANDE EN LAPTOP ---------- */
+        .sidebar {
+            width: 220px;
+        }
+
+        .sidebar__marca {
+            padding: 12px;
+        }
+
+        .sidebar__logo {
+            width: 85%;
+            padding: 12px 0;
+        }
+
+        .sidebar__nav {
+            padding: 15px 0;
+        }
+
+        .sidebar__lista {
+            padding: 0 15px;
+            gap: 10px;
+        }
+
+        .sidebar__enlace {
+            padding: 12px 14px;
+            gap: 10px;
+        }
+
+        .sidebar__enlace-avatar {
+            width: 38px;
+            height: 38px;
+            font-size: 16px;
+        }
+
+        .sidebar__enlace-texto {
+            font-size: 13px;
+        }
+
+        /* Perfil en sidebar */
+        .sidebar__perfil {
+            padding: 15px;
+        }
+
+        .sidebar__perfil-enlace {
+            padding: 12px 14px;
+            gap: 10px;
+        }
+
+        .sidebar__perfil-avatar {
+            width: 38px;
+            height: 38px;
+            font-size: 16px;
+        }
+
+        .sidebar__perfil-nombre {
+            font-size: 13px;
+        }
+
+        .sidebar__perfil-rol {
+            font-size: 11px;
+        }
+
+        /* ---------- MAIN / TABLERO ---------- */
+        main {
+            margin-left: 220px;
+        }
+
+        .tablero {
+            padding: 18px;
+            gap: 22px;
+        }
+
+        .tablero__tarjetas {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .tablero__graficos {
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        /* ---------- TARJETAS ---------- */
+        .tarjeta__icono {
+            width: 40px;
+            height: 40px;
+        }
+
+        .tarjeta__titulo {
+            font-size: 12px;
+        }
+
+        .tarjeta__valor {
+            font-size: 22px;
+        }
+
+        /* ---------- GRÁFICOS ---------- */
+        .grafico__titulo {
+            font-size: 15px;
+        }
+    }
+
+    /* ============================================ */
+    /* ===== TABLET (<= 768px) =================== */
+    /* ============================================ */
+    @media screen and (max-width: 768px) {
+
+        /* ---------- SIDEBAR COMO BARRA INFERIOR ---------- */
+        .sidebar {
+            position: fixed;
+            top: auto;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: auto;
+            flex-direction: row;
+            border-top: 1px solid var(--color-borde);
+            background: var(--color-blanco);
+            z-index: 100;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .sidebar__marca {
+            display: none;
+        }
+
+        .sidebar__nav {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .sidebar__lista {
+            flex-direction: row;
+            justify-content: space-around;
+            padding: 10px 8px;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .sidebar__elemento {
+            width: auto;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .sidebar__enlace {
+            padding: 10px 6px;
+            flex-direction: column;
+            gap: 4px;
+            box-shadow: none;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+        }
+
+        .sidebar__enlace:hover {
+            transform: none;
+            box-shadow: none;
+            background: var(--color-fondo-gris);
+        }
+
+        .sidebar__enlace-avatar {
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
+        }
+
+        .sidebar__enlace-texto {
+            font-size: 9px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        /* OCULTAR FLECHA EN TABLET Y MÓVILES */
+        .sidebar__enlace-flecha,
+        .sidebar__perfil-flecha {
+            display: none !important;
+        }
+
+        /* Ocultar perfil en tablet/mobile */
+        .sidebar__perfil {
+            display: none;
+        }
+
+        /* ---------- MAIN / TABLERO ---------- */
+        main {
+            margin-left: 0;
+            margin-bottom: 85px;
+            padding: 15px;
+            height: calc(100vh - 85px);
+        }
+
+        .tablero {
+            padding: 12px;
+            gap: 16px;
+        }
+
+        .tablero__tarjetas {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .tablero__graficos {
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        /* ---------- TARJETAS ---------- */
+        .tarjeta__header {
+            margin-bottom: 10px;
+        }
+
+        .tarjeta__icono {
+            width: 36px;
+            height: 36px;
+            font-size: 14px;
+        }
+
+        .tarjeta__insignia {
+            font-size: 11px;
+            padding: 3px 8px;
+        }
+
+        .tarjeta__titulo {
+            font-size: 11px;
+        }
+
+        .tarjeta__valor {
+            font-size: 18px;
+        }
+
+        /* ---------- GRÁFICOS ---------- */
+        .grafico__titulo {
+            font-size: 14px;
+        }
+
+        .grafico__subtitulo {
+            font-size: 12px;
+        }
+
+        /* Gráfico de barras */
+        .barras__eje-etiqueta {
+            font-size: 10px;
+        }
+
+        .barras__dia {
+            font-size: 10px;
+        }
+
+        .barras__elemento {
+            min-width: 22px;
+        }
+
+        .barras__valor {
+            font-size: 9px;
+        }
+
+        /* Resumen semanal */
+        .resumen-semanal__etiqueta {
+            font-size: 12px;
+        }
+
+        .resumen-semanal__valor {
+            font-size: 11px;
+        }
+
+        /* Gráfico pastel */
+        .pastel-dona {
+            width: 140px;
+            height: 140px;
+        }
+
+        .pastel-dona__total-etiqueta {
+            font-size: 11px;
+        }
+
+        .pastel-dona__total-valor {
+            font-size: 22px;
+        }
+
+        .pastel-dona__total-unidad {
+            font-size: 9px;
+        }
+
+        .pastel-leyenda__etiqueta {
+            font-size: 12px;
+        }
+
+        .pastel-leyenda__valor {
+            font-size: 10px;
+        }
+
+        .pastel-leyenda__porcentaje {
+            font-size: 12px;
+        }
+
+        /* Gráfico margen */
+        .margen-elemento__nombre {
+            font-size: 12px;
+        }
+
+        .margen-elemento__porcentaje {
+            font-size: 12px;
+        }
+
+        .margen-elemento__icono {
+            width: 32px;
+            height: 32px;
+            font-size: 12px;
+        }
+    }
+
+    /* ============================================ */
+    /* ===== MOBILE L (<= 425px) ================= */
+    /* ============================================ */
+    @media screen and (max-width: 425px) {
+
+        .sidebar__lista {
+            padding: 8px 4px;
+            gap: 4px;
+        }
+
+        .sidebar__enlace {
+            padding: 8px 4px;
+        }
+
+        .sidebar__enlace-avatar {
+            width: 28px;
+            height: 28px;
+            font-size: 12px;
+        }
+
+        .sidebar__enlace-texto {
+            font-size: 8px;
+        }
+
+        /* FLECHA YA OCULTA DESDE TABLET */
+
+        main {
+            margin-bottom: 75px;
+            padding: 12px;
+            height: calc(100vh - 75px);
+        }
+
+        .tablero {
+            padding: 10px;
+            gap: 14px;
+        }
+
+        .tablero__tarjetas {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .tarjeta__icono {
+            width: 32px;
+            height: 32px;
+            font-size: 12px;
+        }
+
+        .tarjeta__titulo {
+            font-size: 10px;
+        }
+
+        .tarjeta__valor {
+            font-size: 16px;
+        }
+
+        .tarjeta__insignia {
+            font-size: 10px;
+            padding: 2px 6px;
+        }
+
+        /* Gráficos */
+        .grafico__titulo {
+            font-size: 13px;
+        }
+
+        .grafico__subtitulo {
+            font-size: 11px;
+        }
+
+        .barras__eje-etiqueta {
+            font-size: 9px;
+        }
+
+        .barras__dia {
+            font-size: 9px;
+        }
+
+        .barras__elemento {
+            min-width: 18px;
+        }
+
+        .barras__valor {
+            font-size: 8px;
+        }
+
+        /* Pastel */
+        .pastel-dona {
+            width: 120px;
+            height: 120px;
+        }
+
+        .pastel-dona__total-valor {
+            font-size: 20px;
+        }
+
+        .pastel-leyenda__etiqueta {
+            font-size: 11px;
+        }
+
+        .pastel-leyenda__valor {
+            font-size: 9px;
+        }
+
+        .pastel-leyenda__porcentaje {
+            font-size: 11px;
+        }
+
+        /* Margen */
+        .margen-elemento__icono {
+            width: 28px;
+            height: 28px;
+            font-size: 11px;
+        }
+
+        .margen-elemento__nombre {
+            font-size: 11px;
+        }
+
+        .margen-elemento__porcentaje {
+            font-size: 11px;
+        }
+
+        /* Resumen semanal */
+        .resumen-semanal__etiqueta {
+            font-size: 11px;
+        }
+
+        .resumen-semanal__valor {
+            font-size: 10px;
+        }
+    }
+
+    /* ============================================ */
+    /* ===== MOBILE M (<= 375px) ================= */
+    /* ============================================ */
+    @media screen and (max-width: 375px) {
+
+        .sidebar__lista {
+            padding: 6px 2px;
+            gap: 2px;
+        }
+
+        .sidebar__enlace {
+            padding: 6px 2px;
+        }
+
+        .sidebar__enlace-avatar {
+            width: 26px;
+            height: 26px;
+            font-size: 11px;
+        }
+
+        .sidebar__enlace-texto {
+            font-size: 7px;
+        }
+
+        /* FLECHA YA OCULTA DESDE TABLET */
+
+        main {
+            margin-bottom: 70px;
+            padding: 10px;
+            height: calc(100vh - 70px);
+        }
+
+        .tablero {
+            padding: 8px;
+            gap: 12px;
+        }
+
+        .tablero__tarjetas {
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .tarjeta__icono {
+            width: 28px;
+            height: 28px;
+            font-size: 10px;
+        }
+
+        .tarjeta__titulo {
+            font-size: 9px;
+        }
+
+        .tarjeta__valor {
+            font-size: 14px;
+        }
+
+        .tarjeta__insignia {
+            font-size: 9px;
+            padding: 2px 4px;
+        }
+
+        /* Gráficos */
+        .grafico__titulo {
+            font-size: 12px;
+        }
+
+        .grafico__subtitulo {
+            font-size: 10px;
+        }
+
+        .barras__eje-etiqueta {
+            font-size: 8px;
+        }
+
+        .barras__dia {
+            font-size: 8px;
+        }
+
+        .barras__elemento {
+            min-width: 14px;
+        }
+
+        .barras__valor {
+            font-size: 7px;
+        }
+
+        /* Pastel */
+        .pastel-contenedor {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pastel-dona {
+            width: 110px;
+            height: 110px;
+        }
+
+        .pastel-dona__total-valor {
+            font-size: 18px;
+        }
+
+        .pastel-leyenda {
+            width: 100%;
+        }
+
+        .pastel-leyenda__etiqueta {
+            font-size: 10px;
+        }
+
+        .pastel-leyenda__valor {
+            font-size: 8px;
+        }
+
+        .pastel-leyenda__porcentaje {
+            font-size: 10px;
+        }
+
+        /* Margen */
+        .margen-elemento__icono {
+            width: 24px;
+            height: 24px;
+            font-size: 10px;
+        }
+
+        .margen-elemento__nombre {
+            font-size: 10px;
+        }
+
+        .margen-elemento__porcentaje {
+            font-size: 10px;
+        }
+
+        /* Resumen semanal */
+        .resumen-semanal__etiqueta {
+            font-size: 10px;
+        }
+
+        .resumen-semanal__valor {
+            font-size: 9px;
+        }
+    }
+
+    /* ============================================ */
+    /* ===== MOBILE S (<= 320px) ================= */
+    /* ============================================ */
+    @media screen and (max-width: 320px) {
+
+        /* Ocultar texto del menú, solo iconos */
+        .sidebar__enlace-texto {
+            display: none;
+        }
+
+        .sidebar__enlace-avatar {
+            width: 30px;
+            height: 30px;
+            font-size: 13px;
+        }
+
+        .sidebar__lista {
+            padding: 10px 6px;
+            gap: 4px;
+        }
+
+        .sidebar__enlace {
+            padding: 8px 4px;
+        }
+
+        /* FLECHA YA OCULTA DESDE TABLET */
+
+        main {
+            margin-bottom: 60px;
+            padding: 8px;
+            height: calc(100vh - 60px);
+        }
+
+        .tablero {
+            padding: 6px;
+            gap: 10px;
+        }
+
+        .tablero__tarjetas {
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .tarjeta__icono {
+            width: 32px;
+            height: 32px;
+            font-size: 12px;
+        }
+
+        .tarjeta__titulo {
+            font-size: 10px;
+        }
+
+        .tarjeta__valor {
+            font-size: 16px;
+        }
+
+        /* Gráficos */
+        .grafico__titulo {
+            font-size: 11px;
+        }
+
+        .grafico__subtitulo {
+            font-size: 9px;
+        }
+
+        .barras__eje-etiqueta {
+            font-size: 7px;
+        }
+
+        .barras__dia {
+            font-size: 7px;
+        }
+
+        .barras__elemento {
+            min-width: 12px;
+        }
+
+        .barras__valor {
+            font-size: 6px;
+        }
+
+        /* Pastel */
+        .pastel-dona {
+            width: 100px;
+            height: 100px;
+        }
+
+        .pastel-dona__total-valor {
+            font-size: 16px;
+        }
+
+        .pastel-dona__total-etiqueta {
+            font-size: 9px;
+        }
+
+        .pastel-dona__total-unidad {
+            font-size: 7px;
+        }
+
+        .pastel-leyenda__etiqueta {
+            font-size: 9px;
+        }
+
+        .pastel-leyenda__valor {
+            font-size: 7px;
+        }
+
+        .pastel-leyenda__porcentaje {
+            font-size: 9px;
+        }
+
+        /* Margen */
+        .margen-elemento__icono {
+            width: 22px;
+            height: 22px;
+            font-size: 9px;
+        }
+
+        .margen-elemento__nombre {
+            font-size: 9px;
+        }
+
+        .margen-elemento__porcentaje {
+            font-size: 9px;
+        }
+
+        /* Resumen semanal */
+        .resumen-semanal__etiqueta {
+            font-size: 9px;
+        }
+
+        .resumen-semanal__valor {
+            font-size: 8px;
+        }
+    }

@@ -3,18 +3,21 @@
 /* ================================ */
 
 /* Variables globales */
-@import url(/css/customproperties.css);
+@import url(./customproperties.css);
 
 /* Base */
-@import url(/css/base/reset.css);
+@import url(./base/reset.css);
 
 /* Layout */
-@import url(/css/layout/tablero.css);
+@import url(./layout/tablero.css);
 
 /* Componentes */
-@import url(/css/components/sidebar.css);
-@import url(/css/components/tarjetas.css);
-@import url(/css/components/grafico-barras.css);
-@import url(/css/components/resumen-semanal.css);
-@import url(/css/components/grafico-pastel.css);
-@import url(/css/components/grafico-margen.css);
+@import url(./components/sidebar.css);
+@import url(./components/tarjetas.css);
+@import url(./components/grafico-barras.css);
+@import url(./components/resumen-semanal.css);
+@import url(./components/grafico-pastel.css);
+@import url(./components/grafico-margen.css);
+
+/* Responsive */
+@import url(./layout/responsive.css);
