@@ -10,6 +10,15 @@
     --color-marca-sombra: rgba(228, 39, 39, 0.3);
 
     /* ========================= */
+    /* ===== COLORES PRINCIPALES */
+    /* ========================= */
+    --color-principal: #1a1a1a;
+    --color-secundario: #ffffff;
+    --color-hover: #333333;
+    --color-overlay: rgba(0, 0, 0, 0.4);
+    --color-fondo-input: #f5f5f5;
+
+    /* ========================= */
     /* ===== COLORES BASE ====== */
     /* ========================= */
     --color-blanco: #ffffff;
@@ -17,7 +26,8 @@
     --color-fondo-gris: #f8f8f8;
     --color-fondo-gris-hover: #f0f0f0;
     --color-texto: #333333;
-    --color-texto-secundario: #888888;
+    --color-texto-secundario: #666666;
+    --color-texto-terciario: #888888;
     --color-borde: #e0e0e0;
     --color-borde-claro: #eeeeee;
 
@@ -57,12 +67,42 @@
     --fuente-principal: "Open Sans", sans-serif;
 
     /* ========================= */
+    /* ===== TAMAÑOS FUENTE ==== */
+    /* ========================= */
+    --font-size-xs: 0.75rem;
+    --font-size-peq: 0.85rem;
+    --font-size-s: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-grande: 1rem;
+    --font-size-muy-grande: 1.25rem;
+
+    /* ========================= */
+    /* ===== PESOS FUENTE ====== */
+    /* ========================= */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+
+    /* ========================= */
     /* ===== BORDES ============ */
     /* ========================= */
     --radio-pequeno: 6px;
     --radio-mediano: 8px;
+    --radio: 8px;
     --radio-grande: 12px;
     --radio-redondo: 50%;
+
+    /* ========================= */
+    /* ===== ESPACIADOS ======== */
+    /* ========================= */
+    --espacio-peq: 0.5rem;
+    --espacio-med: 1.5rem;
+    --espacio-grande: 1.5rem;
+
+    /* ========================= */
+    /* ===== SOMBRAS =========== */
+    /* ========================= */
+    --sombra: 4px 0 20px rgba(0, 0, 0, 0.5);
 
     /* ========================= */
     /* ===== GRADIENTES ======== */

@@ -1,38 +1,61 @@
 /* ============================================
 BLOQUE: formulario
 ============================================ */
+
 .formulario {
     width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: var(--espacio-med);
+    gap: var(--espacio-peq);
+}
+
+.formulario__grupo {
+    margin-bottom: var(--espacio-peq);
 }
 
 .formulario__etiqueta {
-    font-weight: var(--font-weight-normal);
-    margin-bottom: 0.4rem;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--espacio-peq);
     color: var(--color-texto-secundario);
     display: block;
-    margin-top: 10px;
     font-size: var(--font-size-s);
+    transition: color 0.2s ease;
+}
+
+.formulario__grupo:focus-within .formulario__etiqueta {
+    color: var(--color-principal);
 }
 
 .formulario__campo {
     width: 100%;
     padding: 0.9rem 1rem;
-    border: none;
+    border: 1px solid transparent;
     outline: none;
     background-color: var(--color-fondo-input);
     border-radius: var(--radio);
     font-size: var(--font-size-peq);
-    margin-bottom: 1rem;
-    transition: box-shadow 0.2s ease;
+    transition: all 0.25s ease;
     font-weight: var(--font-weight-normal);
 }
 
+.formulario__campo::placeholder {
+    color: var(--color-texto-terciario);
+    transition: opacity 0.2s ease;
+}
+
+.formulario__campo:focus::placeholder {
+    opacity: 0.5;
+}
+
+.formulario__campo:hover {
+    border-color: var(--color-borde);
+}
+
 .formulario__campo:focus {
-    box-shadow: 0 0 0 2px var(--color-principal);
+    background-color: var(--color-secundario);
+    border-color: var(--color-principal);
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
 }
 
 .formulario__campo--password {
@@ -44,9 +67,14 @@ BLOQUE: formulario
 .formulario__icono {
     position: absolute;
     right: 1rem;
-    color: #888;
+    color: var(--color-texto-terciario);
     cursor: pointer;
     font-size: var(--font-size-muy-grande);
+    transition: color 0.2s ease;
+}
+
+.formulario__icono:hover {
+    color: var(--color-principal);
 }
 
 /* ============================================
@@ -57,35 +85,44 @@ ELEMENTOS: Acciones, checkbox, enlaces
     justify-content: space-between;
     align-items: center;
     font-size: var(--font-size-grande);
-    margin-bottom: 1rem;
+    margin-top: var(--espacio-peq);
 }
 
 .formulario__recordar {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: var(--espacio-peq);
+    cursor: pointer;
 }
 
 .formulario__checkbox {
     accent-color: var(--color-principal);
     transform: scale(1.2);
+    cursor: pointer;
 }
 
 .formulario__texto {
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-normal);
     color: var(--color-texto);
+    transition: color 0.2s ease;
+}
+
+.formulario__recordar:hover .formulario__texto {
+    color: var(--color-principal);
 }
 
 .formulario__enlace {
     color: var(--color-principal);
     text-decoration: none;
-    font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-medium);
     font-size: var(--font-size-xs);
+    transition: opacity 0.2s ease;
 }
 
 .formulario__enlace:hover {
     text-decoration: underline;
+    opacity: 0.8;
 }
 
 /* ============================================
@@ -94,7 +131,8 @@ BOTONES PRINCIPAL Y GOOGLE
 .formulario__botones {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--espacio-med);
+    margin-top: var(--espacio-med);
 }
 
 .formulario__boton {
@@ -103,10 +141,10 @@ BOTONES PRINCIPAL Y GOOGLE
     width: 100%;
     padding: 0.9rem;
     border: none;
-    border-radius: 12px;
+    border-radius: var(--radio-grande);
     font-size: var(--font-size-grande);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,19 +156,50 @@ BOTONES PRINCIPAL Y GOOGLE
     background-color: var(--color-principal);
     color: var(--color-secundario);
     height: 50px;
-    margin-top: var(--espacio-grande);
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-bold);
+    box-shadow: 0 4px 12px rgba(26, 26, 26, 0.25);
 }
 
 .formulario__boton--principal:hover {
     background-color: var(--color-hover);
+    box-shadow: 0 6px 16px rgba(26, 26, 26, 0.35);
+    transform: translateY(-1px);
 }
 
+.formulario__boton--principal:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(26, 26, 26, 0.2);
+}
+
+/* ============================================
+SEPARADOR "O"
+============================================ */
+.formulario__separador {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-med);
+    color: var(--color-texto-terciario);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.formulario__separador::before,
+.formulario__separador::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-borde);
+}
+
+/* ============================================
+BOTON GOOGLE
+============================================ */
 .formulario__boton--google {
     background-color: var(--color-secundario);
     border: 1px solid var(--color-borde);
-    color: #333;
+    color: var(--color-texto);
     height: 50px;
 }
 
@@ -140,7 +209,8 @@ BOTONES PRINCIPAL Y GOOGLE
 }
 
 .formulario__boton--google:hover {
-    background-color: #f7f7f7;
+    background-color: var(--color-fondo-gris-hover);
+    border-color: var(--color-texto-terciario);
 }
 
 .formulario__icono-google {
