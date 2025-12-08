@@ -1,0 +1,332 @@
+/* ========================================================================== */
+/* ===== TABLA.CSS ========================================================== */
+/* ========================================================================== */
+/* Estilos para tablas de datos (ventas, inventario, etc.) */
+
+/* ========================================================================== */
+/* ===== CONTENEDOR DE LA TABLA ============================================= */
+/* ========================================================================== */
+
+.tabla-contenedor {
+    background: var(--color-blanco);
+    /* Fondo blanco */
+    border-radius: 16px;
+    /* Esquinas redondeadas */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    /* Sombra suave */
+    overflow: hidden;
+    /* Oculta overflow para border-radius */
+    max-height: 560px;
+    /* Altura máxima fija */
+    overflow-y: auto;
+    /* Scroll vertical */
+    overflow-x: auto;
+    /* Scroll horizontal en móviles */
+    scrollbar-width: none;
+    /* Firefox: oculta scrollbar */
+    -ms-overflow-style: none;
+    /* IE/Edge: oculta scrollbar */
+}
+
+/* Chrome, Safari, Opera: oculta scrollbar */
+.tabla-contenedor::-webkit-scrollbar {
+    display: none;
+}
+
+/* ========================================================================== */
+/* ===== TABLA PRINCIPAL ==================================================== */
+/* ========================================================================== */
+
+.tabla {
+    width: 100%;
+    /* Ancho completo */
+    border-collapse: collapse;
+    /* Sin espacios entre celdas */
+    font-size: 14px;
+    /* Tamaño de fuente */
+}
+
+/* ========================================================================== */
+/* ===== CABECERA DE LA TABLA =============================================== */
+/* ========================================================================== */
+
+.tabla__cabecera {
+    background: var(--color-principal);
+    /* Fondo negro */
+    position: sticky;
+    /* Cabecera fija al hacer scroll */
+    top: 0;
+    /* Pegar arriba */
+    z-index: 10;
+    /* Por encima del contenido */
+}
+
+.tabla__th {
+    padding: 16px 12px;
+    /* Espaciado interno */
+    text-align: center;
+    /* Centrado horizontal */
+    vertical-align: middle;
+    /* Centrado vertical */
+    font-weight: 600;
+    /* Semi-negrita */
+    font-size: 13px;
+    /* Tamaño pequeño */
+    color: var(--color-blanco);
+    /* Texto blanco */
+    text-transform: uppercase;
+    /* Mayúsculas */
+    letter-spacing: 0.5px;
+    /* Espaciado entre letras */
+    white-space: nowrap;
+    /* Sin salto de línea */
+    background: var(--color-principal);
+    /* Fondo negro para sticky (hereda del thead) */
+}
+
+/* ========================================================================== */
+/* ===== CUERPO DE LA TABLA ================================================= */
+/* ========================================================================== */
+
+.tabla__cuerpo .tabla__fila {
+    border-bottom: 1px solid var(--color-borde-claro);
+    /* Línea separadora */
+    transition: background 0.2s ease;
+    /* Transición suave */
+}
+
+.tabla__cuerpo .tabla__fila:last-child {
+    border-bottom: none;
+    /* Sin borde en última fila */
+}
+
+.tabla__cuerpo .tabla__fila:hover {
+    background: var(--color-fondo-gris);
+    /* Fondo gris al hover */
+}
+
+/* ========================================================================== */
+/* ===== CELDAS DE LA TABLA ================================================= */
+/* ========================================================================== */
+
+.tabla__td {
+    padding: 14px 12px;
+    /* Espaciado interno */
+    color: var(--color-texto);
+    /* Color de texto */
+    text-align: center;
+    /* Centrado horizontal */
+    vertical-align: middle;
+    /* Centrado vertical */
+}
+
+/* Celda ID */
+.tabla__td--id {
+    font-weight: 600;
+    /* Negrita */
+    color: var(--color-texto-secundario);
+    /* Color gris */
+}
+
+/* Celda Precio/Total */
+.tabla__td--precio {
+    font-weight: 700;
+    /* Negrita */
+    color: var(--color-ingreso);
+    /* Color verde */
+}
+
+/* Celda de Acciones */
+.tabla__td--acciones {
+    display: flex;
+    /* Flexbox */
+    gap: 8px;
+    /* Espacio entre botones */
+    justify-content: center;
+    /* Centrar botones */
+    align-items: center;
+    /* Centrar verticalmente */
+}
+
+/* ========================================================================== */
+/* ===== BADGES (ETIQUETAS DE ESTADO) ======================================= */
+/* ========================================================================== */
+
+.tabla__badge {
+    display: inline-block;
+    padding: 4px 10px;
+    /* Espaciado interno */
+    border-radius: 20px;
+    /* Bordes redondeados (pill) */
+    font-size: 11px;
+    /* Tamaño pequeño */
+    font-weight: 600;
+    /* Semi-negrita */
+    text-transform: uppercase;
+    /* Mayúsculas */
+    letter-spacing: 0.3px;
+    /* Espaciado entre letras */
+}
+
+/* Badge - Completado (Verde) */
+.tabla__badge--completado {
+    background: var(--color-ingreso-fondo);
+    /* Fondo verde claro */
+    color: var(--color-ingreso);
+    /* Texto verde */
+}
+
+/* Badge - Pendiente (Naranja) */
+.tabla__badge--pendiente {
+    background: var(--color-ganancia-fondo);
+    /* Fondo naranja claro */
+    color: var(--color-ganancia);
+    /* Texto naranja */
+}
+
+/* Badge - Cancelado (Rojo) */
+.tabla__badge--cancelado {
+    background: var(--color-egreso-fondo);
+    /* Fondo rojo claro */
+    color: var(--color-egreso);
+    /* Texto rojo */
+}
+
+/* Badge - Efectivo (Gris) */
+.tabla__badge--efectivo {
+    background: var(--color-fondo-gris);
+    /* Fondo gris */
+    color: var(--color-texto-secundario);
+    /* Texto gris */
+}
+
+/* Badge - Tarjeta (Azul) */
+.tabla__badge--tarjeta {
+    background: rgba(52, 152, 219, 0.15);
+    /* Fondo azul claro */
+    color: var(--color-info);
+    /* Texto azul */
+}
+
+/* Badge - Transferencia (Morado) */
+.tabla__badge--transferencia {
+    background: rgba(155, 89, 182, 0.15);
+    /* Fondo morado claro */
+    color: var(--color-morado);
+    /* Texto morado */
+}
+
+/* Badge - Nequi (Rosa/Fucsia) */
+.tabla__badge--nequi {
+    background: rgba(232, 76, 137, 0.15);
+    /* Fondo rosa claro */
+    color: #e84c89;
+    /* Texto rosa Nequi */
+}
+
+/* ========================================================================== */
+/* ===== BOTONES DE ACCIÓN ================================================== */
+/* ========================================================================== */
+
+.tabla__accion {
+    width: 32px;
+    /* Ancho fijo */
+    height: 32px;
+    /* Alto fijo */
+    display: flex;
+    /* Flexbox para centrar */
+    align-items: center;
+    /* Centrado vertical */
+    justify-content: center;
+    /* Centrado horizontal */
+    border-radius: 6px;
+    /* Esquinas redondeadas */
+    font-size: 14px;
+    /* Tamaño del icono */
+    text-decoration: none;
+    /* Sin subrayado */
+    transition: background 0.2s ease,
+        /* Transición de fondo */
+        color 0.2s ease,
+        /* Transición de color */
+        transform 0.2s ease;
+    /* Transición de transformación */
+}
+
+.tabla__accion:hover {
+    transform: scale(1.1);
+    /* Agranda ligeramente */
+}
+
+/* Acción - Ver (Azul) */
+.tabla__accion--ver {
+    background: rgba(52, 152, 219, 0.1);
+    /* Fondo azul claro */
+    color: var(--color-info);
+    /* Icono azul */
+}
+
+.tabla__accion--ver:hover {
+    background: var(--color-info);
+    /* Fondo azul sólido */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+/* Acción - Editar (Verde) */
+.tabla__accion--editar {
+    background: rgba(0, 184, 148, 0.1);
+    /* Fondo verde claro */
+    color: var(--color-ingreso);
+    /* Icono verde */
+}
+
+.tabla__accion--editar:hover {
+    background: var(--color-ingreso);
+    /* Fondo verde sólido */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+/* Acción - Eliminar (Rojo) */
+.tabla__accion--eliminar {
+    background: rgba(255, 71, 87, 0.1);
+    /* Fondo rojo claro */
+    color: var(--color-egreso);
+    /* Icono rojo */
+}
+
+.tabla__accion--eliminar:hover {
+    background: var(--color-egreso);
+    /* Fondo rojo sólido */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+/* ========================================================================== */
+/* ===== RESPONSIVE ========================================================= */
+/* ========================================================================== */
+
+@media (max-width: 768px) {
+
+    .tabla__th,
+    .tabla__td {
+        padding: 12px 8px;
+        /* Menos padding */
+        font-size: 12px;
+        /* Fuente más pequeña */
+    }
+
+    .tabla__badge {
+        font-size: 10px;
+        /* Badge más pequeño */
+        padding: 3px 8px;
+    }
+
+    .tabla__accion {
+        width: 28px;
+        /* Botones más pequeños */
+        height: 28px;
+        font-size: 12px;
+    }
+}

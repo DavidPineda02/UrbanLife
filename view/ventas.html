@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/templete.css">
+    <title>Ventas</title>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar__marca">
+            <img src="../assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
+        </div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__lista">
+                <li class="sidebar__elemento">
+                    <a href="home.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ganancias</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="productos.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Productos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="ventas.html" class="sidebar__enlace sidebar__enlace--activo">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ventas</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Clientes</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Compras</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Proveedores</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Gastos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar__perfil">
+            <a href="#" class="sidebar__perfil-enlace">
+                <div class="sidebar__perfil-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="sidebar__perfil-info">
+                    <span class="sidebar__perfil-nombre">David Pineda</span>
+                    <span class="sidebar__perfil-rol">Super Admin</span>
+                </div>
+                <i class="fa-solid fa-chevron-right sidebar__perfil-flecha"></i>
+            </a>
+        </div>
+    </aside>
+    <main class="tablero">
+        <header class="pagina-header">
+            <h1 class="pagina-header__titulo">Ventas</h1>
+            <div class="pagina-header__acciones">
+                <a href="#modal-venta" class="boton-accion boton-accion--primario">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Registrar Venta</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Tabla de ventas -->
+        <section class="ventas-contenido">
+            <div class="tabla-contenedor">
+                <table class="tabla">
+                    <thead class="tabla__cabecera">
+                        <tr>
+                            <th class="tabla__th">Fecha</th>
+                            <th class="tabla__th">Cliente</th>
+                            <th class="tabla__th">Producto</th>
+                            <th class="tabla__th">Cantidad</th>
+                            <th class="tabla__th">Precio Unit.</th>
+                            <th class="tabla__th">Total</th>
+                            <th class="tabla__th">Método</th>
+                            <th class="tabla__th">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabla__cuerpo">
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">07/12/2024</td>
+                            <td class="tabla__td">Juan Pérez</td>
+                            <td class="tabla__td">Gorra New Era</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 120.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 240.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">07/12/2024</td>
+                            <td class="tabla__td">María García</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">1</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 85.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">06/12/2024</td>
+                            <td class="tabla__td">Cliente General</td>
+                            <td class="tabla__td">Pantalón Cargo</td>
+                            <td class="tabla__td">1</td>
+                            <td class="tabla__td">$ 150.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 150.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">06/12/2024</td>
+                            <td class="tabla__td">Carlos Rodríguez</td>
+                            <td class="tabla__td">Gorra New Era</td>
+                            <td class="tabla__td">3</td>
+                            <td class="tabla__td">$ 120.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 360.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Ana Martínez</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">2</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 170.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-venta" class="tabla__accion tabla__accion--editar" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Registrar/Editar Venta -->
+    <div class="modal" id="modal-venta">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Registrar Venta</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <!-- Cliente -->
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Cliente</label>
+                    <select class="formulario__select" name="cliente_id" required>
+                        <option value="">Seleccionar cliente</option>
+                        <option value="1">Cliente General</option>
+                        <option value="2">Juan Pérez</option>
+                        <option value="3">María García</option>
+                        <option value="4">Carlos Rodríguez</option>
+                        <option value="5">Ana Martínez</option>
+                    </select>
+                </div>
+                <!-- Producto (PRODUCTO_ID) -->
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Producto</label>
+                    <select class="formulario__select" name="producto_id" required>
+                        <option value="">Seleccionar producto</option>
+                        <option value="1">Gorra New Era - $120.000</option>
+                        <option value="2">Camiseta Urban - $85.000</option>
+                        <option value="3">Pantalón Cargo - $150.000</option>
+                    </select>
+                </div>
+                <!-- Cantidad y Precio Unitario (CANTIDAD, PRECIO_UNITARIO) -->
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Cantidad</label>
+                        <input type="number" class="formulario__input" name="cantidad" placeholder="1" min="1" value="1"
+                            required>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Precio Unitario</label>
+                        <input type="number" class="formulario__input" name="precio_unitario" placeholder="$ 0"
+                            required>
+                    </div>
+                </div>
+                <!-- Método de Pago (METODO_PAGO) -->
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Método de Pago</label>
+                    <select class="formulario__select" name="metodo_pago" required>
+                        <option value="">Seleccionar método</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="transferencia">Transferencia</option>
+                    </select>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-venta-exito" class="boton-accion boton-accion--primario">Guardar Venta</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Éxito Venta -->
+    <div class="modal" id="modal-venta-exito">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡Venta registrada correctamente!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">VOLVER</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmar Eliminar Venta -->
+    <div class="modal" id="modal-eliminar-venta">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
+            <div class="alerta">
+                <h2 class="alerta__titulo">¿Eliminar esta venta?</h2>
+                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este registro de venta? Esta acción no se
+                    puede deshacer.</p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
+                    <a href="#modal-venta-eliminada" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Éxito Eliminar Venta -->
+    <div class="modal" id="modal-venta-eliminada">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡La venta fue eliminada con éxito!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">VOLVER</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
