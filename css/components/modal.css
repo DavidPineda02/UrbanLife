@@ -1,20 +1,18 @@
-/* ================================= */
-/* ===== ESTILOS DE MODAL ========== */
-/* ================================= */
-/* Componente modal controlado por CSS puro usando :target */
+/* ========================================================================== */
+/* ===== CONTENEDOR PRINCIPAL DEL MODAL ===================================== */
+/* ========================================================================== */
 
-/* ================================= */
-/* ===== CONTENEDOR MODAL ========== */
-/* ================================= */
-
-/* Contenedor principal del modal - oculto por defecto */
 .modal {
     position: fixed;
-    /* Fijo en la pantalla */
+    /* Fijo en la pantalla, no se mueve con scroll */
     top: 0;
+    /* Posición superior */
     left: 0;
+    /* Posición izquierda */
     width: 100%;
+    /* Ocupa todo el ancho */
     height: 100%;
+    /* Ocupa todo el alto */
     display: flex;
     /* Flexbox para centrar contenido */
     align-items: center;
@@ -22,391 +20,620 @@
     justify-content: center;
     /* Centrado horizontal */
     z-index: 1000;
-    /* Por encima de todo */
+    /* Por encima de todos los elementos */
     opacity: 0;
     /* Invisible por defecto */
     visibility: hidden;
-    /* No interactuable */
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* No interactuable cuando está oculto */
+    transition: opacity 0.3s ease,
+        /* Transición suave de opacidad */
+        visibility 0.3s ease;
+    /* Transición suave de visibilidad */
 }
 
-/* ================================= */
-/* ===== ACTIVACIÓN CON :target ==== */
-/* ================================= */
-/* Cuando el modal es el target de la URL, se muestra */
+/* ========================================================================== */
+/* ===== ACTIVACIÓN DEL MODAL CON :target =================================== */
+/* ========================================================================== */
 
 .modal:target {
     opacity: 1;
+    /* Hace visible el modal */
     visibility: visible;
+    /* Permite interacción */
 }
 
+/* Animación del contenedor cuando el modal se activa */
 .modal:target .modal__contenedor {
     transform: translateY(0);
+    /* Posición final (centrado) */
 }
 
-/* ================================= */
-/* ===== OVERLAY =================== */
-/* ================================= */
-/* Fondo oscuro semi-transparente, es un enlace para cerrar */
+/* ========================================================================== */
+/* ===== OVERLAY (FONDO OSCURO) ============================================= */
+/* ========================================================================== */
 
 .modal__overlay {
     position: absolute;
+    /* Posición absoluta respecto al modal */
     top: 0;
     left: 0;
     width: 100%;
+    /* Cubre todo el ancho */
     height: 100%;
+    /* Cubre todo el alto */
     background: rgba(0, 0, 0, 0.5);
-    /* Fondo semi-transparente */
+    /* Negro semi-transparente (50% opacidad) */
     backdrop-filter: blur(4px);
-    /* Efecto de desenfoque */
+    /* Efecto de desenfoque del fondo */
     -webkit-backdrop-filter: blur(4px);
+    /* Soporte para Safari */
     cursor: pointer;
     /* Indica que es clickeable */
     text-decoration: none;
     /* Quita subrayado del enlace */
 }
 
-/* ================================= */
-/* ===== CONTENEDOR DEL MODAL ====== */
-/* ================================= */
-/* Caja blanca con el contenido del formulario */
+/* ========================================================================== */
+/* ===== CONTENEDOR DEL MODAL =============================================== */
+/* ========================================================================== */
 
 .modal__contenedor {
     position: relative;
     /* Para posicionar elementos internos */
     background: var(--color-blanco);
+    /* Fondo blanco */
     border-radius: 16px;
+    /* Esquinas redondeadas */
     width: 90%;
+    /* 90% del ancho de la pantalla */
     max-width: 500px;
-    /* Ancho máximo */
+    /* Ancho máximo de 500px */
     max-height: 90vh;
-    /* Altura máxima */
+    /* Altura máxima 90% del viewport */
     overflow-y: auto;
-    /* Scroll si es necesario */
+    /* Scroll vertical si el contenido excede */
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    /* Sombra profunda */
     transform: translateY(-20px);
-    /* Posición inicial para animación */
+    /* Posición inicial (arriba del centro) */
     transition: transform 0.3s ease;
+    /* Animación de deslizamiento */
 }
 
-/* ================================= */
-/* ===== HEADER DEL MODAL ========== */
-/* ================================= */
+/* ========================================================================== */
+/* ===== HEADER DEL MODAL =================================================== */
+/* ========================================================================== */
 
 .modal__header {
     display: flex;
+    /* Flexbox para alinear elementos */
     justify-content: space-between;
+    /* Título a la izquierda, X a la derecha */
     align-items: center;
+    /* Centrado vertical */
     padding: 20px 24px;
+    /* Espaciado interno */
     border-bottom: 1px solid var(--color-borde-claro);
+    /* Línea separadora */
 }
 
+/* Título del modal */
 .modal__titulo {
     margin: 0;
+    /* Sin margen */
     font-size: 18px;
+    /* Tamaño de fuente */
     font-weight: 700;
+    /* Negrita */
     color: var(--color-texto);
+    /* Color de texto principal */
 }
 
 /* Botón/Enlace de cerrar (X) */
 .modal__cerrar {
     width: 36px;
+    /* Ancho fijo */
     height: 36px;
+    /* Alto fijo (cuadrado) */
     background: var(--color-fondo);
+    /* Fondo gris claro */
     border-radius: 8px;
+    /* Esquinas redondeadas */
     cursor: pointer;
+    /* Cursor de mano */
     display: flex;
+    /* Flexbox para centrar icono */
     align-items: center;
+    /* Centrado vertical */
     justify-content: center;
+    /* Centrado horizontal */
     font-size: 16px;
+    /* Tamaño del icono */
     color: var(--color-texto-secundario);
+    /* Color gris */
     text-decoration: none;
-    /* Quita subrayado del enlace */
-    transition: background 0.2s ease, color 0.2s ease;
+    /* Sin subrayado */
+    transition: background 0.2s ease,
+        /* Animación de fondo */
+        color 0.2s ease;
+    /* Animación de color */
 }
 
+/* Estado hover del botón cerrar */
 .modal__cerrar:hover {
     background: var(--color-egreso);
+    /* Fondo rojo */
     color: var(--color-blanco);
+    /* Icono blanco */
 }
 
-/* ================================= */
-/* ===== FORMULARIO ================ */
-/* ================================= */
+/* ========================================================================== */
+/* ===== FORMULARIO DENTRO DEL MODAL ======================================== */
+/* ========================================================================== */
 
 .modal__formulario {
     padding: 24px;
+    /* Espaciado interno del formulario */
 }
 
-/* Grupo de campo (label + input) */
+/* -------------------------------------------------------------------------- */
+/* ----- Grupo de Campo (Label + Input) ------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .formulario__grupo {
     margin-bottom: 16px;
+    /* Espacio entre grupos de campos */
 }
 
-/* Fila con múltiples campos */
+/* -------------------------------------------------------------------------- */
+/* ----- Fila con Múltiples Campos ------------------------------------------ */
+/* -------------------------------------------------------------------------- */
+/* Permite colocar dos campos en la misma fila (ej: Precio y Stock) */
+
 .formulario__fila {
     display: grid;
+    /* Grid para columnas */
     grid-template-columns: 1fr 1fr;
     /* Dos columnas iguales */
     gap: 16px;
+    /* Espacio entre columnas */
 }
 
-/* Etiqueta del campo */
+/* -------------------------------------------------------------------------- */
+/* ----- Etiqueta del Campo ------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .formulario__label {
     display: block;
+    /* Bloque para ocupar toda la línea */
     margin-bottom: 6px;
+    /* Espacio antes del input */
     font-size: 13px;
+    /* Tamaño pequeño */
     font-weight: 600;
+    /* Semi-negrita */
     color: var(--color-texto);
+    /* Color de texto */
 }
 
-/* Input de texto y número */
+/* -------------------------------------------------------------------------- */
+/* ----- Input de Texto y Número -------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .formulario__input {
     width: 100%;
+    /* Ancho completo */
     padding: 12px 14px;
+    /* Espaciado interno */
     border: 1px solid var(--color-borde);
+    /* Borde gris */
     border-radius: 8px;
+    /* Esquinas redondeadas */
     font-size: 14px;
+    /* Tamaño de fuente */
     font-family: var(--fuente-principal);
+    /* Fuente del proyecto */
     color: var(--color-texto);
+    /* Color del texto */
     background: var(--color-blanco);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    /* Fondo blanco */
+    transition: border-color 0.2s ease,
+        /* Animación del borde */
+        box-shadow 0.2s ease;
+    /* Animación de la sombra */
     box-sizing: border-box;
+    /* Incluye padding en el ancho */
 }
 
+/* Estado focus del input */
 .formulario__input:focus {
     outline: none;
+    /* Quita outline por defecto */
     border-color: var(--color-info);
+    /* Borde azul */
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+    /* Sombra azul suave */
 }
 
+/* Texto placeholder del input */
 .formulario__input::placeholder {
     color: var(--color-texto-terciario);
+    /* Color gris claro */
 }
 
-/* Textarea */
+/* -------------------------------------------------------------------------- */
+/* ----- Textarea (Área de Texto) ------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .formulario__textarea {
     width: 100%;
+    /* Ancho completo */
     padding: 12px 14px;
+    /* Espaciado interno */
     border: 1px solid var(--color-borde);
+    /* Borde gris */
     border-radius: 8px;
+    /* Esquinas redondeadas */
     font-size: 14px;
+    /* Tamaño de fuente */
     font-family: var(--fuente-principal);
+    /* Fuente del proyecto */
     color: var(--color-texto);
+    /* Color del texto */
     background: var(--color-blanco);
+    /* Fondo blanco */
     resize: vertical;
-    /* Solo redimensionar verticalmente */
+    /* Solo permite redimensionar verticalmente */
     min-height: 80px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    /* Altura mínima */
+    transition: border-color 0.2s ease,
+        /* Animación del borde */
+        box-shadow 0.2s ease;
+    /* Animación de la sombra */
     box-sizing: border-box;
+    /* Incluye padding en el ancho */
 }
 
+/* Estado focus del textarea */
 .formulario__textarea:focus {
     outline: none;
+    /* Quita outline por defecto */
     border-color: var(--color-info);
+    /* Borde azul */
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+    /* Sombra azul suave */
 }
 
+/* Texto placeholder del textarea */
 .formulario__textarea::placeholder {
     color: var(--color-texto-terciario);
+    /* Color gris claro */
 }
 
-/* Select (dropdown) */
+/* -------------------------------------------------------------------------- */
+/* ----- Select (Dropdown) -------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .formulario__select {
     width: 100%;
+    /* Ancho completo */
     padding: 12px 14px;
+    /* Espaciado interno */
     border: 1px solid var(--color-borde);
+    /* Borde gris */
     border-radius: 8px;
+    /* Esquinas redondeadas */
     font-size: 14px;
+    /* Tamaño de fuente */
     font-family: var(--fuente-principal);
+    /* Fuente del proyecto */
     color: var(--color-texto);
+    /* Color del texto */
     background: var(--color-blanco);
+    /* Fondo blanco */
     cursor: pointer;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    /* Cursor de mano */
+    transition: border-color 0.2s ease,
+        /* Animación del borde */
+        box-shadow 0.2s ease;
+    /* Animación de la sombra */
     box-sizing: border-box;
+    /* Incluye padding en el ancho */
 }
 
+/* Estado focus del select */
 .formulario__select:focus {
     outline: none;
+    /* Quita outline por defecto */
     border-color: var(--color-info);
+    /* Borde azul */
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+    /* Sombra azul suave */
 }
 
-/* ================================= */
-/* ===== ACCIONES DEL FORMULARIO === */
-/* ================================= */
+/* ========================================================================== */
+/* ===== ACCIONES DEL FORMULARIO ============================================ */
+/* ========================================================================== */
+/* Contenedor de los botones Cancelar y Guardar */
 
 .formulario__acciones {
     display: flex;
+    /* Flexbox para alinear botones */
     justify-content: flex-end;
-    /* Botones a la derecha */
+    /* Botones alineados a la derecha */
     gap: 12px;
+    /* Espacio entre botones */
     margin-top: 24px;
+    /* Espacio arriba */
     padding-top: 20px;
+    /* Padding arriba */
     border-top: 1px solid var(--color-borde-claro);
+    /* Línea separadora */
 }
 
 /* Quitar subrayado de enlaces en acciones */
 .formulario__acciones a {
     text-decoration: none;
+    /* Sin subrayado */
 }
 
-/* ================================= */
-/* ===== RESPONSIVE ================ */
-/* ================================= */
+/* ========================================================================== */
+/* ===== RESPONSIVE - MÓVILES =============================================== */
+/* ========================================================================== */
 
 @media (max-width: 480px) {
+
+    /* En móviles, los campos van en una sola columna */
     .formulario__fila {
         grid-template-columns: 1fr;
-        /* Una columna en móviles */
+        /* Una columna */
     }
 
+    /* Botones en columna */
     .formulario__acciones {
         flex-direction: column;
+        /* Dirección vertical */
     }
 
+    /* Botones ocupan todo el ancho */
     .formulario__acciones .boton-accion {
         width: 100%;
+        /* Ancho completo */
         justify-content: center;
+        /* Texto centrado */
     }
 }
 
-/* ================================= */
-/* ===== MODAL ALERTA ============== */
-/* ================================= */
-/* Contenedor para modales de confirmación y éxito */
+/* ========================================================================== */
+/* ===== MODAL DE ALERTA ==================================================== */
+/* ========================================================================== */
+/* 
+ * Variante del modal para alertas de confirmación y éxito
+ * Más pequeño y con bordes de color según el tipo
+ */
 
 .modal__contenedor--alerta {
     max-width: 380px;
+    /* Ancho máximo más pequeño */
     overflow: visible;
+    /* Permite que el icono sobresalga */
     border-radius: 16px;
-    /* Border radius normal igual que otros modales */
+    /* Esquinas redondeadas */
 }
 
-/* Modal de eliminación - Borde rojo */
+/* -------------------------------------------------------------------------- */
+/* ----- Modal de Eliminación (Borde Rojo) ---------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .modal__contenedor--eliminar {
     border: 3px solid var(--color-egreso);
+    /* Borde rojo de 3px */
 }
 
-/* Modal de éxito - Borde verde */
+/* -------------------------------------------------------------------------- */
+/* ----- Modal de Éxito (Borde Verde) --------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .modal__contenedor--exito {
     border: 3px solid var(--color-ingreso);
+    /* Borde verde de 3px */
 }
+
+/* -------------------------------------------------------------------------- */
+/* ----- Contenido de la Alerta --------------------------------------------- */
+/* -------------------------------------------------------------------------- */
 
 .alerta {
     padding: 30px;
+    /* Espaciado interno */
     text-align: center;
+    /* Texto centrado */
 }
 
 /* Título de la alerta */
 .alerta__titulo {
     margin: 10px 0 12px 0;
+    /* Márgenes */
     font-size: 22px;
+    /* Tamaño grande */
     font-weight: 700;
+    /* Negrita */
     color: var(--color-texto);
+    /* Color de texto */
 }
 
 /* Mensaje de la alerta */
 .alerta__mensaje {
     margin: 0 0 24px 0;
+    /* Margen inferior */
     font-size: 14px;
+    /* Tamaño de fuente */
     color: var(--color-texto-secundario);
+    /* Color gris */
     line-height: 1.5;
+    /* Altura de línea */
 }
 
-/* Acciones de la alerta */
+/* Contenedor de botones de la alerta */
 .alerta__acciones {
     display: flex;
+    /* Flexbox */
     gap: 12px;
+    /* Espacio entre botones */
     justify-content: center;
+    /* Centrado */
 }
 
-/* ================================= */
-/* ===== BOTONES DE ALERTA ========= */
-/* ================================= */
+/* ========================================================================== */
+/* ===== BOTONES DE ALERTA ================================================== */
+/* ========================================================================== */
 
 .boton-alerta {
     display: inline-flex;
+    /* Flexbox inline */
     align-items: center;
+    /* Centrado vertical */
     justify-content: center;
+    /* Centrado horizontal */
     padding: 14px 28px;
+    /* Espaciado interno */
     border-radius: 8px;
+    /* Esquinas redondeadas */
     font-size: 14px;
+    /* Tamaño de fuente */
     font-weight: 700;
+    /* Negrita */
     text-decoration: none;
+    /* Sin subrayado */
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Cursor de mano */
+    transition: transform 0.2s ease,
+        /* Animación de transformación */
+        box-shadow 0.2s ease;
+    /* Animación de sombra */
 }
 
+/* Efecto hover en botones de alerta */
 .boton-alerta:hover {
     transform: translateY(-2px);
+    /* Sube ligeramente */
 }
 
-/* Botón Cancelar - Color principal */
+/* -------------------------------------------------------------------------- */
+/* ----- Botón Cancelar (Negro) --------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .boton-alerta--cancelar {
     background: var(--color-principal);
+    /* Fondo negro */
     color: var(--color-blanco);
+    /* Texto blanco */
 }
 
 .boton-alerta--cancelar:hover {
     box-shadow: 0 4px 12px rgba(26, 26, 26, 0.4);
+    /* Sombra oscura */
 }
 
-/* Botón Eliminar - Blanco con borde */
+/* -------------------------------------------------------------------------- */
+/* ----- Botón Eliminar (Blanco con Borde) ---------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .boton-alerta--eliminar {
     background: var(--color-blanco);
+    /* Fondo blanco */
     color: var(--color-principal);
+    /* Texto negro */
     border: 2px solid var(--color-principal);
+    /* Borde negro */
 }
 
 .boton-alerta--eliminar:hover {
     background: var(--color-fondo-gris-hover);
+    /* Fondo gris claro */
     box-shadow: 0 4px 12px rgba(26, 26, 26, 0.2);
+    /* Sombra suave */
 }
 
-/* Botón Volver - Negro (ancho completo) */
+/* -------------------------------------------------------------------------- */
+/* ----- Botón Volver (Negro, Ancho Completo) ------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .boton-alerta--volver {
     background: var(--color-principal);
+    /* Fondo negro */
     color: var(--color-blanco);
+    /* Texto blanco */
     width: 100%;
+    /* Ancho completo */
 }
 
 .boton-alerta--volver:hover {
     box-shadow: 0 4px 12px rgba(26, 26, 26, 0.4);
+    /* Sombra oscura */
 }
 
-/* ================================= */
-/* ===== ALERTA ÉXITO ============== */
-/* ================================= */
+/* ========================================================================== */
+/* ===== ALERTA DE ÉXITO ==================================================== */
+/* ========================================================================== */
+/* Variante de alerta con icono de check verde */
 
 .alerta--exito {
     padding: 40px 30px;
+    /* Más padding para el icono */
 }
 
-/* Icono de éxito (círculo verde con check) */
+/* -------------------------------------------------------------------------- */
+/* ----- Icono de Éxito (Círculo Verde con Check) --------------------------- */
+/* -------------------------------------------------------------------------- */
+
 .alerta__icono {
     width: 80px;
+    /* Ancho del círculo */
     height: 80px;
+    /* Alto del círculo */
     margin: 0 auto 20px auto;
-    background: linear-gradient(135deg, var(--color-ingreso) 0%, #2ecc71 100%);
+    /* Centrado y margen inferior */
+    background: linear-gradient(135deg,
+            /* Gradiente diagonal */
+            var(--color-ingreso) 0%,
+            /* Verde inicio */
+            #2ecc71 100%);
+    /* Verde claro fin */
     border-radius: 50%;
+    /* Círculo perfecto */
     display: flex;
+    /* Flexbox para centrar */
     align-items: center;
+    /* Centrado vertical */
     justify-content: center;
+    /* Centrado horizontal */
     font-size: 36px;
+    /* Tamaño del icono check */
     color: var(--color-blanco);
+    /* Color blanco */
     box-shadow: 0 8px 24px rgba(0, 184, 148, 0.3);
+    /* Sombra verde */
     position: relative;
+    /* Para el pseudo-elemento */
 }
 
-/* Anillo exterior del icono */
+/* Anillo exterior decorativo del icono */
 .alerta__icono::before {
     content: '';
+    /* Contenido vacío */
     position: absolute;
+    /* Posición absoluta */
     top: -8px;
+    /* 8px arriba del círculo */
     left: -8px;
+    /* 8px a la izquierda */
     right: -8px;
+    /* 8px a la derecha */
     bottom: -8px;
+    /* 8px abajo */
     border: 4px solid rgba(0, 184, 148, 0.2);
+    /* Borde verde transparente */
     border-radius: 50%;
+    /* Círculo */
 }
