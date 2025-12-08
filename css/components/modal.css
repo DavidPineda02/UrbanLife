@@ -1,0 +1,412 @@
+/* ================================= */
+/* ===== ESTILOS DE MODAL ========== */
+/* ================================= */
+/* Componente modal controlado por CSS puro usando :target */
+
+/* ================================= */
+/* ===== CONTENEDOR MODAL ========== */
+/* ================================= */
+
+/* Contenedor principal del modal - oculto por defecto */
+.modal {
+    position: fixed;
+    /* Fijo en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* Flexbox para centrar contenido */
+    align-items: center;
+    /* Centrado vertical */
+    justify-content: center;
+    /* Centrado horizontal */
+    z-index: 1000;
+    /* Por encima de todo */
+    opacity: 0;
+    /* Invisible por defecto */
+    visibility: hidden;
+    /* No interactuable */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* ================================= */
+/* ===== ACTIVACIÓN CON :target ==== */
+/* ================================= */
+/* Cuando el modal es el target de la URL, se muestra */
+
+.modal:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal:target .modal__contenedor {
+    transform: translateY(0);
+}
+
+/* ================================= */
+/* ===== OVERLAY =================== */
+/* ================================= */
+/* Fondo oscuro semi-transparente, es un enlace para cerrar */
+
+.modal__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Fondo semi-transparente */
+    backdrop-filter: blur(4px);
+    /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(4px);
+    cursor: pointer;
+    /* Indica que es clickeable */
+    text-decoration: none;
+    /* Quita subrayado del enlace */
+}
+
+/* ================================= */
+/* ===== CONTENEDOR DEL MODAL ====== */
+/* ================================= */
+/* Caja blanca con el contenido del formulario */
+
+.modal__contenedor {
+    position: relative;
+    /* Para posicionar elementos internos */
+    background: var(--color-blanco);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    /* Ancho máximo */
+    max-height: 90vh;
+    /* Altura máxima */
+    overflow-y: auto;
+    /* Scroll si es necesario */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+    /* Posición inicial para animación */
+    transition: transform 0.3s ease;
+}
+
+/* ================================= */
+/* ===== HEADER DEL MODAL ========== */
+/* ================================= */
+
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--color-borde-claro);
+}
+
+.modal__titulo {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-texto);
+}
+
+/* Botón/Enlace de cerrar (X) */
+.modal__cerrar {
+    width: 36px;
+    height: 36px;
+    background: var(--color-fondo);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--color-texto-secundario);
+    text-decoration: none;
+    /* Quita subrayado del enlace */
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.modal__cerrar:hover {
+    background: var(--color-egreso);
+    color: var(--color-blanco);
+}
+
+/* ================================= */
+/* ===== FORMULARIO ================ */
+/* ================================= */
+
+.modal__formulario {
+    padding: 24px;
+}
+
+/* Grupo de campo (label + input) */
+.formulario__grupo {
+    margin-bottom: 16px;
+}
+
+/* Fila con múltiples campos */
+.formulario__fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Dos columnas iguales */
+    gap: 16px;
+}
+
+/* Etiqueta del campo */
+.formulario__label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-texto);
+}
+
+/* Input de texto y número */
+.formulario__input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+    background: var(--color-blanco);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.formulario__input:focus {
+    outline: none;
+    border-color: var(--color-info);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.formulario__input::placeholder {
+    color: var(--color-texto-terciario);
+}
+
+/* Textarea */
+.formulario__textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+    background: var(--color-blanco);
+    resize: vertical;
+    /* Solo redimensionar verticalmente */
+    min-height: 80px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.formulario__textarea:focus {
+    outline: none;
+    border-color: var(--color-info);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.formulario__textarea::placeholder {
+    color: var(--color-texto-terciario);
+}
+
+/* Select (dropdown) */
+.formulario__select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+    background: var(--color-blanco);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.formulario__select:focus {
+    outline: none;
+    border-color: var(--color-info);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* ================================= */
+/* ===== ACCIONES DEL FORMULARIO === */
+/* ================================= */
+
+.formulario__acciones {
+    display: flex;
+    justify-content: flex-end;
+    /* Botones a la derecha */
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-borde-claro);
+}
+
+/* Quitar subrayado de enlaces en acciones */
+.formulario__acciones a {
+    text-decoration: none;
+}
+
+/* ================================= */
+/* ===== RESPONSIVE ================ */
+/* ================================= */
+
+@media (max-width: 480px) {
+    .formulario__fila {
+        grid-template-columns: 1fr;
+        /* Una columna en móviles */
+    }
+
+    .formulario__acciones {
+        flex-direction: column;
+    }
+
+    .formulario__acciones .boton-accion {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ================================= */
+/* ===== MODAL ALERTA ============== */
+/* ================================= */
+/* Contenedor para modales de confirmación y éxito */
+
+.modal__contenedor--alerta {
+    max-width: 380px;
+    overflow: visible;
+    border-radius: 16px;
+    /* Border radius normal igual que otros modales */
+}
+
+/* Modal de eliminación - Borde rojo */
+.modal__contenedor--eliminar {
+    border: 3px solid var(--color-egreso);
+}
+
+/* Modal de éxito - Borde verde */
+.modal__contenedor--exito {
+    border: 3px solid var(--color-ingreso);
+}
+
+.alerta {
+    padding: 30px;
+    text-align: center;
+}
+
+/* Título de la alerta */
+.alerta__titulo {
+    margin: 10px 0 12px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-texto);
+}
+
+/* Mensaje de la alerta */
+.alerta__mensaje {
+    margin: 0 0 24px 0;
+    font-size: 14px;
+    color: var(--color-texto-secundario);
+    line-height: 1.5;
+}
+
+/* Acciones de la alerta */
+.alerta__acciones {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* ================================= */
+/* ===== BOTONES DE ALERTA ========= */
+/* ================================= */
+
+.boton-alerta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.boton-alerta:hover {
+    transform: translateY(-2px);
+}
+
+/* Botón Cancelar - Color principal */
+.boton-alerta--cancelar {
+    background: var(--color-principal);
+    color: var(--color-blanco);
+}
+
+.boton-alerta--cancelar:hover {
+    box-shadow: 0 4px 12px rgba(26, 26, 26, 0.4);
+}
+
+/* Botón Eliminar - Blanco con borde */
+.boton-alerta--eliminar {
+    background: var(--color-blanco);
+    color: var(--color-principal);
+    border: 2px solid var(--color-principal);
+}
+
+.boton-alerta--eliminar:hover {
+    background: var(--color-fondo-gris-hover);
+    box-shadow: 0 4px 12px rgba(26, 26, 26, 0.2);
+}
+
+/* Botón Volver - Negro (ancho completo) */
+.boton-alerta--volver {
+    background: var(--color-principal);
+    color: var(--color-blanco);
+    width: 100%;
+}
+
+.boton-alerta--volver:hover {
+    box-shadow: 0 4px 12px rgba(26, 26, 26, 0.4);
+}
+
+/* ================================= */
+/* ===== ALERTA ÉXITO ============== */
+/* ================================= */
+
+.alerta--exito {
+    padding: 40px 30px;
+}
+
+/* Icono de éxito (círculo verde con check) */
+.alerta__icono {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px auto;
+    background: linear-gradient(135deg, var(--color-ingreso) 0%, #2ecc71 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: var(--color-blanco);
+    box-shadow: 0 8px 24px rgba(0, 184, 148, 0.3);
+    position: relative;
+}
+
+/* Anillo exterior del icono */
+.alerta__icono::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 4px solid rgba(0, 184, 148, 0.2);
+    border-radius: 50%;
+}

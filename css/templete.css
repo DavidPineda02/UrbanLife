@@ -18,6 +18,8 @@
 @import url(./components/resumen-semanal.css);
 @import url(./components/grafico-pastel.css);
 @import url(./components/grafico-margen.css);
+@import url(./components/producto.css);
+@import url(./components/modal.css);
 
 /* Responsive */
 @import url(./layout/responsive.css);

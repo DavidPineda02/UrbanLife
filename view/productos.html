@@ -387,6 +387,131 @@
         </section>
     </main>
 
+        <!-- Modal Agregar Producto -->
+    <div class="modal" id="modal-producto">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Agregar Producto</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre</label>
+                    <input type="text" class="formulario__input" name="nombre" placeholder="Nombre del producto"
+                        required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Descripción</label>
+                    <textarea class="formulario__textarea" name="descripcion" placeholder="Descripción del producto"
+                        rows="3"></textarea>
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Precio Venta</label>
+                        <input type="number" class="formulario__input" name="precio" placeholder="$ 0" required>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Costo Promedio</label>
+                        <input type="number" class="formulario__input" name="costo" placeholder="$ 0">
+                    </div>
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Stock</label>
+                        <input type="number" class="formulario__input" name="stock" placeholder="0" required>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Categoría</label>
+                        <select class="formulario__select" name="categoria" required>
+                            <option value="">Seleccionar categoría</option>
+                            <option value="accesorios">Accesorios</option>
+                            <option value="ropa-hombre">Ropa Hombre</option>
+                            <option value="ropa-mujer">Ropa Mujer</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-agregado" class="boton-accion boton-accion--primario">Guardar Producto</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-categoria">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Agregar Categoría</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre</label>
+                    <input type="text" class="formulario__input" name="nombre" placeholder="Nombre de la categoría"
+                        required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Descripción</label>
+                    <textarea class="formulario__textarea" name="descripcion" placeholder="Descripción de la categoría"
+                        rows="3"></textarea>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-agregado" class="boton-accion boton-accion--primario">Guardar Categoría</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Confirmar Eliminación -->
+    <div class="modal" id="modal-eliminar">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
+            <div class="alerta">
+                <h2 class="alerta__titulo">¿Eliminar de la lista?</h2>
+                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este artículo de tus productos?</p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
+                    <a href="#modal-exito" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Éxito -->
+    <div class="modal" id="modal-exito">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡El artículo fue eliminado con éxito!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">VOLVER</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Éxito Agregar -->
+    <div class="modal" id="modal-agregado">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡Se agregó correctamente!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">VOLVER</a>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 
