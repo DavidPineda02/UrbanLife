@@ -1,214 +1,384 @@
-@import url(../customproperties.css);
+/* ========================================
+   IMPORT DE VARIABLES GLOBALES
+   ======================================== */
 
-/* BLOQUE: sidebar */
+@import url(../customproperties.css);
+/* Importa las variables CSS del sistema */
+
+/* ========================================
+   BLOQUE: SIDEBAR (Barra lateral)
+   ======================================== */
+
+/* Contenedor principal del sidebar */
 .sidebar {
     position: fixed;
+    /* Fijo en la pantalla, no se mueve con scroll */
     top: 0;
+    /* Pegado arriba */
     left: 0;
+    /* Pegado a la izquierda */
     height: 100vh;
+    /* Altura completa del viewport */
     width: 17%;
+    /* Ancho de 17% de la pantalla */
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila elementos verticalmente */
     overflow-y: auto;
-    /* Ocultar scrollbar */
+    /* Permite scroll vertical si hay mucho contenido */
     scrollbar-width: none;
-    /* Firefox */
+    /* Firefox: oculta la barra de scroll */
     -ms-overflow-style: none;
-    /* IE/Edge */
+    /* Internet Explorer y Edge: oculta scroll */
 }
 
 /* Chrome, Safari, Opera: oculta scrollbar */
 .sidebar::-webkit-scrollbar {
     display: none;
+    /* Oculta la barra de desplazamiento */
 }
 
-/* ELEMENTO: marca/logo */
+/* ========================================
+   ELEMENTO: Marca/Logo
+   ======================================== */
+
+/* Contenedor del logo */
 .sidebar__marca {
     padding: 10px;
+    /* Espaciado interno de 10px */
     text-align: center;
+    /* Centra el logo horizontalmente */
     border-bottom: 1.5px solid var(--color-borde);
+    /* Línea separadora inferior */
 }
 
+/* Imagen del logo */
 .sidebar__logo {
     width: 90%;
+    /* Ocupa 90% del ancho del contenedor */
     height: auto;
+    /* Altura proporcional */
     display: block;
+    /* Elemento de bloque */
     margin: 0 auto;
+    /* Centra horizontalmente */
     padding: 15px 0;
+    /* Espaciado vertical */
 }
 
-/* ELEMENTO: contenedor de navegación */
+/* ========================================
+   ELEMENTO: Contenedor de navegación
+   ======================================== */
+
+/* Área de navegación */
 .sidebar__nav {
     margin-top: 15px;
+    /* Espacio desde el logo */
     padding: 20px 0;
+    /* Espaciado vertical */
     flex: 1;
+    /* Ocupa el espacio disponible */
 }
 
 /* ========================================
    ELEMENTO: Lista de navegación
    ======================================== */
+
+/* Lista de enlaces de navegación */
 .sidebar__lista {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila elementos verticalmente */
     justify-content: center;
+    /* Centra verticalmente */
     align-items: center;
+    /* Centra horizontalmente */
     list-style: none;
+    /* Sin viñetas */
     padding: 0 20px;
+    /* Espaciado horizontal */
     margin: 0;
+    /* Sin márgenes */
     gap: 12px;
-}
-
-/* ELEMENTO: ítem individual */
-.sidebar__elemento {
-    width: 100%;
-}
-
-/* ELEMENTO: enlace de navegación */
-.sidebar__enlace {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    text-decoration: none;
-    color: var(--color-texto);
-    background: var(--color-blanco);
-    border-radius: var(--radio-grande);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--color-borde);
-    transition: all 0.3s ease;
-}
-
-/* Hover */
-.sidebar__enlace:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--color-marca-hover);
-    border-color: var(--color-marca-sombra);
-}
-
-/* Active (al hacer clic) */
-.sidebar__enlace:focus {
-    transform: translateY(0);
-    box-shadow: 0 4px 15px var(--color-marca-sombra);
-    border-color: var(--color-marca);
-}
-
-/* Avatar circular del enlace */
-.sidebar__enlace-avatar {
-    width: 42px;
-    height: 42px;
-    border-radius: var(--radio-redondo);
-    background: var(--gradiente-marca);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-blanco);
-    font-size: 18px;
-    flex-shrink: 0;
-    box-shadow: 0 3px 10px var(--color-marca-sombra);
-}
-
-/* Texto del enlace */
-.sidebar__enlace-texto {
-    flex: 1;
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1a1a;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Flecha del enlace */
-.sidebar__enlace-flecha {
-    color: #ccc;
-    font-size: 12px;
-    transition: all 0.3s ease;
-}
-
-.sidebar__enlace:hover .sidebar__enlace-flecha {
-    color: var(--color-marca);
-    transform: translateX(3px);
+    /* Espacio de 12px entre elementos */
 }
 
 /* ========================================
-   ELEMENTO: Perfil del usuario (fondo del sidebar)
+   ELEMENTO: Ítem individual
    ======================================== */
+
+/* Cada elemento de la lista */
+.sidebar__elemento {
+    width: 100%;
+    /* Ancho completo */
+}
+
+/* ========================================
+   ELEMENTO: Enlace de navegación
+   ======================================== */
+
+/* Enlace clickeable */
+.sidebar__enlace {
+    display: flex;
+    /* Activa Flexbox */
+    align-items: center;
+    /* Centra verticalmente */
+    gap: 12px;
+    /* Espacio entre avatar, texto y flecha */
+    padding: 12px 16px;
+    /* Espaciado interno */
+    text-decoration: none;
+    /* Sin subrayado */
+    color: var(--color-texto);
+    /* Color de texto principal */
+    background: var(--color-blanco);
+    /* Fondo blanco */
+    border-radius: var(--radio-grande);
+    /* Esquinas redondeadas de 12px */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    border: 1px solid var(--color-borde);
+    /* Borde gris */
+    transition: all 0.3s ease;
+    /* Animación suave en todos los cambios */
+}
+
+/* Estado hover del enlace */
+.sidebar__enlace:hover {
+    transform: translateY(-2px);
+    /* Eleva ligeramente el elemento */
+    box-shadow: 0 6px 20px var(--color-marca-hover);
+    /* Sombra roja suave */
+    border-color: var(--color-marca-sombra);
+    /* Borde rojo suave */
+}
+
+/* Estado focus del enlace (al hacer clic) */
+.sidebar__enlace:focus {
+    transform: translateY(0);
+    /* Vuelve a posición original */
+    box-shadow: 0 4px 15px var(--color-marca-sombra);
+    /* Sombra roja */
+    border-color: var(--color-marca);
+    /* Borde rojo sólido */
+}
+
+/* ========================================
+   ELEMENTO: Avatar del enlace
+   ======================================== */
+
+/* Círculo con icono */
+.sidebar__enlace-avatar {
+    width: 42px;
+    /* Ancho de 42px */
+    height: 42px;
+    /* Alto de 42px (círculo) */
+    border-radius: var(--radio-redondo);
+    /* Border-radius de 50% */
+    background: var(--gradiente-marca);
+    /* Gradiente rojo de la marca */
+    display: flex;
+    /* Activa Flexbox */
+    align-items: center;
+    /* Centra verticalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
+    color: var(--color-blanco);
+    /* Icono blanco */
+    font-size: 18px;
+    /* Tamaño del icono */
+    flex-shrink: 0;
+    /* No se encoge */
+    box-shadow: 0 3px 10px var(--color-marca-sombra);
+    /* Sombra roja suave */
+}
+
+/* ========================================
+   ELEMENTO: Texto del enlace
+   ======================================== */
+
+/* Nombre de la sección */
+.sidebar__enlace-texto {
+    flex: 1;
+    /* Ocupa el espacio disponible */
+    font-size: 14px;
+    /* Tamaño de fuente */
+    font-weight: 600;
+    /* Semi-negrita */
+    color: #1a1a1a;
+    /* Color negro */
+    white-space: nowrap;
+    /* No divide el texto en líneas */
+    overflow: hidden;
+    /* Oculta texto que sobresale */
+    text-overflow: ellipsis;
+    /* Muestra "..." si el texto es muy largo */
+}
+
+/* ========================================
+   ELEMENTO: Flecha del enlace
+   ======================================== */
+
+/* Flecha hacia la derecha */
+.sidebar__enlace-flecha {
+    color: #ccc;
+    /* Color gris claro */
+    font-size: 12px;
+    /* Tamaño pequeño */
+    transition: all 0.3s ease;
+    /* Animación suave */
+}
+
+/* Animación de la flecha en hover */
+.sidebar__enlace:hover .sidebar__enlace-flecha {
+    color: var(--color-marca);
+    /* Cambia a color rojo */
+    transform: translateX(3px);
+    /* Se mueve 3px a la derecha */
+}
+
+/* ========================================
+   ELEMENTO: Perfil del usuario
+   ======================================== */
+
+/* Contenedor del perfil (parte inferior) */
 .sidebar__perfil {
     margin-top: auto;
+    /* Empuja el perfil hacia abajo */
     padding: 20px;
+    /* Espaciado interno */
     border-top: 1.5px solid var(--color-borde);
+    /* Línea separadora superior */
     background: linear-gradient(180deg, transparent 0%, rgba(228, 39, 39, 0.03) 100%);
+    /* Gradiente sutil rojo hacia abajo */
 }
 
+/* Enlace del perfil */
 .sidebar__perfil-enlace {
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: 12px;
+    /* Espacio entre elementos */
     padding: 12px 16px;
+    /* Espaciado interno */
     text-decoration: none;
+    /* Sin subrayado */
     color: var(--color-texto);
+    /* Color de texto */
     background: var(--color-blanco);
+    /* Fondo blanco */
     border-radius: var(--radio-grande);
+    /* Esquinas redondeadas */
     box-shadow: 0 4px 15px rgba(228, 39, 39, 0.1);
+    /* Sombra roja suave */
     border: 1px solid rgba(228, 39, 39, 0.1);
+    /* Borde rojo muy suave */
     transition: all 0.3s ease;
+    /* Animación suave */
 }
 
+/* Estado hover del perfil */
 .sidebar__perfil-enlace:hover {
     transform: translateY(-2px);
+    /* Eleva ligeramente */
     box-shadow: 0 6px 20px var(--color-marca-hover);
+    /* Sombra más pronunciada */
     border-color: var(--color-marca-sombra);
+    /* Borde más visible */
 }
 
+/* Estado focus del perfil */
 .sidebar__perfil-enlace:focus {
     transform: translateY(0);
+    /* Vuelve a posición original */
     box-shadow: 0 4px 15px var(--color-marca-sombra);
+    /* Sombra estándar */
     border-color: var(--color-marca);
+    /* Borde rojo sólido */
 }
 
+/* Avatar del perfil */
 .sidebar__perfil-avatar {
     width: 42px;
+    /* Ancho de 42px */
     height: 42px;
+    /* Alto de 42px */
     border-radius: var(--radio-redondo);
+    /* Forma circular */
     background: var(--gradiente-marca);
+    /* Gradiente rojo */
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra verticalmente */
     justify-content: center;
+    /* Centra horizontalmente */
     color: var(--color-blanco);
+    /* Icono blanco */
     font-size: 18px;
+    /* Tamaño del icono */
     flex-shrink: 0;
+    /* No se encoge */
     box-shadow: 0 3px 10px var(--color-marca-sombra);
+    /* Sombra roja */
 }
 
+/* Contenedor de la información del perfil */
 .sidebar__perfil-info {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila nombre y rol verticalmente */
     flex: 1;
+    /* Ocupa espacio disponible */
     min-width: 0;
+    /* Permite que el texto se trunque */
 }
 
+/* Nombre del usuario */
 .sidebar__perfil-nombre {
     font-size: 14px;
+    /* Tamaño de fuente */
     font-weight: 600;
+    /* Semi-negrita */
     color: #1a1a1a;
+    /* Color negro */
     white-space: nowrap;
+    /* No divide en líneas */
     overflow: hidden;
+    /* Oculta texto que sobresale */
     text-overflow: ellipsis;
+    /* Muestra "..." */
 }
 
+/* Rol del usuario */
 .sidebar__perfil-rol {
     font-size: 12px;
+    /* Tamaño pequeño */
     color: var(--color-texto-secundario);
+    /* Color gris */
     margin-top: 2px;
+    /* Pequeño espacio superior */
 }
 
+/* Flecha del perfil */
 .sidebar__perfil-flecha {
     color: #ccc;
+    /* Color gris claro */
     font-size: 12px;
+    /* Tamaño pequeño */
     transition: all 0.3s ease;
+    /* Animación suave */
 }
 
+/* Animación de la flecha del perfil */
 .sidebar__perfil-enlace:hover .sidebar__perfil-flecha {
     color: var(--color-marca);
+    /* Cambia a rojo */
     transform: translateX(3px);
+    /* Se mueve a la derecha */
 }

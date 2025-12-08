@@ -1,219 +1,382 @@
 /* ============================================
-BLOQUE: formulario
-============================================ */
+   BLOQUE: formulario
+   ============================================ */
 
+/* Contenedor principal del formulario */
 .formulario {
     width: 60%;
+    /* Ocupa 60% del ancho disponible */
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila elementos verticalmente */
     justify-content: center;
+    /* Centra verticalmente */
     gap: var(--espacio-peq);
+    /* Espacio de 0.5rem entre elementos */
 }
 
+/* ========================================
+   ELEMENTO: Grupo de campo
+   ======================================== */
+
+/* Contenedor de label + input */
 .formulario__grupo {
     margin-bottom: var(--espacio-peq);
+    /* Espacio de 0.5rem entre grupos */
 }
 
+/* Etiqueta del campo */
 .formulario__etiqueta {
     font-weight: var(--font-weight-medium);
+    /* Peso de fuente 500 */
     margin-bottom: var(--espacio-peq);
+    /* Espacio antes del input */
     color: var(--color-texto-secundario);
+    /* Color gris */
     display: block;
+    /* Ocupa toda la línea */
     font-size: var(--font-size-s);
+    /* Tamaño 0.875rem */
     transition: color 0.2s ease;
+    /* Animación suave del color */
 }
 
+/* Etiqueta cambia de color cuando el input está enfocado */
 .formulario__grupo:focus-within .formulario__etiqueta {
     color: var(--color-principal);
+    /* Cambia a negro cuando el input tiene focus */
 }
 
+/* ========================================
+   ELEMENTO: Campo de entrada
+   ======================================== */
+
+/* Input de texto/email/password */
 .formulario__campo {
     width: 100%;
+    /* Ancho completo */
     padding: 0.9rem 1rem;
+    /* Espaciado interno */
     border: 1px solid transparent;
+    /* Borde transparente por defecto */
     outline: none;
+    /* Sin outline nativo */
     background-color: var(--color-fondo-input);
+    /* Fondo gris claro */
     border-radius: var(--radio);
+    /* Esquinas redondeadas de 8px */
     font-size: var(--font-size-peq);
+    /* Tamaño 0.85rem */
     transition: all 0.25s ease;
+    /* Animación suave en todos los cambios */
     font-weight: var(--font-weight-normal);
+    /* Peso normal 400 */
 }
 
+/* Texto placeholder */
 .formulario__campo::placeholder {
     color: var(--color-texto-terciario);
+    /* Color gris claro */
     transition: opacity 0.2s ease;
+    /* Animación de opacidad */
 }
 
+/* Placeholder se atenúa cuando el campo tiene focus */
 .formulario__campo:focus::placeholder {
     opacity: 0.5;
+    /* 50% de opacidad */
 }
 
+/* Estado hover del campo */
 .formulario__campo:hover {
     border-color: var(--color-borde);
+    /* Muestra borde gris */
 }
 
+/* Estado focus del campo */
 .formulario__campo:focus {
     background-color: var(--color-secundario);
+    /* Fondo blanco */
     border-color: var(--color-principal);
+    /* Borde negro */
     box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+    /* Sombra negra suave */
 }
 
+/* ========================================
+   ELEMENTO: Campo de contraseña
+   ======================================== */
+
+/* Contenedor del input de password con icono */
 .formulario__campo--password {
     position: relative;
+    /* Para posicionar el icono */
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra verticalmente */
 }
 
+/* Icono de mostrar/ocultar contraseña */
 .formulario__icono {
     position: absolute;
+    /* Posición absoluta dentro del contenedor */
     right: 1rem;
+    /* 1rem desde la derecha */
     color: var(--color-texto-terciario);
+    /* Color gris claro */
     cursor: pointer;
+    /* Cursor de mano */
     font-size: var(--font-size-muy-grande);
+    /* Tamaño 1.25rem */
     transition: color 0.2s ease;
+    /* Animación de color */
 }
 
+/* Estado hover del icono */
 .formulario__icono:hover {
     color: var(--color-principal);
+    /* Cambia a negro */
 }
 
 /* ============================================
-ELEMENTOS: Acciones, checkbox, enlaces
-============================================ */
+   ELEMENTOS: Acciones, checkbox, enlaces
+   ============================================ */
+
+/* Contenedor de "Recordar" y "¿Olvidaste tu contraseña?" */
 .formulario__acciones {
     display: flex;
+    /* Activa Flexbox */
     justify-content: space-between;
+    /* Elementos a los extremos */
     align-items: center;
+    /* Centra verticalmente */
     font-size: var(--font-size-grande);
+    /* Tamaño 1rem */
     margin-top: var(--espacio-peq);
+    /* Espacio superior */
 }
 
+/* Label del checkbox "Recordar Contraseña" */
 .formulario__recordar {
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: var(--espacio-peq);
+    /* Espacio entre checkbox y texto */
     cursor: pointer;
+    /* Cursor de mano */
 }
 
+/* Checkbox personalizado */
 .formulario__checkbox {
     accent-color: var(--color-principal);
+    /* Color del check (negro) */
     transform: scale(1.2);
+    /* Aumenta tamaño 20% */
     cursor: pointer;
+    /* Cursor de mano */
 }
 
+/* Texto junto al checkbox */
 .formulario__texto {
     font-size: var(--font-size-xs);
+    /* Tamaño 0.75rem */
     font-weight: var(--font-weight-normal);
+    /* Peso normal */
     color: var(--color-texto);
+    /* Color principal */
     transition: color 0.2s ease;
+    /* Animación de color */
 }
 
+/* Texto cambia de color en hover */
 .formulario__recordar:hover .formulario__texto {
     color: var(--color-principal);
+    /* Cambia a negro */
 }
 
+/* Enlace "¿Olvidaste tu contraseña?" */
 .formulario__enlace {
     color: var(--color-principal);
+    /* Color negro */
     text-decoration: none;
+    /* Sin subrayado */
     font-weight: var(--font-weight-medium);
+    /* Peso 500 */
     font-size: var(--font-size-xs);
+    /* Tamaño 0.75rem */
     transition: opacity 0.2s ease;
+    /* Animación de opacidad */
 }
 
+/* Estado hover del enlace */
 .formulario__enlace:hover {
     text-decoration: underline;
+    /* Muestra subrayado */
     opacity: 0.8;
+    /* 80% de opacidad */
 }
 
 /* ============================================
-BOTONES PRINCIPAL Y GOOGLE
-============================================ */
+   BOTONES PRINCIPAL Y GOOGLE
+   ============================================ */
+
+/* Contenedor de los botones */
 .formulario__botones {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila botones verticalmente */
     gap: var(--espacio-med);
+    /* Espacio de 1.5rem entre botones */
     margin-top: var(--espacio-med);
+    /* Espacio superior de 1.5rem */
 }
 
+/* Base de todos los botones */
 .formulario__boton {
     text-decoration: none;
+    /* Sin subrayado */
     text-align: center;
+    /* Texto centrado */
     width: 100%;
+    /* Ancho completo */
     padding: 0.9rem;
+    /* Espaciado interno */
     border: none;
+    /* Sin borde */
     border-radius: var(--radio-grande);
+    /* Esquinas redondeadas de 12px */
     font-size: var(--font-size-grande);
+    /* Tamaño 1rem */
     cursor: pointer;
+    /* Cursor de mano */
     transition: all 0.25s ease;
+    /* Animación suave */
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra verticalmente */
     justify-content: center;
+    /* Centra horizontalmente */
     gap: 0.5rem;
+    /* Espacio entre icono y texto */
     font-weight: var(--font-weight-normal);
+    /* Peso normal */
 }
 
+/* ========================================
+   BOTÓN PRINCIPAL (Iniciar Sesión)
+   ======================================== */
+
+/* Modificador: Botón principal negro */
 .formulario__boton--principal {
     background-color: var(--color-principal);
+    /* Fondo negro */
     color: var(--color-secundario);
+    /* Texto blanco */
     height: 50px;
+    /* Altura fija */
     font-size: var(--font-size-s);
+    /* Tamaño 0.875rem */
     font-weight: var(--font-weight-bold);
+    /* Peso 600 */
     box-shadow: 0 4px 12px rgba(26, 26, 26, 0.25);
+    /* Sombra negra */
 }
 
+/* Estado hover del botón principal */
 .formulario__boton--principal:hover {
     background-color: var(--color-hover);
+    /* Fondo gris oscuro */
     box-shadow: 0 6px 16px rgba(26, 26, 26, 0.35);
+    /* Sombra más pronunciada */
     transform: translateY(-1px);
+    /* Eleva ligeramente */
 }
 
+/* Estado active del botón principal */
 .formulario__boton--principal:active {
     transform: translateY(0);
+    /* Vuelve a posición original */
     box-shadow: 0 2px 8px rgba(26, 26, 26, 0.2);
+    /* Sombra más pequeña */
 }
 
 /* ============================================
-SEPARADOR "O"
-============================================ */
+   SEPARADOR "O"
+   ============================================ */
+
+/* Separador con líneas a los lados */
 .formulario__separador {
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: var(--espacio-med);
+    /* Espacio entre líneas y texto */
     color: var(--color-texto-terciario);
+    /* Color gris claro */
     font-size: var(--font-size-xs);
+    /* Tamaño pequeño */
     text-transform: uppercase;
+    /* Texto en mayúsculas */
     letter-spacing: 1px;
+    /* Espaciado entre letras */
 }
 
+/* Líneas del separador (pseudo-elementos) */
 .formulario__separador::before,
 .formulario__separador::after {
     content: "";
+    /* Contenido vacío */
     flex: 1;
+    /* Ocupan espacio disponible */
     height: 1px;
+    /* Alto de 1px */
     background-color: var(--color-borde);
+    /* Color gris */
 }
 
 /* ============================================
-BOTON GOOGLE
-============================================ */
+   BOTON GOOGLE
+   ============================================ */
+
+/* Modificador: Botón de Google blanco */
 .formulario__boton--google {
     background-color: var(--color-secundario);
+    /* Fondo blanco */
     border: 1px solid var(--color-borde);
+    /* Borde gris */
     color: var(--color-texto);
+    /* Texto negro */
     height: 50px;
+    /* Altura fija */
 }
 
+/* Texto del botón de Google */
 .formulario__boton--google span {
     font-size: var(--font-size-s);
+    /* Tamaño 0.875rem */
     font-weight: var(--font-weight-bold);
+    /* Peso 600 */
 }
 
+/* Estado hover del botón de Google */
 .formulario__boton--google:hover {
     background-color: var(--color-fondo-gris-hover);
+    /* Fondo gris claro */
     border-color: var(--color-texto-terciario);
+    /* Borde más oscuro */
 }
 
+/* Icono SVG de Google */
 .formulario__icono-google {
     width: 22px;
+    /* Ancho de 22px */
     height: 22px;
+    /* Alto de 22px */
 }

@@ -2,123 +2,242 @@
 /* ===== GRAFICO BARRAS ==== */
 /* ========================= */
 
+/* Base del contenedor de gráficos */
 .grafico {
     background: var(--color-blanco);
+    /* Fondo blanco */
     padding: 20px;
+    /* Espaciado interno de 20px */
     border-radius: var(--radio-grande);
+    /* Esquinas redondeadas de 12px */
     border: 1px solid var(--color-borde);
+    /* Borde gris sutil */
 }
 
+/* Título del gráfico */
 .grafico__titulo {
     margin-bottom: 15px;
+    /* Espacio antes del contenido del gráfico */
     font-size: 16px;
+    /* Tamaño de fuente mediano */
     font-weight: 600;
+    /* Semi-negrita */
     color: var(--color-texto);
+    /* Color de texto principal */
 }
 
+/* ========================================
+   CONTENEDOR DE BARRAS
+   ======================================== */
+
+/* Contenedor principal del área de barras */
 .barras-contenedor {
     display: flex;
+    /* Activa Flexbox */
     gap: 12px;
+    /* Espacio entre el eje Y y el área de barras */
     height: 200px;
+    /* Altura fija del gráfico */
 }
 
+/* ========================================
+   EJE Y (VERTICAL)
+   ======================================== */
+
+/* Contenedor de las etiquetas del eje Y */
 .barras__eje-y {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila etiquetas verticalmente */
     justify-content: space-between;
+    /* Distribuye uniformemente (500 a 0) */
     padding: 0 8px 28px 0;
+    /* Padding derecho y inferior para alineación */
     min-width: 35px;
+    /* Ancho mínimo para las etiquetas */
 }
 
+/* Etiqueta numérica del eje Y (500, 400, etc.) */
 .barras__eje-etiqueta {
     font-size: 11px;
+    /* Tamaño pequeño */
     color: var(--color-texto-secundario);
+    /* Color gris */
     text-align: right;
+    /* Alineado a la derecha */
 }
 
+/* ========================================
+   ÁREA DE BARRAS
+   ======================================== */
+
+/* Contenedor del área donde se dibujan las barras */
 .barras__area {
     flex: 1;
+    /* Ocupa todo el espacio disponible */
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila elementos verticalmente */
     position: relative;
+    /* Para posicionar la cuadrícula */
 }
 
+/* ========================================
+   CUADRÍCULA DE FONDO
+   ======================================== */
+
+/* Contenedor de las líneas de la cuadrícula */
 .barras__cuadricula {
     position: absolute;
+    /* Posición absoluta detrás de las barras */
     top: 0;
+    /* Desde arriba */
     left: 0;
+    /* Desde la izquierda */
     right: 0;
+    /* Hasta la derecha */
     bottom: 28px;
+    /* Deja espacio para el eje X */
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila líneas verticalmente */
     justify-content: space-between;
+    /* Distribuye líneas uniformemente */
     pointer-events: none;
+    /* No interfiere con clics en las barras */
 }
 
+/* Línea individual de la cuadrícula */
 .barras__cuadricula-linea {
     width: 100%;
+    /* Ancho completo */
     height: 1px;
+    /* Alto de 1px (línea fina) */
     background: var(--color-borde-claro);
+    /* Color gris muy claro */
 }
 
+/* ========================================
+   BARRAS DEL GRÁFICO
+   ======================================== */
+
+/* Contenedor de las barras */
 .barras {
     flex: 1;
+    /* Ocupa el espacio disponible */
     display: flex;
+    /* Activa Flexbox */
     align-items: flex-end;
+    /* Las barras crecen desde abajo */
     justify-content: space-between;
+    /* Distribuye barras uniformemente */
     gap: 8px;
+    /* Espacio entre barras */
     padding-bottom: 28px;
+    /* Espacio para el eje X */
     position: relative;
+    /* Para posicionar valores */
     z-index: 1;
+    /* Por encima de la cuadrícula */
 }
 
+/* Barra individual */
 .barras__elemento {
     flex: 1;
+    /* Todas las barras tienen el mismo ancho */
     height: var(--altura-barra);
+    /* Altura dinámica definida por variable CSS */
     background: var(--color-egreso);
+    /* Color rojo por defecto */
     border-radius: 6px 6px 2px 2px;
+    /* Esquinas redondeadas arriba, rectas abajo */
     position: relative;
+    /* Para posicionar el tooltip */
     min-height: 8px;
+    /* Altura mínima visible */
 }
 
+/* Estado hover de la barra */
 .barras__elemento:hover {
     opacity: 0.85;
+    /* Reduce opacidad ligeramente */
 }
 
+/* ========================================
+   TOOLTIP DE VALOR
+   ======================================== */
+
+/* Valor que aparece sobre la barra en hover */
 .barras__valor {
     position: absolute;
+    /* Posición absoluta sobre la barra */
     top: -24px;
+    /* 24px arriba de la barra */
     left: 50%;
+    /* Centrado horizontalmente */
     transform: translateX(-50%);
+    /* Ajuste para centrar */
     background: var(--color-texto);
+    /* Fondo oscuro */
     color: var(--color-blanco);
+    /* Texto blanco */
     padding: 3px 6px;
+    /* Espaciado interno pequeño */
     border-radius: 4px;
+    /* Esquinas redondeadas */
     font-size: 10px;
+    /* Tamaño muy pequeño */
     font-weight: 600;
+    /* Semi-negrita */
     opacity: 0;
+    /* Oculto por defecto */
     transition: opacity 0.2s ease;
+    /* Animación suave al aparecer */
     white-space: nowrap;
+    /* No divide el texto en líneas */
 }
 
+/* Muestra el valor al hacer hover en la barra */
 .barras__elemento:hover .barras__valor {
     opacity: 1;
+    /* Visible al 100% */
 }
 
+/* ========================================
+   EJE X (HORIZONTAL)
+   ======================================== */
+
+/* Contenedor de las etiquetas del eje X */
 .barras__eje-x {
     position: absolute;
+    /* Posición absoluta en la parte inferior */
     bottom: 0;
+    /* Pegado al fondo */
     left: 0;
+    /* Desde la izquierda */
     right: 0;
+    /* Hasta la derecha */
     display: flex;
+    /* Activa Flexbox */
     justify-content: space-between;
+    /* Distribuye días uniformemente */
     border-top: 1px solid var(--color-borde-claro);
+    /* Línea separadora */
 }
 
+/* Etiqueta de día de la semana (Lun, Mar, etc.) */
 .barras__dia {
     flex: 1;
+    /* Todas las etiquetas tienen el mismo ancho */
     text-align: center;
+    /* Texto centrado */
     font-size: 11px;
+    /* Tamaño pequeño */
     color: var(--color-texto-secundario);
+    /* Color gris */
     padding-top: 8px;
+    /* Espacio arriba de la etiqueta */
 }

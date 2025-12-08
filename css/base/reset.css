@@ -2,22 +2,36 @@
 /* ===== RESET ======= */
 /* =================== */
 
+/* Selector universal: aplica a todos los elementos */
 * {
     box-sizing: border-box;
+    /* Incluye padding y border en el ancho/alto total */
     margin: 0;
+    /* Elimina márgenes por defecto del navegador */
     padding: 0;
+    /* Elimina padding por defecto del navegador */
     font-family: var(--fuente-principal);
+    /* Aplica la fuente principal del sistema */
 }
 
+/* Estilos base del body */
 body {
     height: 100vh;
+    /* Altura completa del viewport */
     width: 100vw;
+    /* Ancho completo del viewport */
     background: var(--color-fondo);
+    /* Color de fondo gris claro del sistema */
 }
 
+/* Contenedor principal de la aplicación */
 main {
     margin-left: 17%;
+    /* Espacio para el sidebar (17% del ancho) */
     padding: 20px;
+    /* Espaciado interno de 20px */
     height: 100vh;
+    /* Altura completa del viewport */
     overflow-y: auto;
+    /* Permite scroll vertical si el contenido excede */
 }

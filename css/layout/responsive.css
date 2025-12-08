@@ -1,8 +1,8 @@
-    /* ============================================ */
-    /* ===== MEDIA QUERIES - DISEÑO RESPONSIVO === */
-    /* ============================================ */
+/* ============================================ */
+/* ===== MEDIA QUERIES - DISEÑO RESPONSIVO === */
+/* ============================================ */
 
-    /* 
+/* 
    BREAKPOINTS ESPECÍFICOS:
    - Desktop Grande: > 1024px (estilos base)
    - Laptop: <= 1024px
@@ -14,739 +14,1066 @@
    Solo HTML y CSS, sin JavaScript
 */
 
-    /* ============================================ */
-    /* ===== LAPTOP (<= 1024px) ================== */
-    /* ============================================ */
-    @media screen and (max-width: 1024px) {
+/* ============================================ */
+/* ===== LAPTOP (<= 1024px) ================== */
+/* ============================================ */
 
-        /* ---------- SIDEBAR MÁS GRANDE EN LAPTOP ---------- */
-        .sidebar {
-            width: 220px;
-        }
+@media screen and (max-width: 1024px) {
 
-        .sidebar__marca {
-            padding: 12px;
-        }
+    /* ---------- SIDEBAR MÁS GRANDE EN LAPTOP ---------- */
 
-        .sidebar__logo {
-            width: 85%;
-            padding: 12px 0;
-        }
-
-        .sidebar__nav {
-            padding: 15px 0;
-        }
-
-        .sidebar__lista {
-            padding: 0 15px;
-            gap: 10px;
-        }
-
-        .sidebar__enlace {
-            padding: 12px 14px;
-            gap: 10px;
-        }
-
-        .sidebar__enlace-avatar {
-            width: 38px;
-            height: 38px;
-            font-size: 16px;
-        }
-
-        .sidebar__enlace-texto {
-            font-size: 13px;
-        }
-
-        /* Perfil en sidebar */
-        .sidebar__perfil {
-            padding: 15px;
-        }
-
-        .sidebar__perfil-enlace {
-            padding: 12px 14px;
-            gap: 10px;
-        }
-
-        .sidebar__perfil-avatar {
-            width: 38px;
-            height: 38px;
-            font-size: 16px;
-        }
-
-        .sidebar__perfil-nombre {
-            font-size: 13px;
-        }
-
-        .sidebar__perfil-rol {
-            font-size: 11px;
-        }
-
-        /* ---------- MAIN / TABLERO ---------- */
-        main {
-            margin-left: 220px;
-        }
-
-        .tablero {
-            padding: 18px;
-            gap: 22px;
-        }
-
-        .tablero__tarjetas {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
-        .tablero__graficos {
-            grid-template-columns: 1fr;
-            gap: 18px;
-        }
-
-        /* ---------- TARJETAS ---------- */
-        .tarjeta__icono {
-            width: 40px;
-            height: 40px;
-        }
-
-        .tarjeta__titulo {
-            font-size: 12px;
-        }
-
-        .tarjeta__valor {
-            font-size: 22px;
-        }
-
-        /* ---------- GRÁFICOS ---------- */
-        .grafico__titulo {
-            font-size: 15px;
-        }
+    /* Aumenta el ancho del sidebar */
+    .sidebar {
+        width: 220px;
+        /* Ancho fijo de 220px en lugar de 17% */
     }
 
-    /* ============================================ */
-    /* ===== TABLET (<= 768px) =================== */
-    /* ============================================ */
-    @media screen and (max-width: 768px) {
-
-        /* ---------- SIDEBAR COMO BARRA INFERIOR ---------- */
-        .sidebar {
-            position: fixed;
-            top: auto;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: auto;
-            flex-direction: row;
-            border-top: 1px solid var(--color-borde);
-            background: var(--color-blanco);
-            z-index: 100;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-
-        .sidebar__marca {
-            display: none;
-        }
-
-        .sidebar__nav {
-            width: 100%;
-            padding: 0;
-            margin: 0;
-            flex: 1;
-        }
-
-        .sidebar__lista {
-            flex-direction: row;
-            justify-content: space-around;
-            padding: 10px 8px;
-            gap: 6px;
-            width: 100%;
-        }
-
-        .sidebar__elemento {
-            width: auto;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .sidebar__enlace {
-            padding: 10px 6px;
-            flex-direction: column;
-            gap: 4px;
-            box-shadow: none;
-            border: none;
-            background: transparent;
-            border-radius: 8px;
-        }
-
-        .sidebar__enlace:hover {
-            transform: none;
-            box-shadow: none;
-            background: var(--color-fondo-gris);
-        }
-
-        .sidebar__enlace-avatar {
-            width: 32px;
-            height: 32px;
-            font-size: 14px;
-        }
-
-        .sidebar__enlace-texto {
-            font-size: 9px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-            text-align: center;
-        }
-
-        /* OCULTAR FLECHA EN TABLET Y MÓVILES */
-        .sidebar__enlace-flecha,
-        .sidebar__perfil-flecha {
-            display: none !important;
-        }
-
-        /* Ocultar perfil en tablet/mobile */
-        .sidebar__perfil {
-            display: none;
-        }
-
-        /* ---------- MAIN / TABLERO ---------- */
-        main {
-            margin-left: 0;
-            margin-bottom: 85px;
-            padding: 15px;
-            height: calc(100vh - 85px);
-        }
-
-        .tablero {
-            padding: 12px;
-            gap: 16px;
-        }
-
-        .tablero__tarjetas {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .tablero__graficos {
-            grid-template-columns: 1fr;
-            gap: 14px;
-        }
-
-        /* ---------- TARJETAS ---------- */
-        .tarjeta__header {
-            margin-bottom: 10px;
-        }
-
-        .tarjeta__icono {
-            width: 36px;
-            height: 36px;
-            font-size: 14px;
-        }
-
-        .tarjeta__insignia {
-            font-size: 11px;
-            padding: 3px 8px;
-        }
-
-        .tarjeta__titulo {
-            font-size: 11px;
-        }
-
-        .tarjeta__valor {
-            font-size: 18px;
-        }
-
-        /* ---------- GRÁFICOS ---------- */
-        .grafico__titulo {
-            font-size: 14px;
-        }
-
-        .grafico__subtitulo {
-            font-size: 12px;
-        }
-
-        /* Gráfico de barras */
-        .barras__eje-etiqueta {
-            font-size: 10px;
-        }
-
-        .barras__dia {
-            font-size: 10px;
-        }
-
-        .barras__elemento {
-            min-width: 22px;
-        }
-
-        .barras__valor {
-            font-size: 9px;
-        }
-
-        /* Resumen semanal */
-        .resumen-semanal__etiqueta {
-            font-size: 12px;
-        }
-
-        .resumen-semanal__valor {
-            font-size: 11px;
-        }
-
-        /* Gráfico pastel */
-        .pastel-dona {
-            width: 140px;
-            height: 140px;
-        }
-
-        .pastel-dona__total-etiqueta {
-            font-size: 11px;
-        }
-
-        .pastel-dona__total-valor {
-            font-size: 22px;
-        }
-
-        .pastel-dona__total-unidad {
-            font-size: 9px;
-        }
-
-        .pastel-leyenda__etiqueta {
-            font-size: 12px;
-        }
-
-        .pastel-leyenda__valor {
-            font-size: 10px;
-        }
-
-        .pastel-leyenda__porcentaje {
-            font-size: 12px;
-        }
-
-        /* Gráfico margen */
-        .margen-elemento__nombre {
-            font-size: 12px;
-        }
-
-        .margen-elemento__porcentaje {
-            font-size: 12px;
-        }
-
-        .margen-elemento__icono {
-            width: 32px;
-            height: 32px;
-            font-size: 12px;
-        }
+    /* Ajusta el padding de la marca */
+    .sidebar__marca {
+        padding: 12px;
+        /* Reduce padding a 12px */
     }
 
-    /* ============================================ */
-    /* ===== MOBILE L (<= 425px) ================= */
-    /* ============================================ */
-    @media screen and (max-width: 425px) {
-
-        .sidebar__lista {
-            padding: 8px 4px;
-            gap: 4px;
-        }
-
-        .sidebar__enlace {
-            padding: 8px 4px;
-        }
-
-        .sidebar__enlace-avatar {
-            width: 28px;
-            height: 28px;
-            font-size: 12px;
-        }
-
-        .sidebar__enlace-texto {
-            font-size: 8px;
-        }
-
-        /* FLECHA YA OCULTA DESDE TABLET */
-
-        main {
-            margin-bottom: 75px;
-            padding: 12px;
-            height: calc(100vh - 75px);
-        }
-
-        .tablero {
-            padding: 10px;
-            gap: 14px;
-        }
-
-        .tablero__tarjetas {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
-
-        .tarjeta__icono {
-            width: 32px;
-            height: 32px;
-            font-size: 12px;
-        }
-
-        .tarjeta__titulo {
-            font-size: 10px;
-        }
-
-        .tarjeta__valor {
-            font-size: 16px;
-        }
-
-        .tarjeta__insignia {
-            font-size: 10px;
-            padding: 2px 6px;
-        }
-
-        /* Gráficos */
-        .grafico__titulo {
-            font-size: 13px;
-        }
-
-        .grafico__subtitulo {
-            font-size: 11px;
-        }
-
-        .barras__eje-etiqueta {
-            font-size: 9px;
-        }
-
-        .barras__dia {
-            font-size: 9px;
-        }
-
-        .barras__elemento {
-            min-width: 18px;
-        }
-
-        .barras__valor {
-            font-size: 8px;
-        }
-
-        /* Pastel */
-        .pastel-dona {
-            width: 120px;
-            height: 120px;
-        }
-
-        .pastel-dona__total-valor {
-            font-size: 20px;
-        }
-
-        .pastel-leyenda__etiqueta {
-            font-size: 11px;
-        }
-
-        .pastel-leyenda__valor {
-            font-size: 9px;
-        }
-
-        .pastel-leyenda__porcentaje {
-            font-size: 11px;
-        }
-
-        /* Margen */
-        .margen-elemento__icono {
-            width: 28px;
-            height: 28px;
-            font-size: 11px;
-        }
-
-        .margen-elemento__nombre {
-            font-size: 11px;
-        }
-
-        .margen-elemento__porcentaje {
-            font-size: 11px;
-        }
-
-        /* Resumen semanal */
-        .resumen-semanal__etiqueta {
-            font-size: 11px;
-        }
-
-        .resumen-semanal__valor {
-            font-size: 10px;
-        }
+    /* Ajusta el logo */
+    .sidebar__logo {
+        width: 85%;
+        /* Reduce al 85% del ancho */
+        padding: 12px 0;
+        /* Ajusta el padding vertical */
     }
 
-    /* ============================================ */
-    /* ===== MOBILE M (<= 375px) ================= */
-    /* ============================================ */
-    @media screen and (max-width: 375px) {
-
-        .sidebar__lista {
-            padding: 6px 2px;
-            gap: 2px;
-        }
-
-        .sidebar__enlace {
-            padding: 6px 2px;
-        }
-
-        .sidebar__enlace-avatar {
-            width: 26px;
-            height: 26px;
-            font-size: 11px;
-        }
-
-        .sidebar__enlace-texto {
-            font-size: 7px;
-        }
-
-        /* FLECHA YA OCULTA DESDE TABLET */
-
-        main {
-            margin-bottom: 70px;
-            padding: 10px;
-            height: calc(100vh - 70px);
-        }
-
-        .tablero {
-            padding: 8px;
-            gap: 12px;
-        }
-
-        .tablero__tarjetas {
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
-
-        .tarjeta__icono {
-            width: 28px;
-            height: 28px;
-            font-size: 10px;
-        }
-
-        .tarjeta__titulo {
-            font-size: 9px;
-        }
-
-        .tarjeta__valor {
-            font-size: 14px;
-        }
-
-        .tarjeta__insignia {
-            font-size: 9px;
-            padding: 2px 4px;
-        }
-
-        /* Gráficos */
-        .grafico__titulo {
-            font-size: 12px;
-        }
-
-        .grafico__subtitulo {
-            font-size: 10px;
-        }
-
-        .barras__eje-etiqueta {
-            font-size: 8px;
-        }
-
-        .barras__dia {
-            font-size: 8px;
-        }
-
-        .barras__elemento {
-            min-width: 14px;
-        }
-
-        .barras__valor {
-            font-size: 7px;
-        }
-
-        /* Pastel */
-        .pastel-contenedor {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .pastel-dona {
-            width: 110px;
-            height: 110px;
-        }
-
-        .pastel-dona__total-valor {
-            font-size: 18px;
-        }
-
-        .pastel-leyenda {
-            width: 100%;
-        }
-
-        .pastel-leyenda__etiqueta {
-            font-size: 10px;
-        }
-
-        .pastel-leyenda__valor {
-            font-size: 8px;
-        }
-
-        .pastel-leyenda__porcentaje {
-            font-size: 10px;
-        }
-
-        /* Margen */
-        .margen-elemento__icono {
-            width: 24px;
-            height: 24px;
-            font-size: 10px;
-        }
-
-        .margen-elemento__nombre {
-            font-size: 10px;
-        }
-
-        .margen-elemento__porcentaje {
-            font-size: 10px;
-        }
-
-        /* Resumen semanal */
-        .resumen-semanal__etiqueta {
-            font-size: 10px;
-        }
-
-        .resumen-semanal__valor {
-            font-size: 9px;
-        }
+    /* Ajusta la navegación */
+    .sidebar__nav {
+        padding: 15px 0;
+        /* Reduce el padding */
     }
 
-    /* ============================================ */
-    /* ===== MOBILE S (<= 320px) ================= */
-    /* ============================================ */
-    @media screen and (max-width: 320px) {
-
-        /* Ocultar texto del menú, solo iconos */
-        .sidebar__enlace-texto {
-            display: none;
-        }
-
-        .sidebar__enlace-avatar {
-            width: 30px;
-            height: 30px;
-            font-size: 13px;
-        }
-
-        .sidebar__lista {
-            padding: 10px 6px;
-            gap: 4px;
-        }
-
-        .sidebar__enlace {
-            padding: 8px 4px;
-        }
-
-        /* FLECHA YA OCULTA DESDE TABLET */
-
-        main {
-            margin-bottom: 60px;
-            padding: 8px;
-            height: calc(100vh - 60px);
-        }
-
-        .tablero {
-            padding: 6px;
-            gap: 10px;
-        }
-
-        .tablero__tarjetas {
-            grid-template-columns: 1fr;
-            gap: 8px;
-        }
-
-        .tarjeta__icono {
-            width: 32px;
-            height: 32px;
-            font-size: 12px;
-        }
-
-        .tarjeta__titulo {
-            font-size: 10px;
-        }
-
-        .tarjeta__valor {
-            font-size: 16px;
-        }
-
-        /* Gráficos */
-        .grafico__titulo {
-            font-size: 11px;
-        }
-
-        .grafico__subtitulo {
-            font-size: 9px;
-        }
-
-        .barras__eje-etiqueta {
-            font-size: 7px;
-        }
-
-        .barras__dia {
-            font-size: 7px;
-        }
-
-        .barras__elemento {
-            min-width: 12px;
-        }
-
-        .barras__valor {
-            font-size: 6px;
-        }
-
-        /* Pastel */
-        .pastel-dona {
-            width: 100px;
-            height: 100px;
-        }
-
-        .pastel-dona__total-valor {
-            font-size: 16px;
-        }
-
-        .pastel-dona__total-etiqueta {
-            font-size: 9px;
-        }
-
-        .pastel-dona__total-unidad {
-            font-size: 7px;
-        }
-
-        .pastel-leyenda__etiqueta {
-            font-size: 9px;
-        }
-
-        .pastel-leyenda__valor {
-            font-size: 7px;
-        }
-
-        .pastel-leyenda__porcentaje {
-            font-size: 9px;
-        }
-
-        /* Margen */
-        .margen-elemento__icono {
-            width: 22px;
-            height: 22px;
-            font-size: 9px;
-        }
-
-        .margen-elemento__nombre {
-            font-size: 9px;
-        }
-
-        .margen-elemento__porcentaje {
-            font-size: 9px;
-        }
-
-        /* Resumen semanal */
-        .resumen-semanal__etiqueta {
-            font-size: 9px;
-        }
-
-        .resumen-semanal__valor {
-            font-size: 8px;
-        }
+    /* Ajusta la lista de navegación */
+    .sidebar__lista {
+        padding: 0 15px;
+        /* Reduce el padding horizontal */
+        gap: 10px;
+        /* Reduce el espacio entre elementos */
     }
+
+    /* Ajusta los enlaces */
+    .sidebar__enlace {
+        padding: 12px 14px;
+        /* Reduce el padding */
+        gap: 10px;
+        /* Reduce el espacio entre elementos */
+    }
+
+    /* Ajusta el avatar del enlace */
+    .sidebar__enlace-avatar {
+        width: 38px;
+        /* Reduce a 38px */
+        height: 38px;
+        /* Reduce a 38px */
+        font-size: 16px;
+        /* Reduce el tamaño del icono */
+    }
+
+    /* Ajusta el texto del enlace */
+    .sidebar__enlace-texto {
+        font-size: 13px;
+        /* Reduce el tamaño de fuente */
+    }
+
+    /* Perfil en sidebar */
+    .sidebar__perfil {
+        padding: 15px;
+        /* Reduce el padding */
+    }
+
+    /* Ajusta el enlace del perfil */
+    .sidebar__perfil-enlace {
+        padding: 12px 14px;
+        /* Reduce el padding */
+        gap: 10px;
+        /* Reduce el espacio */
+    }
+
+    /* Ajusta el avatar del perfil */
+    .sidebar__perfil-avatar {
+        width: 38px;
+        /* Reduce a 38px */
+        height: 38px;
+        /* Reduce a 38px */
+        font-size: 16px;
+        /* Reduce el tamaño del icono */
+    }
+
+    /* Ajusta el nombre del perfil */
+    .sidebar__perfil-nombre {
+        font-size: 13px;
+        /* Reduce el tamaño de fuente */
+    }
+
+    /* Ajusta el rol del perfil */
+    .sidebar__perfil-rol {
+        font-size: 11px;
+        /* Reduce el tamaño de fuente */
+    }
+
+    /* ---------- MAIN / TABLERO ---------- */
+
+    /* Ajusta el margen del main para el nuevo ancho del sidebar */
+    main {
+        margin-left: 220px;
+        /* Mismo ancho que el sidebar */
+    }
+
+    /* Ajusta el tablero */
+    .tablero {
+        padding: 18px;
+        /* Reduce el padding */
+        gap: 22px;
+        /* Reduce el espacio entre secciones */
+    }
+
+    /* Cambia las tarjetas a 2 columnas */
+    .tablero__tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columnas en lugar de 4 */
+        gap: 14px;
+        /* Reduce el espacio entre tarjetas */
+    }
+
+    /* Cambia los gráficos a 1 columna */
+    .tablero__graficos {
+        grid-template-columns: 1fr;
+        /* 1 columna en lugar de 2 */
+        gap: 18px;
+        /* Reduce el espacio entre gráficos */
+    }
+
+    /* ---------- TARJETAS ---------- */
+
+    /* Ajusta el icono de la tarjeta */
+    .tarjeta__icono {
+        width: 40px;
+        /* Aumenta ligeramente */
+        height: 40px;
+        /* Aumenta ligeramente */
+    }
+
+    /* Ajusta el título de la tarjeta */
+    .tarjeta__titulo {
+        font-size: 12px;
+        /* Mantiene el tamaño */
+    }
+
+    /* Ajusta el valor de la tarjeta */
+    .tarjeta__valor {
+        font-size: 22px;
+        /* Mantiene el tamaño */
+    }
+
+    /* ---------- GRÁFICOS ---------- */
+
+    /* Ajusta el título del gráfico */
+    .grafico__titulo {
+        font-size: 15px;
+        /* Reduce ligeramente */
+    }
+}
+
+/* ============================================ */
+/* ===== TABLET (<= 768px) =================== */
+/* ============================================ */
+
+@media screen and (max-width: 768px) {
+
+    /* ---------- SIDEBAR COMO BARRA INFERIOR ---------- */
+
+    /* Transforma el sidebar en barra inferior */
+    .sidebar {
+        position: fixed;
+        /* Posición fija */
+        top: auto;
+        /* Quita el top */
+        bottom: 0;
+        /* Pegado al fondo */
+        left: 0;
+        /* Desde la izquierda */
+        right: 0;
+        /* Hasta la derecha */
+        width: 100%;
+        /* Ancho completo */
+        height: auto;
+        /* Altura automática */
+        flex-direction: row;
+        /* Elementos en fila horizontal */
+        border-top: 1px solid var(--color-borde);
+        /* Borde superior */
+        background: var(--color-blanco);
+        /* Fondo blanco */
+        z-index: 100;
+        /* Por encima del contenido */
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        /* Sombra hacia arriba */
+        overflow-x: auto;
+        /* Scroll horizontal si es necesario */
+        overflow-y: hidden;
+        /* Sin scroll vertical */
+    }
+
+    /* Oculta la marca/logo */
+    .sidebar__marca {
+        display: none;
+        /* No se muestra en tablet */
+    }
+
+    /* Ajusta la navegación */
+    .sidebar__nav {
+        width: 100%;
+        /* Ancho completo */
+        padding: 0;
+        /* Sin padding */
+        margin: 0;
+        /* Sin margen */
+        flex: 1;
+        /* Ocupa espacio disponible */
+    }
+
+    /* Cambia la lista a horizontal */
+    .sidebar__lista {
+        flex-direction: row;
+        /* Elementos en fila */
+        justify-content: space-around;
+        /* Distribuye uniformemente */
+        padding: 10px 8px;
+        /* Padding reducido */
+        gap: 6px;
+        /* Espacio mínimo entre elementos */
+        width: 100%;
+        /* Ancho completo */
+    }
+
+    /* Ajusta cada elemento de la lista */
+    .sidebar__elemento {
+        width: auto;
+        /* Ancho automático */
+        flex: 1;
+        /* Todos del mismo tamaño */
+        min-width: 0;
+        /* Permite encogerse */
+    }
+
+    /* Cambia los enlaces a layout vertical */
+    .sidebar__enlace {
+        padding: 10px 6px;
+        /* Padding reducido */
+        flex-direction: column;
+        /* Icono arriba, texto abajo */
+        gap: 4px;
+        /* Espacio mínimo */
+        box-shadow: none;
+        /* Sin sombra */
+        border: none;
+        /* Sin borde */
+        background: transparent;
+        /* Fondo transparente */
+        border-radius: 8px;
+        /* Esquinas redondeadas */
+    }
+
+    /* Estado hover del enlace */
+    .sidebar__enlace:hover {
+        transform: none;
+        /* Sin transformación */
+        box-shadow: none;
+        /* Sin sombra */
+        background: var(--color-fondo-gris);
+        /* Fondo gris suave */
+    }
+
+    /* Ajusta el avatar del enlace */
+    .sidebar__enlace-avatar {
+        width: 32px;
+        /* Reduce a 32px */
+        height: 32px;
+        /* Reduce a 32px */
+        font-size: 14px;
+        /* Reduce el icono */
+    }
+
+    /* Ajusta el texto del enlace */
+    .sidebar__enlace-texto {
+        font-size: 9px;
+        /* Texto muy pequeño */
+        white-space: nowrap;
+        /* No divide en líneas */
+        overflow: hidden;
+        /* Oculta texto excedente */
+        text-overflow: ellipsis;
+        /* Muestra "..." */
+        max-width: 100%;
+        /* Ancho máximo */
+        text-align: center;
+        /* Texto centrado */
+    }
+
+    /* OCULTAR FLECHA EN TABLET Y MÓVILES */
+    .sidebar__enlace-flecha,
+    .sidebar__perfil-flecha {
+        display: none !important;
+        /* Oculta las flechas */
+    }
+
+    /* Ocultar perfil en tablet/mobile */
+    .sidebar__perfil {
+        display: none;
+        /* No se muestra */
+    }
+
+    /* ---------- MAIN / TABLERO ---------- */
+
+    /* Ajusta el main para la barra inferior */
+    main {
+        margin-left: 0;
+        /* Sin margen izquierdo */
+        margin-bottom: 85px;
+        /* Espacio para la barra inferior */
+        padding: 15px;
+        /* Reduce el padding */
+        height: calc(100vh - 85px);
+        /* Altura menos la barra */
+    }
+
+    /* Ajusta el tablero */
+    .tablero {
+        padding: 12px;
+        /* Reduce el padding */
+        gap: 16px;
+        /* Reduce el espacio */
+    }
+
+    /* Mantiene las tarjetas en 2 columnas */
+    .tablero__tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columnas */
+        gap: 12px;
+        /* Reduce el espacio */
+    }
+
+    /* Gráficos en 1 columna */
+    .tablero__graficos {
+        grid-template-columns: 1fr;
+        /* 1 columna */
+        gap: 14px;
+        /* Reduce el espacio */
+    }
+
+    /* ---------- TARJETAS ---------- */
+
+    /* Ajusta el header de la tarjeta */
+    .tarjeta__header {
+        margin-bottom: 10px;
+        /* Reduce el margen */
+    }
+
+    /* Ajusta el icono */
+    .tarjeta__icono {
+        width: 36px;
+        /* Reduce a 36px */
+        height: 36px;
+        /* Reduce a 36px */
+        font-size: 14px;
+        /* Reduce el icono */
+    }
+
+    /* Ajusta la insignia */
+    .tarjeta__insignia {
+        font-size: 11px;
+        /* Reduce el tamaño */
+        padding: 3px 8px;
+        /* Reduce el padding */
+    }
+
+    /* Ajusta el título */
+    .tarjeta__titulo {
+        font-size: 11px;
+        /* Reduce el tamaño */
+    }
+
+    /* Ajusta el valor */
+    .tarjeta__valor {
+        font-size: 18px;
+        /* Reduce el tamaño */
+    }
+
+    /* ---------- GRÁFICOS ---------- */
+
+    /* Ajusta el título del gráfico */
+    .grafico__titulo {
+        font-size: 14px;
+        /* Reduce el tamaño */
+    }
+
+    /* Ajusta el subtítulo del gráfico */
+    .grafico__subtitulo {
+        font-size: 12px;
+        /* Reduce el tamaño */
+    }
+
+    /* Gráfico de barras */
+    .barras__eje-etiqueta {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__dia {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__elemento {
+        min-width: 22px;
+        /* Ancho mínimo */
+    }
+
+    .barras__valor {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    /* Resumen semanal */
+    .resumen-semanal__etiqueta {
+        font-size: 12px;
+        /* Reduce el tamaño */
+    }
+
+    .resumen-semanal__valor {
+        font-size: 11px;
+        /* Reduce el tamaño */
+    }
+
+    /* Gráfico pastel */
+    .pastel-dona {
+        width: 140px;
+        /* Reduce el tamaño */
+        height: 140px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-dona__total-etiqueta {
+        font-size: 11px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-dona__total-valor {
+        font-size: 22px;
+        /* Mantiene el tamaño */
+    }
+
+    .pastel-dona__total-unidad {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__etiqueta {
+        font-size: 12px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__valor {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__porcentaje {
+        font-size: 12px;
+        /* Reduce el tamaño */
+    }
+
+    /* Gráfico margen */
+    .margen-elemento__nombre {
+        font-size: 12px;
+        /* Reduce el tamaño */
+    }
+
+    .margen-elemento__porcentaje {
+        font-size: 12px;
+        /* Reduce el tamaño */
+    }
+
+    .margen-elemento__icono {
+        width: 32px;
+        /* Reduce el tamaño */
+        height: 32px;
+        /* Reduce el tamaño */
+        font-size: 12px;
+        /* Reduce el icono */
+    }
+}
+
+/* ============================================ */
+/* ===== MOBILE L (<= 425px) ================= */
+/* ============================================ */
+
+@media screen and (max-width: 425px) {
+
+    /* Ajusta la lista del sidebar */
+    .sidebar__lista {
+        padding: 8px 4px;
+        /* Reduce el padding */
+        gap: 4px;
+        /* Reduce el espacio */
+    }
+
+    /* Ajusta los enlaces */
+    .sidebar__enlace {
+        padding: 8px 4px;
+        /* Reduce el padding */
+    }
+
+    /* Ajusta el avatar */
+    .sidebar__enlace-avatar {
+        width: 28px;
+        /* Reduce a 28px */
+        height: 28px;
+        /* Reduce a 28px */
+        font-size: 12px;
+        /* Reduce el icono */
+    }
+
+    /* Ajusta el texto */
+    .sidebar__enlace-texto {
+        font-size: 8px;
+        /* Texto muy pequeño */
+    }
+
+    /* FLECHA YA OCULTA DESDE TABLET */
+
+    /* Ajusta el main */
+    main {
+        margin-bottom: 75px;
+        /* Reduce el espacio para la barra */
+        padding: 12px;
+        /* Reduce el padding */
+        height: calc(100vh - 75px);
+        /* Ajusta la altura */
+    }
+
+    /* Ajusta el tablero */
+    .tablero {
+        padding: 10px;
+        /* Reduce el padding */
+        gap: 14px;
+        /* Reduce el espacio */
+    }
+
+    /* Mantiene las tarjetas en 2 columnas */
+    .tablero__tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columnas */
+        gap: 8px;
+        /* Reduce el espacio */
+    }
+
+    /* Ajusta el icono de la tarjeta */
+    .tarjeta__icono {
+        width: 32px;
+        /* Reduce a 32px */
+        height: 32px;
+        /* Reduce a 32px */
+        font-size: 12px;
+        /* Reduce el icono */
+    }
+
+    /* Ajusta el título */
+    .tarjeta__titulo {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+
+    /* Ajusta el valor */
+    .tarjeta__valor {
+        font-size: 16px;
+        /* Reduce el tamaño */
+    }
+
+    /* Ajusta la insignia */
+    .tarjeta__insignia {
+        font-size: 10px;
+        /* Reduce el tamaño */
+        padding: 2px 6px;
+        /* Reduce el padding */
+    }
+
+    /* Gráficos */
+    .grafico__titulo {
+        font-size: 13px;
+        /* Reduce el tamaño */
+    }
+
+    .grafico__subtitulo {
+        font-size: 11px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__eje-etiqueta {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__dia {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__elemento {
+        min-width: 18px;
+        /* Reduce el ancho mínimo */
+    }
+
+    .barras__valor {
+        font-size: 8px;
+        /* Reduce el tamaño */
+    }
+
+    /* Pastel */
+    .pastel-dona {
+        width: 120px;
+        /* Reduce el tamaño */
+        height: 120px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-dona__total-valor {
+        font-size: 20px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__etiqueta {
+        font-size: 11px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__valor {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__porcentaje {
+        font-size: 11px;
+        /* Reduce el tamaño */
+    }
+
+    /* Margen */
+    .margen-elemento__icono {
+        width: 28px;
+        /* Reduce el tamaño */
+        height: 28px;
+        /* Reduce el tamaño */
+        font-size: 11px;
+        /* Reduce el icono */
+    }
+
+    .margen-elemento__nombre {
+        font-size: 11px;
+        /* Reduce el tamaño */
+    }
+
+    .margen-elemento__porcentaje {
+        font-size: 11px;
+        /* Reduce el tamaño */
+    }
+
+    /* Resumen semanal */
+    .resumen-semanal__etiqueta {
+        font-size: 11px;
+        /* Reduce el tamaño */
+    }
+
+    .resumen-semanal__valor {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+}
+
+/* ============================================ */
+/* ===== MOBILE M (<= 375px) ================= */
+/* ============================================ */
+
+@media screen and (max-width: 375px) {
+
+    /* Ajusta la lista del sidebar */
+    .sidebar__lista {
+        padding: 6px 2px;
+        /* Reduce el padding */
+        gap: 2px;
+        /* Reduce el espacio */
+    }
+
+    /* Ajusta los enlaces */
+    .sidebar__enlace {
+        padding: 6px 2px;
+        /* Reduce el padding */
+    }
+
+    /* Ajusta el avatar */
+    .sidebar__enlace-avatar {
+        width: 26px;
+        /* Reduce a 26px */
+        height: 26px;
+        /* Reduce a 26px */
+        font-size: 11px;
+        /* Reduce el icono */
+    }
+
+    /* Ajusta el texto */
+    .sidebar__enlace-texto {
+        font-size: 7px;
+        /* Texto mínimo */
+    }
+
+    /* FLECHA YA OCULTA DESDE TABLET */
+
+    /* Ajusta el main */
+    main {
+        margin-bottom: 70px;
+        /* Reduce el espacio */
+        padding: 10px;
+        /* Reduce el padding */
+        height: calc(100vh - 70px);
+        /* Ajusta la altura */
+    }
+
+    /* Ajusta el tablero */
+    .tablero {
+        padding: 8px;
+        /* Reduce el padding */
+        gap: 12px;
+        /* Reduce el espacio */
+    }
+
+    /* Tarjetas en 2 columnas compactas */
+    .tablero__tarjetas {
+        grid-template-columns: 1fr 1fr;
+        /* 2 columnas */
+        gap: 6px;
+        /* Reduce el espacio */
+    }
+
+    /* Ajusta el icono de la tarjeta */
+    .tarjeta__icono {
+        width: 28px;
+        /* Reduce a 28px */
+        height: 28px;
+        /* Reduce a 28px */
+        font-size: 10px;
+        /* Reduce el icono */
+    }
+
+    /* Ajusta el título */
+    .tarjeta__titulo {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    /* Ajusta el valor */
+    .tarjeta__valor {
+        font-size: 14px;
+        /* Reduce el tamaño */
+    }
+
+    /* Ajusta la insignia */
+    .tarjeta__insignia {
+        font-size: 9px;
+        /* Reduce el tamaño */
+        padding: 2px 4px;
+        /* Reduce el padding */
+    }
+
+    /* Gráficos */
+    .grafico__titulo {
+        font-size: 12px;
+        /* Reduce el tamaño */
+    }
+
+    .grafico__subtitulo {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__eje-etiqueta {
+        font-size: 8px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__dia {
+        font-size: 8px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__elemento {
+        min-width: 14px;
+        /* Reduce el ancho mínimo */
+    }
+
+    .barras__valor {
+        font-size: 7px;
+        /* Reduce el tamaño */
+    }
+
+    /* Pastel - cambia a layout vertical */
+    .pastel-contenedor {
+        flex-direction: column;
+        /* Apila verticalmente */
+        align-items: center;
+        /* Centra */
+    }
+
+    .pastel-dona {
+        width: 110px;
+        /* Reduce el tamaño */
+        height: 110px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-dona__total-valor {
+        font-size: 18px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda {
+        width: 100%;
+        /* Ancho completo */
+    }
+
+    .pastel-leyenda__etiqueta {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__valor {
+        font-size: 8px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__porcentaje {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+
+    /* Margen */
+    .margen-elemento__icono {
+        width: 24px;
+        /* Reduce el tamaño */
+        height: 24px;
+        /* Reduce el tamaño */
+        font-size: 10px;
+        /* Reduce el icono */
+    }
+
+    .margen-elemento__nombre {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+
+    .margen-elemento__porcentaje {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+
+    /* Resumen semanal */
+    .resumen-semanal__etiqueta {
+        font-size: 10px;
+        /* Reduce el tamaño */
+    }
+
+    .resumen-semanal__valor {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+}
+
+/* ============================================ */
+/* ===== MOBILE S (<= 320px) ================= */
+/* ============================================ */
+
+@media screen and (max-width: 320px) {
+
+    /* Ocultar texto del menú, solo iconos */
+    .sidebar__enlace-texto {
+        display: none;
+        /* Oculta el texto */
+    }
+
+    /* Ajusta el avatar */
+    .sidebar__enlace-avatar {
+        width: 30px;
+        /* Aumenta ligeramente para que sea clickeable */
+        height: 30px;
+        /* Aumenta ligeramente */
+        font-size: 13px;
+        /* Aumenta el icono */
+    }
+
+    /* Ajusta la lista */
+    .sidebar__lista {
+        padding: 10px 6px;
+        /* Más padding */
+        gap: 4px;
+        /* Más espacio */
+    }
+
+    /* Ajusta los enlaces */
+    .sidebar__enlace {
+        padding: 8px 4px;
+        /* Padding reducido */
+    }
+
+    /* FLECHA YA OCULTA DESDE TABLET */
+
+    /* Ajusta el main */
+    main {
+        margin-bottom: 60px;
+        /* Reduce el espacio */
+        padding: 8px;
+        /* Reduce el padding */
+        height: calc(100vh - 60px);
+        /* Ajusta la altura */
+    }
+
+    /* Ajusta el tablero */
+    .tablero {
+        padding: 6px;
+        /* Reduce el padding */
+        gap: 10px;
+        /* Reduce el espacio */
+    }
+
+    /* Tarjetas en 1 columna */
+    .tablero__tarjetas {
+        grid-template-columns: 1fr;
+        /* 1 columna */
+        gap: 8px;
+        /* Espacio entre tarjetas */
+    }
+
+    /* Ajusta el icono de la tarjeta */
+    .tarjeta__icono {
+        width: 32px;
+        /* Tamaño estándar */
+        height: 32px;
+        /* Tamaño estándar */
+        font-size: 12px;
+        /* Tamaño del icono */
+    }
+
+    /* Ajusta el título */
+    .tarjeta__titulo {
+        font-size: 10px;
+        /* Tamaño pequeño */
+    }
+
+    /* Ajusta el valor */
+    .tarjeta__valor {
+        font-size: 16px;
+        /* Tamaño mediano */
+    }
+
+    /* Gráficos */
+    .grafico__titulo {
+        font-size: 11px;
+        /* Reduce el tamaño */
+    }
+
+    .grafico__subtitulo {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__eje-etiqueta {
+        font-size: 7px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__dia {
+        font-size: 7px;
+        /* Reduce el tamaño */
+    }
+
+    .barras__elemento {
+        min-width: 12px;
+        /* Ancho mínimo muy pequeño */
+    }
+
+    .barras__valor {
+        font-size: 6px;
+        /* Tamaño mínimo */
+    }
+
+    /* Pastel */
+    .pastel-dona {
+        width: 100px;
+        /* Reduce el tamaño */
+        height: 100px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-dona__total-valor {
+        font-size: 16px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-dona__total-etiqueta {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-dona__total-unidad {
+        font-size: 7px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__etiqueta {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__valor {
+        font-size: 7px;
+        /* Reduce el tamaño */
+    }
+
+    .pastel-leyenda__porcentaje {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    /* Margen */
+    .margen-elemento__icono {
+        width: 22px;
+        /* Reduce el tamaño */
+        height: 22px;
+        /* Reduce el tamaño */
+        font-size: 9px;
+        /* Reduce el icono */
+    }
+
+    .margen-elemento__nombre {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    .margen-elemento__porcentaje {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    /* Resumen semanal */
+    .resumen-semanal__etiqueta {
+        font-size: 9px;
+        /* Reduce el tamaño */
+    }
+
+    .resumen-semanal__valor {
+        font-size: 8px;
+        /* Reduce el tamaño */
+    }
+}

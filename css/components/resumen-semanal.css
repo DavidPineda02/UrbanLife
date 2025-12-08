@@ -2,87 +2,158 @@
 /* ===== RESUMEN SEMANAL === */
 /* ========================= */
 
+/* Modificador del gráfico para layout vertical */
 .grafico--agrupado {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila elementos verticalmente */
 }
 
+/* ========================================
+   CONTENEDOR DEL RESUMEN
+   ======================================== */
+
+/* Contenedor de las barras de resumen */
 .resumen-semanal {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila elementos verticalmente */
     gap: 20px;
+    /* Espacio de 20px entre cada elemento */
     padding: 10px 0;
+    /* Padding vertical de 10px */
 }
 
+/* ========================================
+   ELEMENTO INDIVIDUAL
+   ======================================== */
+
+/* Cada fila de resumen (Ingresos, Egresos, Ganancias) */
 .resumen-semanal__elemento {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila header y barra verticalmente */
     gap: 6px;
+    /* Espacio de 6px entre header y barra */
 }
 
+/* ========================================
+   HEADER DEL ELEMENTO
+   ======================================== */
+
+/* Contenedor del punto de color y etiqueta */
 .resumen-semanal__header {
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: 8px;
+    /* Espacio entre el punto y la etiqueta */
 }
 
+/* Punto cuadrado de color indicador */
 .resumen-semanal__punto {
     width: 10px;
+    /* Ancho de 10px */
     height: 10px;
+    /* Alto de 10px (cuadrado) */
     border-radius: 3px;
+    /* Esquinas ligeramente redondeadas */
 }
 
+/* Modificador: Punto verde para ingresos */
 .resumen-semanal__punto--ingreso {
     background: var(--color-ingreso);
+    /* Color verde (#00b894) */
 }
 
+/* Modificador: Punto rojo para egresos */
 .resumen-semanal__punto--egreso {
     background: var(--color-egreso);
+    /* Color rojo (#ff4757) */
 }
 
+/* Modificador: Punto naranja para ganancias */
 .resumen-semanal__punto--ganancia {
     background: var(--color-ganancia);
+    /* Color naranja (#f39c12) */
 }
 
+/* Texto de la etiqueta (Ingresos, Egresos, etc.) */
 .resumen-semanal__etiqueta {
     font-size: 13px;
+    /* Tamaño de fuente pequeño */
     font-weight: 500;
+    /* Peso medio */
     color: #555;
+    /* Color gris oscuro */
 }
 
+/* ========================================
+   BARRA DE PROGRESO
+   ======================================== */
+
+/* Contenedor de fondo de la barra */
 .resumen-semanal__barra-contenedor {
     width: 100%;
+    /* Ancho completo */
     height: 24px;
+    /* Alto fijo de 24px */
     background: var(--color-fondo-gris-hover);
+    /* Fondo gris claro */
     border-radius: var(--radio-pequeno);
+    /* Esquinas redondeadas de 6px */
     overflow: hidden;
+    /* Oculta contenido que sobresale */
 }
 
+/* Barra de progreso coloreada */
 .resumen-semanal__barra {
     height: 100%;
+    /* Ocupa toda la altura del contenedor */
     width: var(--ancho);
+    /* Ancho dinámico definido por variable CSS */
     border-radius: var(--radio-pequeno);
+    /* Mismas esquinas que el contenedor */
     position: relative;
+    /* Para posicionar el valor */
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra el texto verticalmente */
     justify-content: flex-end;
+    /* Alinea el valor a la derecha */
     padding-right: 10px;
+    /* Espacio antes del texto */
 }
 
+/* Modificador: Barra verde para ingresos */
 .resumen-semanal__barra--ingreso {
     background: var(--color-ingreso);
+    /* Color verde */
 }
 
+/* Modificador: Barra roja para egresos */
 .resumen-semanal__barra--egreso {
     background: var(--color-egreso);
+    /* Color rojo */
 }
 
+/* Modificador: Barra naranja para ganancias */
 .resumen-semanal__barra--ganancia {
     background: var(--color-ganancia);
+    /* Color naranja */
 }
 
+/* Valor numérico dentro de la barra */
 .resumen-semanal__valor {
     font-size: 11px;
+    /* Tamaño pequeño */
     font-weight: 600;
+    /* Semi-negrita */
     color: var(--color-blanco);
+    /* Texto blanco para contrastar */
 }

@@ -2,21 +2,34 @@
 /* ===== LAYOUT TABLERO == */
 /* ======================= */
 
+/* Contenedor principal del dashboard */
 .tablero {
     padding: 20px;
+    /* Espaciado interno de 20px en todos los lados */
     display: flex;
+    /* Activa Flexbox para organizar hijos */
     flex-direction: column;
+    /* Los hijos se apilan verticalmente */
     gap: 30px;
+    /* Espacio de 30px entre cada sección */
 }
 
+/* Grid de tarjetas de métricas (ventas, egresos, etc.) */
 .tablero__tarjetas {
     display: grid;
+    /* Activa CSS Grid para las tarjetas */
     grid-template-columns: repeat(4, 1fr);
+    /* 4 columnas de igual tamaño */
     gap: 16px;
+    /* Espacio de 16px entre tarjetas */
 }
 
+/* Grid de gráficos del dashboard */
 .tablero__graficos {
     display: grid;
+    /* Activa CSS Grid para los gráficos */
     grid-template-columns: 1fr 1fr;
+    /* 2 columnas de igual tamaño */
     gap: 20px;
+    /* Espacio de 20px entre gráficos */
 }

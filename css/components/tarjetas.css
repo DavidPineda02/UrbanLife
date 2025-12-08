@@ -2,92 +2,160 @@
 /* ===== TARJETAS ==== */
 /* =================== */
 
+/* Contenedor base de cada tarjeta */
 .tarjeta {
     background: var(--color-blanco);
+    /* Fondo blanco */
     padding: 16px;
+    /* Espaciado interno de 16px */
     border-radius: var(--radio-grande);
+    /* Esquinas redondeadas de 12px */
     border: 1px solid var(--color-borde);
+    /* Borde gris sutil */
 }
 
+/* Estado hover de la tarjeta */
 .tarjeta:hover {
     border-color: #ccc;
+    /* El borde se oscurece al pasar el mouse */
 }
 
-/* Header de la tarjeta */
+/* ========================================
+   HEADER DE LA TARJETA
+   ======================================== */
+
+/* Contenedor del icono y la insignia */
 .tarjeta__header {
     display: flex;
+    /* Flexbox para alinear elementos */
     justify-content: space-between;
+    /* Icono a la izquierda, insignia a la derecha */
     align-items: center;
+    /* Centrado vertical */
     margin-bottom: 12px;
+    /* Espacio antes del cuerpo de la tarjeta */
 }
 
-/* Iconos */
+/* ========================================
+   ICONOS DE LA TARJETA
+   ======================================== */
+
+/* Icono cuadrado con fondo de color */
 .tarjeta__icono {
     width: 36px;
+    /* Ancho de 36px */
     height: 36px;
+    /* Alto de 36px (cuadrado) */
     border-radius: var(--radio-mediano);
+    /* Esquinas redondeadas de 8px */
     display: flex;
+    /* Flexbox para centrar el icono */
     align-items: center;
+    /* Centrado vertical */
     justify-content: center;
+    /* Centrado horizontal */
     font-size: 16px;
+    /* Tamaño del icono FontAwesome */
     color: var(--color-blanco);
+    /* Color blanco para el icono */
 }
 
+/* Modificador: Icono verde para ingresos */
 .tarjeta__icono--ingreso {
     background: var(--color-ingreso);
+    /* Fondo verde (#00b894) */
 }
 
+/* Modificador: Icono rojo para egresos */
 .tarjeta__icono--egreso {
     background: var(--color-egreso);
+    /* Fondo rojo (#ff4757) */
 }
 
+/* Modificador: Icono naranja para ganancias */
 .tarjeta__icono--ganancia {
     background: var(--color-ganancia);
+    /* Fondo naranja (#f39c12) */
 }
 
+/* Modificador: Icono azul para información */
 .tarjeta__icono--info {
     background: var(--color-info);
+    /* Fondo azul (#3498db) */
 }
 
-/* Insignias de tendencia */
+/* ========================================
+   INSIGNIAS DE TENDENCIA
+   ======================================== */
+
+/* Badge que muestra porcentaje de cambio */
 .tarjeta__insignia {
     display: flex;
+    /* Flexbox para alinear icono y texto */
     align-items: center;
+    /* Centrado vertical */
     gap: 4px;
+    /* Espacio entre la flecha y el porcentaje */
     padding: 4px 8px;
+    /* Espaciado interno */
     border-radius: 15px;
+    /* Bordes muy redondeados (pill) */
     font-size: 12px;
+    /* Tamaño pequeño */
     font-weight: 600;
+    /* Semi-negrita */
 }
 
+/* Modificador: Insignia verde para tendencia positiva */
 .tarjeta__insignia--arriba {
     background: var(--color-ingreso-fondo);
+    /* Fondo verde claro */
     color: var(--color-ingreso);
+    /* Texto verde */
 }
 
+/* Modificador: Insignia roja para tendencia negativa */
 .tarjeta__insignia--abajo {
     background: var(--color-egreso-fondo);
+    /* Fondo rojo claro */
     color: var(--color-egreso);
+    /* Texto rojo */
 }
 
+/* Rotación del icono de flecha hacia abajo */
 .tarjeta__insignia--abajo i {
     transform: rotate(180deg);
+    /* Rota el icono 180 grados */
 }
 
-/* Cuerpo de la tarjeta */
+/* ========================================
+   CUERPO DE LA TARJETA
+   ======================================== */
+
+/* Contenedor del título y valor */
 .tarjeta__cuerpo {
     margin-bottom: 0;
+    /* Sin margen inferior */
 }
 
+/* Título descriptivo de la métrica */
 .tarjeta__titulo {
     font-size: 12px;
+    /* Tamaño pequeño */
     color: var(--color-texto-secundario);
+    /* Color gris */
     font-weight: 500;
+    /* Peso medio */
     margin-bottom: 4px;
+    /* Espacio antes del valor */
 }
 
+/* Valor numérico principal */
 .tarjeta__valor {
     font-size: 22px;
+    /* Tamaño grande para destacar */
     font-weight: 700;
+    /* Negrita */
     color: var(--color-texto);
+    /* Color negro/oscuro */
 }

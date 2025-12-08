@@ -2,142 +2,252 @@
 /* ===== PRODUCTOS MAS RENTABLES == */
 /* ================================ */
 
+/* Modificador del gráfico para layout vertical */
 .grafico--margen {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila elementos verticalmente */
     gap: 12px;
+    /* Espacio de 12px entre título y lista */
 }
 
+/* Subtítulo descriptivo del gráfico */
 .grafico__subtitulo {
     font-size: 11px;
+    /* Tamaño muy pequeño */
     color: var(--color-texto-secundario);
+    /* Color gris */
     margin-top: -10px;
+    /* Acerca al título principal */
 }
 
+/* ========================================
+   LISTA DE PRODUCTOS
+   ======================================== */
+
+/* Contenedor de todos los productos */
 .margen-lista {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila productos verticalmente */
     gap: 10px;
+    /* Espacio de 10px entre productos */
 }
 
+/* ========================================
+   ELEMENTO DE PRODUCTO
+   ======================================== */
+
+/* Fila individual de producto */
 .margen-elemento {
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: 12px;
+    /* Espacio entre icono y contenido */
     padding: 12px 14px;
+    /* Espaciado interno */
     background: var(--color-fondo-gris);
+    /* Fondo gris claro */
     border-radius: 10px;
+    /* Esquinas redondeadas */
 }
 
+/* Estado hover del elemento */
 .margen-elemento:hover {
     background: var(--color-fondo-gris-hover);
+    /* Fondo ligeramente más oscuro */
 }
 
+/* Modificador: Elemento destacado (primer lugar) */
 .margen-elemento--alto {
     background: var(--color-ingreso-fondo);
+    /* Fondo verde claro */
 }
 
+/* Estado hover del elemento destacado */
 .margen-elemento--alto:hover {
     background: var(--color-ingreso-fondo-hover);
+    /* Fondo verde un poco más oscuro */
 }
 
-/* Iconos de producto */
+/* ========================================
+   ICONOS DE PRODUCTO
+   ======================================== */
+
+/* Icono circular del producto */
 .margen-elemento__icono {
     width: 32px;
+    /* Ancho de 32px */
     height: 32px;
+    /* Alto de 32px (cuadrado) */
     border-radius: var(--radio-mediano);
+    /* Esquinas redondeadas de 8px */
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra verticalmente */
     justify-content: center;
+    /* Centra horizontalmente */
     font-size: 13px;
+    /* Tamaño del icono FontAwesome */
     color: var(--color-blanco);
+    /* Color blanco */
     flex-shrink: 0;
+    /* No se encoge si falta espacio */
     background: var(--color-ingreso);
+    /* Fondo verde por defecto (1er lugar) */
 }
 
+/* Modificador: Icono azul (2do lugar) */
 .margen-elemento__icono--2 {
     background: var(--color-info);
+    /* Fondo azul */
 }
 
+/* Modificador: Icono morado (3er lugar) */
 .margen-elemento__icono--3 {
     background: var(--color-morado);
+    /* Fondo morado */
 }
 
+/* Modificador: Icono naranja (4to lugar) */
 .margen-elemento__icono--4 {
     background: var(--color-ganancia);
+    /* Fondo naranja */
 }
 
+/* Modificador: Icono naranja oscuro (5to lugar) */
 .margen-elemento__icono--5 {
     background: var(--color-naranja);
+    /* Fondo naranja oscuro */
 }
 
-/* Contenido principal */
+/* ========================================
+   CONTENIDO DEL PRODUCTO
+   ======================================== */
+
+/* Contenedor del nombre, porcentaje y barra */
 .margen-elemento__contenido {
     flex: 1;
+    /* Ocupa todo el espacio disponible */
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila header y barra verticalmente */
     gap: 6px;
+    /* Espacio de 6px entre elementos */
 }
 
+/* Header con nombre y porcentaje */
 .margen-elemento__header {
     display: flex;
+    /* Activa Flexbox */
     justify-content: space-between;
+    /* Nombre a la izquierda, porcentaje a la derecha */
     align-items: center;
+    /* Centra verticalmente */
 }
 
+/* Nombre del producto */
 .margen-elemento__nombre {
     font-size: 13px;
+    /* Tamaño pequeño */
     font-weight: 600;
+    /* Semi-negrita */
     color: var(--color-texto);
+    /* Color principal oscuro */
 }
 
+/* ========================================
+   BADGES DE PORCENTAJE
+   ======================================== */
+
+/* Badge del porcentaje de margen */
 .margen-elemento__porcentaje {
     font-size: 13px;
+    /* Tamaño pequeño */
     font-weight: 700;
+    /* Negrita */
     padding: 3px 8px;
+    /* Espaciado interno */
     border-radius: var(--radio-pequeno);
+    /* Esquinas redondeadas de 6px */
     min-width: 45px;
+    /* Ancho mínimo para consistencia */
     text-align: center;
+    /* Texto centrado */
 }
 
+/* Modificador: Porcentaje alto (verde) */
 .margen-elemento__porcentaje--alto {
     background: var(--color-ingreso-fondo-hover);
+    /* Fondo verde claro */
     color: var(--color-ingreso);
+    /* Texto verde */
 }
 
+/* Modificador: Porcentaje medio (azul) */
 .margen-elemento__porcentaje--medio {
     background: var(--color-info-fondo);
+    /* Fondo azul claro */
     color: var(--color-info);
+    /* Texto azul */
 }
 
+/* Modificador: Porcentaje bajo (naranja) */
 .margen-elemento__porcentaje--bajo {
     background: var(--color-ganancia-fondo);
+    /* Fondo naranja claro */
     color: var(--color-bajo);
+    /* Texto naranja oscuro */
 }
 
-/* Barra de progreso */
+/* ========================================
+   BARRA DE PROGRESO
+   ======================================== */
+
+/* Contenedor de fondo de la barra */
 .margen-elemento__barra-contenedor {
     width: 100%;
+    /* Ancho completo */
     height: 6px;
+    /* Alto de 6px (barra delgada) */
     background: var(--color-borde);
+    /* Fondo gris */
     border-radius: 3px;
+    /* Esquinas redondeadas */
     overflow: hidden;
+    /* Oculta contenido que sobresale */
 }
 
+/* Barra de progreso coloreada */
 .margen-elemento__barra {
     height: 100%;
+    /* Ocupa toda la altura del contenedor */
     width: var(--ancho-barra);
+    /* Ancho dinámico definido por variable CSS */
     border-radius: 3px;
+    /* Mismas esquinas que el contenedor */
 }
 
+/* Modificador: Barra alta (verde) */
 .margen-elemento__barra--alto {
     background: var(--color-ingreso);
+    /* Color verde */
 }
 
+/* Modificador: Barra media (azul) */
 .margen-elemento__barra--medio {
     background: var(--color-info);
+    /* Color azul */
 }
 
+/* Modificador: Barra baja (naranja) */
 .margen-elemento__barra--bajo {
     background: var(--color-ganancia);
+    /* Color naranja */
 }

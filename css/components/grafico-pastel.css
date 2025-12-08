@@ -2,123 +2,218 @@
 /* ===== GRAFICO PASTEL ==== */
 /* ========================= */
 
+/* Modificador del gráfico para layout específico */
 .grafico--pastel {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila elementos verticalmente */
     gap: 20px;
+    /* Espacio de 20px entre la dona y la leyenda */
 }
 
+/* ========================================
+   CONTENEDOR DE LA DONA
+   ======================================== */
+
+/* Contenedor que centra la gráfica de dona */
 .pastel-contenedor {
     display: flex;
+    /* Activa Flexbox */
     justify-content: center;
+    /* Centra horizontalmente */
     padding: 10px 0;
+    /* Padding vertical de 10px */
 }
 
+/* ========================================
+   GRÁFICA DE DONA (DONUT CHART)
+   ======================================== */
+
+/* Círculo de la dona con gradiente cónico */
 .pastel-dona {
     width: 160px;
+    /* Ancho de 160px */
     height: 160px;
+    /* Alto de 160px (círculo) */
     border-radius: var(--radio-redondo);
+    /* Border-radius de 50% para círculo */
     position: relative;
+    /* Para posicionar el centro */
     background: conic-gradient(var(--color-egreso) 0deg 148deg,
+            /* Rojo: 0° a 148° (41%) */
             var(--color-ganancia) 148deg 270deg,
+            /* Naranja: 148° a 270° (34%) */
             var(--color-ingreso) 270deg 360deg);
+    /* Verde: 270° a 360° (25%) */
 }
 
+/* Centro blanco de la dona (efecto hueco) */
 .pastel-dona__centro {
     position: absolute;
+    /* Posición absoluta dentro de la dona */
     top: 50%;
+    /* Centrado vertical */
     left: 50%;
+    /* Centrado horizontal */
     transform: translate(-50%, -50%);
+    /* Ajuste para centrar perfectamente */
     width: 90px;
+    /* Ancho del círculo central */
     height: 90px;
+    /* Alto del círculo central */
     background: var(--color-blanco);
+    /* Fondo blanco */
     border-radius: var(--radio-redondo);
+    /* Forma circular */
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila texto verticalmente */
     align-items: center;
+    /* Centra horizontalmente */
     justify-content: center;
+    /* Centra verticalmente */
     gap: 2px;
+    /* Espacio mínimo entre textos */
 }
 
+/* Etiqueta "Total" */
 .pastel-dona__total-etiqueta {
     font-size: 10px;
+    /* Tamaño muy pequeño */
     color: var(--color-texto-secundario);
+    /* Color gris */
     font-weight: 500;
+    /* Peso medio */
 }
 
+/* Número total de productos */
 .pastel-dona__total-valor {
     font-size: 22px;
+    /* Tamaño grande destacado */
     font-weight: 700;
+    /* Negrita */
     color: var(--color-texto);
+    /* Color principal oscuro */
 }
 
+/* Texto "productos" */
 .pastel-dona__total-unidad {
     font-size: 9px;
+    /* Tamaño muy pequeño */
     color: var(--color-texto-secundario);
+    /* Color gris */
 }
 
-/* Leyenda */
+/* ========================================
+   LEYENDA DEL GRÁFICO
+   ======================================== */
+
+/* Contenedor de los elementos de la leyenda */
 .pastel-leyenda {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila elementos verticalmente */
     gap: 10px;
+    /* Espacio de 10px entre elementos */
 }
 
+/* Cada elemento de la leyenda */
 .pastel-leyenda__elemento {
     display: flex;
+    /* Activa Flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: 10px;
+    /* Espacio entre indicador, info y porcentaje */
     padding: 10px 12px;
+    /* Espaciado interno */
     background: var(--color-fondo-gris);
+    /* Fondo gris claro */
     border-radius: var(--radio-mediano);
+    /* Esquinas redondeadas de 8px */
 }
 
+/* Estado hover del elemento */
 .pastel-leyenda__elemento:hover {
     background: var(--color-fondo-gris-hover);
+    /* Fondo ligeramente más oscuro */
 }
 
+/* Cuadrado de color indicador */
 .pastel-leyenda__indicador {
     width: 12px;
+    /* Ancho de 12px */
     height: 12px;
+    /* Alto de 12px (cuadrado) */
     border-radius: 3px;
+    /* Esquinas ligeramente redondeadas */
     flex-shrink: 0;
+    /* No se encoge si falta espacio */
 }
 
+/* Modificador: Indicador rojo (Accesorios) */
 .pastel-leyenda__indicador--1 {
     background: var(--color-egreso);
+    /* Color rojo */
 }
 
+/* Modificador: Indicador naranja (Ropa Hombre) */
 .pastel-leyenda__indicador--2 {
     background: var(--color-ganancia);
+    /* Color naranja */
 }
 
+/* Modificador: Indicador verde (Ropa Mujer) */
 .pastel-leyenda__indicador--3 {
     background: var(--color-ingreso);
+    /* Color verde */
 }
 
+/* Contenedor de etiqueta y valor */
 .pastel-leyenda__info {
     flex: 1;
+    /* Ocupa el espacio disponible */
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila verticalmente */
     gap: 2px;
+    /* Espacio mínimo entre textos */
 }
 
+/* Nombre de la categoría */
 .pastel-leyenda__etiqueta {
     font-size: 13px;
+    /* Tamaño pequeño */
     font-weight: 600;
+    /* Semi-negrita */
     color: var(--color-texto);
+    /* Color principal */
 }
 
+/* Cantidad de unidades */
 .pastel-leyenda__valor {
     font-size: 11px;
+    /* Tamaño muy pequeño */
     color: var(--color-texto-secundario);
+    /* Color gris */
 }
 
+/* Badge con el porcentaje */
 .pastel-leyenda__porcentaje {
     font-size: 13px;
+    /* Tamaño pequeño */
     font-weight: 700;
+    /* Negrita */
     color: var(--color-texto);
+    /* Color principal */
     background: #e8e8e8;
+    /* Fondo gris claro */
     padding: 4px 8px;
+    /* Espaciado interno */
     border-radius: 4px;
+    /* Esquinas ligeramente redondeadas */
 }

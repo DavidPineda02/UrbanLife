@@ -1,77 +1,136 @@
+/* ============================================
+   IMPORTS DE DEPENDENCIAS
+   ============================================ */
+
 @import url(../customproperties.css);
+/* Importa las variables CSS globales */
 @import url(../components/formulario.css);
+/* Importa los estilos del formulario */
 
 /* ============================================
-RESETEO GLOBAL Y CONFIGURACIÓN BASE
-============================================ */
+   RESETEO GLOBAL Y CONFIGURACIÓN BASE
+   ============================================ */
+
+/* Selector universal para resetear estilos por defecto */
 * {
     box-sizing: border-box;
+    /* El padding y border se incluyen en el ancho/alto */
     margin: 0;
+    /* Elimina márgenes por defecto */
     padding: 0;
+    /* Elimina padding por defecto */
     font-family: var(--fuente-principal);
+    /* Aplica la fuente Open Sans */
 }
 
+/* ============================================
+   BLOQUE: autenticacion (contenedor principal)
+   ============================================ */
+
+/* Layout principal de la página de login/registro */
 .autenticacion {
     height: 100vh;
+    /* Ocupa toda la altura de la pantalla */
     width: 100vw;
+    /* Ocupa todo el ancho de la pantalla */
     display: grid;
+    /* Activa CSS Grid */
     grid-template-columns: 50% 50%;
+    /* Divide en 2 columnas iguales: imagen y contenido */
 }
 
 /* ============================================
-BLOQUE: autenticacion__imagen
-============================================ */
+   BLOQUE: autenticacion__imagen
+   ============================================ */
+
+/* Sección izquierda con la imagen de fondo */
 .autenticacion__imagen {
     position: relative;
+    /* Permite posicionar el overlay encima */
     height: 100%;
+    /* Ocupa toda la altura disponible */
     width: 100%;
+    /* Ocupa todo el ancho de la columna */
     background-image: url(../../assets/img/negocio.jpg);
+    /* Imagen de fondo del negocio */
     background-repeat: no-repeat;
+    /* La imagen no se repite */
     background-size: cover;
+    /* La imagen cubre todo el espacio */
     border-top-right-radius: var(--radio-grande);
+    /* Esquina superior derecha redondeada */
     border-bottom-right-radius: var(--radio-grande);
+    /* Esquina inferior derecha redondeada */
     box-shadow: var(--sombra);
+    /* Sombra hacia la derecha */
 }
 
+/* Capa oscura semi-transparente sobre la imagen */
 .autenticacion__overlay {
     position: absolute;
+    /* Se posiciona sobre la imagen */
     top: 0;
+    /* Desde arriba */
     left: 0;
+    /* Desde la izquierda */
     height: 100%;
+    /* Cubre toda la altura */
     width: 100%;
+    /* Cubre todo el ancho */
     background-color: var(--color-overlay);
+    /* Negro con 40% de opacidad */
     border-top-right-radius: var(--radio-grande);
+    /* Mismas esquinas que la imagen */
     border-bottom-right-radius: var(--radio-grande);
+    /* Mismas esquinas que la imagen */
 }
 
 /* ============================================
-BLOQUE: autenticacion__contenido
-============================================ */
+   BLOQUE: autenticacion__contenido
+   ============================================ */
+
+/* Sección derecha con el formulario */
 .autenticacion__contenido {
     display: flex;
+    /* Activa Flexbox */
     flex-direction: column;
+    /* Apila elementos verticalmente */
     align-items: center;
+    /* Centra horizontalmente */
     background-color: var(--color-secundario);
+    /* Fondo blanco */
     justify-content: space-around;
+    /* Distribuye espacio equitativamente */
 }
 
+/* Logo de UrbanLife */
 .autenticacion__logo {
     height: 150px;
+    /* Altura fija del logo */
 }
 
 /* ============================================
-ENLACE DE INICIO DE SESION
-============================================ */
+   ENLACE DE REGISTRO/INICIO DE SESION
+   ============================================ */
+
+/* Texto "¿No tienes una cuenta?" */
 .autenticacion__links {
     font-size: var(--font-size-s);
+    /* Tamaño pequeño (0.875rem) */
     color: var(--color-texto);
+    /* Color de texto principal */
 }
 
+/* Enlace "Registrarse" */
 .autenticacion__enlace {
     color: var(--color-principal);
+    /* Color negro principal */
     text-decoration: none;
+    /* Sin subrayado por defecto */
 }
 
+/* Estado hover del enlace */
 .autenticacion__enlace:hover {
     text-decoration: underline;
+    /* Muestra subrayado al pasar el mouse */
 }
