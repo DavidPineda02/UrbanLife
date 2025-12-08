@@ -92,12 +92,22 @@
     /* Altura máxima 90% del viewport */
     overflow-y: auto;
     /* Scroll vertical si el contenido excede */
+    scrollbar-width: none;
+    /* Firefox: oculta la barra de scroll */
+    -ms-overflow-style: none;
+    /* Internet Explorer y Edge: oculta scroll */
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     /* Sombra profunda */
     transform: translateY(-20px);
     /* Posición inicial (arriba del centro) */
     transition: transform 0.3s ease;
     /* Animación de deslizamiento */
+}
+
+/* Chrome, Safari, Opera: oculta scrollbar del modal */
+.modal__contenedor::-webkit-scrollbar {
+    display: none;
+    /* Oculta la barra de desplazamiento */
 }
 
 /* ========================================================================== */

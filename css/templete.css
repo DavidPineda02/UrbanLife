@@ -21,6 +21,7 @@
 @import url(./components/producto.css);
 @import url(./components/modal.css);
 @import url(./components/tabla.css);
+@import url(./components/cliente.css);
 
 /* Responsive */
 @import url(./layout/responsive.css);
