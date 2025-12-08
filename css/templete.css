@@ -20,6 +20,7 @@
 @import url(./components/grafico-margen.css);
 @import url(./components/producto.css);
 @import url(./components/modal.css);
+@import url(./components/tabla.css);
 
 /* Responsive */
 @import url(./layout/responsive.css);
