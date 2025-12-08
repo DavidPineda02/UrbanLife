@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/templete.css">
+    <title>Inicio</title>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar__marca">
+            <img src="../assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
+        </div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__lista">
+                <li class="sidebar__elemento">
+                    <a href="home.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ganancias</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="productos.html" class="sidebar__enlace sidebar__enlace--activo">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Productos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ventas</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Clientes</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Compras</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Proveedores</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Gastos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar__perfil">
+            <a href="#" class="sidebar__perfil-enlace">
+                <div class="sidebar__perfil-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="sidebar__perfil-info">
+                    <span class="sidebar__perfil-nombre">David Pineda</span>
+                    <span class="sidebar__perfil-rol">Super Admin</span>
+                </div>
+                <i class="fa-solid fa-chevron-right sidebar__perfil-flecha"></i>
+            </a>
+        </div>
+    </aside>
+    <main class="tablero">
+        <header class="pagina-header">
+            <h1 class="pagina-header__titulo">Productos</h1>
+            <div class="pagina-header__acciones">
+                <a href="#modal-producto" class="boton-accion boton-accion--primario">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Agregar Producto</span>
+                </a>
+                <a href="#modal-categoria" class="boton-accion boton-accion--secundario">
+                    <i class="fa-solid fa-folder-plus"></i>
+                    <span>Agregar Categoría</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="productos-grid">
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <a href="#modal-producto" class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <a href="#modal-producto" class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <a href="#modal-producto" class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <a href="#modal-producto" class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <button class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <button class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <button class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <button class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <button class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <button class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <button class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">Accesorios</span>
+                    <div class="producto__acciones">
+                        <button class="producto__accion producto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="producto__accion producto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <img src="../assets/img/producto.png" alt="Gorra New Era">
+                </div>
+                <div class="producto__contenido">
+                    <h3 class="producto__nombre">Gorra New Era</h3>
+                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
+                    <div class="producto__footer">
+                        <span class="producto__precio">$ 120.000</span>
+                        <span class="producto__stock">Stock: 100</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

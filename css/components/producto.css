@@ -1,0 +1,367 @@
+/* ================================= */
+/* ===== PÁGINA HEADER ============= */
+/* ================================= */
+/* Encabezado de la página de productos con título y botones de acción */
+
+.pagina-header {
+    display: flex;
+    /* Contenedor flexible */
+    justify-content: space-between;
+    /* Título a la izquierda, acciones a la derecha */
+    align-items: center;
+    /* Centrado vertical */
+    margin-bottom: 24px;
+    /* Espacio inferior antes del contenido */
+    flex-wrap: wrap;
+    /* Permite que los elementos salten de línea en móviles */
+    gap: 16px;
+    /* Espacio entre título y botones cuando hacen wrap */
+}
+
+/* Título principal de la página */
+.pagina-header__titulo {
+    font-size: 24px;
+    /* Tamaño grande para jerarquía visual */
+    font-weight: 700;
+    /* Negrita para destacar */
+    color: var(--color-texto);
+    /* Color de texto principal */
+    margin: 0;
+    /* Sin márgenes por defecto */
+}
+
+/* Contenedor de los botones de acción */
+.pagina-header__acciones {
+    display: flex;
+    /* Botones en línea horizontal */
+    gap: 12px;
+    /* Espacio entre botones */
+    flex-wrap: wrap;
+    /* Permite wrap en pantallas pequeñas */
+}
+
+/* ================================= */
+/* ===== BOTONES DE ACCIÓN ========= */
+/* ================================= */
+/* Botones para agregar productos y categorías */
+
+.boton-accion {
+    display: flex;
+    /* Flexbox para alinear icono y texto */
+    align-items: center;
+    /* Centrado vertical del contenido */
+    gap: 8px;
+    /* Espacio entre icono y texto */
+    padding: 10px 18px;
+    /* Espaciado interno */
+    border-radius: var(--radio-mediano);
+    /* Bordes redondeados del sistema */
+    font-size: 14px;
+    /* Tamaño de fuente legible */
+    font-weight: 600;
+    /* Semi-bold para mejor visibilidad */
+    cursor: pointer;
+    /* Cursor de mano para indicar clic */
+    transition: all 0.2s ease;
+    /* Transición suave en hover */
+    border: none;
+    /* Sin borde por defecto */
+    font-family: var(--fuente-principal);
+    /* Fuente del sistema */
+    text-decoration: none;
+    /* Sin subrayado por defecto */
+}
+
+/* Icono dentro del botón */
+.boton-accion i {
+    font-size: 14px;
+    /* Tamaño del icono igual al texto */
+}
+
+/* Botón primario - Acción principal (Agregar Producto) */
+.boton-accion--primario {
+    background-color: var(--color-principal);
+    /* Fondo oscuro principal */
+    color: var(--color-blanco);
+    /* Texto blanco para contraste */
+}
+
+/* Estado hover del botón primario */
+.boton-accion--primario:hover {
+    background-color: var(--color-hover);
+    /* Color más claro en hover */
+    transform: translateY(-2px);
+    /* Efecto de elevación sutil */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* Sombra para profundidad */
+}
+
+/* Botón secundario - Acción secundaria (Agregar Categoría) */
+.boton-accion--secundario {
+    background-color: var(--color-blanco);
+    /* Fondo blanco */
+    color: var(--color-texto);
+    /* Texto oscuro */
+    border: 1px solid var(--color-borde);
+    /* Borde sutil */
+}
+
+/* Estado hover del botón secundario */
+.boton-accion--secundario:hover {
+    background-color: var(--color-fondo-gris-hover);
+    /* Fondo gris claro */
+    border-color: #ccc;
+    /* Borde más oscuro */
+}
+
+/* ================================= */
+/* ===== GRID DE PRODUCTOS ========= */
+/* ================================= */
+/* Sistema de grid responsivo para mostrar las tarjetas de productos */
+
+.productos-grid {
+    display: grid;
+    /* Sistema de cuadrícula CSS */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* Columnas automáticas, mínimo 280px */
+    gap: 20px;
+    /* Espacio entre tarjetas */
+}
+
+/* =============================== */
+/* ===== TARJETA DE PRODUCTO ======= */
+/* =============================== */
+/* Componente de tarjeta para mostrar información de cada producto */
+
+.producto {
+    background: var(--color-blanco);
+    /* Fondo blanco */
+    border-radius: 20px;
+    /* Bordes muy redondeados */
+    overflow: hidden;
+    /* Oculta contenido que sobresale */
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    /* Sombra suave para profundidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Animación suave en hover */
+}
+
+/* Estado hover de la tarjeta */
+.producto:hover {
+    transform: translateY(-4px);
+    /* Elevación sutil */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    /* Sombra más pronunciada */
+}
+
+/* =============================== */
+/* ===== IMAGEN DEL PRODUCTO ====== */
+/* =============================== */
+/* Contenedor de la imagen con posicionamiento relativo para elementos superpuestos */
+
+.producto__imagen {
+    position: relative;
+    /* Permite posicionar elementos hijos absolutamente */
+    width: 100%;
+    /* Ancho completo de la tarjeta */
+    height: 280px;
+    /* Altura fija para consistencia visual */
+    background: #f5f5f5;
+    /* Color de fondo mientras carga la imagen */
+    overflow: hidden;
+    /* Oculta partes de imagen que sobresalen */
+}
+
+/* Imagen del producto */
+.producto__imagen img {
+    width: 100%;
+    /* Ancho completo */
+    height: 100%;
+    /* Altura completa */
+    object-fit: cover;
+    /* Recorta imagen para llenar espacio sin distorsión */
+}
+
+/* =============================== */
+/* ===== BADGE DE CATEGORÍA ======= */
+/* =============================== */
+/* Etiqueta de categoría posicionada sobre la imagen */
+
+.producto__categoria {
+    position: absolute;
+    /* Posición absoluta sobre la imagen */
+    top: 16px;
+    /* Distancia desde arriba */
+    left: 16px;
+    /* Distancia desde la izquierda */
+    background: var(--color-ingreso);
+    /* Fondo verde (color de ingreso) */
+    color: var(--color-blanco);
+    /* Texto blanco */
+    font-size: 12px;
+    /* Tamaño pequeño pero legible */
+    font-weight: 600;
+    /* Semi-bold */
+    padding: 8px 16px;
+    /* Espaciado interno generoso */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    z-index: 1;
+    /* Por encima de la imagen */
+}
+
+/* =============================== */
+/* ===== CONTENIDO DEL PRODUCTO === */
+/* =============================== */
+/* Área inferior con nombre, descripción y footer */
+
+.producto__contenido {
+    padding: 20px;
+    /* Espaciado interno uniforme */
+}
+
+/* Nombre del producto */
+.producto__nombre {
+    margin: 0 0 8px 0;
+    /* Solo margen inferior */
+    font-size: 18px;
+    /* Tamaño destacado */
+    font-weight: 700;
+    /* Negrita para jerarquía */
+    color: var(--color-texto);
+    /* Color de texto principal */
+}
+
+/* Descripción del producto */
+.producto__descripcion {
+    margin: 0 0 16px 0;
+    /* Solo margen inferior */
+    font-size: 14px;
+    /* Tamaño más pequeño que el título */
+    color: var(--color-texto-secundario);
+    /* Gris para descripción secundaria */
+    line-height: 1.5;
+    /* Altura de línea para legibilidad */
+}
+
+/* =============================== */
+/* ===== FOOTER DE LA TARJETA ===== */
+/* =============================== */
+/* Sección inferior con precio y stock */
+
+.producto__footer {
+    display: flex;
+    /* Flexbox para alinear elementos */
+    justify-content: space-between;
+    /* Precio a la izquierda, stock a la derecha */
+    align-items: center;
+    /* Centrado vertical */
+    padding-top: 16px;
+    /* Espacio superior */
+    border-top: 1px solid var(--color-borde-claro);
+    /* Línea separadora sutil */
+}
+
+/* Precio del producto */
+.producto__precio {
+    font-size: 18px;
+    /* Tamaño destacado */
+    font-weight: 700;
+    /* Negrita para importancia */
+    color: var(--color-texto);
+    /* Color de texto principal */
+}
+
+/* Stock disponible */
+.producto__stock {
+    font-size: 13px;
+    /* Tamaño más pequeño */
+    color: var(--color-ingreso);
+    /* Verde para indicar disponibilidad */
+    font-weight: 600;
+    /* Semi-bold */
+}
+
+/* =============================== */
+/* ===== ACCIONES DEL PRODUCTO ==== */
+/* =============================== */
+/* Botones de editar y eliminar que aparecen en hover */
+
+.producto__acciones {
+    position: absolute;
+    /* Posición absoluta sobre la imagen */
+    top: 12px;
+    /* Distancia desde arriba */
+    right: 12px;
+    /* Distancia desde la derecha */
+    display: flex;
+    /* Botones en línea horizontal */
+    gap: 8px;
+    /* Espacio entre botones */
+    opacity: 0;
+    /* Ocultos por defecto */
+    transition: opacity 0.3s ease;
+    /* Aparición suave */
+    z-index: 2;
+    /* Por encima de otros elementos */
+}
+
+/* Mostrar acciones cuando se hace hover en la tarjeta */
+.producto:hover .producto__acciones {
+    opacity: 1;
+    /* Visible al 100% */
+}
+
+/* Botón de acción (base) */
+.producto__accion {
+    width: 36px;
+    /* Tamaño cuadrado */
+    height: 36px;
+    /* Tamaño cuadrado */
+    border: none;
+    /* Sin borde */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cursor de mano */
+    display: flex;
+    /* Flexbox para centrar icono */
+    align-items: center;
+    /* Centrado vertical */
+    justify-content: center;
+    /* Centrado horizontal */
+    font-size: 14px;
+    /* Tamaño del icono */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Animaciones suaves */
+    text-decoration: none;
+    /* Sin subrayado por defecto */
+}
+
+/* Botón de editar - Color azul */
+.producto__accion--editar {
+    background: var(--color-info);
+    /* Fondo azul (color info) */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+/* Hover del botón editar */
+.producto__accion--editar:hover {
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+    /* Sombra azul */
+}
+
+/* Botón de eliminar - Color rojo */
+.producto__accion--eliminar {
+    background: var(--color-egreso);
+    /* Fondo rojo (color egreso) */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+/* Hover del botón eliminar */
+.producto__accion--eliminar:hover {
+    box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+    /* Sombra roja */
+}
