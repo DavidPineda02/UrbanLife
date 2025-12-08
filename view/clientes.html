@@ -415,6 +415,174 @@
         </section>
     </main>
 
+    <div id="modal-agregar-cliente" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Agregar Cliente</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <div class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre Completo</label>
+                    <input type="text" class="formulario__input" placeholder="Ej: María García López">
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Tipo Documento</label>
+                        <select class="formulario__select">
+                            <option value="">Seleccionar...</option>
+                            <option value="CC">Cédula de Ciudadanía</option>
+                            <option value="TI">Tarjeta de Identidad</option>
+                            <option value="CE">Cédula de Extranjería</option>
+                            <option value="PA">Pasaporte</option>
+                        </select>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Número Documento</label>
+                        <input type="text" class="formulario__input" placeholder="Ej: 1234567890">
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Correo Electrónico</label>
+                    <input type="email" class="formulario__input" placeholder="Ej: correo@ejemplo.com">
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Teléfono</label>
+                        <input type="tel" class="formulario__input" placeholder="Ej: +57 300 123 4567">
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Ciudad</label>
+                        <input type="text" class="formulario__input" placeholder="Ej: Bogotá">
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Dirección</label>
+                    <input type="text" class="formulario__input" placeholder="Ej: Cra 45 #32-10">
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-exito-cliente" class="boton-accion boton-accion--primario">
+                        Guardar Cliente
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-editar-cliente" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Cliente</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <div class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre Completo</label>
+                    <input type="text" class="formulario__input" value="María García López">
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Tipo Documento</label>
+                        <select class="formulario__select">
+                            <option value="CC" selected>Cédula de Ciudadanía</option>
+                            <option value="TI">Tarjeta de Identidad</option>
+                            <option value="CE">Cédula de Extranjería</option>
+                            <option value="PA">Pasaporte</option>
+                        </select>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Número Documento</label>
+                        <input type="text" class="formulario__input" value="1234567890">
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Correo Electrónico</label>
+                    <input type="email" class="formulario__input" value="maria.garcia@email.com">
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Teléfono</label>
+                        <input type="tel" class="formulario__input" value="+57 300 123 4567">
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Ciudad</label>
+                        <input type="text" class="formulario__input" value="Bogotá">
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Dirección</label>
+                    <input type="text" class="formulario__input" value="Cra 45 #32-10">
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-exito-cliente" class="boton-accion boton-accion--primario">
+                        Actualizar Cliente
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-eliminar-cliente" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
+            <div class="alerta">
+                <h2 class="alerta__titulo">¿Eliminar Cliente?</h2>
+                <p class="alerta__mensaje">
+                    Esta acción eliminará al cliente <strong>María García López</strong> permanentemente.
+                    ¿Estás seguro de que deseas continuar?
+                </p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--cancelar">Cancelar</a>
+                    <a href="#modal-eliminado-cliente" class="boton-alerta boton-alerta--eliminar">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-eliminado-cliente" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2 class="alerta__titulo">¡Cliente Eliminado!</h2>
+                <p class="alerta__mensaje">
+                    El cliente ha sido eliminado exitosamente del sistema.
+                </p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--volver">Volver a Clientes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-exito-cliente" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2 class="alerta__titulo">¡Cliente Guardado!</h2>
+                <p class="alerta__mensaje">
+                    El cliente ha sido guardado exitosamente en el sistema.
+                </p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--volver">Volver a Clientes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 
