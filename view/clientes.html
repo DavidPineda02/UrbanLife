@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/templete.css">
+    <title>Clientes</title>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar__marca">
+            <img src="../assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
+        </div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__lista">
+                <li class="sidebar__elemento">
+                    <a href="home.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ganancias</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="productos.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Productos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="ventas.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ventas</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="clientes.html" class="sidebar__enlace sidebar__enlace--activo">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Clientes</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Compras</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Proveedores</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Gastos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar__perfil">
+            <a href="#" class="sidebar__perfil-enlace">
+                <div class="sidebar__perfil-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="sidebar__perfil-info">
+                    <span class="sidebar__perfil-nombre">David Pineda</span>
+                    <span class="sidebar__perfil-rol">Super Admin</span>
+                </div>
+                <i class="fa-solid fa-chevron-right sidebar__perfil-flecha"></i>
+            </a>
+        </div>
+    </aside>
+
+    <main class="pagina-clientes">
+        <header class="pagina-header">
+            <h1 class="pagina-header__titulo">Clientes</h1>
+            <div class="pagina-header__acciones">
+                <a href="#modal-agregar-cliente" class="boton-accion boton-accion--primario">
+                    <i class="fa-solid fa-plus"></i>
+                    Agregar Cliente
+                </a>
+            </div>
+        </header>
+
+        <section class="clientes-grid">
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-cliente" class="cliente__accion cliente__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-cliente" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">María García López</h3>
+                    <span class="cliente__badge cliente__badge--activo">Activo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-id-card"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Documento</span>
+                            <span class="cliente__campo-valor">CC 1.234.567.890</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">maria.garcia@email.com</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 300 123 4567</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Dirección</span>
+                            <span class="cliente__campo-valor">Cra 45 #32-10, Bogotá</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-cliente" class="cliente__accion cliente__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-cliente" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">Carlos Andrés Rodríguez</h3>
+                    <span class="cliente__badge cliente__badge--activo">Activo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-id-card"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Documento</span>
+                            <span class="cliente__campo-valor">CC 9.876.543.210</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">carlos.rodriguez@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 315 987 6543</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Dirección</span>
+                            <span class="cliente__campo-valor">Calle 80 #15-22, Medellín</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-cliente" class="cliente__accion cliente__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-cliente" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">Laura Valentina Pérez</h3>
+                    <span class="cliente__badge cliente__badge--inactivo">Inactivo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-id-card"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Documento</span>
+                            <span class="cliente__campo-valor">CC 5.555.666.777</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">laura.perez@hotmail.com</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 320 555 1234</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Dirección</span>
+                            <span class="cliente__campo-valor">Av. 6 Norte #25-40, Cali</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-cliente" class="cliente__accion cliente__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-cliente" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">Andrés Felipe Martínez</h3>
+                    <span class="cliente__badge cliente__badge--activo">Activo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-id-card"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Documento</span>
+                            <span class="cliente__campo-valor">CC 1.111.222.333</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">andres.martinez@outlook.com</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 310 111 2222</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Dirección</span>
+                            <span class="cliente__campo-valor">Cra 7 #12-45, Barranquilla</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-cliente" class="cliente__accion cliente__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-cliente" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">Sofía Hernández Castro</h3>
+                    <span class="cliente__badge cliente__badge--activo">Activo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-id-card"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Documento</span>
+                            <span class="cliente__campo-valor">CC 4.444.333.222</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">sofia.hernandez@yahoo.com</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 318 444 3333</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Dirección</span>
+                            <span class="cliente__campo-valor">Calle 50 #20-15, Bucaramanga</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-cliente" class="cliente__accion cliente__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-cliente" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">Juan Pablo Gómez</h3>
+                    <span class="cliente__badge cliente__badge--activo">Activo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-id-card"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Documento</span>
+                            <span class="cliente__campo-valor">CC 7.777.888.999</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">juan.gomez@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 301 777 8888</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Dirección</span>
+                            <span class="cliente__campo-valor">Av. Circunvalar #8-20, Pereira</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

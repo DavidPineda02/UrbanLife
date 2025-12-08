@@ -1,0 +1,327 @@
+/* ================================= */
+/* ===== PÁGINA DE CLIENTES ======== */
+/* ================================= */
+
+/* Contenedor principal de la página de clientes */
+.pagina-clientes {
+    padding: 24px;
+    /* Espaciado interno de 24px */
+}
+
+/* ================================= */
+/* ===== GRID DE CLIENTES ========== */
+/* ================================= */
+
+/* Sistema de grid para las tarjetas de clientes */
+.clientes-grid {
+    display: grid;
+    /* Activa CSS Grid */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    /* Columnas automáticas, mínimo 320px */
+    gap: 20px;
+    /* Espacio de 20px entre tarjetas */
+}
+
+/* ================================= */
+/* ===== TARJETA DE CLIENTE ======== */
+/* ================================= */
+
+/* Tarjeta individual de cliente */
+.cliente {
+    background: var(--color-blanco);
+    /* Fondo blanco */
+    border-radius: 16px;
+    /* Esquinas redondeadas */
+    padding: 20px;
+    /* Espaciado interno */
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    /* Sombra suave */
+    border: 1px solid var(--color-borde-claro);
+    /* Borde gris muy claro */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Animación suave */
+    display: flex;
+    /* Activa Flexbox */
+    flex-direction: column;
+    /* Apila elementos verticalmente */
+    gap: 16px;
+    /* Espacio entre secciones */
+}
+
+/* Estado hover de la tarjeta */
+.cliente:hover {
+    transform: translateY(-4px);
+    /* Eleva ligeramente */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    /* Sombra más pronunciada */
+}
+
+/* ================================= */
+/* ===== HEADER DE LA TARJETA ====== */
+/* ================================= */
+
+/* Contenedor del avatar y acciones */
+.cliente__header {
+    display: flex;
+    /* Activa Flexbox */
+    justify-content: space-between;
+    /* Avatar a la izquierda, acciones a la derecha */
+    align-items: flex-start;
+    /* Alineación superior */
+}
+
+/* Avatar del cliente */
+.cliente__avatar {
+    width: 56px;
+    /* Ancho de 56px */
+    height: 56px;
+    /* Alto de 56px (círculo) */
+    border-radius: 50%;
+    /* Forma circular */
+    background: var(--gradiente-marca);
+    /* Gradiente rojo de la marca */
+    display: flex;
+    /* Activa Flexbox */
+    align-items: center;
+    /* Centra verticalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
+    color: var(--color-blanco);
+    /* Icono blanco */
+    font-size: 22px;
+    /* Tamaño del icono */
+    box-shadow: 0 4px 12px var(--color-marca-sombra);
+    /* Sombra roja */
+}
+
+/* ================================= */
+/* ===== ACCIONES DE LA TARJETA ==== */
+/* ================================= */
+
+/* Contenedor de botones editar y eliminar */
+.cliente__acciones {
+    display: flex;
+    /* Activa Flexbox */
+    gap: 8px;
+    /* Espacio entre botones */
+    opacity: 0;
+    /* Ocultos por defecto */
+    transition: opacity 0.3s ease;
+    /* Animación suave */
+}
+
+/* Mostrar acciones al hacer hover en la tarjeta */
+.cliente:hover .cliente__acciones {
+    opacity: 1;
+    /* Visible al 100% */
+}
+
+/* Botón de acción individual */
+.cliente__accion {
+    width: 32px;
+    /* Ancho de 32px */
+    height: 32px;
+    /* Alto de 32px */
+    border-radius: 8px;
+    /* Esquinas redondeadas */
+    display: flex;
+    /* Activa Flexbox */
+    align-items: center;
+    /* Centra verticalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
+    font-size: 13px;
+    /* Tamaño del icono */
+    text-decoration: none;
+    /* Sin subrayado */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Animación suave */
+}
+
+/* Estado hover del botón */
+.cliente__accion:hover {
+    transform: scale(1.1);
+    /* Agranda ligeramente */
+}
+
+/* Botón editar (azul) */
+.cliente__accion--editar {
+    background: var(--color-info);
+    /* Fondo azul */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+/* Hover del botón editar */
+.cliente__accion--editar:hover {
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+    /* Sombra azul */
+}
+
+/* Botón eliminar (rojo) */
+.cliente__accion--eliminar {
+    background: var(--color-egreso);
+    /* Fondo rojo */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+/* Hover del botón eliminar */
+.cliente__accion--eliminar:hover {
+    box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+    /* Sombra roja */
+}
+
+/* ================================= */
+/* ===== INFO DEL CLIENTE ========== */
+/* ================================= */
+
+/* Contenedor del nombre y badge de estado */
+.cliente__info {
+    display: flex;
+    /* Activa Flexbox */
+    align-items: center;
+    /* Centra verticalmente */
+    gap: 10px;
+    /* Espacio entre nombre y badge */
+    flex-wrap: wrap;
+    /* Permite wrap en móviles */
+}
+
+/* Nombre del cliente */
+.cliente__nombre {
+    margin: 0;
+    /* Sin margen */
+    font-size: 16px;
+    /* Tamaño de fuente */
+    font-weight: 700;
+    /* Negrita */
+    color: var(--color-texto);
+    /* Color principal */
+}
+
+/* Badge de estado (Activo/Inactivo) */
+.cliente__badge {
+    display: inline-block;
+    /* Inline block */
+    padding: 4px 10px;
+    /* Espaciado interno */
+    border-radius: 20px;
+    /* Bordes muy redondeados (pill) */
+    font-size: 11px;
+    /* Tamaño pequeño */
+    font-weight: 600;
+    /* Semi-negrita */
+    text-transform: uppercase;
+    /* Mayúsculas */
+    letter-spacing: 0.3px;
+    /* Espaciado entre letras */
+}
+
+/* Badge activo (verde) */
+.cliente__badge--activo {
+    background: var(--color-ingreso-fondo);
+    /* Fondo verde claro */
+    color: var(--color-ingreso);
+    /* Texto verde */
+}
+
+/* Badge inactivo (rojo) */
+.cliente__badge--inactivo {
+    background: var(--color-egreso-fondo);
+    /* Fondo rojo claro */
+    color: var(--color-egreso);
+    /* Texto rojo */
+}
+
+/* ================================= */
+/* ===== DETALLES DEL CLIENTE ====== */
+/* ================================= */
+
+/* Contenedor de los campos de información */
+.cliente__detalles {
+    display: flex;
+    /* Activa Flexbox */
+    flex-direction: column;
+    /* Apila campos verticalmente */
+    gap: 12px;
+    /* Espacio entre campos */
+    padding-top: 16px;
+    /* Padding superior */
+    border-top: 1px solid var(--color-borde-claro);
+    /* Línea separadora superior */
+}
+
+/* Campo individual de información */
+.cliente__campo {
+    display: flex;
+    /* Activa Flexbox */
+    align-items: flex-start;
+    /* Alineación superior */
+    gap: 12px;
+    /* Espacio entre icono y texto */
+}
+
+/* Icono del campo */
+.cliente__campo>i {
+    width: 32px;
+    /* Ancho fijo */
+    height: 32px;
+    /* Alto fijo */
+    background: var(--color-fondo-gris);
+    /* Fondo gris claro */
+    border-radius: 8px;
+    /* Esquinas redondeadas */
+    display: flex;
+    /* Activa Flexbox */
+    align-items: center;
+    /* Centra verticalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
+    font-size: 13px;
+    /* Tamaño del icono */
+    color: var(--color-texto-secundario);
+    /* Color gris */
+    flex-shrink: 0;
+    /* No se encoge */
+}
+
+/* Contenedor de etiqueta y valor */
+.cliente__campo-info {
+    display: flex;
+    /* Activa Flexbox */
+    flex-direction: column;
+    /* Apila verticalmente */
+    gap: 2px;
+    /* Espacio mínimo */
+    min-width: 0;
+    /* Permite truncar texto */
+}
+
+/* Etiqueta del campo (Documento, Correo, etc.) */
+.cliente__campo-etiqueta {
+    font-size: 11px;
+    /* Tamaño muy pequeño */
+    color: var(--color-texto-terciario);
+    /* Color gris claro */
+    text-transform: uppercase;
+    /* Mayúsculas */
+    letter-spacing: 0.5px;
+    /* Espaciado entre letras */
+}
+
+/* Valor del campo */
+.cliente__campo-valor {
+    font-size: 13px;
+    /* Tamaño pequeño */
+    color: var(--color-texto);
+    /* Color principal */
+    font-weight: 500;
+    /* Peso medio */
+    white-space: nowrap;
+    /* No divide en líneas */
+    overflow: hidden;
+    /* Oculta texto excedente */
+    text-overflow: ellipsis;
+    /* Muestra "..." */
+}
