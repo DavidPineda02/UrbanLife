@@ -16,7 +16,7 @@
     /* Sombra suave */
     overflow: hidden;
     /* Oculta overflow para border-radius */
-    max-height: 560px;
+    max-height: 550px;
     /* Altura máxima fija */
     overflow-y: auto;
     /* Scroll vertical */
