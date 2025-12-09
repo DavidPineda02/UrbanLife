@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/templete.css">
+    <title>Proveedores</title>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar__marca">
+            <img src="../assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
+        </div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__lista">
+                <li class="sidebar__elemento">
+                    <a href="home.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ganancias</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="productos.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Productos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="ventas.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ventas</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="clientes.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Clientes</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="compras.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Compras</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="proveedores.html" class="sidebar__enlace sidebar__enlace--activo">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Proveedores</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Gastos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar__perfil">
+            <a href="#" class="sidebar__perfil-enlace">
+                <div class="sidebar__perfil-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="sidebar__perfil-info">
+                    <span class="sidebar__perfil-nombre">David Pineda</span>
+                    <span class="sidebar__perfil-rol">Super Admin</span>
+                </div>
+                <i class="fa-solid fa-chevron-right sidebar__perfil-flecha"></i>
+            </a>
+        </div>
+    </aside>
+
+    <main class="pagina-clientes">
+        <header class="pagina-header">
+            <h1 class="pagina-header__titulo">Proveedores</h1>
+            <div class="pagina-header__acciones">
+                <a href="#modal-agregar-proveedor" class="boton-accion boton-accion--primario">
+                    <i class="fa-solid fa-plus"></i>
+                    Agregar Proveedor
+                </a>
+            </div>
+        </header>
+
+        <section class="clientes-grid">
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-proveedor" class="cliente__accion cliente__accion--editar"
+                            title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-proveedor" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">Carlos Martínez</h3>
+                    <span class="cliente__badge cliente__badge--activo">Activo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-building"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Empresa</span>
+                            <span class="cliente__campo-valor">Distribuidora Fashion</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 300 123 4567</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">ventas@fashion.com</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-proveedor" class="cliente__accion cliente__accion--editar"
+                            title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-proveedor" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">María Elena López</h3>
+                    <span class="cliente__badge cliente__badge--activo">Activo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-building"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Empresa</span>
+                            <span class="cliente__campo-valor">Textiles Colombia</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 315 987 6543</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">contacto@textilescol.com</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-proveedor" class="cliente__accion cliente__accion--editar"
+                            title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-proveedor" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">Roberto Sánchez</h3>
+                    <span class="cliente__badge cliente__badge--inactivo">Inactivo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-building"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Empresa</span>
+                            <span class="cliente__campo-valor">Import Style</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 320 456 7890</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">importaciones@style.co</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-proveedor" class="cliente__accion cliente__accion--editar"
+                            title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-proveedor" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">Ana Patricia Gómez</h3>
+                    <span class="cliente__badge cliente__badge--activo">Activo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-building"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Empresa</span>
+                            <span class="cliente__campo-valor">Accesorios del Norte</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 310 222 3333</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">ventas@accesoriosnorte.com</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-proveedor" class="cliente__accion cliente__accion--editar"
+                            title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-proveedor" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">Pedro Luis Hernández</h3>
+                    <span class="cliente__badge cliente__badge--activo">Activo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-building"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Empresa</span>
+                            <span class="cliente__campo-valor">Urban Supplies S.A.S</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 318 444 5555</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">comercial@urbansupplies.co</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cliente">
+                <div class="cliente__header">
+                    <div class="cliente__avatar">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <div class="cliente__acciones">
+                        <a href="#modal-editar-proveedor" class="cliente__accion cliente__accion--editar"
+                            title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#modal-eliminar-proveedor" class="cliente__accion cliente__accion--eliminar"
+                            title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="cliente__info">
+                    <h3 class="cliente__nombre">Laura Cristina Ruiz</h3>
+                    <span class="cliente__badge cliente__badge--inactivo">Inactivo</span>
+                </div>
+                <div class="cliente__detalles">
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-building"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Empresa</span>
+                            <span class="cliente__campo-valor">Moda Express Ltda</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Teléfono</span>
+                            <span class="cliente__campo-valor">+57 301 666 7777</span>
+                        </div>
+                    </div>
+                    <div class="cliente__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="cliente__campo-info">
+                            <span class="cliente__campo-etiqueta">Correo</span>
+                            <span class="cliente__campo-valor">pedidos@modaexpress.com</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <div id="modal-agregar-proveedor" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Agregar Proveedor</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <div class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre del Proveedor</label>
+                    <input type="text" class="formulario__input" placeholder="Ej: Carlos Martínez">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre de la Empresa</label>
+                    <input type="text" class="formulario__input" placeholder="Ej: Distribuidora Fashion">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Correo Electrónico</label>
+                    <input type="email" class="formulario__input" placeholder="Ej: correo@empresa.com">
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Teléfono</label>
+                        <input type="tel" class="formulario__input" placeholder="Ej: +57 300 123 4567">
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Ciudad</label>
+                        <input type="text" class="formulario__input" placeholder="Ej: Bogotá">
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Dirección</label>
+                    <input type="text" class="formulario__input" placeholder="Ej: Cra 45 #32-10">
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-exito-proveedor" class="boton-accion boton-accion--primario">Guardar Proveedor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-editar-proveedor" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Proveedor</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <div class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre del Proveedor</label>
+                    <input type="text" class="formulario__input" value="Carlos Martínez">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre de la Empresa</label>
+                    <input type="text" class="formulario__input" value="Distribuidora Fashion">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Correo Electrónico</label>
+                    <input type="email" class="formulario__input" value="ventas@fashion.com">
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Teléfono</label>
+                        <input type="tel" class="formulario__input" value="+57 300 123 4567">
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Ciudad</label>
+                        <input type="text" class="formulario__input" value="Bogotá">
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Dirección</label>
+                    <input type="text" class="formulario__input" value="Cra 45 #32-10">
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-actualizado-proveedor" class="boton-accion boton-accion--primario">Actualizar
+                        Proveedor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-eliminar-proveedor" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
+            <div class="alerta">
+                <h2 class="alerta__titulo">¿Eliminar Proveedor?</h2>
+                <p class="alerta__mensaje">
+                    Esta acción eliminará al proveedor <strong>Carlos Martínez</strong> permanentemente.
+                    ¿Estás seguro de que deseas continuar?
+                </p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--cancelar">Cancelar</a>
+                    <a href="#modal-eliminado-proveedor" class="boton-alerta boton-alerta--eliminar">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-exito-proveedor" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2 class="alerta__titulo">¡Proveedor Guardado!</h2>
+                <p class="alerta__mensaje">
+                    El proveedor ha sido registrado exitosamente en el sistema.
+                </p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-actualizado-proveedor" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2 class="alerta__titulo">¡Proveedor Actualizado!</h2>
+                <p class="alerta__mensaje">
+                    Los datos del proveedor han sido actualizados correctamente.
+                </p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-eliminado-proveedor" class="modal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2 class="alerta__titulo">¡Proveedor Eliminado!</h2>
+                <p class="alerta__mensaje">
+                    El proveedor ha sido eliminado exitosamente del sistema.
+                </p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/eb36e646d1.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
