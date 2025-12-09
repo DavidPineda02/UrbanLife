@@ -113,7 +113,8 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-producto" class="producto__accion producto__accion--editar" title="Editar">
+                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                            title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
                         <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
@@ -136,7 +137,8 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-producto" class="producto__accion producto__accion--editar" title="Editar">
+                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                            title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
                         <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
@@ -159,7 +161,8 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-producto" class="producto__accion producto__accion--editar" title="Editar">
+                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                            title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
                         <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
@@ -182,7 +185,8 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-producto" class="producto__accion producto__accion--editar" title="Editar">
+                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                            title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
                         <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
@@ -387,7 +391,6 @@
         </section>
     </main>
 
-    <!-- Modal Agregar Producto -->
     <div class="modal" id="modal-producto">
         <a href="#" class="modal__overlay"></a>
         <div class="modal__contenedor">
@@ -398,15 +401,26 @@
                 </a>
             </div>
             <form class="modal__formulario">
-                <div class="formulario__grupo">
-                    <label class="formulario__label">Nombre</label>
-                    <input type="text" class="formulario__input" name="nombre" placeholder="Nombre del producto"
-                        required>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Nombre</label>
+                        <input type="text" class="formulario__input" name="nombre" placeholder="Nombre del producto"
+                            required>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Categoría</label>
+                        <select class="formulario__select" name="categoria" required>
+                            <option value="">Seleccionar</option>
+                            <option value="accesorios">Accesorios</option>
+                            <option value="ropa-hombre">Ropa Hombre</option>
+                            <option value="ropa-mujer">Ropa Mujer</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Descripción</label>
                     <textarea class="formulario__textarea" name="descripcion" placeholder="Descripción del producto"
-                        rows="3"></textarea>
+                        rows="2"></textarea>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
@@ -419,23 +433,76 @@
                     </div>
                 </div>
                 <div class="formulario__fila">
-                    <div class="formulario__grupo">
+                    <div class="formulario__grupo formulario__grupo--pequeno">
                         <label class="formulario__label">Stock</label>
                         <input type="number" class="formulario__input" name="stock" placeholder="0" required>
                     </div>
-                    <div class="formulario__grupo">
-                        <label class="formulario__label">Categoría</label>
-                        <select class="formulario__select" name="categoria" required>
-                            <option value="">Seleccionar categoría</option>
-                            <option value="accesorios">Accesorios</option>
-                            <option value="ropa-hombre">Ropa Hombre</option>
-                            <option value="ropa-mujer">Ropa Mujer</option>
-                        </select>
+                    <div class="formulario__grupo formulario__grupo--grande">
+                        <label class="formulario__label">Imagen</label>
+                        <input type="file" class="formulario__input" name="imagen" accept="image/*">
                     </div>
                 </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
                     <a href="#modal-agregado" class="boton-accion boton-accion--primario">Guardar Producto</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-editar-producto">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Producto</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Nombre</label>
+                        <input type="text" class="formulario__input" name="nombre" value="Gorra New Era" required>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Categoría</label>
+                        <select class="formulario__select" name="categoria" required>
+                            <option value="">Seleccionar</option>
+                            <option value="accesorios" selected>Accesorios</option>
+                            <option value="ropa-hombre">Ropa Hombre</option>
+                            <option value="ropa-mujer">Ropa Mujer</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Descripción</label>
+                    <textarea class="formulario__textarea" name="descripcion"
+                        rows="2">Gorra original de la marca New Era, diseño clásico y cómodo.</textarea>
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Precio Venta</label>
+                        <input type="number" class="formulario__input" name="precio" value="120000" required>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Costo Promedio</label>
+                        <input type="number" class="formulario__input" name="costo" value="80000">
+                    </div>
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo formulario__grupo--pequeno">
+                        <label class="formulario__label">Stock</label>
+                        <input type="number" class="formulario__input" name="stock" value="100" required>
+                    </div>
+                    <div class="formulario__grupo formulario__grupo--grande">
+                        <label class="formulario__label">Imagen</label>
+                        <input type="file" class="formulario__input" name="imagen" accept="image/*">
+                    </div>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-actualizado" class="boton-accion boton-accion--primario">Actualizar Producto</a>
                 </div>
             </form>
         </div>
@@ -469,7 +536,6 @@
         </div>
     </div>
 
-    <!-- Modal Confirmar Eliminación -->
     <div class="modal" id="modal-eliminar">
         <a href="#" class="modal__overlay"></a>
         <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
@@ -484,7 +550,6 @@
         </div>
     </div>
 
-    <!-- Modal Éxito -->
     <div class="modal" id="modal-exito">
         <a href="#" class="modal__overlay"></a>
         <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
@@ -498,7 +563,6 @@
         </div>
     </div>
 
-    <!-- Modal Éxito Agregar -->
     <div class="modal" id="modal-agregado">
         <a href="#" class="modal__overlay"></a>
         <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
@@ -507,6 +571,19 @@
                     <i class="fa-solid fa-check"></i>
                 </div>
                 <p class="alerta__mensaje">¡Se agregó correctamente!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">VOLVER</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-actualizado">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡Producto actualizado correctamente!</p>
                 <a href="#" class="boton-alerta boton-alerta--volver">VOLVER</a>
             </div>
         </div>

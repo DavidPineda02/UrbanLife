@@ -380,3 +380,50 @@
     height: 22px;
     /* Alto de 22px */
 }
+
+/* ============================================
+   INPUT DE ARCHIVO (IMAGEN)
+   ============================================ */
+
+/* Estilo del input file para que se vea igual que los demás campos */
+.formulario__input[type="file"] {
+    padding: 0.65rem 1rem;
+    /* Padding ajustado para alinear con otros campos */
+    cursor: pointer;
+    /* Cursor de mano */
+}
+
+/* Estilo del texto del input file */
+.formulario__input[type="file"]::file-selector-button {
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radio-pequeno);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    margin-right: 0.75rem;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover del botón del input file */
+.formulario__input[type="file"]::file-selector-button:hover {
+    background-color: var(--color-hover);
+}
+
+/* ============================================
+   MODIFICADORES DE ANCHO PARA GRUPOS
+   ============================================ */
+
+/* Grupo pequeño - 30% del ancho */
+.formulario__grupo--pequeno {
+    flex: 0 0 30%;
+    /* No crece, no encoge, 30% fijo */
+}
+
+/* Grupo grande - 70% del ancho */
+.formulario__grupo--grande {
+    flex: 0 0 70%;
+    /* No crece, no encoge, 70% fijo */
+}
