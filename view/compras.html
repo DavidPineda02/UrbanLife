@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/templete.css">
+    <title>Compras</title>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar__marca">
+            <img src="../assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
+        </div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__lista">
+                <li class="sidebar__elemento">
+                    <a href="home.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ganancias</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="productos.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Productos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="ventas.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ventas</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="clientes.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Clientes</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="compras.html" class="sidebar__enlace sidebar__enlace--activo">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Compras</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="proveedores.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Proveedores</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="#" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Gastos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar__perfil">
+            <a href="#" class="sidebar__perfil-enlace">
+                <div class="sidebar__perfil-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="sidebar__perfil-info">
+                    <span class="sidebar__perfil-nombre">David Pineda</span>
+                    <span class="sidebar__perfil-rol">Super Admin</span>
+                </div>
+                <i class="fa-solid fa-chevron-right sidebar__perfil-flecha"></i>
+            </a>
+        </div>
+    </aside>
+    <main class="tablero">
+        <header class="pagina-header">
+            <h1 class="pagina-header__titulo">Compras</h1>
+            <div class="pagina-header__acciones">
+                <a href="#modal-compra" class="boton-accion boton-accion--primario">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Registrar Compra</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="ventas-contenido">
+            <div class="tabla-contenedor">
+                <table class="tabla">
+                    <thead class="tabla__cabecera">
+                        <tr>
+                            <th class="tabla__th">Fecha</th>
+                            <th class="tabla__th">Proveedor</th>
+                            <th class="tabla__th">Ciudad</th>
+                            <th class="tabla__th">Producto</th>
+                            <th class="tabla__th">Cantidad</th>
+                            <th class="tabla__th">Costo Unit.</th>
+                            <th class="tabla__th">Subtotal</th>
+                            <th class="tabla__th">Método</th>
+                            <th class="tabla__th">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabla__cuerpo">
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">08/12/2024</td>
+                            <td class="tabla__td">Distribuidora Fashion</td>
+                            <td class="tabla__td">Bogotá</td>
+                            <td class="tabla__td">Gorra New Era</td>
+                            <td class="tabla__td">50</td>
+                            <td class="tabla__td">$ 80.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 4.000.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">07/12/2024</td>
+                            <td class="tabla__td">Textiles Colombia</td>
+                            <td class="tabla__td">Medellín</td>
+                            <td class="tabla__td">Camiseta Urban</td>
+                            <td class="tabla__td">100</td>
+                            <td class="tabla__td">$ 45.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 4.500.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">06/12/2024</td>
+                            <td class="tabla__td">Import Style</td>
+                            <td class="tabla__td">Cali</td>
+                            <td class="tabla__td">Pantalón Cargo</td>
+                            <td class="tabla__td">30</td>
+                            <td class="tabla__td">$ 90.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 2.700.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">Accesorios del Norte</td>
+                            <td class="tabla__td">Barranquilla</td>
+                            <td class="tabla__td">Cinturón Cuero</td>
+                            <td class="tabla__td">80</td>
+                            <td class="tabla__td">$ 35.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 2.800.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">04/12/2024</td>
+                            <td class="tabla__td">Distribuidora Fashion</td>
+                            <td class="tabla__td">Bogotá</td>
+                            <td class="tabla__td">Chaqueta Denim</td>
+                            <td class="tabla__td">25</td>
+                            <td class="tabla__td">$ 120.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 3.000.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">03/12/2024</td>
+                            <td class="tabla__td">Textiles Colombia</td>
+                            <td class="tabla__td">Medellín</td>
+                            <td class="tabla__td">Sudadera Premium</td>
+                            <td class="tabla__td">40</td>
+                            <td class="tabla__td">$ 75.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 3.000.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">02/12/2024</td>
+                            <td class="tabla__td">Import Style</td>
+                            <td class="tabla__td">Cali</td>
+                            <td class="tabla__td">Zapatillas Sport</td>
+                            <td class="tabla__td">60</td>
+                            <td class="tabla__td">$ 150.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 9.000.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">01/12/2024</td>
+                            <td class="tabla__td">Distribuidora Fashion</td>
+                            <td class="tabla__td">Bogotá</td>
+                            <td class="tabla__td">Gorra Snapback</td>
+                            <td class="tabla__td">70</td>
+                            <td class="tabla__td">$ 55.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 3.850.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">30/11/2024</td>
+                            <td class="tabla__td">Accesorios del Norte</td>
+                            <td class="tabla__td">Barranquilla</td>
+                            <td class="tabla__td">Bolso Deportivo</td>
+                            <td class="tabla__td">45</td>
+                            <td class="tabla__td">$ 65.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 2.925.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">29/11/2024</td>
+                            <td class="tabla__td">Textiles Colombia</td>
+                            <td class="tabla__td">Medellín</td>
+                            <td class="tabla__td">Polo Clásico</td>
+                            <td class="tabla__td">90</td>
+                            <td class="tabla__td">$ 55.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 4.950.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">28/11/2024</td>
+                            <td class="tabla__td">Import Style</td>
+                            <td class="tabla__td">Cali</td>
+                            <td class="tabla__td">Bermuda Casual</td>
+                            <td class="tabla__td">55</td>
+                            <td class="tabla__td">$ 48.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 2.640.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">27/11/2024</td>
+                            <td class="tabla__td">Distribuidora Fashion</td>
+                            <td class="tabla__td">Bogotá</td>
+                            <td class="tabla__td">Gorra Trucker</td>
+                            <td class="tabla__td">85</td>
+                            <td class="tabla__td">$ 42.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 3.570.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">26/11/2024</td>
+                            <td class="tabla__td">Accesorios del Norte</td>
+                            <td class="tabla__td">Barranquilla</td>
+                            <td class="tabla__td">Reloj Digital</td>
+                            <td class="tabla__td">35</td>
+                            <td class="tabla__td">$ 95.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 3.325.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">25/11/2024</td>
+                            <td class="tabla__td">Textiles Colombia</td>
+                            <td class="tabla__td">Medellín</td>
+                            <td class="tabla__td">Hoodie Street</td>
+                            <td class="tabla__td">65</td>
+                            <td class="tabla__td">$ 85.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 5.525.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">24/11/2024</td>
+                            <td class="tabla__td">Import Style</td>
+                            <td class="tabla__td">Cali</td>
+                            <td class="tabla__td">Tenis Running</td>
+                            <td class="tabla__td">40</td>
+                            <td class="tabla__td">$ 180.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 7.200.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">23/11/2024</td>
+                            <td class="tabla__td">Distribuidora Fashion</td>
+                            <td class="tabla__td">Bogotá</td>
+                            <td class="tabla__td">Bufanda Lana</td>
+                            <td class="tabla__td">120</td>
+                            <td class="tabla__td">$ 28.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 3.360.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">22/11/2024</td>
+                            <td class="tabla__td">Accesorios del Norte</td>
+                            <td class="tabla__td">Barranquilla</td>
+                            <td class="tabla__td">Gafas Sol</td>
+                            <td class="tabla__td">75</td>
+                            <td class="tabla__td">$ 68.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 5.100.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">21/11/2024</td>
+                            <td class="tabla__td">Textiles Colombia</td>
+                            <td class="tabla__td">Medellín</td>
+                            <td class="tabla__td">Jogger Sport</td>
+                            <td class="tabla__td">50</td>
+                            <td class="tabla__td">$ 72.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 3.600.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">20/11/2024</td>
+                            <td class="tabla__td">Import Style</td>
+                            <td class="tabla__td">Cali</td>
+                            <td class="tabla__td">Mochila Urban</td>
+                            <td class="tabla__td">30</td>
+                            <td class="tabla__td">$ 110.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 3.300.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">19/11/2024</td>
+                            <td class="tabla__td">Distribuidora Fashion</td>
+                            <td class="tabla__td">Bogotá</td>
+                            <td class="tabla__td">Camiseta Básica</td>
+                            <td class="tabla__td">200</td>
+                            <td class="tabla__td">$ 32.000</td>
+                            <td class="tabla__td tabla__td--precio">$ 6.400.000</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
+                            </td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="modal-compra">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Registrar Compra</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Proveedor</label>
+                    <select class="formulario__select" name="proveedor_id" required>
+                        <option value="">Seleccionar proveedor</option>
+                        <option value="1">Distribuidora Fashion</option>
+                        <option value="2">Textiles Colombia</option>
+                        <option value="3">Import Style</option>
+                        <option value="4">Accesorios del Norte</option>
+                    </select>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Producto</label>
+                    <select class="formulario__select" name="producto_id" required>
+                        <option value="">Seleccionar producto</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                    </select>
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Cantidad</label>
+                        <input type="number" class="formulario__input" name="cantidad" placeholder="1" min="1" value="1"
+                            required>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Costo Unitario</label>
+                        <input type="number" class="formulario__input" name="costo_unitario" placeholder="$ 0" required>
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Método de Pago</label>
+                    <select class="formulario__select" name="metodo_pago" required>
+                        <option value="">Seleccionar método</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="transferencia">Transferencia</option>
+                    </select>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-compra-exito" class="boton-accion boton-accion--primario">Guardar Compra</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-compra-exito">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡Compra registrada correctamente!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">VOLVER</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-editar-compra">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Compra</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Proveedor</label>
+                    <select class="formulario__select" name="proveedor_id" required>
+                        <option value="">Seleccionar proveedor</option>
+                        <option value="1" selected>Distribuidora Fashion</option>
+                        <option value="2">Textiles Colombia</option>
+                        <option value="3">Import Style</option>
+                        <option value="4">Accesorios del Norte</option>
+                    </select>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Producto</label>
+                    <select class="formulario__select" name="producto_id" required>
+                        <option value="">Seleccionar producto</option>
+                        <option value="1" selected>Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                    </select>
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Cantidad</label>
+                        <input type="number" class="formulario__input" name="cantidad" value="50" min="1" required>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Costo Unitario</label>
+                        <input type="number" class="formulario__input" name="costo_unitario" value="80000" required>
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Método de Pago</label>
+                    <select class="formulario__select" name="metodo_pago" required>
+                        <option value="">Seleccionar método</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="transferencia" selected>Transferencia</option>
+                    </select>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-compra-actualizada" class="boton-accion boton-accion--primario">Actualizar
+                        Compra</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-compra-actualizada">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡Compra actualizada correctamente!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">VOLVER</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-eliminar-compra">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
+            <div class="alerta">
+                <h2 class="alerta__titulo">¿Eliminar esta compra?</h2>
+                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este registro de compra? Esta acción no se
+                    puede deshacer.</p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
+                    <a href="#modal-compra-eliminada" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-compra-eliminada">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡La compra fue eliminada con éxito!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">VOLVER</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
