@@ -519,7 +519,7 @@
     }
 
     /* Grid de 1 columna en tablet */
-    .contactos-grid {
+    .contactos__grid {
         grid-template-columns: 1fr;
         /* 1 columna */
         gap: 16px;
@@ -1024,7 +1024,7 @@
     }
 
     /* Pastel - cambia a layout vertical */
-    .pastel-contenedor {
+    .pastel__contenedor {
         flex-direction: column;
         /* Apila verticalmente */
         align-items: center;

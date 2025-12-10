@@ -17,7 +17,7 @@
    ======================================== */
 
 /* Contenedor que centra la gráfica de dona */
-.pastel-contenedor {
+.pastel__contenedor {
     display: flex;
     /* Activa Flexbox */
     justify-content: center;

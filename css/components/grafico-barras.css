@@ -31,7 +31,7 @@
    ======================================== */
 
 /* Contenedor principal del área de barras */
-.barras-contenedor {
+.barras__contenedor {
     display: flex;
     /* Activa Flexbox */
     gap: 12px;

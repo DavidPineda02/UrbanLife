@@ -119,7 +119,7 @@
 /* ================================= */
 /* Sistema de grid responsivo para mostrar las tarjetas de productos */
 
-.productos-grid {
+.productos__grid {
     display: grid;
     /* Sistema de cuadrícula CSS */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

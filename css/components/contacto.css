@@ -13,7 +13,7 @@
 /* ================================= */
 
 /* Sistema de grid para las tarjetas de contactos */
-.contactos-grid {
+.contactos__grid {
     display: grid;
     /* Activa CSS Grid */
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

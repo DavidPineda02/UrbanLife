@@ -7,7 +7,7 @@
 /* ===== CONTENEDOR DE LA TABLA ============================================= */
 /* ========================================================================== */
 
-.tabla-contenedor {
+.tabla__contenedor {
     background: var(--color-blanco);
     /* Fondo blanco */
     border-radius: 16px;
@@ -29,7 +29,7 @@
 }
 
 /* Chrome, Safari, Opera: oculta scrollbar */
-.tabla-contenedor::-webkit-scrollbar {
+.tabla__contenedor::-webkit-scrollbar {
     display: none;
 }
 

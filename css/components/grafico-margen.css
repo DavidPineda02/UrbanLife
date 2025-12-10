@@ -27,7 +27,7 @@
    ======================================== */
 
 /* Contenedor de todos los productos */
-.margen-lista {
+.margen__lista {
     display: flex;
     /* Activa Flexbox */
     flex-direction: column;
