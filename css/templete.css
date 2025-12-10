@@ -25,6 +25,7 @@
 @import url(./components/modal.css);
 @import url(./components/tabla.css);
 @import url(./components/contacto.css);
+@import url(./components/perfil.css);
 
 /* Responsive */
 @import url(./layout/responsive.css);
