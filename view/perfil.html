@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/templete.css">
+    <title>Mi Perfil</title>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar__marca">
+            <img src="../assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
+        </div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__lista">
+                <li class="sidebar__elemento">
+                    <a href="home.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ganancias</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="productos.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Productos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="ventas.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ventas</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="clientes.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Clientes</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="compras.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Compras</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="proveedores.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Proveedores</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="gastos.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Gastos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar__perfil">
+            <a href="perfil.html" class="sidebar__perfil-enlace sidebar__perfil-enlace--activo">
+                <div class="sidebar__perfil-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="sidebar__perfil-info">
+                    <span class="sidebar__perfil-nombre">David Pineda</span>
+                    <span class="sidebar__perfil-rol">Super Admin</span>
+                </div>
+                <i class="fa-solid fa-chevron-right sidebar__perfil-flecha"></i>
+            </a>
+        </div>
+    </aside>
+
+    <main class="tablero">
+        <header class="pagina-header">
+            <h1 class="pagina-header__titulo">Mi Perfil</h1>
+            <div class="pagina-header__acciones">
+                <a href="../index.html" class="boton-accion boton-accion--primario">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="perfil">
+            <div class="perfil__header">
+                <div class="perfil__avatar">
+                    <span class="perfil__iniciales">DP</span>
+                </div>
+                <div class="perfil__info-principal">
+                    <h2 class="perfil__nombre">David Pineda</h2>
+                    <p class="perfil__rol">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Super Admin
+                    </p>
+                </div>
+                <span class="perfil__badge perfil__badge--activo">Activo</span>
+            </div>
+
+            <div class="perfil__contenido">
+                <div class="perfil__seccion">
+                    <div class="perfil__seccion-header">
+                        <h3 class="perfil__seccion-titulo">
+                            <i class="fa-solid fa-user"></i>
+                            Información Personal
+                        </h3>
+                        <a href="#modal-editar-personal" class="perfil__seccion-editar">
+                            <i class="fa-solid fa-pen"></i>
+                            Editar
+                        </a>
+                    </div>
+                    <div class="perfil__campos">
+                        <div class="perfil__campo">
+                            <span class="perfil__campo-etiqueta">Nombre Completo</span>
+                            <span class="perfil__campo-valor">David Pineda</span>
+                        </div>
+                        <div class="perfil__campo">
+                            <span class="perfil__campo-etiqueta">Correo Principal</span>
+                            <span class="perfil__campo-valor">david.pineda@urbanlife.com</span>
+                        </div>
+                        <div class="perfil__campo perfil__campo--contrasena">
+                            <div class="perfil__campo-info">
+                                <span class="perfil__campo-etiqueta">Contraseña</span>
+                                <span class="perfil__campo-valor">••••••••</span>
+                            </div>
+                            <a href="#modal-cambiar-contrasena" class="perfil__campo-boton">
+                                <i class="fa-solid fa-key"></i>
+                                Cambiar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="perfil__seccion">
+                    <div class="perfil__seccion-header">
+                        <h3 class="perfil__seccion-titulo">
+                            <i class="fa-solid fa-building"></i>
+                            Información de la Empresa
+                        </h3>
+                        <a href="#modal-editar-empresa" class="perfil__seccion-editar">
+                            <i class="fa-solid fa-pen"></i>
+                            Editar
+                        </a>
+                    </div>
+                    <div class="perfil__campos">
+                        <div class="perfil__campo">
+                            <span class="perfil__campo-etiqueta">Nombre de la Empresa</span>
+                            <span class="perfil__campo-valor">Urban Life Store</span>
+                        </div>
+                        <div class="perfil__campo">
+                            <span class="perfil__campo-etiqueta">Dirección</span>
+                            <span class="perfil__campo-valor">Cra 45 #32-10, Local 201</span>
+                        </div>
+                        <div class="perfil__campo">
+                            <span class="perfil__campo-etiqueta">Ciudad</span>
+                            <span class="perfil__campo-valor">Bogotá, Colombia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="perfil__seccion">
+                    <div class="perfil__seccion-header">
+                        <h3 class="perfil__seccion-titulo">
+                            <i class="fa-solid fa-envelope"></i>
+                            Correos Adicionales
+                        </h3>
+                        <a href="#modal-agregar-correo" class="perfil__seccion-agregar">
+                            <i class="fa-solid fa-plus"></i>
+                            Agregar
+                        </a>
+                    </div>
+                    <div class="perfil__lista">
+                        <div class="perfil__lista-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>ventas@urbanlife.com</span>
+                            <a href="#modal-eliminar-correo" class="perfil__lista-eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                        <div class="perfil__lista-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>contacto@urbanlife.com</span>
+                            <a href="#modal-eliminar-correo" class="perfil__lista-eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="perfil__seccion">
+                    <div class="perfil__seccion-header">
+                        <h3 class="perfil__seccion-titulo">
+                            <i class="fa-solid fa-phone"></i>
+                            Teléfonos Adicionales
+                        </h3>
+                        <a href="#modal-agregar-telefono" class="perfil__seccion-agregar">
+                            <i class="fa-solid fa-plus"></i>
+                            Agregar
+                        </a>
+                    </div>
+                    <div class="perfil__lista">
+                        <div class="perfil__lista-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+57 300 123 4567</span>
+                            <a href="#modal-eliminar-telefono" class="perfil__lista-eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                        <div class="perfil__lista-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+57 315 987 6543</span>
+                            <a href="#modal-eliminar-telefono" class="perfil__lista-eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                        <div class="perfil__lista-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+57 (1) 234 5678</span>
+                            <a href="#modal-eliminar-telefono" class="perfil__lista-eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="modal-editar-personal">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Información Personal</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre Completo</label>
+                    <input type="text" class="formulario__input" name="nombre" value="David Pineda" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Correo Principal</label>
+                    <input type="email" class="formulario__input" name="correo" value="david.pineda@urbanlife.com"
+                        required>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-exito" class="boton-accion boton-accion--primario">Guardar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-cambiar-contrasena">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Cambiar Contraseña</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Contraseña Actual</label>
+                    <input type="password" class="formulario__input" name="contrasena_actual"
+                        placeholder="Ingresa tu contraseña actual" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nueva Contraseña</label>
+                    <input type="password" class="formulario__input" name="contrasena_nueva"
+                        placeholder="Mínimo 8 caracteres" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Confirmar Nueva Contraseña</label>
+                    <input type="password" class="formulario__input" name="contrasena_confirmar"
+                        placeholder="Repite la nueva contraseña" required>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-exito" class="boton-accion boton-accion--primario">Cambiar Contraseña</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-editar-empresa">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Información de Empresa</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre de la Empresa</label>
+                    <input type="text" class="formulario__input" name="empresa" value="Urban Life Store" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Dirección</label>
+                    <input type="text" class="formulario__input" name="direccion" value="Cra 45 #32-10, Local 201"
+                        required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Ciudad</label>
+                    <input type="text" class="formulario__input" name="ciudad" value="Bogotá, Colombia" required>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-exito" class="boton-accion boton-accion--primario">Guardar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-agregar-correo">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Agregar Correo</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Correo Electrónico</label>
+                    <input type="email" class="formulario__input" name="correo" placeholder="ejemplo@correo.com"
+                        required>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-exito" class="boton-accion boton-accion--primario">Agregar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-agregar-telefono">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Agregar Teléfono</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Número de Teléfono</label>
+                    <input type="tel" class="formulario__input" name="telefono" placeholder="+57 300 000 0000" required>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-exito" class="boton-accion boton-accion--primario">Agregar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-exito">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡Cambios guardados correctamente!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-eliminar-correo">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
+            <div class="alerta">
+                <h2 class="alerta__titulo">¿Eliminar este correo?</h2>
+                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este correo adicional?</p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
+                    <a href="#modal-exito" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-eliminar-telefono">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
+            <div class="alerta">
+                <h2 class="alerta__titulo">¿Eliminar este teléfono?</h2>
+                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este teléfono adicional?</p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
+                    <a href="#modal-exito" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
