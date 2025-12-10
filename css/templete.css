@@ -2,6 +2,9 @@
 /* ===== ARCHIVO PRINCIPAL ======== */
 /* ================================ */
 
+/* Estilos globales (fuente, utilidades) */
+@import url(../styles.css);
+
 /* Variables globales */
 @import url(./customproperties.css);
 

@@ -1,5 +1,8 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* ============================================================
+   STYLES.CSS - Estilos Globales para Todo el Proyecto UrbanLife
+   ============================================================ */
+
+/* Importa la fuente Poppins desde Google Fonts */
+/* Poppins es una fuente sans-serif moderna y profesional */
+/* Pesos: 300 (light), 400 (normal), 500 (medium), 600 (semibold), 700 (bold) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
