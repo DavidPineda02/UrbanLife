@@ -553,6 +553,60 @@
         font-size: 12px;
         /* Reduce el tamaño */
     }
+
+    /* ---------- PERFIL (Tablet) ---------- */
+
+    .perfil__header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .perfil__info-principal {
+        align-items: center;
+    }
+
+    .perfil__contenido {
+        grid-template-columns: 1fr;
+    }
+
+    .perfil__avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 14px;
+    }
+
+    .perfil__iniciales {
+        font-size: 22px;
+    }
+
+    .perfil__nombre {
+        font-size: 20px;
+    }
+
+    .perfil__badge {
+        position: static;
+        margin-top: 10px;
+    }
+
+    /* ---------- TABLA (Tablet) ---------- */
+
+    .tabla__th,
+    .tabla__td {
+        padding: 12px 8px;
+        font-size: 12px;
+    }
+
+    .tabla__badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+
+    .tabla__accion {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
 }
 
 /* ============================================ */
@@ -801,6 +855,46 @@
     .contacto__campo-valor {
         font-size: 11px;
         /* Reduce el tamaño */
+    }
+
+    /* ---------- PERFIL (Mobile L) ---------- */
+
+    .perfil__seccion-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .perfil__seccion-editar,
+    .perfil__seccion-agregar {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .perfil__campo {
+        padding: 12px;
+    }
+
+    .perfil__lista-item {
+        padding: 12px;
+    }
+
+    /* ---------- MODAL/FORMULARIO (Mobile L) ---------- */
+
+    /* En móviles, los campos van en una sola columna */
+    .formulario__fila {
+        grid-template-columns: 1fr;
+    }
+
+    /* Botones en columna */
+    .formulario__acciones {
+        flex-direction: column;
+    }
+
+    /* Botones ocupan todo el ancho */
+    .formulario__acciones .boton-accion {
+        width: 100%;
+        justify-content: center;
     }
 }
 

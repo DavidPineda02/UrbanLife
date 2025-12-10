@@ -387,32 +387,7 @@
     /* Sin subrayado */
 }
 
-/* ========================================================================== */
-/* ===== RESPONSIVE - MÓVILES =============================================== */
-/* ========================================================================== */
 
-@media (max-width: 480px) {
-
-    /* En móviles, los campos van en una sola columna */
-    .formulario__fila {
-        grid-template-columns: 1fr;
-        /* Una columna */
-    }
-
-    /* Botones en columna */
-    .formulario__acciones {
-        flex-direction: column;
-        /* Dirección vertical */
-    }
-
-    /* Botones ocupan todo el ancho */
-    .formulario__acciones .boton-accion {
-        width: 100%;
-        /* Ancho completo */
-        justify-content: center;
-        /* Texto centrado */
-    }
-}
 
 /* ========================================================================== */
 /* ===== MODAL DE ALERTA ==================================================== */

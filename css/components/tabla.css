@@ -302,31 +302,3 @@
     color: var(--color-blanco);
     /* Icono blanco */
 }
-
-/* ========================================================================== */
-/* ===== RESPONSIVE ========================================================= */
-/* ========================================================================== */
-
-@media (max-width: 768px) {
-
-    .tabla__th,
-    .tabla__td {
-        padding: 12px 8px;
-        /* Menos padding */
-        font-size: 12px;
-        /* Fuente más pequeña */
-    }
-
-    .tabla__badge {
-        font-size: 10px;
-        /* Badge más pequeño */
-        padding: 3px 8px;
-    }
-
-    .tabla__accion {
-        width: 28px;
-        /* Botones más pequeños */
-        height: 28px;
-        font-size: 12px;
-    }
-}
