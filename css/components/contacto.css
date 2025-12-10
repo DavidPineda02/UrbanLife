@@ -1,19 +1,19 @@
 /* ================================= */
-/* ===== PÁGINA DE CLIENTES ======== */
+/* ===== PÁGINA DE CONTACTOS ======= */
 /* ================================= */
 
-/* Contenedor principal de la página de clientes */
-.pagina-clientes {
+/* Contenedor principal de la página de contactos */
+.pagina-contactos {
     padding: 24px;
     /* Espaciado interno de 24px */
 }
 
 /* ================================= */
-/* ===== GRID DE CLIENTES ========== */
+/* ===== GRID DE CONTACTOS ========= */
 /* ================================= */
 
-/* Sistema de grid para las tarjetas de clientes */
-.clientes-grid {
+/* Sistema de grid para las tarjetas de contactos */
+.contactos-grid {
     display: grid;
     /* Activa CSS Grid */
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -23,11 +23,11 @@
 }
 
 /* ================================= */
-/* ===== TARJETA DE CLIENTE ======== */
+/* ===== TARJETA DE CONTACTO ======= */
 /* ================================= */
 
-/* Tarjeta individual de cliente */
-.cliente {
+/* Tarjeta individual de contacto */
+.contacto {
     background: var(--color-blanco);
     /* Fondo blanco */
     border-radius: 16px;
@@ -49,7 +49,7 @@
 }
 
 /* Estado hover de la tarjeta */
-.cliente:hover {
+.contacto:hover {
     transform: translateY(-4px);
     /* Eleva ligeramente */
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -61,7 +61,7 @@
 /* ================================= */
 
 /* Contenedor del avatar y acciones */
-.cliente__header {
+.contacto__header {
     display: flex;
     /* Activa Flexbox */
     justify-content: space-between;
@@ -70,8 +70,8 @@
     /* Alineación superior */
 }
 
-/* Avatar del cliente */
-.cliente__avatar {
+/* Avatar del contacto */
+.contacto__avatar {
     width: 56px;
     /* Ancho de 56px */
     height: 56px;
@@ -99,7 +99,7 @@
 /* ================================= */
 
 /* Contenedor de botones editar y eliminar */
-.cliente__acciones {
+.contacto__acciones {
     display: flex;
     /* Activa Flexbox */
     gap: 8px;
@@ -111,13 +111,13 @@
 }
 
 /* Mostrar acciones al hacer hover en la tarjeta */
-.cliente:hover .cliente__acciones {
+.contacto:hover .contacto__acciones {
     opacity: 1;
     /* Visible al 100% */
 }
 
 /* Botón de acción individual */
-.cliente__accion {
+.contacto__accion {
     width: 32px;
     /* Ancho de 32px */
     height: 32px;
@@ -139,13 +139,13 @@
 }
 
 /* Estado hover del botón */
-.cliente__accion:hover {
+.contacto__accion:hover {
     transform: scale(1.1);
     /* Agranda ligeramente */
 }
 
 /* Botón editar (azul) */
-.cliente__accion--editar {
+.contacto__accion--editar {
     background: var(--color-info);
     /* Fondo azul */
     color: var(--color-blanco);
@@ -153,13 +153,13 @@
 }
 
 /* Hover del botón editar */
-.cliente__accion--editar:hover {
+.contacto__accion--editar:hover {
     box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
     /* Sombra azul */
 }
 
 /* Botón eliminar (rojo) */
-.cliente__accion--eliminar {
+.contacto__accion--eliminar {
     background: var(--color-egreso);
     /* Fondo rojo */
     color: var(--color-blanco);
@@ -167,17 +167,17 @@
 }
 
 /* Hover del botón eliminar */
-.cliente__accion--eliminar:hover {
+.contacto__accion--eliminar:hover {
     box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
     /* Sombra roja */
 }
 
 /* ================================= */
-/* ===== INFO DEL CLIENTE ========== */
+/* ===== INFO DEL CONTACTO ========= */
 /* ================================= */
 
 /* Contenedor del nombre y badge de estado */
-.cliente__info {
+.contacto__info {
     display: flex;
     /* Activa Flexbox */
     align-items: center;
@@ -188,8 +188,8 @@
     /* Permite wrap en móviles */
 }
 
-/* Nombre del cliente */
-.cliente__nombre {
+/* Nombre del contacto */
+.contacto__nombre {
     margin: 0;
     /* Sin margen */
     font-size: 16px;
@@ -201,7 +201,7 @@
 }
 
 /* Badge de estado (Activo/Inactivo) */
-.cliente__badge {
+.contacto__badge {
     display: inline-block;
     /* Inline block */
     padding: 4px 10px;
@@ -219,7 +219,7 @@
 }
 
 /* Badge activo (verde) */
-.cliente__badge--activo {
+.contacto__badge--activo {
     background: var(--color-ingreso-fondo);
     /* Fondo verde claro */
     color: var(--color-ingreso);
@@ -227,7 +227,7 @@
 }
 
 /* Badge inactivo (rojo) */
-.cliente__badge--inactivo {
+.contacto__badge--inactivo {
     background: var(--color-egreso-fondo);
     /* Fondo rojo claro */
     color: var(--color-egreso);
@@ -235,11 +235,11 @@
 }
 
 /* ================================= */
-/* ===== DETALLES DEL CLIENTE ====== */
+/* ===== DETALLES DEL CONTACTO ===== */
 /* ================================= */
 
 /* Contenedor de los campos de información */
-.cliente__detalles {
+.contacto__detalles {
     display: flex;
     /* Activa Flexbox */
     flex-direction: column;
@@ -253,23 +253,23 @@
 }
 
 /* Campo individual de información */
-.cliente__campo {
+.contacto__campo {
     display: flex;
     /* Activa Flexbox */
-    align-items: flex-start;
-    /* Alineación superior */
+    align-items: center;
+    /* Alineación centrada verticalmente */
     gap: 12px;
     /* Espacio entre icono y texto */
 }
 
 /* Icono del campo */
-.cliente__campo>i {
+.contacto__campo>i {
     width: 32px;
     /* Ancho fijo */
     height: 32px;
     /* Alto fijo */
-    background: var(--color-fondo-gris);
-    /* Fondo gris claro */
+    background: var(--color-borde);
+    /* Fondo gris visible (#e0e0e0) */
     border-radius: 8px;
     /* Esquinas redondeadas */
     display: flex;
@@ -281,13 +281,13 @@
     font-size: 13px;
     /* Tamaño del icono */
     color: var(--color-texto-secundario);
-    /* Color gris */
+    /* Color gris oscuro (#666666) */
     flex-shrink: 0;
     /* No se encoge */
 }
 
 /* Contenedor de etiqueta y valor */
-.cliente__campo-info {
+.contacto__campo-info {
     display: flex;
     /* Activa Flexbox */
     flex-direction: column;
@@ -299,7 +299,7 @@
 }
 
 /* Etiqueta del campo (Documento, Correo, etc.) */
-.cliente__campo-etiqueta {
+.contacto__campo-etiqueta {
     font-size: 11px;
     /* Tamaño muy pequeño */
     color: var(--color-texto-terciario);
@@ -311,7 +311,7 @@
 }
 
 /* Valor del campo */
-.cliente__campo-valor {
+.contacto__campo-valor {
     font-size: 13px;
     /* Tamaño pequeño */
     color: var(--color-texto);

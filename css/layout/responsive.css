@@ -511,7 +511,7 @@
     /* ---------- CLIENTES (Tablet) ---------- */
 
     /* Reduce el padding de la página */
-    .pagina-clientes {
+    .pagina-contactos {
         padding: 16px;
         /* Reduce padding */
         margin-bottom: 85px;
@@ -519,7 +519,7 @@
     }
 
     /* Grid de 1 columna en tablet */
-    .clientes-grid {
+    .contactos-grid {
         grid-template-columns: 1fr;
         /* 1 columna */
         gap: 16px;
@@ -527,13 +527,13 @@
     }
 
     /* Muestra las acciones siempre en tablet */
-    .cliente__acciones {
+    .contacto__acciones {
         opacity: 1;
         /* Siempre visible */
     }
 
     /* Reduce el tamaño del avatar */
-    .cliente__avatar {
+    .contacto__avatar {
         width: 48px;
         /* Reduce a 48px */
         height: 48px;
@@ -543,13 +543,13 @@
     }
 
     /* Reduce el nombre */
-    .cliente__nombre {
+    .contacto__nombre {
         font-size: 15px;
         /* Reduce el tamaño */
     }
 
     /* Reduce el tamaño de los campos */
-    .cliente__campo-valor {
+    .contacto__campo-valor {
         font-size: 12px;
         /* Reduce el tamaño */
     }
@@ -742,13 +742,13 @@
     /* ---------- CLIENTES (Mobile L) ---------- */
 
     /* Reduce el padding */
-    .pagina-clientes {
+    .pagina-contactos {
         padding: 12px;
         /* Reduce padding */
     }
 
     /* Reduce la tarjeta */
-    .cliente {
+    .contacto {
         padding: 16px;
         /* Reduce padding */
         gap: 12px;
@@ -756,7 +756,7 @@
     }
 
     /* Reduce el avatar */
-    .cliente__avatar {
+    .contacto__avatar {
         width: 44px;
         /* Reduce a 44px */
         height: 44px;
@@ -766,7 +766,7 @@
     }
 
     /* Reduce las acciones */
-    .cliente__accion {
+    .contacto__accion {
         width: 28px;
         /* Reduce a 28px */
         height: 28px;
@@ -776,13 +776,13 @@
     }
 
     /* Reduce el nombre */
-    .cliente__nombre {
+    .contacto__nombre {
         font-size: 14px;
         /* Reduce el tamaño */
     }
 
     /* Reduce el icono del campo */
-    .cliente__campo>i {
+    .contacto__campo>i {
         width: 28px;
         /* Reduce a 28px */
         height: 28px;
@@ -792,13 +792,13 @@
     }
 
     /* Reduce la etiqueta */
-    .cliente__campo-etiqueta {
+    .contacto__campo-etiqueta {
         font-size: 10px;
         /* Reduce el tamaño */
     }
 
     /* Reduce el valor */
-    .cliente__campo-valor {
+    .contacto__campo-valor {
         font-size: 11px;
         /* Reduce el tamaño */
     }
@@ -1190,7 +1190,7 @@
     /* ---------- CLIENTES (Mobile S) ---------- */
 
     /* Reduce la tarjeta */
-    .cliente {
+    .contacto {
         padding: 12px;
         /* Reduce padding */
         gap: 10px;
@@ -1198,7 +1198,7 @@
     }
 
     /* Reduce el avatar */
-    .cliente__avatar {
+    .contacto__avatar {
         width: 40px;
         /* Reduce a 40px */
         height: 40px;
@@ -1208,7 +1208,7 @@
     }
 
     /* Reduce las acciones */
-    .cliente__accion {
+    .contacto__accion {
         width: 26px;
         /* Reduce a 26px */
         height: 26px;
@@ -1218,13 +1218,13 @@
     }
 
     /* Reduce el nombre */
-    .cliente__nombre {
+    .contacto__nombre {
         font-size: 13px;
         /* Reduce el tamaño */
     }
 
     /* Reduce el icono del campo */
-    .cliente__campo>i {
+    .contacto__campo>i {
         width: 26px;
         /* Reduce a 26px */
         height: 26px;
@@ -1234,13 +1234,13 @@
     }
 
     /* Reduce la etiqueta */
-    .cliente__campo-etiqueta {
+    .contacto__campo-etiqueta {
         font-size: 9px;
         /* Reduce el tamaño */
     }
 
     /* Reduce el valor */
-    .cliente__campo-valor {
+    .contacto__campo-valor {
         font-size: 10px;
         /* Reduce el tamaño */
     }
