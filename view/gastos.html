@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/templete.css">
+    <title>Gastos Adicionales</title>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar__marca">
+            <img src="../assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
+        </div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__lista">
+                <li class="sidebar__elemento">
+                    <a href="home.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ganancias</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="productos.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Productos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="ventas.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ventas</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="clientes.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Clientes</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="compras.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Compras</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="proveedores.html" class="sidebar__enlace">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Proveedores</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="gastos.html" class="sidebar__enlace sidebar__enlace--activo">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Gastos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar__perfil">
+            <a href="#" class="sidebar__perfil-enlace">
+                <div class="sidebar__perfil-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="sidebar__perfil-info">
+                    <span class="sidebar__perfil-nombre">David Pineda</span>
+                    <span class="sidebar__perfil-rol">Super Admin</span>
+                </div>
+                <i class="fa-solid fa-chevron-right sidebar__perfil-flecha"></i>
+            </a>
+        </div>
+    </aside>
+    <main class="tablero">
+        <header class="pagina-header">
+            <h1 class="pagina-header__titulo">Gastos Adicionales</h1>
+            <div class="pagina-header__acciones">
+                <a href="#modal-gasto" class="boton-accion boton-accion--primario">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Registrar Gasto</span>
+                </a>
+            </div>
+        </header>
+
+        <section class="ventas-contenido">
+            <div class="tabla-contenedor">
+                <table class="tabla">
+                    <thead class="tabla__cabecera">
+                        <tr>
+                            <th class="tabla__th">Fecha</th>
+                            <th class="tabla__th">Tipo</th>
+                            <th class="tabla__th">Descripción</th>
+                            <th class="tabla__th">Monto</th>
+                            <th class="tabla__th">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabla__cuerpo">
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">08/12/2024</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Servicios</span>
+                            </td>
+                            <td class="tabla__td">Pago de energía eléctrica del local</td>
+                            <td class="tabla__td tabla__td--precio">$ 180.000</td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">07/12/2024</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transporte</span>
+                            </td>
+                            <td class="tabla__td">Flete de mercancía desde Bogotá</td>
+                            <td class="tabla__td tabla__td--precio">$ 250.000</td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">06/12/2024</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Arriendo</span>
+                            </td>
+                            <td class="tabla__td">Pago mensual del arriendo del local</td>
+                            <td class="tabla__td tabla__td--precio">$ 1.500.000</td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">05/12/2024</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Publicidad</span>
+                            </td>
+                            <td class="tabla__td">Anuncios en redes sociales</td>
+                            <td class="tabla__td tabla__td--precio">$ 150.000</td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">04/12/2024</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Empaque</span>
+                            </td>
+                            <td class="tabla__td">Bolsas y cajas para empaque</td>
+                            <td class="tabla__td tabla__td--precio">$ 80.000</td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">03/12/2024</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Mantenimiento</span>
+                            </td>
+                            <td class="tabla__td">Reparación aire acondicionado</td>
+                            <td class="tabla__td tabla__td--precio">$ 350.000</td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">02/12/2024</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Servicios</span>
+                            </td>
+                            <td class="tabla__td">Pago de agua del local</td>
+                            <td class="tabla__td tabla__td--precio">$ 65.000</td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">01/12/2024</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Transporte</span>
+                            </td>
+                            <td class="tabla__td">Envío de productos a Medellín</td>
+                            <td class="tabla__td tabla__td--precio">$ 120.000</td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">30/11/2024</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--efectivo">Otros</span>
+                            </td>
+                            <td class="tabla__td">Papelería y útiles de oficina</td>
+                            <td class="tabla__td tabla__td--precio">$ 45.000</td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="tabla__fila">
+                            <td class="tabla__td">29/11/2024</td>
+                            <td class="tabla__td">
+                                <span class="tabla__badge tabla__badge--transferencia">Servicios</span>
+                            </td>
+                            <td class="tabla__td">Internet y teléfono del local</td>
+                            <td class="tabla__td tabla__td--precio">$ 95.000</td>
+                            <td class="tabla__td tabla__td--acciones">
+                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                    title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                    title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="modal-gasto">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Registrar Gasto</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Tipo de Gasto</label>
+                    <select class="formulario__select" name="tipo_gasto" required>
+                        <option value="">Seleccionar tipo</option>
+                        <option value="arriendo">Arriendo</option>
+                        <option value="servicios">Servicios Públicos</option>
+                        <option value="transporte">Transporte</option>
+                        <option value="publicidad">Publicidad</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                        <option value="empaque">Empaque</option>
+                        <option value="comida">Comida</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Fecha</label>
+                        <input type="date" class="formulario__input" name="fecha" required>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Monto</label>
+                        <input type="number" class="formulario__input" name="monto" placeholder="$ 0" min="1" required>
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Descripción</label>
+                    <input type="text" class="formulario__input" name="descripcion"
+                        placeholder="Ej: Pago de energía eléctrica" required>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-gasto-exito" class="boton-accion boton-accion--primario">Guardar Gasto</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-gasto-exito">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡Gasto registrado correctamente!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-editar-gasto">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Gasto</h2>
+                <a href="#" class="modal__cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Tipo de Gasto</label>
+                    <select class="formulario__select" name="tipo_gasto" required>
+                        <option value="">Seleccionar tipo</option>
+                        <option value="arriendo">Arriendo</option>
+                        <option value="servicios" selected>Servicios Públicos</option>
+                        <option value="transporte">Transporte</option>
+                        <option value="publicidad">Publicidad</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                        <option value="empaque">Empaque</option>
+                        <option value="comida">Comida</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Fecha</label>
+                        <input type="date" class="formulario__input" name="fecha" value="2024-12-08" required>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Monto</label>
+                        <input type="number" class="formulario__input" name="monto" value="180000" min="1" required>
+                    </div>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Descripción</label>
+                    <input type="text" class="formulario__input" name="descripcion"
+                        value="Pago de energía eléctrica del local" required>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
+                    <a href="#modal-gasto-actualizado" class="boton-accion boton-accion--primario">Actualizar Gasto</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-gasto-actualizado">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡Gasto actualizado correctamente!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-eliminar-gasto">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
+            <div class="alerta">
+                <h2 class="alerta__titulo">¿Eliminar este gasto?</h2>
+                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este registro de gasto? Esta acción no se
+                    puede deshacer.</p>
+                <div class="alerta__acciones">
+                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
+                    <a href="#modal-gasto-eliminado" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-gasto-eliminado">
+        <a href="#" class="modal__overlay"></a>
+        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
+            <div class="alerta alerta--exito">
+                <div class="alerta__icono">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="alerta__mensaje">¡El gasto fue eliminado con éxito!</p>
+                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
