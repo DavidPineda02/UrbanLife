@@ -1086,6 +1086,14 @@
         /* Reduce el espacio */
     }
 
+    /* ---------- TABLA (Tablet con barra inferior) ---------- */
+
+    /* Limita altura de tabla restando header (~100px) y barra inferior (85px) */
+    .tabla__contenedor {
+        max-height: calc(100vh - 200px);
+        /* 100vh - header (100px) - barra inferior (100px) */
+    }
+
     /* ---------- TARJETAS ---------- */
 
     /* Ajusta el header de la tarjeta */
@@ -1340,6 +1348,14 @@
     .sidebar__enlace-info {
         display: none;
         /* No se muestra en celulares */
+    }
+
+    /* ---------- TABLA (Mobile L con barra inferior) ---------- */
+
+    /* Limita altura de tabla restando header (~90px) y barra inferior (70px) */
+    .tabla__contenedor {
+        max-height: calc(100vh - 180px);
+        /* 100vh - header (90px) - barra inferior (90px) */
     }
 }
 
