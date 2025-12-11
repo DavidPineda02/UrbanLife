@@ -115,6 +115,58 @@
     /* Ancho completo */
 }
 
+/* Modificador: Elemento de perfil (al final con separador) */
+.sidebar__elemento--perfil {
+    margin-top: auto;
+    /* Empuja al final del sidebar */
+    padding-top: 15px;
+    /* Espacio antes del borde */
+    border-top: 1px solid var(--color-borde);
+    /* Línea separadora superior */
+}
+
+/* Enlace del perfil con estilos especiales */
+.sidebar__elemento--perfil .sidebar__enlace {
+    border: 1px solid rgba(228, 39, 39, 0.15);
+    /* Borde rojo sutil */
+    box-shadow:
+        0 4px 15px -3px var(--color-marca-sombra),
+        0 2px 6px -2px rgba(228, 39, 39, 0.15);
+    /* Sombra roja de marca */
+}
+
+/* Hover del enlace del perfil */
+.sidebar__elemento--perfil .sidebar__enlace:hover {
+    box-shadow:
+        0 8px 25px -3px var(--color-marca-sombra),
+        0 4px 10px -2px rgba(228, 39, 39, 0.2);
+    /* Sombra roja más intensa */
+    border-color: rgba(228, 39, 39, 0.25);
+    /* Borde más visible */
+}
+
+/* Contenedor de info (nombre + rol) */
+.sidebar__enlace-info {
+    display: flex;
+    /* Activa Flexbox */
+    flex-direction: column;
+    /* Apila verticalmente */
+    flex: 1;
+    /* Ocupa espacio disponible */
+    gap: 2px;
+    /* Espacio mínimo entre nombre y rol */
+}
+
+/* Rol del usuario */
+.sidebar__enlace-rol {
+    font-size: 12px;
+    /* Tamaño pequeño */
+    color: var(--color-texto-secundario);
+    /* Color gris */
+    font-weight: 400;
+    /* Peso normal */
+}
+
 /* ========================================
    ELEMENTO: Enlace de navegación
    ======================================== */
