@@ -134,3 +134,187 @@
     text-decoration: underline;
     /* Muestra subrayado al pasar el mouse */
 }
+
+/* ============================================
+   RESPONSIVE: TABLET (max-width: 768px)
+   ============================================ */
+
+@media screen and (max-width: 768px) {
+
+    /* Cambia a 1 columna */
+    .autenticacion {
+        grid-template-columns: 1fr;
+        /* Solo una columna */
+    }
+
+    /* Oculta la imagen de fondo */
+    .autenticacion__imagen {
+        display: none;
+        /* No se muestra en tablet/móviles */
+    }
+
+    /* Contenido ocupa toda la pantalla */
+    .autenticacion__contenido {
+        padding: 30px 20px;
+        /* Padding para respirar */
+        justify-content: center;
+        /* Centra verticalmente */
+        gap: 30px;
+        /* Espacio entre elementos */
+    }
+
+    /* Reduce el logo */
+    .autenticacion__logo {
+        height: 120px;
+        /* Más pequeño */
+    }
+
+    /* Formulario más ancho */
+    .formulario {
+        width: 100%;
+        /* Ancho completo */
+        max-width: 400px;
+        /* Máximo 400px */
+    }
+}
+
+/* ============================================
+   RESPONSIVE: MOBILE L (max-width: 480px)
+   ============================================ */
+
+@media screen and (max-width: 480px) {
+
+    /* Contenido con menos padding */
+    .autenticacion__contenido {
+        padding: 20px 16px;
+        /* Menos padding */
+        gap: 24px;
+        /* Menos espacio */
+    }
+
+    /* Logo más pequeño */
+    .autenticacion__logo {
+        height: 100px;
+        /* Más pequeño */
+    }
+
+    /* Formulario ajustado */
+    .formulario {
+        max-width: 100%;
+        /* Todo el ancho disponible */
+        gap: 8px;
+        /* Menos espacio entre grupos */
+    }
+
+    /* Grupos más compactos */
+    .formulario__grupo {
+        margin-bottom: 8px;
+        /* Menos margen */
+    }
+
+    /* Campos más pequeños */
+    .formulario__campo {
+        padding: 12px 14px;
+        /* Menos padding */
+        font-size: 14px;
+        /* Tamaño legible */
+    }
+
+    /* Etiquetas más pequeñas */
+    .formulario__etiqueta {
+        font-size: 12px;
+        /* Más pequeño */
+        margin-bottom: 6px;
+        /* Menos margen */
+    }
+
+    /* Acciones mantienen formato horizontal */
+    .formulario__acciones {
+        flex-wrap: wrap;
+        /* Permite wrap si no cabe */
+        gap: 8px;
+        /* Espacio entre elementos */
+        font-size: 12px;
+        /* Texto más pequeño */
+    }
+
+    /* Botones más compactos */
+    .formulario__boton {
+        padding: 12px;
+        /* Menos padding */
+        font-size: 14px;
+        /* Más pequeño */
+    }
+
+    /* Botón principal ajustado */
+    .formulario__boton--principal,
+    .formulario__boton--google {
+        height: 46px;
+        /* Más bajo */
+    }
+
+    /* Contenedor de botones */
+    .formulario__botones {
+        gap: 14px;
+        /* Menos espacio */
+        margin-top: 16px;
+        /* Menos margen */
+    }
+}
+
+/* ============================================
+   RESPONSIVE: MOBILE M (max-width: 375px)
+   ============================================ */
+
+@media screen and (max-width: 375px) {
+
+    /* Contenido más compacto */
+    .autenticacion__contenido {
+        padding: 16px 12px;
+        /* Menos padding */
+        gap: 16px;
+        /* Menos espacio */
+    }
+
+    /* Logo aún más pequeño */
+    .autenticacion__logo {
+        height: 80px;
+        /* Más pequeño */
+    }
+
+    /* Texto de links más pequeño */
+    .autenticacion__links {
+        font-size: 11px;
+        /* Más pequeño */
+    }
+
+    /* Campos aún más compactos */
+    .formulario__campo {
+        padding: 10px 12px;
+        /* Menos padding */
+        font-size: 13px;
+        /* Más pequeño */
+    }
+
+    /* Etiquetas más pequeñas */
+    .formulario__etiqueta {
+        font-size: 11px;
+        /* Más pequeño */
+    }
+
+    /* Textos del formulario */
+    .formulario__texto,
+    .formulario__enlace {
+        font-size: 11px;
+        /* Más pequeño */
+    }
+
+    /* Botones más compactos */
+    .formulario__boton--principal,
+    .formulario__boton--google {
+        height: 42px;
+        /* Más bajo */
+        font-size: 13px;
+        /* Más pequeño */
+    }
+}

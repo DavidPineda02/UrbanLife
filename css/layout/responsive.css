@@ -1335,6 +1335,102 @@
         height: 28px;
         font-size: 12px;
     }
+
+    /* ---------- CONTACTOS (Tablet) ---------- */
+
+    /* 2 columnas fijas en tablet */
+    .contactos__grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columnas fijas */
+        gap: 16px;
+        /* Espacio reducido */
+    }
+
+    /* Card de contacto más compacta */
+    .contacto {
+        padding: 16px;
+        /* Padding reducido */
+    }
+
+    /* Avatar más pequeño */
+    .contacto__avatar {
+        width: 44px;
+        /* Más pequeño */
+        height: 44px;
+        /* Más pequeño */
+        font-size: 18px;
+        /* Icono más pequeño */
+    }
+
+    /* Nombre más pequeño */
+    .contacto__nombre {
+        font-size: 14px;
+        /* Más pequeño */
+    }
+
+    /* ---------- PRODUCTOS (Tablet) ---------- */
+
+    /* Muestra las acciones siempre en tablet (sin hover en dispositivos táctiles) */
+    .producto__acciones {
+        opacity: 1;
+        /* Siempre visible */
+    }
+
+    /* Grid de productos más compacto */
+    .productos__grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        /* Columnas más pequeñas */
+        gap: 14px;
+        /* Espacio reducido */
+    }
+
+    /* Imagen del producto más pequeña */
+    .producto__imagen {
+        height: 160px;
+        /* Altura reducida */
+    }
+
+    /* Contenido más compacto */
+    .producto__contenido {
+        padding: 14px;
+        /* Padding reducido */
+    }
+
+    /* Nombre del producto más pequeño */
+    .producto__nombre {
+        font-size: 15px;
+        /* Más pequeño */
+    }
+
+    /* Precio más pequeño */
+    .producto__precio {
+        font-size: 15px;
+        /* Más pequeño */
+    }
+
+    /* Stock más pequeño */
+    .producto__stock {
+        font-size: 12px;
+        /* Más pequeño */
+    }
+
+    /* Botones de acción más pequeños */
+    .producto__accion {
+        width: 32px;
+        /* Más pequeño */
+        height: 32px;
+        /* Más pequeño */
+        font-size: 12px;
+        /* Icono más pequeño */
+    }
+
+    /* Categoría más pequeña */
+    .producto__categoria {
+        font-size: 11px;
+        /* Más pequeño */
+        padding: 6px 12px;
+        /* Padding reducido */
+    }
 }
 
 /* ============================================ */
@@ -1356,6 +1452,135 @@
     .tabla__contenedor {
         max-height: calc(100vh - 180px);
         /* 100vh - header (90px) - barra inferior (90px) */
+    }
+
+    /* ---------- CONTACTOS (Mobile L) ---------- */
+
+    /* 1 columna en móviles */
+    .contactos__grid {
+        grid-template-columns: 1fr;
+        /* 1 columna */
+        gap: 14px;
+        /* Espacio reducido */
+    }
+
+    /* Card de contacto más compacta */
+    .contacto {
+        padding: 14px;
+        /* Padding reducido */
+    }
+
+    /* Avatar más pequeño */
+    .contacto__avatar {
+        width: 40px;
+        /* Más pequeño */
+        height: 40px;
+        /* Más pequeño */
+        font-size: 16px;
+        /* Icono más pequeño */
+    }
+
+    /* Nombre más pequeño */
+    .contacto__nombre {
+        font-size: 13px;
+        /* Más pequeño */
+    }
+
+    /* Campos más compactos */
+    .contacto__campo>i {
+        width: 28px;
+        /* Más pequeño */
+        height: 28px;
+        /* Más pequeño */
+        font-size: 11px;
+        /* Icono más pequeño */
+    }
+
+    .contacto__campo-valor {
+        font-size: 12px;
+        /* Más pequeño */
+    }
+
+    /* ---------- PRODUCTOS (Mobile L) ---------- */
+
+    /* Acciones siempre visibles (hereda del tablet, reforzamos) */
+    .producto__acciones {
+        opacity: 1;
+        /* Siempre visible */
+    }
+
+    /* Grid de 2 columnas en mobile */
+    .productos__grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columnas fijas */
+        gap: 12px;
+        /* Espacio reducido */
+    }
+
+    /* Imagen más pequeña */
+    .producto__imagen {
+        height: 120px;
+        /* Altura reducida */
+    }
+
+    /* Contenido más compacto */
+    .producto__contenido {
+        padding: 12px;
+        /* Padding reducido */
+    }
+
+    /* Nombre más pequeño */
+    .producto__nombre {
+        font-size: 13px;
+        /* Más pequeño */
+        margin-bottom: 4px;
+        /* Menos margen */
+    }
+
+    /* Descripción oculta en móviles pequeños */
+    .producto__descripcion {
+        display: none;
+        /* Oculta para ahorrar espacio */
+    }
+
+    /* Footer más compacto */
+    .producto__footer {
+        padding-top: 10px;
+        /* Menos padding */
+    }
+
+    /* Precio más pequeño */
+    .producto__precio {
+        font-size: 14px;
+        /* Más pequeño */
+    }
+
+    /* Stock más pequeño */
+    .producto__stock {
+        font-size: 11px;
+        /* Más pequeño */
+    }
+
+    /* Botones de acción más pequeños */
+    .producto__accion {
+        width: 28px;
+        /* Más pequeño */
+        height: 28px;
+        /* Más pequeño */
+        font-size: 11px;
+        /* Icono más pequeño */
+    }
+
+    /* Categoría más pequeña */
+    .producto__categoria {
+        font-size: 10px;
+        /* Más pequeño */
+        padding: 5px 10px;
+        /* Padding reducido */
+        top: 10px;
+        /* Ajusta posición */
+        left: 10px;
+        /* Ajusta posición */
     }
 }
 
@@ -1452,6 +1677,22 @@
         /* Reduce el tamaño */
         padding: 2px 6px;
         /* Reduce el padding */
+    }
+
+    /* ---------- PRODUCTOS (Mobile ≤375px) ---------- */
+
+    /* Grid de 1 columna en móviles pequeños */
+    .productos__grid {
+        grid-template-columns: 1fr;
+        /* 1 sola columna */
+        gap: 12px;
+        /* Espacio reducido */
+    }
+
+    /* Imagen un poco más grande al tener más espacio horizontal */
+    .producto__imagen {
+        height: 140px;
+        /* Altura ajustada */
     }
 
     /* Gráficos */
