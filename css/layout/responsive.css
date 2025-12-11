@@ -3,15 +3,447 @@
 /* ============================================ */
 
 /* 
-   BREAKPOINTS ESPECÍFICOS:
-   - Desktop Grande: > 1440px 
-   - Laptop L: 1440px 
-   - Laptop: <= 1024px
-   - Tablet: <= 768px
-   - Mobile L: <= 425px
-   - Mobile M: <= 375px
-   - Mobile S: <= 320px
+   BREAKPOINTS OPTIMIZADOS:
+   
+   DESKTOP GRANDE:
+   - >= 1440px — Monitores grandes
+   
+   LAPTOPS:
+   - 1280px — Base
+   - <= 1024px — Laptops pequeñas
+   
+   TABLETS:
+   - <= 768px — Tablets vertical
+   
+   MÓVILES:
+   - <= 375px — iPhone estándar
+   - <= 320px — Móviles pequeños
 */
+
+/* ============================================ */
+/* ===== DESKTOP GRANDE (>= 1440px) ========== */
+/* ============================================ */
+
+@media screen and (min-width: 1440px) {
+
+    /* ---------- SIDEBAR (Desktop Grande) ---------- */
+
+    /* Aumenta el ancho del sidebar */
+    .sidebar {
+        width: 280px;
+        /* Ancho más generoso */
+    }
+
+    /* Aumenta el logo */
+    .sidebar__logo {
+        width: 100%;
+        /* Ancho completo */
+        padding: 20px 0;
+        /* Más padding */
+    }
+
+    /* Ajusta el main para el nuevo ancho del sidebar */
+    main {
+        margin-left: 280px;
+        /* Mismo ancho que el sidebar */
+    }
+
+    /* ---------- TABLERO (Desktop Grande) ---------- */
+
+    .tablero {
+        padding: 30px;
+        /* Más padding */
+        gap: 35px;
+        /* Más espacio entre secciones */
+    }
+
+    /* ---------- TARJETAS (Desktop Grande) ---------- */
+
+    .tarjeta__icono {
+        width: 52px;
+        /* Aumenta el tamaño */
+        height: 52px;
+        /* Aumenta el tamaño */
+        font-size: 20px;
+        /* Aumenta el icono */
+    }
+
+    .tarjeta__titulo {
+        font-size: 14px;
+        /* Aumenta el tamaño */
+    }
+
+    .tarjeta__valor {
+        font-size: 28px;
+        /* Aumenta el tamaño */
+    }
+
+    .tarjeta__insignia {
+        font-size: 13px;
+        /* Aumenta el tamaño */
+    }
+
+    /* ---------- GRÁFICOS (Desktop Grande) ---------- */
+
+    .grafico__titulo {
+        font-size: 18px;
+        /* Aumenta el tamaño */
+    }
+
+    .grafico__subtitulo {
+        font-size: 14px;
+        /* Aumenta el tamaño */
+    }
+
+    /* Gráfico de barras */
+    .barras__eje-etiqueta {
+        font-size: 13px;
+        /* Aumenta el tamaño */
+    }
+
+    .barras__dia {
+        font-size: 13px;
+        /* Aumenta el tamaño */
+    }
+
+    .barras__valor {
+        font-size: 12px;
+        /* Aumenta el tamaño */
+    }
+
+    /* Gráfico pastel */
+    .pastel-dona {
+        width: 180px;
+        /* Aumenta el tamaño */
+        height: 180px;
+        /* Aumenta el tamaño */
+    }
+
+    .pastel-dona__total-valor {
+        font-size: 30px;
+        /* Aumenta el tamaño */
+    }
+
+    .pastel-leyenda__etiqueta {
+        font-size: 15px;
+        /* Aumenta el tamaño */
+    }
+
+    .pastel-leyenda__valor {
+        font-size: 13px;
+        /* Aumenta el tamaño */
+    }
+
+    /* Gráfico margen */
+    .margen-elemento__icono {
+        width: 42px;
+        /* Aumenta el tamaño */
+        height: 42px;
+        /* Aumenta el tamaño */
+    }
+
+    .margen-elemento__nombre {
+        font-size: 15px;
+        /* Aumenta el tamaño */
+    }
+
+    /* ---------- TABLA (Desktop Grande) ---------- */
+
+    .tabla__contenedor {
+        max-height: calc(100vh - 120px);
+        /* Altura dinámica */
+    }
+
+    .tabla__th,
+    .tabla__td {
+        padding: 16px 14px;
+        /* Más padding */
+        font-size: 15px;
+        /* Aumenta el tamaño */
+    }
+
+    .tabla__badge {
+        font-size: 13px;
+        /* Aumenta el tamaño */
+    }
+
+    .tabla__accion {
+        width: 36px;
+        /* Aumenta el tamaño */
+        height: 36px;
+        /* Aumenta el tamaño */
+        font-size: 15px;
+        /* Aumenta el icono */
+    }
+
+    /* ---------- PRODUCTOS (Desktop Grande) ---------- */
+
+    .productos__grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        /* Columnas más grandes */
+        gap: 24px;
+        /* Más espacio */
+    }
+
+    .producto__imagen {
+        height: 220px;
+        /* Aumenta la altura */
+    }
+
+    .producto__info {
+        padding: 20px;
+        /* Más padding */
+    }
+
+    .producto__nombre {
+        font-size: 17px;
+        /* Aumenta el tamaño */
+    }
+
+    .producto__precio {
+        font-size: 20px;
+        /* Aumenta el tamaño */
+    }
+
+    /* ---------- CONTACTOS (Desktop Grande) ---------- */
+
+    .contactos__grid {
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        /* Columnas más grandes */
+        gap: 24px;
+        /* Más espacio */
+    }
+
+    .contacto__avatar {
+        width: 60px;
+        /* Aumenta el tamaño */
+        height: 60px;
+        /* Aumenta el tamaño */
+    }
+
+    .contacto__nombre {
+        font-size: 18px;
+        /* Aumenta el tamaño */
+    }
+
+    /* ---------- PAGINA HEADER (Desktop Grande) ---------- */
+
+    .pagina-header {
+        margin-bottom: 28px;
+        /* Más margen */
+    }
+
+    .pagina-header__titulo {
+        font-size: 28px;
+        /* Aumenta el tamaño */
+    }
+
+    /* ---------- BOTON ACCION (Desktop Grande) ---------- */
+
+    .boton-accion {
+        padding: 12px 22px;
+        /* Más padding */
+        font-size: 15px;
+        /* Aumenta el tamaño */
+    }
+
+    /* ---------- MODAL (Desktop Grande) ---------- */
+
+    .modal__contenedor {
+        max-width: 650px;
+        /* Aumenta el ancho */
+        padding: 35px;
+        /* Más padding */
+    }
+
+    .modal__titulo {
+        font-size: 24px;
+        /* Aumenta el tamaño */
+    }
+
+    .formulario__etiqueta {
+        font-size: 14px;
+        /* Aumenta el tamaño */
+    }
+
+    .formulario__input,
+    .formulario__select {
+        padding: 14px 16px;
+        /* Más padding */
+        font-size: 15px;
+        /* Aumenta el tamaño */
+    }
+
+    /* ---------- PERFIL (Desktop Grande) ---------- */
+
+    .perfil__header {
+        padding: 28px 35px;
+        /* Más padding */
+    }
+
+    .perfil__avatar {
+        width: 85px;
+        /* Aumenta el tamaño */
+        height: 85px;
+        /* Aumenta el tamaño */
+    }
+
+    .perfil__iniciales {
+        font-size: 32px;
+        /* Aumenta el tamaño */
+    }
+
+    .perfil__nombre {
+        font-size: 26px;
+        /* Aumenta el tamaño */
+    }
+
+    .perfil__seccion {
+        padding: 22px;
+        /* Más padding */
+    }
+}
+
+/* ============================================ */
+/* ===== LAPTOP L (<= 1280px) ================ */
+/* ============================================ */
+
+@media screen and (max-width: 1280px) {
+
+    /* ---------- SIDEBAR (Laptop L) ---------- */
+
+    /* Reduce el ancho del sidebar */
+    .sidebar {
+        width: 240px;
+        /* Ancho fijo de 240px */
+    }
+
+    /* Ajusta el logo */
+    .sidebar__logo {
+        width: 90%;
+        /* Reduce al 90% del ancho */
+    }
+
+    /* Ajusta el main para el nuevo ancho del sidebar */
+    main {
+        margin-left: 240px;
+        /* Mismo ancho que el sidebar */
+    }
+
+    /* ---------- TABLERO (Laptop L) ---------- */
+
+    .tablero {
+        padding: 20px;
+        /* Reduce el padding */
+        gap: 24px;
+        /* Reduce el espacio entre secciones */
+    }
+
+    /* ---------- TARJETAS (Laptop L) ---------- */
+
+    .tarjeta__icono {
+        width: 42px;
+        /* Reduce ligeramente */
+        height: 42px;
+        /* Reduce ligeramente */
+    }
+
+    .tarjeta__titulo {
+        font-size: 12px;
+        /* Reduce el tamaño */
+    }
+
+    .tarjeta__valor {
+        font-size: 22px;
+        /* Reduce el tamaño */
+    }
+
+    /* ---------- GRÁFICOS (Laptop L) ---------- */
+
+    .grafico__titulo {
+        font-size: 16px;
+        /* Reduce ligeramente */
+    }
+
+    /* ---------- TABLA (Laptop L) ---------- */
+
+    .tabla__contenedor {
+        max-height: calc(100vh - 140px);
+        /* Altura dinámica */
+    }
+
+    /* ---------- PRODUCTOS (Laptop L) ---------- */
+
+    .productos__grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        /* Columnas más pequeñas */
+        gap: 18px;
+        /* Reduce el espacio */
+    }
+
+    .producto__imagen {
+        height: 170px;
+        /* Reduce la altura */
+    }
+
+    /* ---------- CONTACTOS (Laptop L) ---------- */
+
+    .contactos__grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        /* Columnas más pequeñas */
+        gap: 18px;
+        /* Reduce el espacio */
+    }
+
+    /* ---------- PAGINA HEADER (Laptop L) ---------- */
+
+    .pagina-header {
+        margin-bottom: 22px;
+        /* Reduce el margen */
+        gap: 14px;
+        /* Reduce el espacio */
+    }
+
+    .pagina-header__titulo {
+        font-size: 22px;
+        /* Reduce el tamaño */
+    }
+
+    /* ---------- BOTON ACCION (Laptop L) ---------- */
+
+    .boton-accion {
+        padding: 9px 16px;
+        /* Reduce el padding */
+        font-size: 13px;
+        /* Reduce el tamaño */
+    }
+
+    /* ---------- MODAL (Laptop L) ---------- */
+
+    .modal__contenedor {
+        max-width: 580px;
+        /* Reduce el ancho */
+        padding: 28px;
+        /* Reduce el padding */
+    }
+
+    .modal__titulo {
+        font-size: 20px;
+        /* Reduce el tamaño */
+    }
+
+    /* ---------- PERFIL (Laptop L) ---------- */
+
+    .perfil__header {
+        padding: 22px 26px;
+        /* Reduce el padding */
+    }
+
+    .perfil__nombre {
+        font-size: 22px;
+        /* Reduce el tamaño */
+    }
+}
 
 /* ============================================ */
 /* ===== LAPTOP (<= 1024px) ================== */
@@ -315,16 +747,40 @@
     }
 
     /* OCULTAR FLECHA EN TABLET Y MÓVILES */
-    .sidebar__enlace-flecha,
-    .sidebar__perfil-flecha {
+    .sidebar__enlace-flecha {
         display: none !important;
         /* Oculta las flechas */
     }
 
-    /* Ocultar perfil en tablet/mobile */
-    .sidebar__perfil {
+    /* Elemento perfil sin separador en barra inferior */
+    .sidebar__elemento--perfil {
+        margin-top: 0;
+        /* No empuja al final en barra horizontal */
+        padding-top: 0;
+        /* Sin padding extra */
+        border-top: none;
+        /* Sin línea separadora */
+    }
+
+    /* Quitar estilos especiales del perfil en barra inferior */
+    .sidebar__elemento--perfil .sidebar__enlace {
+        border: none;
+        /* Sin borde rojo */
+        box-shadow: none;
+        /* Sin sombra roja */
+    }
+
+    .sidebar__elemento--perfil .sidebar__enlace:hover {
+        box-shadow: none;
+        /* Sin sombra en hover */
+        border: none;
+        /* Sin borde */
+    }
+
+    /* Ocultar solo el rol del perfil en Tablet */
+    .sidebar__enlace-rol {
         display: none;
-        /* No se muestra */
+        /* No se muestra en tablet */
     }
 
     /* ---------- MAIN / TABLERO ---------- */
@@ -609,10 +1065,24 @@
 }
 
 /* ============================================ */
-/* ===== MOBILE L (<= 425px) ================= */
+/* ===== MOBILE L (<= 480px) ================= */
 /* ============================================ */
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 480px) {
+
+    /* Ocultar texto e info del sidebar en celulares, solo iconos */
+    .sidebar__enlace-texto,
+    .sidebar__enlace-info {
+        display: none;
+        /* No se muestra en celulares */
+    }
+}
+
+/* ============================================ */
+/* ===== MOBILE (<= 375px) =================== */
+/* ============================================ */
+
+@media screen and (max-width: 375px) {
 
     /* Ajusta la lista del sidebar */
     .sidebar__lista {
@@ -638,10 +1108,11 @@
         /* Reduce el icono */
     }
 
-    /* Ajusta el texto */
-    .sidebar__enlace-texto {
-        font-size: 8px;
-        /* Texto muy pequeño */
+    /* Ocultar texto e info del sidebar, solo iconos */
+    .sidebar__enlace-texto,
+    .sidebar__enlace-info {
+        display: none;
+        /* No se muestra en Mobile */
     }
 
     /* FLECHA YA OCULTA DESDE TABLET */
@@ -894,203 +1365,6 @@
     .formulario__acciones .boton-accion {
         width: 100%;
         justify-content: center;
-    }
-}
-
-/* ============================================ */
-/* ===== MOBILE M (<= 375px) ================= */
-/* ============================================ */
-
-@media screen and (max-width: 375px) {
-
-    /* Ajusta la lista del sidebar */
-    .sidebar__lista {
-        padding: 6px 2px;
-        /* Reduce el padding */
-        gap: 2px;
-        /* Reduce el espacio */
-    }
-
-    /* Ajusta los enlaces */
-    .sidebar__enlace {
-        padding: 6px 2px;
-        /* Reduce el padding */
-    }
-
-    /* Ajusta el avatar */
-    .sidebar__enlace-avatar {
-        width: 26px;
-        /* Reduce a 26px */
-        height: 26px;
-        /* Reduce a 26px */
-        font-size: 11px;
-        /* Reduce el icono */
-    }
-
-    /* Ajusta el texto */
-    .sidebar__enlace-texto {
-        font-size: 7px;
-        /* Texto mínimo */
-    }
-
-    /* FLECHA YA OCULTA DESDE TABLET */
-
-    /* Ajusta el main */
-    main {
-        margin-bottom: 70px;
-        /* Reduce el espacio */
-        padding: 10px;
-        /* Reduce el padding */
-        height: calc(100vh - 70px);
-        /* Ajusta la altura */
-    }
-
-    /* Ajusta el tablero */
-    .tablero {
-        padding: 8px;
-        /* Reduce el padding */
-        gap: 12px;
-        /* Reduce el espacio */
-    }
-
-    /* Tarjetas en 2 columnas compactas */
-    .tablero__tarjetas {
-        grid-template-columns: 1fr 1fr;
-        /* 2 columnas */
-        gap: 6px;
-        /* Reduce el espacio */
-    }
-
-    /* Ajusta el icono de la tarjeta */
-    .tarjeta__icono {
-        width: 28px;
-        /* Reduce a 28px */
-        height: 28px;
-        /* Reduce a 28px */
-        font-size: 10px;
-        /* Reduce el icono */
-    }
-
-    /* Ajusta el título */
-    .tarjeta__titulo {
-        font-size: 9px;
-        /* Reduce el tamaño */
-    }
-
-    /* Ajusta el valor */
-    .tarjeta__valor {
-        font-size: 14px;
-        /* Reduce el tamaño */
-    }
-
-    /* Ajusta la insignia */
-    .tarjeta__insignia {
-        font-size: 9px;
-        /* Reduce el tamaño */
-        padding: 2px 4px;
-        /* Reduce el padding */
-    }
-
-    /* Gráficos */
-    .grafico__titulo {
-        font-size: 12px;
-        /* Reduce el tamaño */
-    }
-
-    .grafico__subtitulo {
-        font-size: 10px;
-        /* Reduce el tamaño */
-    }
-
-    .barras__eje-etiqueta {
-        font-size: 8px;
-        /* Reduce el tamaño */
-    }
-
-    .barras__dia {
-        font-size: 8px;
-        /* Reduce el tamaño */
-    }
-
-    .barras__elemento {
-        min-width: 14px;
-        /* Reduce el ancho mínimo */
-    }
-
-    .barras__valor {
-        font-size: 7px;
-        /* Reduce el tamaño */
-    }
-
-    /* Pastel - cambia a layout vertical */
-    .pastel__contenedor {
-        flex-direction: column;
-        /* Apila verticalmente */
-        align-items: center;
-        /* Centra */
-    }
-
-    .pastel-dona {
-        width: 110px;
-        /* Reduce el tamaño */
-        height: 110px;
-        /* Reduce el tamaño */
-    }
-
-    .pastel-dona__total-valor {
-        font-size: 18px;
-        /* Reduce el tamaño */
-    }
-
-    .pastel-leyenda {
-        width: 100%;
-        /* Ancho completo */
-    }
-
-    .pastel-leyenda__etiqueta {
-        font-size: 10px;
-        /* Reduce el tamaño */
-    }
-
-    .pastel-leyenda__valor {
-        font-size: 8px;
-        /* Reduce el tamaño */
-    }
-
-    .pastel-leyenda__porcentaje {
-        font-size: 10px;
-        /* Reduce el tamaño */
-    }
-
-    /* Margen */
-    .margen-elemento__icono {
-        width: 24px;
-        /* Reduce el tamaño */
-        height: 24px;
-        /* Reduce el tamaño */
-        font-size: 10px;
-        /* Reduce el icono */
-    }
-
-    .margen-elemento__nombre {
-        font-size: 10px;
-        /* Reduce el tamaño */
-    }
-
-    .margen-elemento__porcentaje {
-        font-size: 10px;
-        /* Reduce el tamaño */
-    }
-
-    /* Resumen semanal */
-    .resumen-semanal__etiqueta {
-        font-size: 10px;
-        /* Reduce el tamaño */
-    }
-
-    .resumen-semanal__valor {
-        font-size: 9px;
-        /* Reduce el tamaño */
     }
 }
 
