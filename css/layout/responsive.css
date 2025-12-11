@@ -4,14 +4,13 @@
 
 /* 
    BREAKPOINTS ESPECÍFICOS:
-   - Desktop Grande: > 1024px (estilos base)
+   - Desktop Grande: > 1440px 
+   - Laptop L: 1440px 
    - Laptop: <= 1024px
    - Tablet: <= 768px
    - Mobile L: <= 425px
    - Mobile M: <= 375px
-   - Mobile S: <= 320px
-   
-   Solo HTML y CSS, sin JavaScript
+   - Mobile S: <= 320px
 */
 
 /* ============================================ */

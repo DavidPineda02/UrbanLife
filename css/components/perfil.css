@@ -5,354 +5,591 @@
 /* Contenedor principal del perfil */
 .perfil {
     display: flex;
+    /* Activa flexbox */
     flex-direction: column;
+    /* Dirección vertical */
     gap: 24px;
+    /* Espacio entre elementos */
     width: 100%;
+    /* Ancho completo */
 }
 
 /* ========================================
    HEADER DEL PERFIL
    ======================================== */
 
+/* Header/banner principal del perfil */
 .perfil__header {
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: 20px;
+    /* Espacio entre avatar e info */
     padding: 20px 28px;
+    /* Espaciado interno */
     background: white;
+    /* Fondo blanco */
     border-radius: 16px;
+    /* Esquinas redondeadas */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    /* Sombra suave */
     border: 1px solid #e5e7eb;
+    /* Borde gris claro */
     transition: all 0.3s ease;
+    /* Transición suave */
 }
 
+/* Estado hover del header */
 .perfil__header:hover {
     box-shadow:
         0 4px 15px -3px var(--color-marca-sombra),
         0 2px 6px -2px rgba(228, 39, 39, 0.15);
+    /* Sombra roja de marca */
     border-color: rgba(228, 39, 39, 0.2);
+    /* Borde rojo sutil */
 }
 
-/* Avatar con iniciales */
+/* Avatar con iniciales del usuario */
 .perfil__avatar {
     width: 70px;
+    /* Ancho del avatar */
     height: 70px;
+    /* Alto del avatar */
     border-radius: 16px;
+    /* Esquinas redondeadas */
     background: linear-gradient(135deg, var(--color-marca) 0%, #b91c1c 100%);
+    /* Gradiente rojo de marca */
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     justify-content: center;
+    /* Centra horizontalmente */
     flex-shrink: 0;
+    /* No se encoge */
     box-shadow:
         0 6px 15px -3px var(--color-marca-sombra),
         0 0 0 3px rgba(255, 255, 255, 0.9);
+    /* Sombra y borde blanco */
     position: relative;
+    /* Posición relativa */
     z-index: 1;
+    /* Por encima de otros elementos */
 }
 
+/* Iniciales del usuario dentro del avatar */
 .perfil__iniciales {
     font-size: 26px;
+    /* Tamaño de fuente grande */
     font-weight: 700;
+    /* Negrita */
     color: white;
+    /* Color blanco */
     text-transform: uppercase;
+    /* Mayúsculas */
     letter-spacing: 1px;
+    /* Espacio entre letras */
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Sombra del texto */
 }
 
 /* Info principal al lado del avatar */
 .perfil__info-principal {
     display: flex;
+    /* Activa flexbox */
     flex-direction: column;
+    /* Dirección vertical */
     gap: 4px;
+    /* Espacio entre elementos */
     flex: 1;
+    /* Ocupa espacio disponible */
 }
 
+/* Nombre del usuario */
 .perfil__nombre {
     font-size: 22px;
+    /* Tamaño grande */
     font-weight: 700;
+    /* Negrita */
     color: var(--color-texto-primario);
+    /* Color de texto principal */
     margin: 0;
+    /* Sin márgenes */
 }
 
+/* Badge de estado (activo/inactivo) */
 .perfil__badge {
     display: inline-flex;
+    /* Flexbox en línea */
     align-items: center;
+    /* Centra verticalmente */
     gap: 6px;
+    /* Espacio entre punto y texto */
     width: fit-content;
+    /* Ancho ajustado al contenido */
     padding: 6px 14px;
+    /* Espaciado interno */
     border-radius: 50px;
+    /* Bordes redondeados (pill) */
     font-size: 12px;
+    /* Tamaño pequeño */
     font-weight: 600;
+    /* Semi-negrita */
     text-transform: uppercase;
+    /* Mayúsculas */
     letter-spacing: 0.5px;
+    /* Espacio entre letras */
 }
 
+/* Punto indicador del badge (pseudo-elemento) */
 .perfil__badge::before {
     content: '';
+    /* Contenido vacío */
     width: 8px;
+    /* Ancho del punto */
     height: 8px;
+    /* Alto del punto */
     border-radius: 50%;
+    /* Circular */
     animation: pulse 2s ease infinite;
+    /* Animación de pulso */
 }
 
+/* Badge activo - Verde */
 .perfil__badge--activo {
     background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    /* Gradiente verde claro */
     color: #15803d;
+    /* Texto verde oscuro */
 }
 
+/* Punto verde para badge activo */
 .perfil__badge--activo::before {
     background: #22c55e;
+    /* Verde brillante */
 }
 
+/* Badge inactivo - Rojo */
 .perfil__badge--inactivo {
     background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    /* Gradiente rojo claro */
     color: #dc2626;
+    /* Texto rojo oscuro */
 }
 
+/* Punto rojo para badge inactivo */
 .perfil__badge--inactivo::before {
     background: #ef4444;
+    /* Rojo brillante */
 }
 
+/* Rol del usuario */
 .perfil__rol {
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: 10px;
+    /* Espacio entre icono y texto */
     font-size: 15px;
+    /* Tamaño de fuente */
     color: var(--color-texto-secundario);
+    /* Color gris */
     margin: 0;
+    /* Sin márgenes */
     font-weight: 500;
+    /* Peso medio */
 }
 
+/* Icono del rol */
 .perfil__rol i {
     color: var(--color-primario);
+    /* Color principal */
     font-size: 16px;
+    /* Tamaño del icono */
 }
 
 /* ========================================
    CONTENIDO DEL PERFIL
    ======================================== */
 
+/* Grid de contenido del perfil */
 .perfil__contenido {
     display: grid;
+    /* Activa CSS Grid */
     grid-template-columns: repeat(2, 1fr);
+    /* 2 columnas iguales */
     gap: 16px;
+    /* Espacio entre secciones */
 }
 
-/* Secciones del perfil */
+/* Sección individual del perfil */
 .perfil__seccion {
     background: white;
+    /* Fondo blanco */
     border-radius: 12px;
+    /* Esquinas redondeadas */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    /* Sombra suave */
     padding: 16px;
+    /* Espaciado interno */
     display: flex;
+    /* Activa flexbox */
     flex-direction: column;
+    /* Dirección vertical */
     gap: 12px;
+    /* Espacio entre elementos */
     border: 1px solid #e5e7eb;
+    /* Borde gris claro */
     transition: all 0.3s ease;
+    /* Transición suave */
 }
 
+/* Estado hover de la sección */
 .perfil__seccion:hover {
     box-shadow:
         0 6px 20px -3px var(--color-marca-sombra),
         0 4px 10px -2px rgba(228, 39, 39, 0.15);
+    /* Sombra roja de marca */
     border-color: rgba(228, 39, 39, 0.2);
+    /* Borde rojo sutil */
 }
 
+/* Header de la sección */
 .perfil__seccion-header {
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     justify-content: space-between;
+    /* Espacio entre título y botón */
     padding-bottom: 10px;
+    /* Espaciado inferior */
     border-bottom: 2px solid #f1f5f9;
+    /* Línea separadora */
 }
 
+/* Título de la sección */
 .perfil__seccion-titulo {
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: 8px;
+    /* Espacio entre icono y texto */
     font-size: 14px;
+    /* Tamaño de fuente */
     font-weight: 600;
+    /* Semi-negrita */
     color: var(--color-texto-primario);
+    /* Color de texto principal */
     margin: 0;
+    /* Sin márgenes */
 }
 
+/* Icono del título de sección */
 .perfil__seccion-titulo i {
     width: 28px;
+    /* Ancho del icono */
     height: 28px;
+    /* Alto del icono */
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     justify-content: center;
+    /* Centra horizontalmente */
     background: var(--gradiente-marca);
+    /* Gradiente rojo de marca */
     color: white;
+    /* Color blanco */
     font-size: 12px;
+    /* Tamaño del icono */
     border-radius: 50%;
+    /* Circular */
     box-shadow: 0 2px 8px var(--color-marca-sombra);
+    /* Sombra roja */
 }
 
+/* Botones de editar y agregar */
 .perfil__seccion-editar,
 .perfil__seccion-agregar {
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: 6px;
+    /* Espacio entre icono y texto */
     font-size: 12px;
+    /* Tamaño pequeño */
     font-weight: 600;
+    /* Semi-negrita */
     color: #1a1a1a;
+    /* Color negro */
     text-decoration: none;
+    /* Sin subrayado */
     padding: 6px 12px;
+    /* Espaciado interno */
     border-radius: 6px;
+    /* Esquinas redondeadas */
     background: #f3f4f6;
+    /* Fondo gris claro */
     transition: all 0.2s ease;
+    /* Transición suave */
 }
 
+/* Estado hover de botones */
 .perfil__seccion-editar:hover,
 .perfil__seccion-agregar:hover {
     background: #1a1a1a;
+    /* Fondo negro */
     color: white;
+    /* Texto blanco */
 }
 
-/* Campos de información */
+/* Contenedor de campos de información */
 .perfil__campos {
     display: flex;
+    /* Activa flexbox */
     flex-direction: column;
+    /* Dirección vertical */
     gap: 10px;
+    /* Espacio entre campos */
 }
 
+/* Campo individual de información */
 .perfil__campo {
     display: flex;
+    /* Activa flexbox */
     flex-direction: column;
+    /* Dirección vertical */
     gap: 4px;
+    /* Espacio entre etiqueta y valor */
     padding: 10px 12px;
+    /* Espaciado interno */
     background: #f9fafb;
+    /* Fondo gris muy claro */
     border-radius: 8px;
+    /* Esquinas redondeadas */
     border-left: 3px solid var(--color-marca);
+    /* Borde izquierdo rojo */
 }
 
+/* Etiqueta del campo */
 .perfil__campo-etiqueta {
     font-size: 10px;
+    /* Tamaño pequeño */
     font-weight: 600;
+    /* Semi-negrita */
     color: var(--color-texto-secundario);
+    /* Color gris */
     text-transform: uppercase;
+    /* Mayúsculas */
     letter-spacing: 0.5px;
+    /* Espacio entre letras */
 }
 
+/* Valor del campo */
 .perfil__campo-valor {
     font-size: 13px;
+    /* Tamaño de fuente */
     font-weight: 500;
+    /* Peso medio */
     color: var(--color-texto-primario);
+    /* Color de texto principal */
 }
 
+/* Enlace de acción dentro del campo */
 .perfil__campo-accion {
     font-size: 12px;
+    /* Tamaño pequeño */
     color: var(--color-marca);
+    /* Color rojo de marca */
     text-decoration: none;
+    /* Sin subrayado */
     font-weight: 500;
+    /* Peso medio */
     margin-top: 2px;
     display: inline-flex;
     align-items: center;
     gap: 4px;
 }
 
+/* Estado hover del enlace de acción */
 .perfil__campo-accion:hover {
     text-decoration: underline;
+    /* Subrayado al pasar el mouse */
 }
 
 /* Campo de contraseña con botón */
 .perfil__campo--contrasena {
     flex-direction: row;
+    /* Dirección horizontal */
     align-items: center;
+    /* Centra verticalmente */
     justify-content: space-between;
+    /* Espacio entre info y botón */
 }
 
+/* Contenedor de info de contraseña */
 .perfil__campo-info {
     display: flex;
+    /* Activa flexbox */
     flex-direction: column;
+    /* Dirección vertical */
     gap: 4px;
+    /* Espacio entre elementos */
 }
 
+/* Botón de cambiar contraseña */
 .perfil__campo-boton {
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: 6px;
+    /* Espacio entre icono y texto */
     padding: 8px 14px;
+    /* Espaciado interno */
     background: #1a1a1a;
+    /* Fondo negro */
     color: white;
+    /* Texto blanco */
     font-size: 12px;
+    /* Tamaño pequeño */
     font-weight: 600;
+    /* Semi-negrita */
     text-decoration: none;
+    /* Sin subrayado */
     border-radius: 8px;
+    /* Esquinas redondeadas */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra suave */
 }
 
+/* Estado hover del botón de contraseña */
 .perfil__campo-boton:hover {
     background: #333333;
+    /* Fondo gris oscuro */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    /* Sombra más intensa */
 }
 
-/* Lista de correos/teléfonos */
+/* Lista de correos/teléfonos adicionales */
 .perfil__lista {
     display: flex;
+    /* Activa flexbox */
     flex-direction: column;
+    /* Dirección vertical */
     gap: 6px;
+    /* Espacio entre elementos */
 }
 
+/* Elemento de la lista */
 .perfil__lista-item {
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     gap: 10px;
+    /* Espacio entre elementos */
     padding: 10px 12px;
+    /* Espaciado interno */
     background: #f9fafb;
+    /* Fondo gris muy claro */
     border-radius: 8px;
+    /* Esquinas redondeadas */
     transition: all 0.2s ease;
+    /* Transición suave */
     border: 1px solid #e5e7eb;
+    /* Borde gris claro */
 }
 
+/* Estado hover del elemento de lista */
 .perfil__lista-item:hover {
     background: #f3f4f6;
+    /* Fondo gris más oscuro */
 }
 
+/* Icono del elemento de lista */
 .perfil__lista-item>i:first-child {
     width: 28px;
+    /* Ancho del icono */
     height: 28px;
+    /* Alto del icono */
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     justify-content: center;
+    /* Centra horizontalmente */
     background: var(--color-borde);
+    /* Fondo gris claro */
     color: var(--color-texto-secundario);
+    /* Color gris */
     font-size: 12px;
+    /* Tamaño del icono */
     border-radius: 8px;
+    /* Esquinas redondeadas */
 }
 
+/* Texto del elemento de lista */
 .perfil__lista-item span {
     flex: 1;
+    /* Ocupa espacio disponible */
     font-size: 13px;
+    /* Tamaño de fuente */
     font-weight: 500;
+    /* Peso medio */
     color: var(--color-texto-primario);
+    /* Color de texto principal */
 }
 
+/* Botón eliminar de la lista */
 .perfil__lista-eliminar {
     width: 28px;
+    /* Ancho del botón */
     height: 28px;
+    /* Alto del botón */
     display: flex;
+    /* Activa flexbox */
     align-items: center;
+    /* Centra verticalmente */
     justify-content: center;
+    /* Centra horizontalmente */
     border-radius: 8px;
+    /* Esquinas redondeadas */
     background: #ffeaea;
+    /* Fondo rojo claro */
     color: #ff4757;
+    /* Color rojo */
     text-decoration: none;
+    /* Sin subrayado */
     transition: all 0.2s ease;
+    /* Transición suave */
     font-size: 12px;
+    /* Tamaño del icono */
 }
 
+/* Icono dentro del botón eliminar */
 .perfil__lista-eliminar i {
     color: #ff4757;
+    /* Color rojo */
 }
 
+/* Estado hover del botón eliminar */
 .perfil__lista-eliminar:hover {
     background: #ff4757;
+    /* Fondo rojo sólido */
     color: white;
+    /* Texto blanco */
     transform: scale(1.05);
+    /* Escala ligeramente */
 }
 
+/* Icono blanco en hover del botón eliminar */
 .perfil__lista-eliminar:hover i {
     color: white;
+    /* Color blanco */
 }
