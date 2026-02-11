@@ -1,0 +1,611 @@
+/* ========================================================================== */
+/* ===== COMPONENTE DETALLE-VENTA / FACTURA ================================= */
+/* ========================================================================== */
+
+/* ===== INDICADOR DE PASO ================================================== */
+
+.modal__paso {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--color-texto-secundario);
+    margin-left: 8px;
+}
+
+/* ========================================================================== */
+/* ===== LISTA DE PRODUCTOS (DENTRO DEL MODAL DE REGISTRO) ================== */
+/* ========================================================================== */
+
+.factura__lista {
+    max-height: 45vh;
+    overflow-y: auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* Inicializar contador para filas */
+    counter-reset: fila;
+}
+
+/* Scrollbar personalizado */
+.factura__lista::-webkit-scrollbar {
+    width: 4px;
+}
+
+.factura__lista::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.factura__lista::-webkit-scrollbar-thumb {
+    background: var(--color-borde);
+    border-radius: 4px;
+}
+
+.factura__lista::-webkit-scrollbar-thumb:hover {
+    background: var(--color-texto-secundario);
+}
+
+/* ===== ENCABEZADO DE LA LISTA ============================================= */
+
+.factura__lista-header {
+    display: grid;
+    /* Grid actualizado: #, Producto, Cant, Precio, Eliminar */
+    grid-template-columns: 32px 1fr 70px 110px 32px;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 2px solid var(--color-principal);
+    position: sticky;
+    top: 0;
+    background: var(--color-blanco);
+    z-index: 1;
+}
+
+.factura__lista-th {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Centrar columna de eliminar en el header */
+.factura__lista-th:last-child {
+    text-align: center;
+}
+
+/* ===== FILA DE PRODUCTO =================================================== */
+
+.factura__fila {
+    display: grid;
+    /* Grid actualizado: #, Producto, Cant, Precio, Eliminar */
+    grid-template-columns: 32px 1fr 70px 110px 32px;
+    gap: 10px;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--color-borde-claro);
+    /* Incrementar contador solo si la fila es visible */
+    counter-increment: fila;
+}
+
+.factura__fila:last-of-type {
+    border-bottom: none;
+}
+
+/* Número de fila */
+.factura__fila-numero {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-fondo);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+}
+
+/* Usar contador CSS para el número */
+.factura__fila-numero::before {
+    content: counter(fila);
+}
+
+/* Inputs dentro de las filas de factura */
+.factura__fila .formulario__select,
+.factura__fila .formulario__input {
+    padding: 0.6rem 0.7rem;
+    font-size: 13px;
+}
+
+/* ===== BOTÓN ELIMINAR FILA ================================================ */
+
+.factura__eliminar {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Estilo rojo consistente con tabla.css */
+    color: var(--color-egreso);
+    background: rgba(255, 71, 87, 0.1);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.factura__eliminar:hover {
+    background: var(--color-egreso);
+    color: var(--color-blanco);
+    transform: scale(1.05);
+}
+
+/* Fila 1 no se puede eliminar, icono deshabilitado o invisible */
+.factura__eliminar--disabled {
+    color: var(--color-borde);
+    background: transparent;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+/* ========================================================================== */
+/* ===== BARRA DE TOTAL ===================================================== */
+/* ========================================================================== */
+
+.factura__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    /* Más espacio */
+    background: var(--color-fondo-gris);
+    /* Fondo gris claro */
+    border-top: 1px solid var(--color-borde);
+    /* Radius inferior igual al contenedor modal para encajar perfecto */
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.factura__total-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.factura__total-valor {
+    font-size: 24px;
+    /* Grande y claro */
+    font-weight: 800;
+    color: var(--color-principal);
+    /* Negro, clásico */
+    font-family: var(--fuente-principal);
+}
+
+/* ========================================================================== */
+/* ===== MODAL DE DETALLE (FACTURA DE SOLO LECTURA) ========================= */
+/* ========================================================================== */
+
+/* Estilos mejorados para el detalle - Diseño profesional Urban Life */
+#modal-detalle-venta .modal__contenedor {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    /* Bordes suaves */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    max-width: 480px;
+    /* Ancho cómodo */
+    margin: 0 auto;
+    border-top: 4px solid var(--color-info);
+    /* Acento de marca (Rojo) */
+}
+
+#modal-detalle-venta .modal__header {
+    background: var(--color-blanco);
+    /* header blanco limpio */
+    padding: 24px 32px 10px 32px;
+    /* Padding ajustado */
+    border-bottom: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Alineado a la izquierda */
+    text-align: left;
+    position: relative;
+}
+
+#modal-detalle-venta .modal__titulo {
+    color: var(--color-principal);
+    /* Negro */
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+#modal-detalle-venta .modal__subtitulo {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-texto-secundario);
+    font-family: var(--fuente-principal);
+}
+
+#modal-detalle-venta .modal__cerrar {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    color: var(--color-texto-secundario);
+    background: transparent;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+#modal-detalle-venta .modal__cerrar:hover {
+    color: var(--color-marca);
+    /* Hover rojo marca */
+    background: var(--color-fondo);
+    transform: rotate(90deg);
+}
+
+/* ===== TABLA DE DETALLE (SOLO LECTURA) ==================================== */
+
+.factura__tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+    background: var(--color-blanco);
+    margin-top: 10px;
+}
+
+.factura__tabla-header {
+    /* Header sutil */
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.factura__tabla-th {
+    padding: 12px 32px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-texto-terciario);
+    /* Gris muy suave */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Alineación Centralizada */
+.factura__tabla-th:first-child {
+    text-align: left;
+    width: 50%;
+}
+
+.factura__tabla-th:nth-child(2) {
+    text-align: center;
+    width: 20%;
+}
+
+.factura__tabla-th:last-child {
+    text-align: center;
+    width: 30%;
+}
+
+.factura__tabla-fila {
+    border-bottom: 1px solid var(--color-borde-claro);
+    transition: background 0.2s ease;
+}
+
+.factura__tabla-fila:hover {
+    background: #fcfcfc;
+    /* Hover imperceptible */
+}
+
+/* Celdas con fuente clásica y limpia */
+.factura__tabla-td {
+    padding: 16px 32px;
+    font-size: 14px;
+    color: var(--color-texto);
+    font-weight: 500;
+}
+
+.factura__tabla-td:first-child {
+    text-align: left;
+    font-weight: 600;
+}
+
+.factura__tabla-td:nth-child(2) {
+    text-align: center;
+    color: var(--color-texto-secundario);
+}
+
+.factura__tabla-td:last-child {
+    text-align: center;
+    font-weight: 700;
+    color: var(--color-texto);
+}
+
+/* ========================================================================== */
+/* ===== ACCIONES DEL MODAL DE PRODUCTOS ==================================== */
+/* ========================================================================== */
+
+.factura__acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-top: 1px solid var(--color-borde-claro);
+    background: var(--color-blanco);
+}
+
+.factura__boton-volver {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-texto);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: var(--fuente-principal);
+}
+
+.factura__boton-volver:hover {
+    background: var(--color-fondo);
+    border-color: var(--color-principal);
+}
+
+.factura__boton-siguiente {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    background: var(--color-principal);
+    border: none;
+    border-radius: var(--radio);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-blanco);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: var(--fuente-principal);
+}
+
+.factura__boton-siguiente:hover {
+    background: var(--color-hover);
+    transform: translateX(2px);
+}
+
+/* ========================================================================== */
+/* ===== CHECKBOX HACK — AGREGAR Y ELIMINAR PRODUCTOS ======================= */
+/* ========================================================================== */
+
+.factura__toggle {
+    display: none;
+}
+
+.factura__fila--extra {
+    display: none;
+}
+
+/* Visibilidad de filas dinámicas */
+#agregar-2:checked~.factura__lista .factura__fila--extra-2,
+#agregar-3:checked~.factura__lista .factura__fila--extra-3 {
+    display: grid;
+}
+
+#agregar-4:checked~.factura__lista .factura__fila--extra-4,
+#agregar-5:checked~.factura__lista .factura__fila--extra-5,
+#agregar-6:checked~.factura__lista .factura__fila--extra-6,
+#agregar-7:checked~.factura__lista .factura__fila--extra-7,
+#agregar-8:checked~.factura__lista .factura__fila--extra-8,
+#agregar-9:checked~.factura__lista .factura__fila--extra-9,
+#agregar-10:checked~.factura__lista .factura__fila--extra-10 {
+    display: grid;
+}
+
+#editar-agregar-2:checked~.factura__lista .factura__fila--extra-e2,
+#editar-agregar-3:checked~.factura__lista .factura__fila--extra-e3 {
+    display: grid;
+}
+
+#editar-agregar-4:checked~.factura__lista .factura__fila--extra-e4,
+#editar-agregar-5:checked~.factura__lista .factura__fila--extra-e5,
+#editar-agregar-6:checked~.factura__lista .factura__fila--extra-e6,
+#editar-agregar-7:checked~.factura__lista .factura__fila--extra-e7,
+#editar-agregar-8:checked~.factura__lista .factura__fila--extra-e8,
+#editar-agregar-9:checked~.factura__lista .factura__fila--extra-e9,
+#editar-agregar-10:checked~.factura__lista .factura__fila--extra-e10 {
+    display: grid;
+}
+
+/* ===== CONTENEDOR DE BOTONES "AGREGAR" ==================================== */
+
+.factura__contenedor-agregar {
+    padding: 0 24px 16px;
+    background: var(--color-blanco);
+}
+
+/* ===== BOTONES "AGREGAR PRODUCTO" ========================================= */
+
+.factura__agregar-label {
+    display: none;
+}
+
+.factura__agregar-label--4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 0;
+    margin: 4px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-texto-secundario);
+    cursor: pointer;
+    border: 1px dashed var(--color-borde);
+    border-radius: var(--radio);
+    transition: all 0.25s ease;
+    font-family: var(--fuente-principal);
+}
+
+.factura__agregar-label--5,
+.factura__agregar-label--6,
+.factura__agregar-label--7,
+.factura__agregar-label--8,
+.factura__agregar-label--9,
+.factura__agregar-label--10,
+.factura__agregar-label--e4,
+.factura__agregar-label--e5,
+.factura__agregar-label--e6,
+.factura__agregar-label--e7,
+.factura__agregar-label--e8,
+.factura__agregar-label--e9,
+.factura__agregar-label--e10 {
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 0;
+    margin: 4px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-texto-secundario);
+    cursor: pointer;
+    border: 1px dashed var(--color-borde);
+    border-radius: var(--radio);
+    transition: all 0.25s ease;
+    font-family: var(--fuente-principal);
+}
+
+.factura__agregar-label:hover {
+    color: var(--color-principal);
+    border-color: var(--color-principal);
+    background: var(--color-fondo);
+}
+
+/* VISIBILIDAD DE BOTONES "AGREGAR" */
+
+/* Registrar Venta */
+.factura__agregar-label--4 {
+    display: flex;
+}
+
+#agregar-4:checked~.factura__contenedor-agregar .factura__agregar-label--4 {
+    display: none;
+}
+
+#agregar-4:checked~.factura__contenedor-agregar .factura__agregar-label--5 {
+    display: flex;
+}
+
+#agregar-5:checked~.factura__contenedor-agregar .factura__agregar-label--5 {
+    display: none;
+}
+
+#agregar-5:checked~.factura__contenedor-agregar .factura__agregar-label--6 {
+    display: flex;
+}
+
+#agregar-6:checked~.factura__contenedor-agregar .factura__agregar-label--6 {
+    display: none;
+}
+
+#agregar-6:checked~.factura__contenedor-agregar .factura__agregar-label--7 {
+    display: flex;
+}
+
+#agregar-7:checked~.factura__contenedor-agregar .factura__agregar-label--7 {
+    display: none;
+}
+
+#agregar-7:checked~.factura__contenedor-agregar .factura__agregar-label--8 {
+    display: flex;
+}
+
+#agregar-8:checked~.factura__contenedor-agregar .factura__agregar-label--8 {
+    display: none;
+}
+
+#agregar-8:checked~.factura__contenedor-agregar .factura__agregar-label--9 {
+    display: flex;
+}
+
+#agregar-9:checked~.factura__contenedor-agregar .factura__agregar-label--9 {
+    display: none;
+}
+
+#agregar-9:checked~.factura__contenedor-agregar .factura__agregar-label--10 {
+    display: flex;
+}
+
+#agregar-10:checked~.factura__contenedor-agregar .factura__agregar-label--10 {
+    display: none;
+}
+
+/* Editar Venta */
+.factura__agregar-label--e4 {
+    display: flex;
+}
+
+#editar-agregar-4:checked~.factura__contenedor-agregar .factura__agregar-label--e4 {
+    display: none;
+}
+
+#editar-agregar-4:checked~.factura__contenedor-agregar .factura__agregar-label--e5 {
+    display: flex;
+}
+
+#editar-agregar-5:checked~.factura__contenedor-agregar .factura__agregar-label--e5 {
+    display: none;
+}
+
+#editar-agregar-5:checked~.factura__contenedor-agregar .factura__agregar-label--e6 {
+    display: flex;
+}
+
+#editar-agregar-6:checked~.factura__contenedor-agregar .factura__agregar-label--e6 {
+    display: none;
+}
+
+#editar-agregar-6:checked~.factura__contenedor-agregar .factura__agregar-label--e7 {
+    display: flex;
+}
+
+#editar-agregar-7:checked~.factura__contenedor-agregar .factura__agregar-label--e7 {
+    display: none;
+}
+
+#editar-agregar-7:checked~.factura__contenedor-agregar .factura__agregar-label--e8 {
+    display: flex;
+}
+
+#editar-agregar-8:checked~.factura__contenedor-agregar .factura__agregar-label--e8 {
+    display: none;
+}
+
+#editar-agregar-8:checked~.factura__contenedor-agregar .factura__agregar-label--e9 {
+    display: flex;
+}
+
+#editar-agregar-9:checked~.factura__contenedor-agregar .factura__agregar-label--e9 {
+    display: none;
+}
+
+#editar-agregar-9:checked~.factura__contenedor-agregar .factura__agregar-label--e10 {
+    display: flex;
+}
+
+#editar-agregar-10:checked~.factura__contenedor-agregar .factura__agregar-label--e10 {
+    display: none;
+}
