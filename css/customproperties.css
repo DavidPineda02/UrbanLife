@@ -12,6 +12,8 @@
    /* Color principal de la marca (rojo) */
    --color-marca-claro: #ff6b6b;
    /* Versión más clara del rojo */
+   --color-marca-dark: #c0392b;
+   /* Versión oscura del rojo para hover activo */
    --color-marca-hover: rgba(228, 39, 39, 0.2);
    /* Rojo con 20% de opacidad para hover */
    --color-marca-sombra: rgba(228, 39, 39, 0.3);
@@ -97,12 +99,38 @@
    --color-bajo: #d97706;
    /* Naranja/ámbar para porcentajes bajos */
 
+   /* Nequi */
+   --color-nequi: #e84c89;
+   /* Rosa/fucsia para badge de pago Nequi */
+
+   /* Iconos decorativos inactivos */
+   --color-icono: #cccccc;
+   /* Gris claro para flechas e iconos decorativos */
+
+   /* Estado activo (verde) */
+   --color-activo: #22c55e;
+   /* Verde brillante — punto indicador activo */
+   --color-activo-texto: #15803d;
+   /* Verde oscuro — texto badge activo */
+   --color-activo-fondo: #dcfce7;
+   /* Fondo verde claro — badge activo */
+
+   /* Estado inactivo (rojo badge) */
+   --color-inactivo: #ef4444;
+   /* Rojo — punto indicador inactivo */
+   --color-inactivo-texto: #dc2626;
+   /* Rojo oscuro — texto badge inactivo */
+   --color-inactivo-fondo: #fee2e2;
+   /* Fondo rojo claro — badge inactivo */
+
    /* ========================= */
    /* ===== FUENTE ============ */
    /* ========================= */
 
-   --fuente-principal: "Poppins", sans-serif;
-   /* Fuente principal de la aplicación */
+   --fuente-principal: "Inter", sans-serif;
+   /* Fuente principal — UI, labels, texto, tablas */
+   --fuente-titulos: "Plus Jakarta Sans", sans-serif;
+   /* Fuente de títulos — headings, tarjetas, modales */
 
    /* ========================= */
    /* ===== TAMAÑOS FUENTE ==== */
@@ -116,8 +144,8 @@
    /* Tamaño small (14px) */
    --font-size-base: 1rem;
    /* Tamaño base (16px) */
-   --font-size-grande: 1rem;
-   /* Tamaño grande (16px) */
+   --font-size-grande: 1.125rem;
+   /* Tamaño grande (18px) */
    --font-size-muy-grande: 1.25rem;
    /* Tamaño muy grande (20px) */
 
@@ -140,8 +168,6 @@
    /* Border-radius pequeño */
    --radio-mediano: 8px;
    /* Border-radius mediano */
-   --radio: 8px;
-   /* Border-radius estándar */
    --radio-grande: 12px;
    /* Border-radius grande */
    --radio-redondo: 50%;
@@ -155,8 +181,8 @@
    /* Espaciado pequeño (8px) */
    --espacio-med: 1.5rem;
    /* Espaciado mediano (24px) */
-   --espacio-grande: 1.5rem;
-   /* Espaciado grande (24px) */
+   --espacio-grande: 2rem;
+   /* Espaciado grande (32px) */
 
    /* ========================= */
    /* ===== SOMBRAS =========== */

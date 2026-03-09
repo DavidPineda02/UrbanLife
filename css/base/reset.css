@@ -14,6 +14,17 @@
     /* Aplica la fuente principal del sistema */
 }
 
+/* Tipografía de títulos — Plus Jakarta Sans */
+h1, h2, h3, h4, h5, h6,
+.modal__titulo,
+.tarjeta__titulo,
+.grafico__titulo,
+.pagina-header__titulo,
+.formulario__titulo,
+.perfil__nombre {
+    font-family: var(--fuente-titulos);
+}
+
 /* Estilos base del body */
 body {
     height: 100vh;
