@@ -273,6 +273,50 @@
    ELEMENTO: Flecha del enlace
    ======================================== */
 
+/* ========================================
+   ELEMENTO: Sub-navegación (hijos de un ítem)
+   ======================================== */
+
+/* Contenedor de sub-ítems */
+.sidebar__subnav {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 14px;
+}
+
+/* Enlace sub-ítem */
+.sidebar__enlace--sub {
+    padding: 8px 12px;
+    background: var(--color-fondo-gris);
+    box-shadow: none;
+    border: 1px solid var(--color-borde-claro);
+}
+
+.sidebar__enlace--sub:hover {
+    background: var(--color-secundario);
+}
+
+/* Avatar sub-ítem: más pequeño y sin gradiente */
+.sidebar__enlace--sub .sidebar__enlace-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    background: var(--color-secundario);
+    box-shadow: none;
+    color: var(--color-marca);
+}
+
+.sidebar__enlace--sub:hover .sidebar__enlace-avatar {
+    background: var(--color-marca);
+    color: var(--color-blanco);
+}
+
+/* ======================================== */
+
 /* Flecha hacia la derecha */
 .sidebar__enlace-flecha {
     color: var(--color-icono);
