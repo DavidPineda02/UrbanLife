@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanLife — Recuperar Contraseña</title>
+    <link rel="stylesheet" href="../css/pages/autenticacion.css">
+    <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <main class="autenticacion">
+
+        <!-- Panel izquierdo -->
+        <section class="autenticacion__imagen">
+            <div class="autenticacion__overlay"></div>
+            <div class="autenticacion__marca">
+                <span class="autenticacion__marca-acento"></span>
+                <h1 class="autenticacion__marca-titulo">UrbanLife</h1>
+                <p class="autenticacion__marca-subtitulo">Tu seguridad es nuestra prioridad. Recupera el acceso de forma segura.</p>
+            </div>
+        </section>
+
+        <!-- Panel derecho -->
+        <section class="autenticacion__contenido">
+            <div class="formulario">
+                <form class="formulario__form" id="form-recuperar" action="#">
+                    <div class="formulario__encabezado">
+                        <span class="formulario__encabezado-acento"></span>
+                        <h2 class="formulario__titulo">Recuperar contraseña</h2>
+                        <p class="formulario__subtitulo">Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña</p>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label for="email" class="formulario__etiqueta">Correo Electrónico</label>
+                        <input id="email" type="email" placeholder="correo@ejemplo.com"
+                            class="formulario__campo" required>
+                    </div>
+                    <div class="formulario__botones">
+                        <button type="submit" class="formulario__boton formulario__boton--principal">
+                            Enviar Enlace de Recuperación
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <p class="autenticacion__links">
+                ¿Recordaste tu contraseña? <a class="autenticacion__enlace" href="../index.html" title="Iniciar sesión">Iniciar Sesión</a>
+            </p>
+        </section>
+
+    </main>
+</body>
+
+</html>
