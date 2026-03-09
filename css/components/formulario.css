@@ -86,7 +86,7 @@
     /* Sin outline nativo */
     background-color: var(--color-fondo-input);
     /* Fondo gris claro */
-    border-radius: var(--radio);
+    border-radius: var(--radio-mediano);
     /* Esquinas redondeadas de 8px */
     font-size: var(--font-size-peq);
     /* Tamaño 0.85rem */
