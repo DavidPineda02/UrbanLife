@@ -1550,22 +1550,86 @@
         width: 100%;
     }
 
-    /* ---------- MODAL / FORMULARIO (Tablet) ---------- */
+    /* ---------- MODAL / FORMULARIO (Tablet / Móvil) ---------- */
 
-    /* Campos del formulario en 1 columna desde tablet */
+    /*
+     * padding-bottom = altura de la barra inferior (~90px).
+     * El modal mantiene align-items: center, pero su contenedor flex
+     * queda 90px más corto → el centro visual sube y el modal no queda
+     * detrás del nav. Así los modales pequeños (alertas) también se ven bien.
+     */
+    .modal {
+        padding-bottom: 90px;
+    }
+
+    .modal__contenedor {
+        width: 92%;
+        max-width: 100%;
+        max-height: calc(100vh - 110px);
+        border-radius: 14px;
+    }
+
+    .modal__header {
+        padding: 16px 20px;
+    }
+
+    .modal__titulo {
+        font-size: 16px;
+    }
+
+    .modal__formulario {
+        padding: 18px 20px;
+    }
+
+    /* Alerta: mantiene overflow visible para que el anillo del icono no se corte */
+    .modal__contenedor--alerta {
+        max-width: 88%;
+        overflow: visible;
+    }
+
+    .alerta {
+        padding: 24px 20px;
+    }
+
+    .alerta__titulo {
+        font-size: 18px;
+    }
+
+    .alerta__acciones {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .boton-alerta {
+        width: 100%;
+        padding: 13px 20px;
+    }
+
+    /* ---------- FAB — icono centrado ---------- */
+
+    /* Oculta spans dentro del FAB (el texto "Cerrar Sesión" está en <span>,
+       font-size: 0 no lo elimina del flujo flex → descentra el ícono) */
+    .pagina-header__acciones .boton-accion > span {
+        display: none;
+    }
+
+    /* Campos del formulario en 1 columna */
     .formulario__fila {
         grid-template-columns: 1fr;
     }
 
-    /* Botones en columna */
+    /* Botones en columna — primario arriba */
     .formulario__acciones {
-        flex-direction: column;
+        flex-direction: column-reverse;
+        gap: 10px;
+        margin-top: 20px;
+        padding-top: 16px;
     }
 
-    /* Botones ocupan todo el ancho */
     .formulario__acciones .boton-accion {
         width: 100%;
         justify-content: center;
+        padding: 13px;
     }
 
     /* ---------- GRÁFICO DE BARRAS (Tablet) ---------- */
@@ -1627,6 +1691,72 @@
     .sidebar__enlace-info {
         display: none;
         /* No se muestra en celulares */
+    }
+
+    /* ---------- MODAL / FORMULARIO (Mobile L ≤480px) ---------- */
+
+    .modal {
+        padding-bottom: 96px;
+    }
+
+    .modal__contenedor {
+        width: 95%;
+        max-height: calc(100vh - 106px);
+        border-radius: 12px;
+    }
+
+    .modal__header {
+        padding: 14px 16px;
+    }
+
+    .modal__titulo {
+        font-size: 15px;
+    }
+
+    .modal__formulario {
+        padding: 14px 16px;
+    }
+
+    .modal__contenedor--alerta {
+        max-width: 92%;
+        overflow: visible;
+    }
+
+    .alerta {
+        padding: 20px 16px;
+    }
+
+    .alerta__titulo {
+        font-size: 16px;
+        margin: 8px 0 10px;
+    }
+
+    .alerta__mensaje {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .boton-alerta {
+        padding: 11px 16px;
+        font-size: 13px;
+    }
+
+    .alerta__icono {
+        width: 60px;
+        height: 60px;
+        font-size: 26px;
+        margin-bottom: 14px;
+    }
+
+    .formulario__acciones {
+        gap: 8px;
+        margin-top: 16px;
+        padding-top: 14px;
+    }
+
+    .formulario__acciones .boton-accion {
+        padding: 12px;
+        font-size: 13px;
     }
 
     /* ---------- TABLA (Mobile L con barra inferior) ---------- */
@@ -1895,6 +2025,52 @@
         /* Reduce el padding */
         gap: 14px;
         /* Reduce el espacio */
+    }
+
+    /* ---------- MODAL / FORMULARIO (Mobile S ≤375px) ---------- */
+
+    .modal {
+        padding-bottom: 80px;
+    }
+
+    .modal__contenedor {
+        width: 97%;
+        max-height: calc(100vh - 90px);
+        border-radius: 10px;
+    }
+
+    .modal__header {
+        padding: 12px 14px;
+    }
+
+    .modal__formulario {
+        padding: 12px 14px;
+    }
+
+    .modal__contenedor--alerta {
+        max-width: 95%;
+        overflow: visible;
+    }
+
+    .alerta {
+        padding: 18px 14px;
+    }
+
+    .alerta__icono {
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .alerta__titulo {
+        font-size: 15px;
+    }
+
+    .formulario__acciones {
+        gap: 8px;
+        margin-top: 14px;
+        padding-top: 12px;
     }
 
     /* ---------- PAGINA HEADER (Mobile S ≤375px) ---------- */
