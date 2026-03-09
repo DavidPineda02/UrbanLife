@@ -1,0 +1,139 @@
+/* ============================================
+   BLOQUE: buscador
+   Barra de búsqueda + filtros para las vistas
+   ============================================ */
+
+.buscador {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--color-secundario);
+    padding: 0.875rem 1.125rem;
+    border-radius: var(--radio-grande);
+    border: 1px solid var(--color-borde-claro);
+    margin-bottom: 1rem;
+}
+
+/* ---- Campo de búsqueda ---- */
+
+.buscador__campo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    background-color: var(--color-fondo-gris);
+    border: 1.5px solid transparent;
+    border-radius: var(--radio);
+    padding: 0.575rem 0.875rem;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    min-width: 0;
+}
+
+.buscador__campo:focus-within {
+    background-color: var(--color-secundario);
+    border-color: var(--color-borde);
+}
+
+.buscador__icono {
+    color: var(--color-texto-terciario);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.buscador__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: var(--font-size-s);
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    min-width: 0;
+}
+
+.buscador__input::placeholder {
+    color: var(--color-texto-terciario);
+}
+
+/* ---- Filtros ---- */
+
+.buscador__filtros {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+}
+
+.buscador__select {
+    appearance: none;
+    border: 1.5px solid var(--color-borde);
+    background-color: var(--color-secundario);
+    border-radius: var(--radio);
+    padding: 0.525rem 2.25rem 0.525rem 0.875rem;
+    font-size: var(--font-size-s);
+    color: var(--color-texto);
+    cursor: pointer;
+    font-family: var(--fuente-principal);
+    outline: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%23888888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    transition: border-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.buscador__select:hover {
+    border-color: var(--color-texto-terciario);
+}
+
+.buscador__select:focus {
+    border-color: var(--color-principal);
+}
+
+/* ============================================
+   CONTEXTO: dentro del pagina-header
+   ============================================ */
+
+.pagina-header .buscador {
+    flex: 1;
+    margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE — Tablet (≤ 900px)
+   ============================================ */
+
+@media screen and (max-width: 900px) {
+
+    .buscador {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.625rem;
+    }
+
+    .buscador__filtros {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .buscador__select {
+        flex: 1;
+        min-width: 130px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE — Mobile (≤ 480px)
+   ============================================ */
+
+@media screen and (max-width: 480px) {
+
+    .buscador {
+        padding: 0.75rem;
+    }
+
+    .buscador__select {
+        font-size: var(--font-size-xs);
+        padding: 0.475rem 2rem 0.475rem 0.75rem;
+    }
+}
