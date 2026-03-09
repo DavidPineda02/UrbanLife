@@ -16,7 +16,7 @@
         <nav class="sidebar__nav">
             <ul class="sidebar__lista">
                 <li class="sidebar__elemento">
-                    <a href="home.html" class="sidebar__enlace">
+                    <a href="home.html" class="sidebar__enlace" title="Ganancias">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-sack-dollar"></i>
                         </div>
@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="productos.html" class="sidebar__enlace">
+                    <a href="productos.html" class="sidebar__enlace" title="Productos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-box"></i>
                         </div>
@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="ventas.html" class="sidebar__enlace">
+                    <a href="ventas.html" class="sidebar__enlace" title="Ventas">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </div>
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="clientes.html" class="sidebar__enlace">
+                    <a href="clientes.html" class="sidebar__enlace" title="Clientes">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-user"></i>
                         </div>
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="compras.html" class="sidebar__enlace">
+                    <a href="compras.html" class="sidebar__enlace" title="Compras">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </div>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="proveedores.html" class="sidebar__enlace">
+                    <a href="proveedores.html" class="sidebar__enlace" title="Proveedores">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-truck"></i>
                         </div>
@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="gastos.html" class="sidebar__enlace">
+                    <a href="gastos.html" class="sidebar__enlace" title="Gastos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-wallet"></i>
                         </div>
@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento sidebar__elemento--perfil">
-                    <a href="perfil.html" class="sidebar__enlace sidebar__enlace--activo">
+                    <a href="perfil.html" class="sidebar__enlace sidebar__enlace--activo" title="Perfil">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-gear"></i>
                         </div>
@@ -98,7 +98,7 @@
         <header class="pagina-header">
             <h1 class="pagina-header__titulo">Mi Perfil</h1>
             <div class="pagina-header__acciones">
-                <a href="../index.html" class="boton-accion boton-accion--primario">
+                <a href="../index.html" class="boton-accion boton-accion--primario" title="Cerrar sesión">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span>Cerrar Sesión</span>
                 </a>
@@ -127,7 +127,7 @@
                             <i class="fa-solid fa-user"></i>
                             Información Personal
                         </h3>
-                        <a href="#modal-editar-personal" class="perfil__seccion-editar">
+                        <a href="#" data-modal-open="modal-editar-personal" class="perfil__seccion-editar" title="Editar información personal">
                             <i class="fa-solid fa-pen"></i>
                             Editar
                         </a>
@@ -146,7 +146,7 @@
                                 <span class="perfil__campo-etiqueta">Contraseña</span>
                                 <span class="perfil__campo-valor">••••••••</span>
                             </div>
-                            <a href="#modal-cambiar-contrasena" class="perfil__campo-boton">
+                            <a href="#" data-modal-open="modal-cambiar-contrasena" class="perfil__campo-boton" title="Cambiar contraseña">
                                 <i class="fa-solid fa-key"></i>
                                 Cambiar
                             </a>
@@ -160,7 +160,7 @@
                             <i class="fa-solid fa-building"></i>
                             Información de la Empresa
                         </h3>
-                        <a href="#modal-editar-empresa" class="perfil__seccion-editar">
+                        <a href="#" data-modal-open="modal-editar-empresa" class="perfil__seccion-editar" title="Editar información de la empresa">
                             <i class="fa-solid fa-pen"></i>
                             Editar
                         </a>
@@ -187,7 +187,7 @@
                             <i class="fa-solid fa-envelope"></i>
                             Correos Adicionales
                         </h3>
-                        <a href="#modal-agregar-correo" class="perfil__seccion-agregar">
+                        <a href="#" data-modal-open="modal-agregar-correo" class="perfil__seccion-agregar" title="Agregar correo adicional">
                             <i class="fa-solid fa-plus"></i>
                             Agregar
                         </a>
@@ -196,14 +196,14 @@
                         <div class="perfil__lista-item">
                             <i class="fa-solid fa-envelope"></i>
                             <span>ventas@urbanlife.com</span>
-                            <a href="#modal-eliminar-correo" class="perfil__lista-eliminar">
+                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este correo?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo?" class="perfil__lista-eliminar" title="Eliminar correo">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>
                         <div class="perfil__lista-item">
                             <i class="fa-solid fa-envelope"></i>
                             <span>contacto@urbanlife.com</span>
-                            <a href="#modal-eliminar-correo" class="perfil__lista-eliminar">
+                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este correo?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo?" class="perfil__lista-eliminar" title="Eliminar correo">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>
@@ -216,7 +216,7 @@
                             <i class="fa-solid fa-phone"></i>
                             Teléfonos Adicionales
                         </h3>
-                        <a href="#modal-agregar-telefono" class="perfil__seccion-agregar">
+                        <a href="#" data-modal-open="modal-agregar-telefono" class="perfil__seccion-agregar" title="Agregar teléfono adicional">
                             <i class="fa-solid fa-plus"></i>
                             Agregar
                         </a>
@@ -225,21 +225,21 @@
                         <div class="perfil__lista-item">
                             <i class="fa-solid fa-phone"></i>
                             <span>+57 300 123 4567</span>
-                            <a href="#modal-eliminar-telefono" class="perfil__lista-eliminar">
+                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este teléfono?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo?" class="perfil__lista-eliminar" title="Eliminar teléfono">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>
                         <div class="perfil__lista-item">
                             <i class="fa-solid fa-phone"></i>
                             <span>+57 315 987 6543</span>
-                            <a href="#modal-eliminar-telefono" class="perfil__lista-eliminar">
+                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este teléfono?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo?" class="perfil__lista-eliminar" title="Eliminar teléfono">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>
                         <div class="perfil__lista-item">
                             <i class="fa-solid fa-phone"></i>
                             <span>+57 (1) 234 5678</span>
-                            <a href="#modal-eliminar-telefono" class="perfil__lista-eliminar">
+                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este teléfono?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo?" class="perfil__lista-eliminar" title="Eliminar teléfono">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>
@@ -250,38 +250,38 @@
     </main>
 
     <div class="modal" id="modal-editar-personal">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Editar Información Personal</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <form class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Nombre Completo</label>
-                    <input type="text" class="formulario__input" name="nombre" value="David Pineda" required>
+                    <input type="text" class="formulario__input" name="nombre" value="David Pineda" title="Nombre Completo" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Correo Principal</label>
                     <input type="email" class="formulario__input" name="correo" value="david.pineda@urbanlife.com"
-                        required>
+                        title="Correo Principal" required>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-exito" class="boton-accion boton-accion--primario">Guardar</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Guardar cambios">Guardar</a>
                 </div>
             </form>
         </div>
     </div>
 
     <div class="modal" id="modal-cambiar-contrasena">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Cambiar Contraseña</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
@@ -289,63 +289,63 @@
                 <div class="formulario__grupo">
                     <label class="formulario__label">Contraseña Actual</label>
                     <input type="password" class="formulario__input" name="contrasena_actual"
-                        placeholder="Ingresa tu contraseña actual" required>
+                        placeholder="Ingresa tu contraseña actual" title="Contraseña Actual" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Nueva Contraseña</label>
                     <input type="password" class="formulario__input" name="contrasena_nueva"
-                        placeholder="Mínimo 8 caracteres" required>
+                        placeholder="Mínimo 8 caracteres" title="Nueva Contraseña" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Confirmar Nueva Contraseña</label>
                     <input type="password" class="formulario__input" name="contrasena_confirmar"
-                        placeholder="Repite la nueva contraseña" required>
+                        placeholder="Repite la nueva contraseña" title="Confirmar Nueva Contraseña" required>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-exito" class="boton-accion boton-accion--primario">Cambiar Contraseña</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Cambiar contraseña">Cambiar Contraseña</a>
                 </div>
             </form>
         </div>
     </div>
 
     <div class="modal" id="modal-editar-empresa">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Editar Información de Empresa</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <form class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Nombre de la Empresa</label>
-                    <input type="text" class="formulario__input" name="empresa" value="Urban Life Store" required>
+                    <input type="text" class="formulario__input" name="empresa" value="Urban Life Store" title="Nombre de la Empresa" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Dirección</label>
                     <input type="text" class="formulario__input" name="direccion" value="Cra 45 #32-10, Local 201"
-                        required>
+                        title="Dirección" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Ciudad</label>
-                    <input type="text" class="formulario__input" name="ciudad" value="Bogotá, Colombia" required>
+                    <input type="text" class="formulario__input" name="ciudad" value="Bogotá, Colombia" title="Ciudad" required>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-exito" class="boton-accion boton-accion--primario">Guardar</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Guardar cambios">Guardar</a>
                 </div>
             </form>
         </div>
     </div>
 
     <div class="modal" id="modal-agregar-correo">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Agregar Correo</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
@@ -353,79 +353,40 @@
                 <div class="formulario__grupo">
                     <label class="formulario__label">Correo Electrónico</label>
                     <input type="email" class="formulario__input" name="correo" placeholder="ejemplo@correo.com"
-                        required>
+                        title="Correo Electrónico" required>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-exito" class="boton-accion boton-accion--primario">Agregar</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Agregar">Agregar</a>
                 </div>
             </form>
         </div>
     </div>
 
     <div class="modal" id="modal-agregar-telefono">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Agregar Teléfono</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <form class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Número de Teléfono</label>
-                    <input type="tel" class="formulario__input" name="telefono" placeholder="+57 300 000 0000" required>
+                    <input type="tel" class="formulario__input" name="telefono" placeholder="+57 300 000 0000" title="Número de Teléfono" required>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-exito" class="boton-accion boton-accion--primario">Agregar</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Agregar">Agregar</a>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="modal" id="modal-exito">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡Cambios guardados correctamente!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal" id="modal-eliminar-correo">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
-            <div class="alerta">
-                <h2 class="alerta__titulo">¿Eliminar este correo?</h2>
-                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este correo adicional?</p>
-                <div class="alerta__acciones">
-                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
-                    <a href="#modal-exito" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="modal-eliminar-telefono">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
-            <div class="alerta">
-                <h2 class="alerta__titulo">¿Eliminar este teléfono?</h2>
-                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este teléfono adicional?</p>
-                <div class="alerta__acciones">
-                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
-                    <a href="#modal-exito" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <script type="module" src="/js/main.js"></script>
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 

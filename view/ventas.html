@@ -16,7 +16,7 @@
         <nav class="sidebar__nav">
             <ul class="sidebar__lista">
                 <li class="sidebar__elemento">
-                    <a href="home.html" class="sidebar__enlace">
+                    <a href="home.html" class="sidebar__enlace" title="Ganancias">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-sack-dollar"></i>
                         </div>
@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="productos.html" class="sidebar__enlace">
+                    <a href="productos.html" class="sidebar__enlace" title="Productos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-box"></i>
                         </div>
@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="ventas.html" class="sidebar__enlace sidebar__enlace--activo">
+                    <a href="ventas.html" class="sidebar__enlace sidebar__enlace--activo" title="Ventas">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </div>
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="clientes.html" class="sidebar__enlace">
+                    <a href="clientes.html" class="sidebar__enlace" title="Clientes">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-user"></i>
                         </div>
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="compras.html" class="sidebar__enlace">
+                    <a href="compras.html" class="sidebar__enlace" title="Compras">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </div>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="proveedores.html" class="sidebar__enlace">
+                    <a href="proveedores.html" class="sidebar__enlace" title="Proveedores">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-truck"></i>
                         </div>
@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="gastos.html" class="sidebar__enlace">
+                    <a href="gastos.html" class="sidebar__enlace" title="Gastos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-wallet"></i>
                         </div>
@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento sidebar__elemento--perfil">
-                    <a href="perfil.html" class="sidebar__enlace">
+                    <a href="perfil.html" class="sidebar__enlace" title="Perfil">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-gear"></i>
                         </div>
@@ -96,8 +96,28 @@
     <main class="tablero">
         <header class="pagina-header">
             <h1 class="pagina-header__titulo">Ventas</h1>
+            <div class="buscador">
+                <div class="buscador__campo">
+                    <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                    <input type="text" class="buscador__input" placeholder="Buscar por cliente o ID de venta...">
+                </div>
+                <div class="buscador__filtros">
+                    <select class="buscador__select" name="filtro-metodo" title="Filtrar por método de pago">
+                        <option value="">Método de pago</option>
+                        <option value="Transferencia">Transferencia</option>
+                        <option value="Efectivo">Efectivo</option>
+                    </select>
+                    <select class="buscador__select" name="filtro-periodo" title="Filtrar por período">
+                        <option value="">Período</option>
+                        <option value="today">Hoy</option>
+                        <option value="week">Esta semana</option>
+                        <option value="month">Este mes</option>
+                        <option value="year">Este año</option>
+                    </select>
+                </div>
+            </div>
             <div class="pagina-header__acciones">
-                <a href="#modal-venta" class="boton-accion boton-accion--primario">
+                <a href="#" data-modal-open="modal-venta" class="boton-accion boton-accion--primario" title="Registrar Venta">
                     <i class="fa-solid fa-plus"></i>
                     <span>Registrar Venta</span>
                 </a>
@@ -129,15 +149,15 @@
                                 <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
                             </td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-detalle-venta" class="tabla__accion tabla__accion--ver"
+                                <a href="#" data-modal-open="modal-detalle-venta" class="tabla__accion tabla__accion--ver"
                                     title="Ver Detalle">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="#modal-editar-venta" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-venta" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar esta venta?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -153,15 +173,15 @@
                                 <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
                             </td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-detalle-venta" class="tabla__accion tabla__accion--ver"
+                                <a href="#" data-modal-open="modal-detalle-venta" class="tabla__accion tabla__accion--ver"
                                     title="Ver Detalle">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="#modal-editar-venta" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-venta" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar esta venta?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -177,15 +197,15 @@
                                 <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
                             </td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-detalle-venta" class="tabla__accion tabla__accion--ver"
+                                <a href="#" data-modal-open="modal-detalle-venta" class="tabla__accion tabla__accion--ver"
                                     title="Ver Detalle">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="#modal-editar-venta" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-venta" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar esta venta?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -201,15 +221,15 @@
                                 <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
                             </td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-detalle-venta" class="tabla__accion tabla__accion--ver"
+                                <a href="#" data-modal-open="modal-detalle-venta" class="tabla__accion tabla__accion--ver"
                                     title="Ver Detalle">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="#modal-editar-venta" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-venta" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar esta venta?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -225,15 +245,15 @@
                                 <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
                             </td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-detalle-venta" class="tabla__accion tabla__accion--ver"
+                                <a href="#" data-modal-open="modal-detalle-venta" class="tabla__accion tabla__accion--ver"
                                     title="Ver Detalle">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="#modal-editar-venta" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-venta" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-venta" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar esta venta?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -247,18 +267,18 @@
 
     <!-- ===== PASO 1: REGISTRAR VENTA — DATOS GENERALES ===== -->
     <div class="modal" id="modal-venta">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Registrar Venta <span class="modal__paso">(1/2)</span></h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <form class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Cliente</label>
-                    <select class="formulario__select" name="cliente_id" required>
+                    <select class="formulario__select" name="cliente_id" title="Cliente" required>
                         <option value="">Seleccionar cliente</option>
                         <option value="1">Cliente General</option>
                         <option value="2">Juan Pérez</option>
@@ -269,19 +289,19 @@
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Fecha</label>
-                    <input type="date" class="formulario__input" name="fecha" required>
+                    <input type="date" class="formulario__input" name="fecha" title="Fecha" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Método de Pago</label>
-                    <select class="formulario__select" name="metodo_pago" required>
+                    <select class="formulario__select" name="metodo_pago" title="Método de Pago" required>
                         <option value="">Seleccionar método</option>
                         <option value="efectivo">Efectivo</option>
                         <option value="transferencia">Transferencia</option>
                     </select>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-productos-venta" class="factura__boton-siguiente">
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-modal-open="modal-productos-venta" class="factura__boton-siguiente" title="Siguiente paso">
                         Agregar Productos
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -292,22 +312,22 @@
 
     <!-- ===== PASO 2: REGISTRAR VENTA — PRODUCTOS (con botón agregar) ===== -->
     <div class="modal" id="modal-productos-venta">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <!-- CHECKBOXES para revelar filas (rows 2-3 checked by default) -->
-            <input type="checkbox" id="agregar-2" class="factura__toggle" checked>
-            <input type="checkbox" id="agregar-3" class="factura__toggle" checked>
-            <input type="checkbox" id="agregar-4" class="factura__toggle">
-            <input type="checkbox" id="agregar-5" class="factura__toggle">
-            <input type="checkbox" id="agregar-6" class="factura__toggle">
-            <input type="checkbox" id="agregar-7" class="factura__toggle">
-            <input type="checkbox" id="agregar-8" class="factura__toggle">
-            <input type="checkbox" id="agregar-9" class="factura__toggle">
-            <input type="checkbox" id="agregar-10" class="factura__toggle">
+            <input type="checkbox" id="agregar-2" class="factura__toggle" title="Agregar producto 2" checked>
+            <input type="checkbox" id="agregar-3" class="factura__toggle" title="Agregar producto 3" checked>
+            <input type="checkbox" id="agregar-4" class="factura__toggle" title="Agregar producto 4">
+            <input type="checkbox" id="agregar-5" class="factura__toggle" title="Agregar producto 5">
+            <input type="checkbox" id="agregar-6" class="factura__toggle" title="Agregar producto 6">
+            <input type="checkbox" id="agregar-7" class="factura__toggle" title="Agregar producto 7">
+            <input type="checkbox" id="agregar-8" class="factura__toggle" title="Agregar producto 8">
+            <input type="checkbox" id="agregar-9" class="factura__toggle" title="Agregar producto 9">
+            <input type="checkbox" id="agregar-10" class="factura__toggle" title="Agregar producto 10">
 
             <div class="modal__header">
                 <h2 class="modal__titulo">Productos de la Venta <span class="modal__paso">(2/2)</span></h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
@@ -325,7 +345,7 @@
                 <!-- Fila 1 (siempre visible, sin opción eliminar) -->
                 <div class="factura__fila">
                     <span class="factura__fila-numero"></span> <!-- Número por CSS counter -->
-                    <select class="formulario__select" name="producto_1">
+                    <select class="formulario__select" name="producto_1" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -333,8 +353,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_1" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_1" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_1" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_1" placeholder="$ 0" title="Precio Unitario">
                     <span class="factura__eliminar factura__eliminar--disabled">
                         <i class="fa-solid fa-trash"></i>
                     </span>
@@ -343,7 +363,7 @@
                 <!-- Fila 2 (dynamic, checked default) -->
                 <div class="factura__fila factura__fila--extra factura__fila--extra-2">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_2">
+                    <select class="formulario__select" name="producto_2" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -351,8 +371,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_2" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_2" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_2" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_2" placeholder="$ 0" title="Precio Unitario">
                     <label for="agregar-2" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -361,7 +381,7 @@
                 <!-- Fila 3 (dynamic, checked default) -->
                 <div class="factura__fila factura__fila--extra factura__fila--extra-3">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_3">
+                    <select class="formulario__select" name="producto_3" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -369,8 +389,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_3" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_3" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_3" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_3" placeholder="$ 0" title="Precio Unitario">
                     <label for="agregar-3" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -379,7 +399,7 @@
                 <!-- Filas Extra (ocultas, controladas por checkboxes) -->
                 <div class="factura__fila factura__fila--extra factura__fila--extra-4">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_4">
+                    <select class="formulario__select" name="producto_4" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -387,8 +407,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_4" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_4" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_4" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_4" placeholder="$ 0" title="Precio Unitario">
                     <label for="agregar-4" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -396,7 +416,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-5">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_5">
+                    <select class="formulario__select" name="producto_5" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -404,8 +424,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_5" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_5" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_5" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_5" placeholder="$ 0" title="Precio Unitario">
                     <label for="agregar-5" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -413,7 +433,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-6">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_6">
+                    <select class="formulario__select" name="producto_6" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -421,8 +441,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_6" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_6" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_6" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_6" placeholder="$ 0" title="Precio Unitario">
                     <label for="agregar-6" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -430,7 +450,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-7">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_7">
+                    <select class="formulario__select" name="producto_7" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -438,8 +458,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_7" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_7" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_7" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_7" placeholder="$ 0" title="Precio Unitario">
                     <label for="agregar-7" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -447,7 +467,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-8">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_8">
+                    <select class="formulario__select" name="producto_8" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -455,8 +475,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_8" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_8" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_8" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_8" placeholder="$ 0" title="Precio Unitario">
                     <label for="agregar-8" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -464,7 +484,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-9">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_9">
+                    <select class="formulario__select" name="producto_9" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -472,8 +492,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_9" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_9" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_9" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_9" placeholder="$ 0" title="Precio Unitario">
                     <label for="agregar-9" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -481,7 +501,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-10">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_10">
+                    <select class="formulario__select" name="producto_10" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -489,8 +509,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_10" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_10" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_10" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_10" placeholder="$ 0" title="Precio Unitario">
                     <label for="agregar-10" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -530,37 +550,24 @@
 
             <!-- Acciones -->
             <div class="factura__acciones">
-                <a href="#modal-venta" class="factura__boton-volver">
+                <a href="#" data-modal-open="modal-venta" class="factura__boton-volver" title="Volver">
                     <i class="fa-solid fa-arrow-left"></i>
                     Volver
                 </a>
-                <a href="#modal-venta-exito" class="boton-accion boton-accion--primario">Guardar Venta</a>
+                <a href="#" data-swal-ok="¡Venta registrada correctamente!" class="boton-accion boton-accion--primario" title="Guardar Venta">Guardar Venta</a>
             </div>
         </div>
     </div>
 
-    <!-- ===== ÉXITO: VENTA REGISTRADA ===== -->
-    <div class="modal" id="modal-venta-exito">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡Venta registrada correctamente!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
 
     <!-- ===== DETALLE DE VENTA ===== -->
-    <div class="modal" id="modal-detalle-venta">
-        <a href="#" class="modal__overlay"></a>
+    <div class="modal modal--detalle" id="modal-detalle-venta">
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Detalle de Venta #V001</h2>
                 <span class="modal__subtitulo">08/12/2024 &bull; Efectivo</span>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
@@ -600,26 +607,26 @@
             </div>
 
             <!-- Botón volver -->
-            <div class="factura__acciones" style="justify-content: center;">
-                <a href="#" class="factura__boton-volver">Volver</a>
+            <div class="factura__acciones factura__acciones--centrado">
+                <a href="#" class="factura__boton-volver" data-modal-close title="Volver">Volver</a>
             </div>
         </div>
     </div>
 
     <!-- ===== PASO 1: EDITAR VENTA — DATOS GENERALES ===== -->
     <div class="modal" id="modal-editar-venta">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Editar Venta <span class="modal__paso">(1/2)</span></h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <form class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Cliente</label>
-                    <select class="formulario__select" name="cliente_id" required>
+                    <select class="formulario__select" name="cliente_id" title="Cliente" required>
                         <option value="">Seleccionar cliente</option>
                         <option value="1">Cliente General</option>
                         <option value="2" selected>Juan Pérez</option>
@@ -630,19 +637,19 @@
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Fecha</label>
-                    <input type="date" class="formulario__input" name="fecha" value="2024-12-08" required>
+                    <input type="date" class="formulario__input" name="fecha" value="2024-12-08" title="Fecha" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Método de Pago</label>
-                    <select class="formulario__select" name="metodo_pago" required>
+                    <select class="formulario__select" name="metodo_pago" title="Método de Pago" required>
                         <option value="">Seleccionar método</option>
                         <option value="efectivo" selected>Efectivo</option>
                         <option value="transferencia">Transferencia</option>
                     </select>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-editar-productos" class="factura__boton-siguiente">
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-modal-open="modal-editar-productos" class="factura__boton-siguiente" title="Siguiente paso">
                         Editar Productos
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -653,22 +660,22 @@
 
     <!-- ===== PASO 2: EDITAR VENTA — PRODUCTOS (con botón agregar) ===== -->
     <div class="modal" id="modal-editar-productos">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <!-- CHECKBOXES para revelar filas (rows 2-3 checked by default) -->
-            <input type="checkbox" id="editar-agregar-2" class="factura__toggle" checked>
-            <input type="checkbox" id="editar-agregar-3" class="factura__toggle" checked>
-            <input type="checkbox" id="editar-agregar-4" class="factura__toggle">
-            <input type="checkbox" id="editar-agregar-5" class="factura__toggle">
-            <input type="checkbox" id="editar-agregar-6" class="factura__toggle">
-            <input type="checkbox" id="editar-agregar-7" class="factura__toggle">
-            <input type="checkbox" id="editar-agregar-8" class="factura__toggle">
-            <input type="checkbox" id="editar-agregar-9" class="factura__toggle">
-            <input type="checkbox" id="editar-agregar-10" class="factura__toggle">
+            <input type="checkbox" id="editar-agregar-2" class="factura__toggle" title="Agregar producto 2" checked>
+            <input type="checkbox" id="editar-agregar-3" class="factura__toggle" title="Agregar producto 3" checked>
+            <input type="checkbox" id="editar-agregar-4" class="factura__toggle" title="Agregar producto 4">
+            <input type="checkbox" id="editar-agregar-5" class="factura__toggle" title="Agregar producto 5">
+            <input type="checkbox" id="editar-agregar-6" class="factura__toggle" title="Agregar producto 6">
+            <input type="checkbox" id="editar-agregar-7" class="factura__toggle" title="Agregar producto 7">
+            <input type="checkbox" id="editar-agregar-8" class="factura__toggle" title="Agregar producto 8">
+            <input type="checkbox" id="editar-agregar-9" class="factura__toggle" title="Agregar producto 9">
+            <input type="checkbox" id="editar-agregar-10" class="factura__toggle" title="Agregar producto 10">
 
             <div class="modal__header">
                 <h2 class="modal__titulo">Editar Productos <span class="modal__paso">(2/2)</span></h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
@@ -685,7 +692,7 @@
                 <!-- Fila 1 (pre-llenada, NO DELETE) -->
                 <div class="factura__fila">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_1">
+                    <select class="formulario__select" name="producto_1" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1" selected>Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -693,8 +700,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_1" value="2" min="1">
-                    <input type="number" class="formulario__input" name="precio_1" value="120000">
+                    <input type="number" class="formulario__input" name="cantidad_1" value="2" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_1" value="120000" title="Precio Unitario">
                     <span class="factura__eliminar factura__eliminar--disabled">
                         <i class="fa-solid fa-trash"></i>
                     </span>
@@ -703,7 +710,7 @@
                 <!-- Fila 2 (pre-llenada, dynamic checked) -->
                 <div class="factura__fila factura__fila--extra factura__fila--extra-e2">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_2">
+                    <select class="formulario__select" name="producto_2" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2" selected>Camiseta Urban</option>
@@ -711,8 +718,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_2" value="1" min="1">
-                    <input type="number" class="formulario__input" name="precio_2" value="85000">
+                    <input type="number" class="formulario__input" name="cantidad_2" value="1" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_2" value="85000" title="Precio Unitario">
                     <label for="editar-agregar-2" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -721,7 +728,7 @@
                 <!-- Fila 3 (pre-llenada, dynamic checked) -->
                 <div class="factura__fila factura__fila--extra factura__fila--extra-e3">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_3">
+                    <select class="formulario__select" name="producto_3" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -729,8 +736,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5" selected>Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_3" value="2" min="1">
-                    <input type="number" class="formulario__input" name="precio_3" value="80000">
+                    <input type="number" class="formulario__input" name="cantidad_3" value="2" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_3" value="80000" title="Precio Unitario">
                     <label for="editar-agregar-3" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -739,7 +746,7 @@
                 <!-- Filas Extra (ocultas, controladas por checkboxes) -->
                 <div class="factura__fila factura__fila--extra factura__fila--extra-e4">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_4">
+                    <select class="formulario__select" name="producto_4" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -747,8 +754,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_4" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_4" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_4" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_4" placeholder="$ 0" title="Precio Unitario">
                     <label for="editar-agregar-4" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -756,7 +763,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-e5">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_5">
+                    <select class="formulario__select" name="producto_5" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -764,8 +771,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_5" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_5" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_5" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_5" placeholder="$ 0" title="Precio Unitario">
                     <label for="editar-agregar-5" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -773,7 +780,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-e6">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_6">
+                    <select class="formulario__select" name="producto_6" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -781,8 +788,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_6" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_6" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_6" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_6" placeholder="$ 0" title="Precio Unitario">
                     <label for="editar-agregar-6" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -790,7 +797,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-e7">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_7">
+                    <select class="formulario__select" name="producto_7" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -798,8 +805,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_7" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_7" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_7" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_7" placeholder="$ 0" title="Precio Unitario">
                     <label for="editar-agregar-7" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -807,7 +814,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-e8">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_8">
+                    <select class="formulario__select" name="producto_8" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -815,8 +822,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_8" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_8" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_8" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_8" placeholder="$ 0" title="Precio Unitario">
                     <label for="editar-agregar-8" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -824,7 +831,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-e9">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_9">
+                    <select class="formulario__select" name="producto_9" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -832,8 +839,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_9" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_9" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_9" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_9" placeholder="$ 0" title="Precio Unitario">
                     <label for="editar-agregar-9" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -841,7 +848,7 @@
 
                 <div class="factura__fila factura__fila--extra factura__fila--extra-e10">
                     <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_10">
+                    <select class="formulario__select" name="producto_10" title="Producto">
                         <option value="">Seleccionar</option>
                         <option value="1">Gorra New Era</option>
                         <option value="2">Camiseta Urban</option>
@@ -849,8 +856,8 @@
                         <option value="4">Chaqueta Denim</option>
                         <option value="5">Cinturón Cuero</option>
                     </select>
-                    <input type="number" class="formulario__input" name="cantidad_10" placeholder="0" min="1">
-                    <input type="number" class="formulario__input" name="precio_10" placeholder="$ 0">
+                    <input type="number" class="formulario__input" name="cantidad_10" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="precio_10" placeholder="$ 0" title="Precio Unitario">
                     <label for="editar-agregar-10" class="factura__eliminar" title="Eliminar producto">
                         <i class="fa-solid fa-trash"></i>
                     </label>
@@ -888,59 +895,17 @@
             </div>
 
             <div class="factura__acciones">
-                <a href="#modal-editar-venta" class="factura__boton-volver">
+                <a href="#" data-modal-open="modal-editar-venta" class="factura__boton-volver" title="Volver">
                     <i class="fa-solid fa-arrow-left"></i>
                     Volver
                 </a>
-                <a href="#modal-venta-actualizada" class="boton-accion boton-accion--primario">Actualizar Venta</a>
+                <a href="#" data-swal-ok="¡Venta actualizada correctamente!" class="boton-accion boton-accion--primario" title="Actualizar Venta">Actualizar Venta</a>
             </div>
         </div>
     </div>
 
-    <!-- ===== ÉXITO: VENTA ACTUALIZADA ===== -->
-    <div class="modal" id="modal-venta-actualizada">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡Venta actualizada correctamente!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
 
-    <!-- ===== ELIMINAR VENTA ===== -->
-    <div class="modal" id="modal-eliminar-venta">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
-            <div class="alerta">
-                <h2 class="alerta__titulo">¿Eliminar esta venta?</h2>
-                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este registro de venta? Esta acción no se
-                    puede deshacer.</p>
-                <div class="alerta__acciones">
-                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
-                    <a href="#modal-venta-eliminada" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== ÉXITO: VENTA ELIMINADA ===== -->
-    <div class="modal" id="modal-venta-eliminada">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡La venta fue eliminada con éxito!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
-
+    <script type="module" src="/js/main.js"></script>
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 

@@ -16,7 +16,7 @@
         <nav class="sidebar__nav">
             <ul class="sidebar__lista">
                 <li class="sidebar__elemento">
-                    <a href="home.html" class="sidebar__enlace">
+                    <a href="home.html" class="sidebar__enlace" title="Ganancias">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-sack-dollar"></i>
                         </div>
@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="productos.html" class="sidebar__enlace">
+                    <a href="productos.html" class="sidebar__enlace" title="Productos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-box"></i>
                         </div>
@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="ventas.html" class="sidebar__enlace">
+                    <a href="ventas.html" class="sidebar__enlace" title="Ventas">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </div>
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="clientes.html" class="sidebar__enlace">
+                    <a href="clientes.html" class="sidebar__enlace" title="Clientes">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-user"></i>
                         </div>
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="compras.html" class="sidebar__enlace">
+                    <a href="compras.html" class="sidebar__enlace" title="Compras">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </div>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="proveedores.html" class="sidebar__enlace">
+                    <a href="proveedores.html" class="sidebar__enlace" title="Proveedores">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-truck"></i>
                         </div>
@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="gastos.html" class="sidebar__enlace sidebar__enlace--activo">
+                    <a href="gastos.html" class="sidebar__enlace sidebar__enlace--activo" title="Gastos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-wallet"></i>
                         </div>
@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento sidebar__elemento--perfil">
-                    <a href="perfil.html" class="sidebar__enlace">
+                    <a href="perfil.html" class="sidebar__enlace" title="Perfil">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-gear"></i>
                         </div>
@@ -96,8 +96,28 @@
     <main class="tablero">
         <header class="pagina-header">
             <h1 class="pagina-header__titulo">Gastos Adicionales</h1>
+            <div class="buscador">
+                <div class="buscador__campo">
+                    <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                    <input type="text" class="buscador__input" placeholder="Buscar por descripción de gasto...">
+                </div>
+                <div class="buscador__filtros">
+                    <select class="buscador__select" name="filtro-metodo" title="Filtrar por método de pago">
+                        <option value="">Método de pago</option>
+                        <option value="Transferencia">Transferencia</option>
+                        <option value="Efectivo">Efectivo</option>
+                    </select>
+                    <select class="buscador__select" name="filtro-periodo" title="Filtrar por período">
+                        <option value="">Período</option>
+                        <option value="today">Hoy</option>
+                        <option value="week">Esta semana</option>
+                        <option value="month">Este mes</option>
+                        <option value="year">Este año</option>
+                    </select>
+                </div>
+            </div>
             <div class="pagina-header__acciones">
-                <a href="#modal-gasto" class="boton-accion boton-accion--primario">
+                <a href="#" data-modal-open="modal-gasto" class="boton-accion boton-accion--primario" title="Agregar Gasto">
                     <i class="fa-solid fa-plus"></i>
                     <span>Registrar Gasto</span>
                 </a>
@@ -125,11 +145,11 @@
                             <td class="tabla__td">Pago de energía eléctrica del local</td>
                             <td class="tabla__td tabla__td--precio">$ 180.000</td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-gasto" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este gasto?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -143,11 +163,11 @@
                             <td class="tabla__td">Flete de mercancía desde Bogotá</td>
                             <td class="tabla__td tabla__td--precio">$ 250.000</td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-gasto" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este gasto?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -161,11 +181,11 @@
                             <td class="tabla__td">Pago mensual del arriendo del local</td>
                             <td class="tabla__td tabla__td--precio">$ 1.500.000</td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-gasto" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este gasto?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -179,11 +199,11 @@
                             <td class="tabla__td">Anuncios en redes sociales</td>
                             <td class="tabla__td tabla__td--precio">$ 150.000</td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-gasto" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este gasto?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -197,11 +217,11 @@
                             <td class="tabla__td">Bolsas y cajas para empaque</td>
                             <td class="tabla__td tabla__td--precio">$ 80.000</td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-gasto" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este gasto?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -215,11 +235,11 @@
                             <td class="tabla__td">Reparación aire acondicionado</td>
                             <td class="tabla__td tabla__td--precio">$ 350.000</td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-gasto" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este gasto?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -233,11 +253,11 @@
                             <td class="tabla__td">Pago de agua del local</td>
                             <td class="tabla__td tabla__td--precio">$ 65.000</td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-gasto" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este gasto?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -251,11 +271,11 @@
                             <td class="tabla__td">Envío de productos a Medellín</td>
                             <td class="tabla__td tabla__td--precio">$ 120.000</td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-gasto" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este gasto?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -269,11 +289,11 @@
                             <td class="tabla__td">Papelería y útiles de oficina</td>
                             <td class="tabla__td tabla__td--precio">$ 45.000</td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-gasto" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este gasto?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -287,11 +307,11 @@
                             <td class="tabla__td">Internet y teléfono del local</td>
                             <td class="tabla__td tabla__td--precio">$ 95.000</td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-gasto" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-editar-gasto" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-gasto" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este gasto?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -304,18 +324,18 @@
     </main>
 
     <div class="modal" id="modal-gasto">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Registrar Gasto</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <form class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Tipo de Gasto</label>
-                    <select class="formulario__select" name="tipo_gasto" required>
+                    <select class="formulario__select" name="tipo_gasto" title="Tipo de Gasto" required>
                         <option value="">Seleccionar tipo</option>
                         <option value="arriendo">Arriendo</option>
                         <option value="servicios">Servicios Públicos</option>
@@ -330,52 +350,40 @@
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label">Fecha</label>
-                        <input type="date" class="formulario__input" name="fecha" required>
+                        <input type="date" class="formulario__input" name="fecha" title="Fecha" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label">Monto</label>
-                        <input type="number" class="formulario__input" name="monto" placeholder="$ 0" min="1" required>
+                        <input type="number" class="formulario__input" name="monto" placeholder="$ 0" min="1" title="Monto" required>
                     </div>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Descripción</label>
                     <input type="text" class="formulario__input" name="descripcion"
-                        placeholder="Ej: Pago de energía eléctrica" required>
+                        placeholder="Ej: Pago de energía eléctrica" title="Descripción" required>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-gasto-exito" class="boton-accion boton-accion--primario">Guardar Gasto</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Gasto registrado correctamente!" class="boton-accion boton-accion--primario" title="Guardar Gasto">Guardar Gasto</a>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="modal" id="modal-gasto-exito">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡Gasto registrado correctamente!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
 
     <div class="modal" id="modal-editar-gasto">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Editar Gasto</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <form class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Tipo de Gasto</label>
-                    <select class="formulario__select" name="tipo_gasto" required>
+                    <select class="formulario__select" name="tipo_gasto" title="Tipo de Gasto" required>
                         <option value="">Seleccionar tipo</option>
                         <option value="arriendo">Arriendo</option>
                         <option value="servicios" selected>Servicios Públicos</option>
@@ -390,67 +398,28 @@
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label">Fecha</label>
-                        <input type="date" class="formulario__input" name="fecha" value="2024-12-08" required>
+                        <input type="date" class="formulario__input" name="fecha" value="2024-12-08" title="Fecha" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label">Monto</label>
-                        <input type="number" class="formulario__input" name="monto" value="180000" min="1" required>
+                        <input type="number" class="formulario__input" name="monto" value="180000" min="1" title="Monto" required>
                     </div>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Descripción</label>
                     <input type="text" class="formulario__input" name="descripcion"
-                        value="Pago de energía eléctrica del local" required>
+                        value="Pago de energía eléctrica del local" title="Descripción" required>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-gasto-actualizado" class="boton-accion boton-accion--primario">Actualizar Gasto</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Gasto actualizado correctamente!" class="boton-accion boton-accion--primario" title="Actualizar Gasto">Actualizar Gasto</a>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="modal" id="modal-gasto-actualizado">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡Gasto actualizado correctamente!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal" id="modal-eliminar-gasto">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
-            <div class="alerta">
-                <h2 class="alerta__titulo">¿Eliminar este gasto?</h2>
-                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este registro de gasto? Esta acción no se
-                    puede deshacer.</p>
-                <div class="alerta__acciones">
-                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
-                    <a href="#modal-gasto-eliminado" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="modal-gasto-eliminado">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡El gasto fue eliminado con éxito!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
-
+    <script type="module" src="/js/main.js"></script>
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 

@@ -16,7 +16,7 @@
         <nav class="sidebar__nav">
             <ul class="sidebar__lista">
                 <li class="sidebar__elemento">
-                    <a href="home.html" class="sidebar__enlace">
+                    <a href="home.html" class="sidebar__enlace" title="Ganancias">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-sack-dollar"></i>
                         </div>
@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="productos.html" class="sidebar__enlace sidebar__enlace--activo">
+                    <a href="productos.html" class="sidebar__enlace sidebar__enlace--activo" title="Productos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-box"></i>
                         </div>
@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="ventas.html" class="sidebar__enlace">
+                    <a href="ventas.html" class="sidebar__enlace" title="Ventas">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </div>
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="clientes.html" class="sidebar__enlace">
+                    <a href="clientes.html" class="sidebar__enlace" title="Clientes">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-user"></i>
                         </div>
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="compras.html" class="sidebar__enlace">
+                    <a href="compras.html" class="sidebar__enlace" title="Compras">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </div>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="proveedores.html" class="sidebar__enlace">
+                    <a href="proveedores.html" class="sidebar__enlace" title="Proveedores">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-truck"></i>
                         </div>
@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="gastos.html" class="sidebar__enlace">
+                    <a href="gastos.html" class="sidebar__enlace" title="Gastos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-wallet"></i>
                         </div>
@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento sidebar__elemento--perfil">
-                    <a href="perfil.html" class="sidebar__enlace">
+                    <a href="perfil.html" class="sidebar__enlace" title="Perfil">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-gear"></i>
                         </div>
@@ -96,14 +96,38 @@
     <main class="tablero">
         <header class="pagina-header">
             <h1 class="pagina-header__titulo">Productos</h1>
+            <div class="buscador">
+                <div class="buscador__campo">
+                    <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                    <input type="text" class="buscador__input" placeholder="Buscar producto por nombre...">
+                </div>
+                <div class="buscador__filtros">
+                    <select class="buscador__select" name="filtro-categoria" title="Filtrar por categoría">
+                        <option value="">Categoría</option>
+                        <option value="ropa">Ropa</option>
+                        <option value="calzado">Calzado</option>
+                        <option value="accesorios">Accesorios</option>
+                    </select>
+                    <select class="buscador__select" name="filtro-estado" title="Filtrar por estado">
+                        <option value="">Estado</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                    <select class="buscador__select" name="filtro-stock" title="Filtrar por stock">
+                        <option value="">Stock</option>
+                        <option value="disponible">En stock</option>
+                        <option value="bajo">Stock bajo</option>
+                        <option value="agotado">Agotado</option>
+                    </select>
+                </div>
+            </div>
             <div class="pagina-header__acciones">
-                <a href="#modal-producto" class="boton-accion boton-accion--primario">
+                <a href="#" data-modal-open="modal-producto" class="boton-accion boton-accion--primario" title="Agregar Producto">
                     <i class="fa-solid fa-plus"></i>
                     <span>Agregar Producto</span>
                 </a>
-                <a href="#modal-categoria" class="boton-accion boton-accion--secundario">
+                <a href="#" data-modal-open="modal-categoria" class="boton-accion boton-accion--secundario boton-accion--icono" title="Agregar Categoría">
                     <i class="fa-solid fa-folder-plus"></i>
-                    <span>Agregar Categoría</span>
                 </a>
             </div>
         </header>
@@ -113,11 +137,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -137,11 +161,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -161,11 +185,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -185,11 +209,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -209,11 +233,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -233,11 +257,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -257,11 +281,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -281,11 +305,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -305,11 +329,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -329,11 +353,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -353,11 +377,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -377,11 +401,11 @@
                 <div class="producto__imagen">
                     <span class="producto__categoria">Accesorios</span>
                     <div class="producto__acciones">
-                        <a href="#modal-editar-producto" class="producto__accion producto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar" class="producto__accion producto__accion--eliminar" title="Eliminar">
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </div>
@@ -400,11 +424,11 @@
     </main>
 
     <div class="modal" id="modal-producto">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Agregar Producto</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
@@ -413,11 +437,11 @@
                     <div class="formulario__grupo">
                         <label class="formulario__label">Nombre</label>
                         <input type="text" class="formulario__input" name="nombre" placeholder="Nombre del producto"
-                            required>
+                            title="Nombre" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label">Categoría</label>
-                        <select class="formulario__select" name="categoria" required>
+                        <select class="formulario__select" name="categoria" title="Categoría" required>
                             <option value="">Seleccionar</option>
                             <option value="accesorios">Accesorios</option>
                             <option value="ropa-hombre">Ropa Hombre</option>
@@ -428,42 +452,46 @@
                 <div class="formulario__grupo">
                     <label class="formulario__label">Descripción</label>
                     <textarea class="formulario__textarea" name="descripcion" placeholder="Descripción del producto"
-                        rows="2"></textarea>
+                        title="Descripción" rows="2"></textarea>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label">Precio Venta</label>
-                        <input type="number" class="formulario__input" name="precio" placeholder="$ 0" required>
+                        <input type="number" class="formulario__input" name="precio" placeholder="$ 0" title="Precio Venta" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label">Costo Promedio</label>
-                        <input type="number" class="formulario__input" name="costo" placeholder="$ 0">
+                        <input type="number" class="formulario__input" name="costo" placeholder="$ 0" title="Costo Promedio">
                     </div>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo formulario__grupo--pequeno">
                         <label class="formulario__label">Stock</label>
-                        <input type="number" class="formulario__input" name="stock" placeholder="0" required>
+                        <input type="number" class="formulario__input" name="stock" placeholder="0" title="Stock" required>
                     </div>
                     <div class="formulario__grupo formulario__grupo--grande">
                         <label class="formulario__label">Imagen</label>
-                        <input type="file" class="formulario__input" name="imagen" accept="image/*">
+                        <label class="formulario__archivo" title="Seleccionar imagen">
+                            <i class="fa-solid fa-paperclip"></i>
+                            <span class="formulario__archivo-texto">Seleccionar imagen...</span>
+                            <input type="file" name="imagen" accept="image/*">
+                        </label>
                     </div>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-agregado" class="boton-accion boton-accion--primario">Guardar Producto</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Producto agregado correctamente!" class="boton-accion boton-accion--primario" title="Guardar Producto">Guardar Producto</a>
                 </div>
             </form>
         </div>
     </div>
 
     <div class="modal" id="modal-editar-producto">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Editar Producto</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
@@ -471,11 +499,11 @@
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label">Nombre</label>
-                        <input type="text" class="formulario__input" name="nombre" value="Gorra New Era" required>
+                        <input type="text" class="formulario__input" name="nombre" value="Gorra New Era" title="Nombre" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label">Categoría</label>
-                        <select class="formulario__select" name="categoria" required>
+                        <select class="formulario__select" name="categoria" title="Categoría" required>
                             <option value="">Seleccionar</option>
                             <option value="accesorios" selected>Accesorios</option>
                             <option value="ropa-hombre">Ropa Hombre</option>
@@ -486,42 +514,46 @@
                 <div class="formulario__grupo">
                     <label class="formulario__label">Descripción</label>
                     <textarea class="formulario__textarea" name="descripcion"
-                        rows="2">Gorra original de la marca New Era, diseño clásico y cómodo.</textarea>
+                        title="Descripción" rows="2">Gorra original de la marca New Era, diseño clásico y cómodo.</textarea>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label">Precio Venta</label>
-                        <input type="number" class="formulario__input" name="precio" value="120000" required>
+                        <input type="number" class="formulario__input" name="precio" value="120000" title="Precio Venta" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label">Costo Promedio</label>
-                        <input type="number" class="formulario__input" name="costo" value="80000">
+                        <input type="number" class="formulario__input" name="costo" value="80000" title="Costo Promedio">
                     </div>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo formulario__grupo--pequeno">
                         <label class="formulario__label">Stock</label>
-                        <input type="number" class="formulario__input" name="stock" value="100" required>
+                        <input type="number" class="formulario__input" name="stock" value="100" title="Stock" required>
                     </div>
                     <div class="formulario__grupo formulario__grupo--grande">
                         <label class="formulario__label">Imagen</label>
-                        <input type="file" class="formulario__input" name="imagen" accept="image/*">
+                        <label class="formulario__archivo" title="Seleccionar imagen">
+                            <i class="fa-solid fa-paperclip"></i>
+                            <span class="formulario__archivo-texto">Seleccionar imagen...</span>
+                            <input type="file" name="imagen" accept="image/*">
+                        </label>
                     </div>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-actualizado" class="boton-accion boton-accion--primario">Actualizar Producto</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Producto actualizado correctamente!" class="boton-accion boton-accion--primario" title="Actualizar Producto">Actualizar Producto</a>
                 </div>
             </form>
         </div>
     </div>
 
     <div class="modal" id="modal-categoria">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Agregar Categoría</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
@@ -529,74 +561,23 @@
                 <div class="formulario__grupo">
                     <label class="formulario__label">Nombre</label>
                     <input type="text" class="formulario__input" name="nombre" placeholder="Nombre de la categoría"
-                        required>
+                        title="Nombre" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Descripción</label>
                     <textarea class="formulario__textarea" name="descripcion" placeholder="Descripción de la categoría"
-                        rows="3"></textarea>
+                        title="Descripción" rows="3"></textarea>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-agregado" class="boton-accion boton-accion--primario">Guardar Categoría</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Categoría agregada correctamente!" class="boton-accion boton-accion--primario" title="Guardar Categoría">Guardar Categoría</a>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="modal" id="modal-eliminar">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
-            <div class="alerta">
-                <h2 class="alerta__titulo">¿Eliminar de la lista?</h2>
-                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este artículo de tus productos?</p>
-                <div class="alerta__acciones">
-                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
-                    <a href="#modal-exito" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal" id="modal-exito">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡El artículo fue eliminado con éxito!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="modal-agregado">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡Se agregó correctamente!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="modal-actualizado">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡Producto actualizado correctamente!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
-
+    <script type="module" src="/js/main.js"></script>
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 

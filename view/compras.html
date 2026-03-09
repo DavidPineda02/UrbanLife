@@ -16,7 +16,7 @@
         <nav class="sidebar__nav">
             <ul class="sidebar__lista">
                 <li class="sidebar__elemento">
-                    <a href="home.html" class="sidebar__enlace">
+                    <a href="home.html" class="sidebar__enlace" title="Ganancias">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-sack-dollar"></i>
                         </div>
@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="productos.html" class="sidebar__enlace">
+                    <a href="productos.html" class="sidebar__enlace" title="Productos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-box"></i>
                         </div>
@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="ventas.html" class="sidebar__enlace">
+                    <a href="ventas.html" class="sidebar__enlace" title="Ventas">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </div>
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="clientes.html" class="sidebar__enlace">
+                    <a href="clientes.html" class="sidebar__enlace" title="Clientes">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-user"></i>
                         </div>
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="compras.html" class="sidebar__enlace sidebar__enlace--activo">
+                    <a href="compras.html" class="sidebar__enlace sidebar__enlace--activo" title="Compras">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </div>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="proveedores.html" class="sidebar__enlace">
+                    <a href="proveedores.html" class="sidebar__enlace" title="Proveedores">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-truck"></i>
                         </div>
@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="gastos.html" class="sidebar__enlace">
+                    <a href="gastos.html" class="sidebar__enlace" title="Gastos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-wallet"></i>
                         </div>
@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento sidebar__elemento--perfil">
-                    <a href="perfil.html" class="sidebar__enlace">
+                    <a href="perfil.html" class="sidebar__enlace" title="Perfil">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-gear"></i>
                         </div>
@@ -96,8 +96,28 @@
     <main class="tablero">
         <header class="pagina-header">
             <h1 class="pagina-header__titulo">Compras</h1>
+            <div class="buscador">
+                <div class="buscador__campo">
+                    <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                    <input type="text" class="buscador__input" placeholder="Buscar por proveedor o ID de compra...">
+                </div>
+                <div class="buscador__filtros">
+                    <select class="buscador__select" name="filtro-metodo" title="Filtrar por método de pago">
+                        <option value="">Método de pago</option>
+                        <option value="Transferencia">Transferencia</option>
+                        <option value="Efectivo">Efectivo</option>
+                    </select>
+                    <select class="buscador__select" name="filtro-periodo" title="Filtrar por período">
+                        <option value="">Período</option>
+                        <option value="today">Hoy</option>
+                        <option value="week">Esta semana</option>
+                        <option value="month">Este mes</option>
+                        <option value="year">Este año</option>
+                    </select>
+                </div>
+            </div>
             <div class="pagina-header__acciones">
-                <a href="#modal-compra" class="boton-accion boton-accion--primario">
+                <a href="#" data-modal-open="modal-compra" class="boton-accion boton-accion--primario" title="Registrar Compra">
                     <i class="fa-solid fa-plus"></i>
                     <span>Registrar Compra</span>
                 </a>
@@ -109,453 +129,131 @@
                 <table class="tabla">
                     <thead class="tabla__cabecera">
                         <tr>
+                            <th class="tabla__th">ID</th>
                             <th class="tabla__th">Fecha</th>
                             <th class="tabla__th">Proveedor</th>
-                            <th class="tabla__th">Ciudad</th>
-                            <th class="tabla__th">Producto</th>
-                            <th class="tabla__th">Cantidad</th>
-                            <th class="tabla__th">Costo Unit.</th>
-                            <th class="tabla__th">Subtotal</th>
+                            <th class="tabla__th">Productos</th>
+                            <th class="tabla__th">Total</th>
                             <th class="tabla__th">Método</th>
                             <th class="tabla__th">Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="tabla__cuerpo">
                         <tr class="tabla__fila">
+                            <td class="tabla__td">C001</td>
                             <td class="tabla__td">08/12/2024</td>
                             <td class="tabla__td">Distribuidora Fashion</td>
-                            <td class="tabla__td">Bogotá</td>
-                            <td class="tabla__td">Gorra New Era</td>
-                            <td class="tabla__td">50</td>
-                            <td class="tabla__td">$ 80.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 4.000.000</td>
+                            <td class="tabla__td">2 items</td>
+                            <td class="tabla__td tabla__td--precio">$ 7.000.000</td>
                             <td class="tabla__td">
                                 <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
                             </td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-detalle-compra" class="tabla__accion tabla__accion--ver"
+                                    title="Ver Detalle">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="#" data-modal-open="modal-editar-compra" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar esta compra?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
                         <tr class="tabla__fila">
+                            <td class="tabla__td">C002</td>
                             <td class="tabla__td">07/12/2024</td>
                             <td class="tabla__td">Textiles Colombia</td>
-                            <td class="tabla__td">Medellín</td>
-                            <td class="tabla__td">Camiseta Urban</td>
-                            <td class="tabla__td">100</td>
-                            <td class="tabla__td">$ 45.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 4.500.000</td>
+                            <td class="tabla__td">2 items</td>
+                            <td class="tabla__td tabla__td--precio">$ 7.500.000</td>
                             <td class="tabla__td">
                                 <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
                             </td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-detalle-compra" class="tabla__accion tabla__accion--ver"
+                                    title="Ver Detalle">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="#" data-modal-open="modal-editar-compra" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar esta compra?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
                         <tr class="tabla__fila">
+                            <td class="tabla__td">C003</td>
                             <td class="tabla__td">06/12/2024</td>
                             <td class="tabla__td">Import Style</td>
-                            <td class="tabla__td">Cali</td>
-                            <td class="tabla__td">Pantalón Cargo</td>
-                            <td class="tabla__td">30</td>
-                            <td class="tabla__td">$ 90.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 2.700.000</td>
+                            <td class="tabla__td">2 items</td>
+                            <td class="tabla__td tabla__td--precio">$ 11.700.000</td>
                             <td class="tabla__td">
                                 <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
                             </td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-detalle-compra" class="tabla__accion tabla__accion--ver"
+                                    title="Ver Detalle">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="#" data-modal-open="modal-editar-compra" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar esta compra?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
                         <tr class="tabla__fila">
+                            <td class="tabla__td">C004</td>
                             <td class="tabla__td">05/12/2024</td>
                             <td class="tabla__td">Accesorios del Norte</td>
-                            <td class="tabla__td">Barranquilla</td>
-                            <td class="tabla__td">Cinturón Cuero</td>
-                            <td class="tabla__td">80</td>
-                            <td class="tabla__td">$ 35.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 2.800.000</td>
+                            <td class="tabla__td">2 items</td>
+                            <td class="tabla__td tabla__td--precio">$ 5.725.000</td>
                             <td class="tabla__td">
                                 <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
                             </td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-detalle-compra" class="tabla__accion tabla__accion--ver"
+                                    title="Ver Detalle">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="#" data-modal-open="modal-editar-compra" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar esta compra?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
                         <tr class="tabla__fila">
-                            <td class="tabla__td">04/12/2024</td>
-                            <td class="tabla__td">Distribuidora Fashion</td>
-                            <td class="tabla__td">Bogotá</td>
-                            <td class="tabla__td">Chaqueta Denim</td>
-                            <td class="tabla__td">25</td>
-                            <td class="tabla__td">$ 120.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 3.000.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">03/12/2024</td>
-                            <td class="tabla__td">Textiles Colombia</td>
-                            <td class="tabla__td">Medellín</td>
-                            <td class="tabla__td">Sudadera Premium</td>
-                            <td class="tabla__td">40</td>
-                            <td class="tabla__td">$ 75.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 3.000.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">02/12/2024</td>
-                            <td class="tabla__td">Import Style</td>
-                            <td class="tabla__td">Cali</td>
-                            <td class="tabla__td">Zapatillas Sport</td>
-                            <td class="tabla__td">60</td>
-                            <td class="tabla__td">$ 150.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 9.000.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
+                            <td class="tabla__td">C005</td>
                             <td class="tabla__td">01/12/2024</td>
                             <td class="tabla__td">Distribuidora Fashion</td>
-                            <td class="tabla__td">Bogotá</td>
-                            <td class="tabla__td">Gorra Snapback</td>
-                            <td class="tabla__td">70</td>
-                            <td class="tabla__td">$ 55.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 3.850.000</td>
+                            <td class="tabla__td">3 items</td>
+                            <td class="tabla__td tabla__td--precio">$ 10.780.000</td>
                             <td class="tabla__td">
                                 <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
                             </td>
                             <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
+                                <a href="#" data-modal-open="modal-detalle-compra" class="tabla__accion tabla__accion--ver"
+                                    title="Ver Detalle">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="#" data-modal-open="modal-editar-compra" class="tabla__accion tabla__accion--editar"
                                     title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">30/11/2024</td>
-                            <td class="tabla__td">Accesorios del Norte</td>
-                            <td class="tabla__td">Barranquilla</td>
-                            <td class="tabla__td">Bolso Deportivo</td>
-                            <td class="tabla__td">45</td>
-                            <td class="tabla__td">$ 65.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 2.925.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">29/11/2024</td>
-                            <td class="tabla__td">Textiles Colombia</td>
-                            <td class="tabla__td">Medellín</td>
-                            <td class="tabla__td">Polo Clásico</td>
-                            <td class="tabla__td">90</td>
-                            <td class="tabla__td">$ 55.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 4.950.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">28/11/2024</td>
-                            <td class="tabla__td">Import Style</td>
-                            <td class="tabla__td">Cali</td>
-                            <td class="tabla__td">Bermuda Casual</td>
-                            <td class="tabla__td">55</td>
-                            <td class="tabla__td">$ 48.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 2.640.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">27/11/2024</td>
-                            <td class="tabla__td">Distribuidora Fashion</td>
-                            <td class="tabla__td">Bogotá</td>
-                            <td class="tabla__td">Gorra Trucker</td>
-                            <td class="tabla__td">85</td>
-                            <td class="tabla__td">$ 42.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 3.570.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">26/11/2024</td>
-                            <td class="tabla__td">Accesorios del Norte</td>
-                            <td class="tabla__td">Barranquilla</td>
-                            <td class="tabla__td">Reloj Digital</td>
-                            <td class="tabla__td">35</td>
-                            <td class="tabla__td">$ 95.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 3.325.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">25/11/2024</td>
-                            <td class="tabla__td">Textiles Colombia</td>
-                            <td class="tabla__td">Medellín</td>
-                            <td class="tabla__td">Hoodie Street</td>
-                            <td class="tabla__td">65</td>
-                            <td class="tabla__td">$ 85.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 5.525.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">24/11/2024</td>
-                            <td class="tabla__td">Import Style</td>
-                            <td class="tabla__td">Cali</td>
-                            <td class="tabla__td">Tenis Running</td>
-                            <td class="tabla__td">40</td>
-                            <td class="tabla__td">$ 180.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 7.200.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">23/11/2024</td>
-                            <td class="tabla__td">Distribuidora Fashion</td>
-                            <td class="tabla__td">Bogotá</td>
-                            <td class="tabla__td">Bufanda Lana</td>
-                            <td class="tabla__td">120</td>
-                            <td class="tabla__td">$ 28.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 3.360.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">22/11/2024</td>
-                            <td class="tabla__td">Accesorios del Norte</td>
-                            <td class="tabla__td">Barranquilla</td>
-                            <td class="tabla__td">Gafas Sol</td>
-                            <td class="tabla__td">75</td>
-                            <td class="tabla__td">$ 68.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 5.100.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">21/11/2024</td>
-                            <td class="tabla__td">Textiles Colombia</td>
-                            <td class="tabla__td">Medellín</td>
-                            <td class="tabla__td">Jogger Sport</td>
-                            <td class="tabla__td">50</td>
-                            <td class="tabla__td">$ 72.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 3.600.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">20/11/2024</td>
-                            <td class="tabla__td">Import Style</td>
-                            <td class="tabla__td">Cali</td>
-                            <td class="tabla__td">Mochila Urban</td>
-                            <td class="tabla__td">30</td>
-                            <td class="tabla__td">$ 110.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 3.300.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--efectivo">Efectivo</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
-                                    title="Eliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="tabla__fila">
-                            <td class="tabla__td">19/11/2024</td>
-                            <td class="tabla__td">Distribuidora Fashion</td>
-                            <td class="tabla__td">Bogotá</td>
-                            <td class="tabla__td">Camiseta Básica</td>
-                            <td class="tabla__td">200</td>
-                            <td class="tabla__td">$ 32.000</td>
-                            <td class="tabla__td tabla__td--precio">$ 6.400.000</td>
-                            <td class="tabla__td">
-                                <span class="tabla__badge tabla__badge--transferencia">Transferencia</span>
-                            </td>
-                            <td class="tabla__td tabla__td--acciones">
-                                <a href="#modal-editar-compra" class="tabla__accion tabla__accion--editar"
-                                    title="Editar">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <a href="#modal-eliminar-compra" class="tabla__accion tabla__accion--eliminar"
+                                <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar esta compra?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar"
                                     title="Eliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
@@ -567,19 +265,20 @@
         </section>
     </main>
 
+    <!-- ===== PASO 1: REGISTRAR COMPRA — DATOS GENERALES ===== -->
     <div class="modal" id="modal-compra">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
-                <h2 class="modal__titulo">Registrar Compra</h2>
-                <a href="#" class="modal__cerrar">
+                <h2 class="modal__titulo">Registrar Compra <span class="modal__paso">(1/2)</span></h2>
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <form class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Proveedor</label>
-                    <select class="formulario__select" name="proveedor_id" required>
+                    <select class="formulario__select" name="proveedor_id" title="Proveedor" required>
                         <option value="">Seleccionar proveedor</option>
                         <option value="1">Distribuidora Fashion</option>
                         <option value="2">Textiles Colombia</option>
@@ -588,73 +287,370 @@
                     </select>
                 </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Producto</label>
-                    <select class="formulario__select" name="producto_id" required>
-                        <option value="">Seleccionar producto</option>
-                        <option value="1">Gorra New Era</option>
-                        <option value="2">Camiseta Urban</option>
-                        <option value="3">Pantalón Cargo</option>
-                        <option value="4">Chaqueta Denim</option>
-                        <option value="5">Cinturón Cuero</option>
+                    <label class="formulario__label">Ciudad</label>
+                    <select class="formulario__select" name="ciudad" title="Ciudad" required>
+                        <option value="">Seleccionar ciudad</option>
+                        <option value="bogota">Bogotá</option>
+                        <option value="medellin">Medellín</option>
+                        <option value="cali">Cali</option>
+                        <option value="barranquilla">Barranquilla</option>
                     </select>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Fecha</label>
-                    <input type="date" class="formulario__input" name="fecha" required>
-                </div>
-                <div class="formulario__fila">
-                    <div class="formulario__grupo">
-                        <label class="formulario__label">Cantidad</label>
-                        <input type="number" class="formulario__input" name="cantidad" placeholder="1" min="1" value="1"
-                            required>
-                    </div>
-                    <div class="formulario__grupo">
-                        <label class="formulario__label">Costo Unitario</label>
-                        <input type="number" class="formulario__input" name="costo_unitario" placeholder="$ 0" required>
-                    </div>
+                    <input type="date" class="formulario__input" name="fecha" title="Fecha" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Método de Pago</label>
-                    <select class="formulario__select" name="metodo_pago" required>
+                    <select class="formulario__select" name="metodo_pago" title="Método de Pago" required>
                         <option value="">Seleccionar método</option>
                         <option value="efectivo">Efectivo</option>
                         <option value="transferencia">Transferencia</option>
                     </select>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-compra-exito" class="boton-accion boton-accion--primario">Guardar Compra</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-modal-open="modal-productos-compra" class="factura__boton-siguiente" title="Siguiente paso">
+                        Agregar Productos
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="modal" id="modal-compra-exito">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
+    <!-- ===== PASO 2: REGISTRAR COMPRA — PRODUCTOS ===== -->
+    <div class="modal" id="modal-productos-compra">
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
+        <div class="modal__contenedor">
+            <!-- CHECKBOXES para revelar filas (rows 2-3 checked by default) -->
+            <input type="checkbox" id="agregar-2" class="factura__toggle" title="Agregar producto 2" checked>
+            <input type="checkbox" id="agregar-3" class="factura__toggle" title="Agregar producto 3" checked>
+            <input type="checkbox" id="agregar-4" class="factura__toggle" title="Agregar producto 4">
+            <input type="checkbox" id="agregar-5" class="factura__toggle" title="Agregar producto 5">
+            <input type="checkbox" id="agregar-6" class="factura__toggle" title="Agregar producto 6">
+            <input type="checkbox" id="agregar-7" class="factura__toggle" title="Agregar producto 7">
+            <input type="checkbox" id="agregar-8" class="factura__toggle" title="Agregar producto 8">
+            <input type="checkbox" id="agregar-9" class="factura__toggle" title="Agregar producto 9">
+            <input type="checkbox" id="agregar-10" class="factura__toggle" title="Agregar producto 10">
+
+            <div class="modal__header">
+                <h2 class="modal__titulo">Productos de la Compra <span class="modal__paso">(2/2)</span></h2>
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+
+            <div class="factura__lista">
+                <!-- Encabezado de columnas -->
+                <div class="factura__lista-header">
+                    <span class="factura__lista-th">#</span>
+                    <span class="factura__lista-th">Producto</span>
+                    <span class="factura__lista-th">Cant.</span>
+                    <span class="factura__lista-th">Costo Unit.</span>
+                    <span class="factura__lista-th"></span>
                 </div>
-                <p class="alerta__mensaje">¡Compra registrada correctamente!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
+
+                <!-- Fila 1 (siempre visible, sin opción eliminar) -->
+                <div class="factura__fila">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_1" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_1" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_1" placeholder="$ 0" title="Costo Unitario">
+                    <span class="factura__eliminar factura__eliminar--disabled">
+                        <i class="fa-solid fa-trash"></i>
+                    </span>
+                </div>
+
+                <!-- Fila 2 (dynamic, checked default) -->
+                <div class="factura__fila factura__fila--extra factura__fila--extra-2">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_2" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_2" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_2" placeholder="$ 0" title="Costo Unitario">
+                    <label for="agregar-2" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <!-- Fila 3 (dynamic, checked default) -->
+                <div class="factura__fila factura__fila--extra factura__fila--extra-3">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_3" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_3" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_3" placeholder="$ 0" title="Costo Unitario">
+                    <label for="agregar-3" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <!-- Filas Extra (ocultas, controladas por checkboxes) -->
+                <div class="factura__fila factura__fila--extra factura__fila--extra-4">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_4" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_4" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_4" placeholder="$ 0" title="Costo Unitario">
+                    <label for="agregar-4" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-5">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_5" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_5" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_5" placeholder="$ 0" title="Costo Unitario">
+                    <label for="agregar-5" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-6">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_6" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_6" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_6" placeholder="$ 0" title="Costo Unitario">
+                    <label for="agregar-6" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-7">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_7" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_7" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_7" placeholder="$ 0" title="Costo Unitario">
+                    <label for="agregar-7" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-8">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_8" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_8" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_8" placeholder="$ 0" title="Costo Unitario">
+                    <label for="agregar-8" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-9">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_9" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_9" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_9" placeholder="$ 0" title="Costo Unitario">
+                    <label for="agregar-9" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-10">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_10" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_10" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_10" placeholder="$ 0" title="Costo Unitario">
+                    <label for="agregar-10" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Botones "Agregar Producto" -->
+            <div class="factura__contenedor-agregar">
+                <label for="agregar-4" class="factura__agregar-label factura__agregar-label--4">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="agregar-5" class="factura__agregar-label factura__agregar-label--5">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="agregar-6" class="factura__agregar-label factura__agregar-label--6">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="agregar-7" class="factura__agregar-label factura__agregar-label--7">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="agregar-8" class="factura__agregar-label factura__agregar-label--8">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="agregar-9" class="factura__agregar-label factura__agregar-label--9">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="agregar-10" class="factura__agregar-label factura__agregar-label--10">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+            </div>
+
+            <!-- Total -->
+            <div class="factura__total">
+                <span class="factura__total-label">Total Compra</span>
+                <span class="factura__total-valor">$ ---</span>
+            </div>
+
+            <!-- Acciones -->
+            <div class="factura__acciones">
+                <a href="#" data-modal-open="modal-compra" class="factura__boton-volver" title="Volver">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Volver
+                </a>
+                <a href="#" data-swal-ok="¡Compra registrada correctamente!" class="boton-accion boton-accion--primario" title="Guardar Compra">Guardar Compra</a>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="modal-editar-compra">
-        <a href="#" class="modal__overlay"></a>
+
+    <!-- ===== DETALLE DE COMPRA ===== -->
+    <div class="modal modal--detalle" id="modal-detalle-compra">
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
-                <h2 class="modal__titulo">Editar Compra</h2>
-                <a href="#" class="modal__cerrar">
+                <h2 class="modal__titulo">Detalle de Compra #C001</h2>
+                <span class="modal__subtitulo">08/12/2024 &bull; Efectivo &bull; Distribuidora Fashion &mdash; Bogotá</span>
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+
+            <!-- Tabla de productos (solo lectura) -->
+            <table class="factura__tabla">
+                <thead>
+                    <tr class="factura__tabla-header">
+                        <th class="factura__tabla-th">Producto</th>
+                        <th class="factura__tabla-th">Cant.</th>
+                        <th class="factura__tabla-th">Costo Unit.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="factura__tabla-fila">
+                        <td class="factura__tabla-td">Gorra New Era</td>
+                        <td class="factura__tabla-td">50</td>
+                        <td class="factura__tabla-td">$ 80.000</td>
+                    </tr>
+                    <tr class="factura__tabla-fila">
+                        <td class="factura__tabla-td">Chaqueta Denim</td>
+                        <td class="factura__tabla-td">25</td>
+                        <td class="factura__tabla-td">$ 120.000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Total -->
+            <div class="factura__total">
+                <span class="factura__total-label">Total</span>
+                <span class="factura__total-valor">$ 7.000.000</span>
+            </div>
+
+            <!-- Botón volver -->
+            <div class="factura__acciones factura__acciones--centrado">
+                <a href="#" class="factura__boton-volver" data-modal-close title="Volver">Volver</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PASO 1: EDITAR COMPRA — DATOS GENERALES ===== -->
+    <div class="modal" id="modal-editar-compra">
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Compra <span class="modal__paso">(1/2)</span></h2>
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <form class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Proveedor</label>
-                    <select class="formulario__select" name="proveedor_id" required>
+                    <select class="formulario__select" name="proveedor_id" title="Proveedor" required>
                         <option value="">Seleccionar proveedor</option>
                         <option value="1" selected>Distribuidora Fashion</option>
                         <option value="2">Textiles Colombia</option>
@@ -663,88 +659,307 @@
                     </select>
                 </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Producto</label>
-                    <select class="formulario__select" name="producto_id" required>
-                        <option value="">Seleccionar producto</option>
-                        <option value="1" selected>Gorra New Era</option>
-                        <option value="2">Camiseta Urban</option>
-                        <option value="3">Pantalón Cargo</option>
-                        <option value="4">Chaqueta Denim</option>
-                        <option value="5">Cinturón Cuero</option>
+                    <label class="formulario__label">Ciudad</label>
+                    <select class="formulario__select" name="ciudad" title="Ciudad" required>
+                        <option value="">Seleccionar ciudad</option>
+                        <option value="bogota" selected>Bogotá</option>
+                        <option value="medellin">Medellín</option>
+                        <option value="cali">Cali</option>
+                        <option value="barranquilla">Barranquilla</option>
                     </select>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Fecha</label>
-                    <input type="date" class="formulario__input" name="fecha" value="2024-12-08" required>
-                </div>
-                <div class="formulario__fila">
-                    <div class="formulario__grupo">
-                        <label class="formulario__label">Cantidad</label>
-                        <input type="number" class="formulario__input" name="cantidad" value="50" min="1" required>
-                    </div>
-                    <div class="formulario__grupo">
-                        <label class="formulario__label">Costo Unitario</label>
-                        <input type="number" class="formulario__input" name="costo_unitario" value="80000" required>
-                    </div>
+                    <input type="date" class="formulario__input" name="fecha" value="2024-12-08" title="Fecha" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Método de Pago</label>
-                    <select class="formulario__select" name="metodo_pago" required>
+                    <select class="formulario__select" name="metodo_pago" title="Método de Pago" required>
                         <option value="">Seleccionar método</option>
-                        <option value="efectivo">Efectivo</option>
-                        <option value="transferencia" selected>Transferencia</option>
+                        <option value="efectivo" selected>Efectivo</option>
+                        <option value="transferencia">Transferencia</option>
                     </select>
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-compra-actualizada" class="boton-accion boton-accion--primario">Actualizar
-                        Compra</a>
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-modal-open="modal-editar-productos-compra" class="factura__boton-siguiente" title="Siguiente paso">
+                        Editar Productos
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="modal" id="modal-compra-actualizada">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
+    <!-- ===== PASO 2: EDITAR COMPRA — PRODUCTOS ===== -->
+    <div class="modal" id="modal-editar-productos-compra">
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
+        <div class="modal__contenedor">
+            <!-- CHECKBOXES para revelar filas (rows 2 checked by default) -->
+            <input type="checkbox" id="editar-agregar-2" class="factura__toggle" title="Agregar producto 2" checked>
+            <input type="checkbox" id="editar-agregar-3" class="factura__toggle" title="Agregar producto 3">
+            <input type="checkbox" id="editar-agregar-4" class="factura__toggle" title="Agregar producto 4">
+            <input type="checkbox" id="editar-agregar-5" class="factura__toggle" title="Agregar producto 5">
+            <input type="checkbox" id="editar-agregar-6" class="factura__toggle" title="Agregar producto 6">
+            <input type="checkbox" id="editar-agregar-7" class="factura__toggle" title="Agregar producto 7">
+            <input type="checkbox" id="editar-agregar-8" class="factura__toggle" title="Agregar producto 8">
+            <input type="checkbox" id="editar-agregar-9" class="factura__toggle" title="Agregar producto 9">
+            <input type="checkbox" id="editar-agregar-10" class="factura__toggle" title="Agregar producto 10">
+
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Productos <span class="modal__paso">(2/2)</span></h2>
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+
+            <div class="factura__lista">
+                <div class="factura__lista-header">
+                    <span class="factura__lista-th">#</span>
+                    <span class="factura__lista-th">Producto</span>
+                    <span class="factura__lista-th">Cant.</span>
+                    <span class="factura__lista-th">Costo Unit.</span>
+                    <span class="factura__lista-th"></span>
                 </div>
-                <p class="alerta__mensaje">¡Compra actualizada correctamente!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
+
+                <!-- Fila 1 (pre-llenada, NO DELETE) -->
+                <div class="factura__fila">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_1" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1" selected>Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_1" value="50" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_1" value="80000" title="Costo Unitario">
+                    <span class="factura__eliminar factura__eliminar--disabled">
+                        <i class="fa-solid fa-trash"></i>
+                    </span>
+                </div>
+
+                <!-- Fila 2 (pre-llenada, dynamic checked) -->
+                <div class="factura__fila factura__fila--extra factura__fila--extra-e2">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_2" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4" selected>Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_2" value="25" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_2" value="120000" title="Costo Unitario">
+                    <label for="editar-agregar-2" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <!-- Filas Extra (ocultas) -->
+                <div class="factura__fila factura__fila--extra factura__fila--extra-e3">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_3" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_3" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_3" placeholder="$ 0" title="Costo Unitario">
+                    <label for="editar-agregar-3" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-e4">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_4" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_4" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_4" placeholder="$ 0" title="Costo Unitario">
+                    <label for="editar-agregar-4" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-e5">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_5" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_5" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_5" placeholder="$ 0" title="Costo Unitario">
+                    <label for="editar-agregar-5" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-e6">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_6" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_6" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_6" placeholder="$ 0" title="Costo Unitario">
+                    <label for="editar-agregar-6" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-e7">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_7" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_7" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_7" placeholder="$ 0" title="Costo Unitario">
+                    <label for="editar-agregar-7" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-e8">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_8" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_8" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_8" placeholder="$ 0" title="Costo Unitario">
+                    <label for="editar-agregar-8" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-e9">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_9" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_9" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_9" placeholder="$ 0" title="Costo Unitario">
+                    <label for="editar-agregar-9" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+
+                <div class="factura__fila factura__fila--extra factura__fila--extra-e10">
+                    <span class="factura__fila-numero"></span>
+                    <select class="formulario__select" name="producto_10" title="Producto">
+                        <option value="">Seleccionar</option>
+                        <option value="1">Gorra New Era</option>
+                        <option value="2">Camiseta Urban</option>
+                        <option value="3">Pantalón Cargo</option>
+                        <option value="4">Chaqueta Denim</option>
+                        <option value="5">Cinturón Cuero</option>
+                        <option value="6">Sudadera Premium</option>
+                        <option value="7">Zapatillas Sport</option>
+                    </select>
+                    <input type="number" class="formulario__input" name="cantidad_10" placeholder="0" title="Cantidad" min="1">
+                    <input type="number" class="formulario__input" name="costo_10" placeholder="$ 0" title="Costo Unitario">
+                    <label for="editar-agregar-10" class="factura__eliminar" title="Eliminar producto">
+                        <i class="fa-solid fa-trash"></i>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Botones "Agregar Producto" -->
+            <div class="factura__contenedor-agregar">
+                <label for="editar-agregar-4" class="factura__agregar-label factura__agregar-label--e4">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="editar-agregar-5" class="factura__agregar-label factura__agregar-label--e5">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="editar-agregar-6" class="factura__agregar-label factura__agregar-label--e6">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="editar-agregar-7" class="factura__agregar-label factura__agregar-label--e7">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="editar-agregar-8" class="factura__agregar-label factura__agregar-label--e8">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="editar-agregar-9" class="factura__agregar-label factura__agregar-label--e9">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+                <label for="editar-agregar-10" class="factura__agregar-label factura__agregar-label--e10">
+                    <i class="fa-solid fa-plus"></i> Agregar producto
+                </label>
+            </div>
+
+            <!-- Total -->
+            <div class="factura__total">
+                <span class="factura__total-label">Total Compra</span>
+                <span class="factura__total-valor">$ 7.000.000</span>
+            </div>
+
+            <!-- Acciones -->
+            <div class="factura__acciones">
+                <a href="#" data-modal-open="modal-editar-compra" class="factura__boton-volver" title="Volver">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Volver
+                </a>
+                <a href="#" data-swal-ok="¡Compra actualizada correctamente!" class="boton-accion boton-accion--primario" title="Actualizar Compra">Actualizar Compra</a>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="modal-eliminar-compra">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
-            <div class="alerta">
-                <h2 class="alerta__titulo">¿Eliminar esta compra?</h2>
-                <p class="alerta__mensaje">¿Estás seguro que quieres eliminar este registro de compra? Esta acción no se
-                    puede deshacer.</p>
-                <div class="alerta__acciones">
-                    <a href="#" class="boton-alerta boton-alerta--cancelar">CANCELAR</a>
-                    <a href="#modal-compra-eliminada" class="boton-alerta boton-alerta--eliminar">ELIMINAR</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal" id="modal-compra-eliminada">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <p class="alerta__mensaje">¡La compra fue eliminada con éxito!</p>
-                <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-            </div>
-        </div>
-    </div>
-
+    <script type="module" src="/js/main.js"></script>
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 
