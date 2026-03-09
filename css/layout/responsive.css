@@ -1431,6 +1431,97 @@
         padding: 6px 12px;
         /* Padding reducido */
     }
+
+    /* ---------- PAGINA HEADER (Tablet) ---------- */
+
+    /* Permite que título, buscador y botones rompan línea */
+    .pagina-header {
+        flex-wrap: wrap;
+    }
+
+    .pagina-header__titulo {
+        font-size: 20px;
+    }
+
+    /* ---------- NOTIFICACIONES (Tablet) ---------- */
+
+    /* Reduce el ancho y ajusta posición en pantallas pequeñas */
+    .notificaciones {
+        right: 12px;
+        left: 12px;
+        top: 16px;
+    }
+
+    .notificacion {
+        min-width: unset;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* ---------- MODAL / FORMULARIO (Tablet) ---------- */
+
+    /* Campos del formulario en 1 columna desde tablet */
+    .formulario__fila {
+        grid-template-columns: 1fr;
+    }
+
+    /* Botones en columna */
+    .formulario__acciones {
+        flex-direction: column;
+    }
+
+    /* Botones ocupan todo el ancho */
+    .formulario__acciones .boton-accion {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* ---------- GRÁFICO DE BARRAS (Tablet) ---------- */
+
+    /* Reduce la altura del área de barras */
+    .barras__contenedor {
+        height: 160px;
+    }
+
+    /* ---------- MODAL DETALLE VENTA / COMPRA (Tablet) ---------- */
+
+    /* Ajusta el ancho del modal de detalle */
+    .modal--detalle .modal__contenedor {
+        max-width: 95vw;
+    }
+
+    /* Reduce padding del header del detalle */
+    .modal--detalle .modal__header {
+        padding: 20px 20px 10px 20px;
+    }
+
+    /* Reduce padding de la lista de productos */
+    .factura__lista {
+        padding: 0 16px;
+    }
+
+    /* Comprime las columnas de la grilla de factura */
+    .factura__lista-header,
+    .factura__fila {
+        grid-template-columns: 24px 1fr 55px 90px 28px;
+        gap: 6px;
+    }
+
+    /* Reduce padding de celdas de la tabla de detalle */
+    .factura__tabla-th,
+    .factura__tabla-td {
+        padding: 10px 16px;
+    }
+
+    /* Reduce padding de la barra de total */
+    .factura__total {
+        padding: 16px 20px;
+    }
+
+    /* Reduce padding de las acciones del modal */
+    .factura__acciones {
+        padding: 12px 16px;
+    }
 }
 
 /* ============================================ */
@@ -1581,6 +1672,57 @@
         /* Ajusta posición */
         left: 10px;
         /* Ajusta posición */
+    }
+
+    /* ---------- GRÁFICO DE BARRAS (Mobile L) ---------- */
+
+    .barras__contenedor {
+        height: 130px;
+    }
+
+    /* ---------- MODAL DETALLE VENTA / COMPRA (Mobile L) ---------- */
+
+    /* Oculta la columna # para ganar espacio */
+    .factura__lista-header .factura__lista-th:first-child,
+    .factura__fila-numero {
+        display: none;
+    }
+
+    /* 4 columnas sin el número */
+    .factura__lista-header,
+    .factura__fila {
+        grid-template-columns: 1fr 50px 80px 24px;
+    }
+
+    /* Reduce padding de celdas */
+    .factura__tabla-th,
+    .factura__tabla-td {
+        padding: 8px 12px;
+    }
+
+    /* Total en columna centrada */
+    .factura__total {
+        padding: 12px 16px;
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+    }
+
+    /* Reduce el valor del total */
+    .factura__total-valor {
+        font-size: 20px;
+    }
+
+    /* Acciones en columna */
+    .factura__acciones {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .factura__boton-volver,
+    .factura__boton-siguiente {
+        width: 100%;
+        justify-content: center;
     }
 }
 
@@ -1871,22 +2013,37 @@
         padding: 12px;
     }
 
-    /* ---------- MODAL/FORMULARIO (Mobile L) ---------- */
+    /* ---------- NOTIFICACIONES (Mobile S) ---------- */
 
-    /* En móviles, los campos van en una sola columna */
-    .formulario__fila {
-        grid-template-columns: 1fr;
+    .notificaciones {
+        right: 8px;
+        left: 8px;
+        top: 10px;
     }
 
-    /* Botones en columna */
-    .formulario__acciones {
-        flex-direction: column;
+    .notificacion {
+        padding: 10px 14px;
+        gap: 8px;
     }
 
-    /* Botones ocupan todo el ancho */
-    .formulario__acciones .boton-accion {
-        width: 100%;
-        justify-content: center;
+    .notificacion__mensaje {
+        font-size: 13px;
+    }
+
+    /* ---------- GRÁFICO DE BARRAS (Mobile S) ---------- */
+
+    .barras__contenedor {
+        height: 110px;
+    }
+
+    /* ---------- MODAL DETALLE VENTA / COMPRA (Mobile S) ---------- */
+
+    .factura__total-valor {
+        font-size: 18px;
+    }
+
+    .modal--detalle .modal__titulo {
+        font-size: 16px;
     }
 }
 
