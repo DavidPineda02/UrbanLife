@@ -42,6 +42,19 @@
    ELEMENTO: Grupo de campo
    ======================================== */
 
+/* Fila de dos campos en la misma línea */
+.formulario__fila {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: var(--espacio-peq);
+}
+
+.formulario__fila .formulario__grupo {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
+}
+
 /* Contenedor de label + input */
 .formulario__grupo {
     margin-bottom: var(--espacio-peq);
