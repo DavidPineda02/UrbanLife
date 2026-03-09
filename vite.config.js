@@ -13,6 +13,7 @@ export default defineConfig({
                 clientes:    resolve(__dirname, 'view/clientes.html'),
                 proveedores: resolve(__dirname, 'view/proveedores.html'),
                 gastos:      resolve(__dirname, 'view/gastos.html'),
+                usuarios:    resolve(__dirname, 'view/usuarios.html'),
                 perfil:      resolve(__dirname, 'view/perfil.html'),
                 register:        resolve(__dirname, 'view/register.html'),
                 recuperar:        resolve(__dirname, 'view/recuperar.html'),
