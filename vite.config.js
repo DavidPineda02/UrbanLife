@@ -10,6 +10,7 @@ export default defineConfig({
                 ventas:      resolve(__dirname, 'view/ventas.html'),
                 compras:     resolve(__dirname, 'view/compras.html'),
                 productos:   resolve(__dirname, 'view/productos.html'),
+                categorias:  resolve(__dirname, 'view/categorias.html'),
                 clientes:    resolve(__dirname, 'view/clientes.html'),
                 proveedores: resolve(__dirname, 'view/proveedores.html'),
                 gastos:      resolve(__dirname, 'view/gastos.html'),
