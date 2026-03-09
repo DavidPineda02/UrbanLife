@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/templete.css">
+    <title>Usuarios</title>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar__marca">
+            <img src="../assets/img/LogoPage.png" alt="Logo UrbanLife" class="sidebar__logo">
+        </div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__lista">
+                <li class="sidebar__elemento">
+                    <a href="home.html" class="sidebar__enlace" title="Ganancias">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ganancias</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="productos.html" class="sidebar__enlace" title="Productos">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Productos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="ventas.html" class="sidebar__enlace" title="Ventas">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ventas</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="clientes.html" class="sidebar__enlace" title="Clientes">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Clientes</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="compras.html" class="sidebar__enlace" title="Compras">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Compras</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="proveedores.html" class="sidebar__enlace" title="Proveedores">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Proveedores</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="gastos.html" class="sidebar__enlace" title="Gastos">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Gastos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="usuarios.html" class="sidebar__enlace sidebar__enlace--activo" title="Usuarios">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Usuarios</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento sidebar__elemento--perfil">
+                    <a href="perfil.html" class="sidebar__enlace" title="Perfil">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-gear"></i>
+                        </div>
+                        <div class="sidebar__enlace-info">
+                            <span class="sidebar__enlace-texto">David Pineda</span>
+                            <span class="sidebar__enlace-rol">Super Admin</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="tablero">
+        <header class="pagina-header">
+            <h1 class="pagina-header__titulo">Usuarios</h1>
+            <div class="buscador">
+                <div class="buscador__campo">
+                    <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                    <input type="text" class="buscador__input" placeholder="Buscar por nombre o correo...">
+                </div>
+                <div class="buscador__filtros">
+                    <select class="buscador__select" name="filtro-rol" title="Filtrar por rol">
+                        <option value="">Rol</option>
+                        <option value="admin">Admin</option>
+                        <option value="empleado">Empleado</option>
+                    </select>
+                    <select class="buscador__select" name="filtro-estado" title="Filtrar por estado">
+                        <option value="">Estado</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <section class="contactos__grid">
+
+            <article class="contacto">
+                <div class="contacto__header">
+                    <div class="contacto__avatar">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div class="contacto__acciones">
+                        <a href="#" data-modal-open="modal-editar-usuario" class="contacto__accion contacto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar usuario?" data-swal-delete-texto="Esta acción no se puede deshacer." class="contacto__accion contacto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contacto__info">
+                    <h3 class="contacto__nombre">David Pineda</h3>
+                    <span class="contacto__badge contacto__badge--activo">Activo</span>
+                </div>
+                <div class="contacto__detalles">
+                    <div class="contacto__campo">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Rol</span>
+                            <span class="contacto__campo-valor">Admin</span>
+                        </div>
+                    </div>
+                    <div class="contacto__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Correo</span>
+                            <span class="contacto__campo-valor">david@urbanlife.com</span>
+                        </div>
+                    </div>
+                    <div class="contacto__campo">
+                        <i class="fa-solid fa-key"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Acceso</span>
+                            <span class="contacto__campo-valor">Contraseña</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="contacto">
+                <div class="contacto__header">
+                    <div class="contacto__avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="contacto__acciones">
+                        <a href="#" data-modal-open="modal-editar-usuario" class="contacto__accion contacto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar usuario?" data-swal-delete-texto="Esta acción no se puede deshacer." class="contacto__accion contacto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contacto__info">
+                    <h3 class="contacto__nombre">Laura Gómez</h3>
+                    <span class="contacto__badge contacto__badge--activo">Activo</span>
+                </div>
+                <div class="contacto__detalles">
+                    <div class="contacto__campo">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Rol</span>
+                            <span class="contacto__campo-valor">Empleado</span>
+                        </div>
+                    </div>
+                    <div class="contacto__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Correo</span>
+                            <span class="contacto__campo-valor">laura@urbanlife.com</span>
+                        </div>
+                    </div>
+                    <div class="contacto__campo">
+                        <i class="fa-brands fa-google"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Acceso</span>
+                            <span class="contacto__campo-valor">Google</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="contacto">
+                <div class="contacto__header">
+                    <div class="contacto__avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="contacto__acciones">
+                        <a href="#" data-modal-open="modal-editar-usuario" class="contacto__accion contacto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar usuario?" data-swal-delete-texto="Esta acción no se puede deshacer." class="contacto__accion contacto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contacto__info">
+                    <h3 class="contacto__nombre">Andrés Torres</h3>
+                    <span class="contacto__badge contacto__badge--inactivo">Inactivo</span>
+                </div>
+                <div class="contacto__detalles">
+                    <div class="contacto__campo">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Rol</span>
+                            <span class="contacto__campo-valor">Empleado</span>
+                        </div>
+                    </div>
+                    <div class="contacto__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Correo</span>
+                            <span class="contacto__campo-valor">andres@urbanlife.com</span>
+                        </div>
+                    </div>
+                    <div class="contacto__campo">
+                        <i class="fa-solid fa-key"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Acceso</span>
+                            <span class="contacto__campo-valor">Contraseña</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="contacto">
+                <div class="contacto__header">
+                    <div class="contacto__avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="contacto__acciones">
+                        <a href="#" data-modal-open="modal-editar-usuario" class="contacto__accion contacto__accion--editar" title="Editar">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar usuario?" data-swal-delete-texto="Esta acción no se puede deshacer." class="contacto__accion contacto__accion--eliminar" title="Eliminar">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contacto__info">
+                    <h3 class="contacto__nombre">Valentina Ríos</h3>
+                    <span class="contacto__badge contacto__badge--activo">Activo</span>
+                </div>
+                <div class="contacto__detalles">
+                    <div class="contacto__campo">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Rol</span>
+                            <span class="contacto__campo-valor">Empleado</span>
+                        </div>
+                    </div>
+                    <div class="contacto__campo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Correo</span>
+                            <span class="contacto__campo-valor">valentina@urbanlife.com</span>
+                        </div>
+                    </div>
+                    <div class="contacto__campo">
+                        <i class="fa-brands fa-google"></i>
+                        <div class="contacto__campo-info">
+                            <span class="contacto__campo-etiqueta">Acceso</span>
+                            <span class="contacto__campo-valor">Google</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- Modal Editar Usuario -->
+    <div id="modal-editar-usuario" class="modal">
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Usuario</h2>
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <div class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre Completo</label>
+                    <input type="text" class="formulario__input" value="David Pineda" title="Nombre Completo" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Correo Electrónico</label>
+                    <input type="email" class="formulario__input" value="david@urbanlife.com" title="Correo Electrónico" required>
+                </div>
+                <div class="formulario__fila">
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Rol</label>
+                        <select class="formulario__select" title="Rol" required>
+                            <option value="">Seleccionar</option>
+                            <option value="admin" selected>Admin</option>
+                            <option value="empleado">Empleado</option>
+                        </select>
+                    </div>
+                    <div class="formulario__grupo">
+                        <label class="formulario__label">Estado</label>
+                        <select class="formulario__select" title="Estado" required>
+                            <option value="true" selected>Activo</option>
+                            <option value="false">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Usuario actualizado correctamente!" class="boton-accion boton-accion--primario" title="Actualizar Usuario">Actualizar Usuario</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/main.js"></script>
+    <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
