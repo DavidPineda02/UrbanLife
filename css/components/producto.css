@@ -5,17 +5,10 @@
 
 .pagina-header {
     display: flex;
-    /* Contenedor flexible */
-    justify-content: space-between;
-    /* Título a la izquierda, acciones a la derecha */
     align-items: center;
-    /* Centrado vertical */
-    margin-bottom: 24px;
-    /* Espacio inferior antes del contenido */
-    flex-wrap: wrap;
-    /* Permite que los elementos salten de línea en móviles */
-    gap: 16px;
-    /* Espacio entre título y botones cuando hacen wrap */
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 20px;
 }
 
 /* Título principal de la página */
@@ -109,9 +102,16 @@
 /* Estado hover del botón secundario */
 .boton-accion--secundario:hover {
     background-color: var(--color-fondo-gris-hover);
-    /* Fondo gris claro */
-    border-color: #ccc;
-    /* Borde más oscuro */
+    border-color: var(--color-icono);
+}
+
+/* Modificador: botón solo icono (sin texto) */
+.boton-accion--icono {
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 /* ================================= */

@@ -22,11 +22,16 @@
 @import url(./components/grafico-pastel.css);
 @import url(./components/grafico-margen.css);
 @import url(./components/producto.css);
+@import url(./components/formulario.css);
 @import url(./components/modal.css);
 @import url(./components/detalle-venta.css);
 @import url(./components/tabla.css);
 @import url(./components/contacto.css);
 @import url(./components/perfil.css);
+@import url(./components/buscador.css);
+@import url(./components/notificacion.css);
+@import url(./components/validacion.css);
+@import url(./components/sweetalert.css);
 
 /* Responsive */
 @import url(./layout/responsive.css);

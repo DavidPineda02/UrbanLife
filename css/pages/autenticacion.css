@@ -1,320 +1,293 @@
 /* ============================================
-   IMPORTS DE DEPENDENCIAS
+   IMPORTS
    ============================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
 @import url(../customproperties.css);
-/* Importa las variables CSS globales */
 @import url(../components/formulario.css);
-/* Importa los estilos del formulario */
 
 /* ============================================
-   RESETEO GLOBAL Y CONFIGURACIÓN BASE
+   RESET BASE
    ============================================ */
 
-/* Selector universal para resetear estilos por defecto */
 * {
     box-sizing: border-box;
-    /* El padding y border se incluyen en el ancho/alto */
     margin: 0;
-    /* Elimina márgenes por defecto */
     padding: 0;
-    /* Elimina padding por defecto */
     font-family: var(--fuente-principal);
-    /* Aplica la fuente Open Sans */
 }
 
 /* ============================================
-   BLOQUE: autenticacion (contenedor principal)
+   LAYOUT — 50/50 sin scroll
    ============================================ */
 
-/* Layout principal de la página de login/registro */
 .autenticacion {
     height: 100vh;
-    /* Ocupa toda la altura de la pantalla */
     width: 100vw;
-    /* Ocupa todo el ancho de la pantalla */
     display: grid;
-    /* Activa CSS Grid */
-    grid-template-columns: 50% 50%;
-    /* Divide en 2 columnas iguales: imagen y contenido */
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
 }
 
 /* ============================================
-   BLOQUE: autenticacion__imagen
+   PANEL IZQUIERDO
    ============================================ */
 
-/* Sección izquierda con la imagen de fondo */
 .autenticacion__imagen {
     position: relative;
-    /* Permite posicionar el overlay encima */
     height: 100%;
-    /* Ocupa toda la altura disponible */
-    width: 100%;
-    /* Ocupa todo el ancho de la columna */
     background-image: url(../../assets/img/negocio.jpg);
-    /* Imagen de fondo del negocio */
     background-repeat: no-repeat;
-    /* La imagen no se repite */
     background-size: cover;
-    /* La imagen cubre todo el espacio */
-    border-top-right-radius: var(--radio-grande);
-    /* Esquina superior derecha redondeada */
-    border-bottom-right-radius: var(--radio-grande);
-    /* Esquina inferior derecha redondeada */
-    box-shadow: var(--sombra);
-    /* Sombra hacia la derecha */
+    background-position: center;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
 }
 
-/* Capa oscura semi-transparente sobre la imagen */
 .autenticacion__overlay {
     position: absolute;
-    /* Se posiciona sobre la imagen */
-    top: 0;
-    /* Desde arriba */
-    left: 0;
-    /* Desde la izquierda */
-    height: 100%;
-    /* Cubre toda la altura */
-    width: 100%;
-    /* Cubre todo el ancho */
-    background-color: var(--color-overlay);
-    /* Negro con 40% de opacidad */
-    border-top-right-radius: var(--radio-grande);
-    /* Mismas esquinas que la imagen */
-    border-bottom-right-radius: var(--radio-grande);
-    /* Mismas esquinas que la imagen */
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.84) 0%,
+        rgba(0, 0, 0, 0.60) 50%,
+        rgba(0, 0, 0, 0.55) 100%
+    );
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
 }
 
-/* ============================================
-   BLOQUE: autenticacion__contenido
-   ============================================ */
-
-/* Sección derecha con el formulario */
-.autenticacion__contenido {
-    display: flex;
-    /* Activa Flexbox */
-    flex-direction: column;
-    /* Apila elementos verticalmente */
-    align-items: center;
-    /* Centra horizontalmente */
-    background-color: var(--color-secundario);
-    /* Fondo blanco */
-    justify-content: space-around;
-    /* Distribuye espacio equitativamente */
+.autenticacion__marca {
+    position: absolute;
+    bottom: 3rem;
+    left: 2.75rem;
+    right: 2.75rem;
+    z-index: 1;
+    color: var(--color-secundario);
 }
 
-/* Logo de UrbanLife */
-.autenticacion__logo {
-    height: 150px;
-    /* Altura fija del logo */
+.autenticacion__marca-acento {
+    display: block;
+    width: 36px;
+    height: 3px;
+    background-color: var(--color-marca);
+    border-radius: 2px;
+    margin-bottom: 1.125rem;
 }
 
-/* ============================================
-   ENLACE DE REGISTRO/INICIO DE SESION
-   ============================================ */
+.autenticacion__marca-titulo {
+    font-family: var(--fuente-titulos);
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.75px;
+    line-height: 1.1;
+}
 
-/* Texto "¿No tienes una cuenta?" */
-.autenticacion__links {
+.autenticacion__marca-subtitulo {
     font-size: var(--font-size-s);
-    /* Tamaño pequeño (0.875rem) */
-    color: var(--color-texto);
-    /* Color de texto principal */
+    color: rgba(255, 255, 255, 0.70);
+    margin-top: 0.625rem;
+    line-height: 1.6;
+    max-width: 280px;
 }
 
-/* Enlace "Registrarse" */
+/* ============================================
+   PANEL DERECHO
+   ============================================ */
+
+.autenticacion__contenido {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-secundario);
+    padding: 3rem 3rem 5rem;
+    overflow: hidden;
+}
+
+/* Pie anclado al fondo */
+.autenticacion__links {
+    position: absolute;
+    bottom: 2rem;
+    font-size: var(--font-size-s);
+    color: var(--color-texto-secundario);
+}
+
 .autenticacion__enlace {
     color: var(--color-principal);
-    /* Color negro principal */
     text-decoration: none;
-    /* Sin subrayado por defecto */
+    font-weight: var(--font-weight-bold);
 }
 
-/* Estado hover del enlace */
 .autenticacion__enlace:hover {
-    text-decoration: underline;
-    /* Muestra subrayado al pasar el mouse */
+    color: var(--color-marca);
 }
 
 /* ============================================
-   RESPONSIVE: TABLET (max-width: 768px)
+   FORMULARIO — overrides para auth
    ============================================ */
 
-@media screen and (max-width: 768px) {
+.formulario {
+    width: 78%;
+    gap: 0;
+}
 
-    /* Cambia a 1 columna */
+/* --- Encabezado --- */
+
+.formulario__encabezado {
+    margin-bottom: 2.25rem;
+}
+
+.formulario__encabezado-acento {
+    display: block;
+    width: 32px;
+    height: 3px;
+    background-color: var(--color-marca);
+    border-radius: 2px;
+    margin-bottom: 1.125rem;
+}
+
+.formulario__titulo {
+    font-family: var(--fuente-titulos);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-principal);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+}
+
+.formulario__subtitulo {
+    font-size: var(--font-size-s);
+    color: var(--color-texto-terciario);
+    margin-top: 0.625rem;
+    line-height: 1.6;
+}
+
+/* --- Grupos y labels --- */
+
+.formulario__grupo {
+    margin-bottom: 1rem;
+}
+
+.formulario__etiqueta {
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-texto-secundario);
+    margin-bottom: 0.5rem;
+}
+
+/* --- Inputs --- */
+
+.formulario__campo {
+    padding: 0.9rem 1.125rem;
+    border-radius: 10px;
+    font-size: var(--font-size-s);
+}
+
+/* --- Acciones (recordar + enlace) --- */
+
+.formulario__acciones {
+    margin-top: 0.375rem;
+    margin-bottom: 0;
+}
+
+.formulario__texto {
+    font-size: 0.8rem;
+}
+
+.formulario__enlace {
+    font-size: 0.8rem;
+}
+
+/* --- Botones --- */
+
+.formulario__botones {
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.formulario__boton--principal {
+    height: 50px;
+    font-size: var(--font-size-s);
+    letter-spacing: 0.3px;
+}
+
+.formulario__boton--google {
+    height: 50px;
+    font-size: var(--font-size-s);
+}
+
+/* --- Separador --- */
+
+.formulario__separador {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+}
+
+/* ============================================
+   RESPONSIVE — Tablet (≤ 900px)
+   ============================================ */
+
+@media screen and (max-width: 900px) {
+
     .autenticacion {
         grid-template-columns: 1fr;
-        /* Solo una columna */
     }
 
-    /* Oculta la imagen de fondo */
     .autenticacion__imagen {
         display: none;
-        /* No se muestra en tablet/móviles */
     }
 
-    /* Contenido ocupa toda la pantalla */
     .autenticacion__contenido {
-        padding: 30px 20px;
-        /* Padding para respirar */
-        justify-content: center;
-        /* Centra verticalmente */
-        gap: 30px;
-        /* Espacio entre elementos */
+        padding: 3rem 2rem 5rem;
+        overflow-y: auto;
     }
 
-    /* Reduce el logo */
-    .autenticacion__logo {
-        height: 120px;
-        /* Más pequeño */
-    }
-
-    /* Formulario más ancho */
     .formulario {
         width: 100%;
-        /* Ancho completo */
-        max-width: 400px;
-        /* Máximo 400px */
+        max-width: 440px;
     }
 }
 
 /* ============================================
-   RESPONSIVE: MOBILE L (max-width: 480px)
+   RESPONSIVE — Mobile (≤ 480px)
    ============================================ */
 
 @media screen and (max-width: 480px) {
 
-    /* Contenido con menos padding */
     .autenticacion__contenido {
-        padding: 20px 16px;
-        /* Menos padding */
-        gap: 24px;
-        /* Menos espacio */
+        padding: 2.5rem 1.5rem 5rem;
     }
 
-    /* Logo más pequeño */
-    .autenticacion__logo {
-        height: 100px;
-        /* Más pequeño */
-    }
-
-    /* Formulario ajustado */
     .formulario {
         max-width: 100%;
-        /* Todo el ancho disponible */
-        gap: 8px;
-        /* Menos espacio entre grupos */
     }
 
-    /* Grupos más compactos */
+    .formulario__encabezado {
+        margin-bottom: 1.75rem;
+    }
+
+    .formulario__titulo {
+        font-size: 1.625rem;
+    }
+
     .formulario__grupo {
-        margin-bottom: 8px;
-        /* Menos margen */
+        margin-bottom: 0.75rem;
     }
 
-    /* Campos más pequeños */
     .formulario__campo {
-        padding: 12px 14px;
-        /* Menos padding */
-        font-size: 14px;
-        /* Tamaño legible */
+        padding: 0.8rem 1rem;
     }
 
-    /* Etiquetas más pequeñas */
-    .formulario__etiqueta {
-        font-size: 12px;
-        /* Más pequeño */
-        margin-bottom: 6px;
-        /* Menos margen */
+    .formulario__botones {
+        margin-top: 1.5rem;
+        gap: 0.875rem;
     }
 
-    /* Acciones mantienen formato horizontal */
-    .formulario__acciones {
-        flex-wrap: wrap;
-        /* Permite wrap si no cabe */
-        gap: 8px;
-        /* Espacio entre elementos */
-        font-size: 12px;
-        /* Texto más pequeño */
-    }
-
-    /* Botones más compactos */
-    .formulario__boton {
-        padding: 12px;
-        /* Menos padding */
-        font-size: 14px;
-        /* Más pequeño */
-    }
-
-    /* Botón principal ajustado */
     .formulario__boton--principal,
     .formulario__boton--google {
         height: 46px;
-        /* Más bajo */
-    }
-
-    /* Contenedor de botones */
-    .formulario__botones {
-        gap: 14px;
-        /* Menos espacio */
-        margin-top: 16px;
-        /* Menos margen */
-    }
-}
-
-/* ============================================
-   RESPONSIVE: MOBILE M (max-width: 375px)
-   ============================================ */
-
-@media screen and (max-width: 375px) {
-
-    /* Contenido más compacto */
-    .autenticacion__contenido {
-        padding: 16px 12px;
-        /* Menos padding */
-        gap: 16px;
-        /* Menos espacio */
-    }
-
-    /* Logo aún más pequeño */
-    .autenticacion__logo {
-        height: 80px;
-        /* Más pequeño */
-    }
-
-    /* Texto de links más pequeño */
-    .autenticacion__links {
-        font-size: 11px;
-        /* Más pequeño */
-    }
-
-    /* Campos aún más compactos */
-    .formulario__campo {
-        padding: 10px 12px;
-        /* Menos padding */
-        font-size: 13px;
-        /* Más pequeño */
-    }
-
-    /* Etiquetas más pequeñas */
-    .formulario__etiqueta {
-        font-size: 11px;
-        /* Más pequeño */
-    }
-
-    /* Textos del formulario */
-    .formulario__texto,
-    .formulario__enlace {
-        font-size: 11px;
-        /* Más pequeño */
-    }
-
-    /* Botones más compactos */
-    .formulario__boton--principal,
-    .formulario__boton--google {
-        height: 42px;
-        /* Más bajo */
-        font-size: 13px;
-        /* Más pequeño */
     }
 }

@@ -73,12 +73,12 @@
 
 /* Área de navegación */
 .sidebar__nav {
+    flex: 1;
+    /* Ocupa el espacio restante del sidebar */
     margin-top: 15px;
     /* Espacio desde el logo */
     padding: 20px 0;
     /* Espaciado vertical */
-    flex: 1;
-    /* Ocupa el espacio disponible */
 }
 
 /* ========================================
@@ -259,7 +259,7 @@
     /* Tamaño de fuente */
     font-weight: 600;
     /* Semi-negrita */
-    color: #1a1a1a;
+    color: var(--color-principal);
     /* Color negro */
     white-space: nowrap;
     /* No divide el texto en líneas */
@@ -275,7 +275,7 @@
 
 /* Flecha hacia la derecha */
 .sidebar__enlace-flecha {
-    color: #ccc;
+    color: var(--color-icono);
     /* Color gris claro */
     font-size: 12px;
     /* Tamaño pequeño */
@@ -397,7 +397,7 @@
     /* Tamaño de fuente */
     font-weight: 600;
     /* Semi-negrita */
-    color: #1a1a1a;
+    color: var(--color-principal);
     /* Color negro */
     white-space: nowrap;
     /* No divide en líneas */
@@ -419,7 +419,7 @@
 
 /* Flecha del perfil */
 .sidebar__perfil-flecha {
-    color: #ccc;
+    color: var(--color-icono);
     /* Color gris claro */
     font-size: 12px;
     /* Tamaño pequeño */
@@ -434,3 +434,4 @@
     transform: translateX(3px);
     /* Se mueve a la derecha */
 }
+

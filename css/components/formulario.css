@@ -2,6 +2,28 @@
    BLOQUE: formulario
    ============================================ */
 
+/* ============================================
+   ENCABEZADO DEL FORMULARIO
+   ============================================ */
+
+.formulario__encabezado {
+    margin-bottom: 1.25rem;
+}
+
+.formulario__titulo {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-principal);
+    line-height: 1.2;
+}
+
+.formulario__subtitulo {
+    font-size: var(--font-size-s);
+    color: var(--color-texto-secundario);
+    margin-top: 0.3rem;
+    line-height: 1.4;
+}
+
 /* Contenedor principal del formulario */
 .formulario {
     width: 60%;
@@ -118,26 +140,25 @@
     /* Centra verticalmente */
 }
 
+/* Input dentro de campo password deja espacio para el ícono */
+.formulario__campo--password .formulario__campo {
+    padding-right: 3rem;
+}
+
 /* Icono de mostrar/ocultar contraseña */
 .formulario__icono {
     position: absolute;
-    /* Posición absoluta dentro del contenedor */
     right: 1rem;
-    /* 1rem desde la derecha */
     color: var(--color-texto-terciario);
-    /* Color gris claro */
     cursor: pointer;
-    /* Cursor de mano */
-    font-size: var(--font-size-muy-grande);
-    /* Tamaño 1.25rem */
+    font-size: 1rem;
     transition: color 0.2s ease;
-    /* Animación de color */
+    user-select: none;
 }
 
 /* Estado hover del icono */
 .formulario__icono:hover {
     color: var(--color-principal);
-    /* Cambia a negro */
 }
 
 /* ============================================
@@ -382,34 +403,42 @@
 }
 
 /* ============================================
-   INPUT DE ARCHIVO (IMAGEN)
+   INPUT DE ARCHIVO (IMAGEN) — CUSTOM LABEL
    ============================================ */
 
-/* Estilo del input file para que se vea igual que los demás campos */
-.formulario__input[type="file"] {
-    padding: 0.65rem 1rem;
-    /* Padding ajustado para alinear con otros campos */
+/* Label estilado que reemplaza el input[type="file"] nativo */
+.formulario__archivo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-mediano);
+    font-size: var(--font-size-s);
+    font-family: var(--fuente-principal);
+    color: var(--color-texto-terciario);
+    background: var(--color-blanco);
     cursor: pointer;
-    /* Cursor de mano */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
 }
 
-/* Estilo del texto del input file */
-.formulario__input[type="file"]::file-selector-button {
-    background-color: var(--color-principal);
-    color: var(--color-secundario);
-    border: none;
-    padding: 0.4rem 0.8rem;
-    border-radius: var(--radio-pequeno);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
-    cursor: pointer;
-    margin-right: 0.75rem;
-    transition: background-color 0.2s ease;
+.formulario__archivo:hover {
+    border-color: var(--color-principal);
 }
 
-/* Hover del botón del input file */
-.formulario__input[type="file"]::file-selector-button:hover {
-    background-color: var(--color-hover);
+/* Oculta el input nativo */
+.formulario__archivo input[type="file"] {
+    display: none;
+}
+
+/* Texto que muestra el nombre del archivo */
+.formulario__archivo-texto {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* ============================================
@@ -426,4 +455,99 @@
 .formulario__grupo--grande {
     flex: 0 0 70%;
     /* No crece, no encoge, 70% fijo */
+}
+
+/* ============================================
+   CAMPOS COMPARTIDOS — MODALES DEL DASHBOARD
+   ============================================ */
+
+/* Etiqueta de campo en modales */
+.formulario__label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: var(--font-size-peq);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-texto);
+}
+
+/* Fila de dos columnas */
+.formulario__fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Input de texto/número */
+.formulario__input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-mediano);
+    font-size: var(--font-size-s);
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+    background: var(--color-blanco);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.formulario__input:focus {
+    outline: none;
+    border-color: var(--color-principal);
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
+.formulario__input::placeholder {
+    color: var(--color-texto-terciario);
+}
+
+/* Textarea */
+.formulario__textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-mediano);
+    font-size: var(--font-size-s);
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+    background: var(--color-blanco);
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.formulario__textarea:focus {
+    outline: none;
+    border-color: var(--color-info);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.formulario__textarea::placeholder {
+    color: var(--color-texto-terciario);
+}
+
+/* Select */
+.formulario__select {
+    width: 100%;
+    appearance: none;
+    padding: 12px 40px 12px 14px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-mediano);
+    font-size: var(--font-size-s);
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+    background-color: var(--color-blanco);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%23888888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.formulario__select:focus {
+    outline: none;
+    border-color: var(--color-principal);
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
 }

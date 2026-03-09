@@ -188,7 +188,7 @@
 /* ========================================================================== */
 
 /* Estilos mejorados para el detalle - Diseño profesional Urban Life */
-#modal-detalle-venta .modal__contenedor {
+.modal--detalle .modal__contenedor {
     padding: 0;
     overflow: hidden;
     border-radius: 12px;
@@ -201,7 +201,7 @@
     /* Acento de marca (Rojo) */
 }
 
-#modal-detalle-venta .modal__header {
+.modal--detalle .modal__header {
     background: var(--color-blanco);
     /* header blanco limpio */
     padding: 24px 32px 10px 32px;
@@ -215,7 +215,7 @@
     position: relative;
 }
 
-#modal-detalle-venta .modal__titulo {
+.modal--detalle .modal__titulo {
     color: var(--color-principal);
     /* Negro */
     font-size: 20px;
@@ -224,7 +224,7 @@
     margin-bottom: 4px;
 }
 
-#modal-detalle-venta .modal__subtitulo {
+.modal--detalle .modal__subtitulo {
     display: block;
     font-size: 13px;
     font-weight: 500;
@@ -232,7 +232,7 @@
     font-family: var(--fuente-principal);
 }
 
-#modal-detalle-venta .modal__cerrar {
+.modal--detalle .modal__cerrar {
     position: absolute;
     top: 24px;
     right: 24px;
@@ -248,7 +248,7 @@
     transition: all 0.2s ease;
 }
 
-#modal-detalle-venta .modal__cerrar:hover {
+.modal--detalle .modal__cerrar:hover {
     color: var(--color-marca);
     /* Hover rojo marca */
     background: var(--color-fondo);
@@ -341,6 +341,10 @@
     padding: 16px 24px;
     border-top: 1px solid var(--color-borde-claro);
     background: var(--color-blanco);
+}
+
+.factura__acciones--centrado {
+    justify-content: center;
 }
 
 .factura__boton-volver {

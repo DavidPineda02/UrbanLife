@@ -28,13 +28,13 @@
     /* Espacio entre avatar e info */
     padding: 20px 28px;
     /* Espaciado interno */
-    background: white;
+    background: var(--color-blanco);
     /* Fondo blanco */
     border-radius: 16px;
     /* Esquinas redondeadas */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     /* Sombra suave */
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--color-borde);
     /* Borde gris claro */
     transition: all 0.3s ease;
     /* Transición suave */
@@ -58,7 +58,7 @@
     /* Alto del avatar */
     border-radius: 16px;
     /* Esquinas redondeadas */
-    background: linear-gradient(135deg, var(--color-marca) 0%, #b91c1c 100%);
+    background: linear-gradient(135deg, var(--color-marca) 0%, var(--color-marca-dark) 100%);
     /* Gradiente rojo de marca */
     display: flex;
     /* Activa flexbox */
@@ -84,7 +84,7 @@
     /* Tamaño de fuente grande */
     font-weight: 700;
     /* Negrita */
-    color: white;
+    color: var(--color-blanco);
     /* Color blanco */
     text-transform: uppercase;
     /* Mayúsculas */
@@ -112,7 +112,7 @@
     /* Tamaño grande */
     font-weight: 700;
     /* Negrita */
-    color: var(--color-texto-primario);
+    color: var(--color-texto);
     /* Color de texto principal */
     margin: 0;
     /* Sin márgenes */
@@ -158,29 +158,29 @@
 
 /* Badge activo - Verde */
 .perfil__badge--activo {
-    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    background: linear-gradient(135deg, var(--color-activo-fondo) 0%, #bbf7d0 100%);
     /* Gradiente verde claro */
-    color: #15803d;
+    color: var(--color-activo-texto);
     /* Texto verde oscuro */
 }
 
 /* Punto verde para badge activo */
 .perfil__badge--activo::before {
-    background: #22c55e;
+    background: var(--color-activo);
     /* Verde brillante */
 }
 
 /* Badge inactivo - Rojo */
 .perfil__badge--inactivo {
-    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    background: linear-gradient(135deg, var(--color-inactivo-fondo) 0%, #fecaca 100%);
     /* Gradiente rojo claro */
-    color: #dc2626;
+    color: var(--color-inactivo-texto);
     /* Texto rojo oscuro */
 }
 
 /* Punto rojo para badge inactivo */
 .perfil__badge--inactivo::before {
-    background: #ef4444;
+    background: var(--color-inactivo);
     /* Rojo brillante */
 }
 
@@ -204,7 +204,7 @@
 
 /* Icono del rol */
 .perfil__rol i {
-    color: var(--color-primario);
+    color: var(--color-principal);
     /* Color principal */
     font-size: 16px;
     /* Tamaño del icono */
@@ -226,7 +226,7 @@
 
 /* Sección individual del perfil */
 .perfil__seccion {
-    background: white;
+    background: var(--color-blanco);
     /* Fondo blanco */
     border-radius: 12px;
     /* Esquinas redondeadas */
@@ -240,7 +240,7 @@
     /* Dirección vertical */
     gap: 12px;
     /* Espacio entre elementos */
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--color-borde);
     /* Borde gris claro */
     transition: all 0.3s ease;
     /* Transición suave */
@@ -266,7 +266,7 @@
     /* Espacio entre título y botón */
     padding-bottom: 10px;
     /* Espaciado inferior */
-    border-bottom: 2px solid #f1f5f9;
+    border-bottom: 2px solid var(--color-borde-claro);
     /* Línea separadora */
 }
 
@@ -282,7 +282,7 @@
     /* Tamaño de fuente */
     font-weight: 600;
     /* Semi-negrita */
-    color: var(--color-texto-primario);
+    color: var(--color-texto);
     /* Color de texto principal */
     margin: 0;
     /* Sin márgenes */
@@ -302,7 +302,7 @@
     /* Centra horizontalmente */
     background: var(--gradiente-marca);
     /* Gradiente rojo de marca */
-    color: white;
+    color: var(--color-blanco);
     /* Color blanco */
     font-size: 12px;
     /* Tamaño del icono */
@@ -325,7 +325,7 @@
     /* Tamaño pequeño */
     font-weight: 600;
     /* Semi-negrita */
-    color: #1a1a1a;
+    color: var(--color-principal);
     /* Color negro */
     text-decoration: none;
     /* Sin subrayado */
@@ -333,7 +333,7 @@
     /* Espaciado interno */
     border-radius: 6px;
     /* Esquinas redondeadas */
-    background: #f3f4f6;
+    background: var(--color-fondo-gris-hover);
     /* Fondo gris claro */
     transition: all 0.2s ease;
     /* Transición suave */
@@ -342,9 +342,9 @@
 /* Estado hover de botones */
 .perfil__seccion-editar:hover,
 .perfil__seccion-agregar:hover {
-    background: #1a1a1a;
+    background: var(--color-principal);
     /* Fondo negro */
-    color: white;
+    color: var(--color-blanco);
     /* Texto blanco */
 }
 
@@ -368,7 +368,7 @@
     /* Espacio entre etiqueta y valor */
     padding: 10px 12px;
     /* Espaciado interno */
-    background: #f9fafb;
+    background: var(--color-fondo-gris);
     /* Fondo gris muy claro */
     border-radius: 8px;
     /* Esquinas redondeadas */
@@ -396,7 +396,7 @@
     /* Tamaño de fuente */
     font-weight: 500;
     /* Peso medio */
-    color: var(--color-texto-primario);
+    color: var(--color-texto);
     /* Color de texto principal */
 }
 
@@ -452,9 +452,9 @@
     /* Espacio entre icono y texto */
     padding: 8px 14px;
     /* Espaciado interno */
-    background: #1a1a1a;
+    background: var(--color-principal);
     /* Fondo negro */
-    color: white;
+    color: var(--color-blanco);
     /* Texto blanco */
     font-size: 12px;
     /* Tamaño pequeño */
@@ -470,7 +470,7 @@
 
 /* Estado hover del botón de contraseña */
 .perfil__campo-boton:hover {
-    background: #333333;
+    background: var(--color-hover);
     /* Fondo gris oscuro */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     /* Sombra más intensa */
@@ -496,19 +496,19 @@
     /* Espacio entre elementos */
     padding: 10px 12px;
     /* Espaciado interno */
-    background: #f9fafb;
+    background: var(--color-fondo-gris);
     /* Fondo gris muy claro */
     border-radius: 8px;
     /* Esquinas redondeadas */
     transition: all 0.2s ease;
     /* Transición suave */
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--color-borde);
     /* Borde gris claro */
 }
 
 /* Estado hover del elemento de lista */
 .perfil__lista-item:hover {
-    background: #f3f4f6;
+    background: var(--color-fondo-gris-hover);
     /* Fondo gris más oscuro */
 }
 
@@ -542,7 +542,7 @@
     /* Tamaño de fuente */
     font-weight: 500;
     /* Peso medio */
-    color: var(--color-texto-primario);
+    color: var(--color-texto);
     /* Color de texto principal */
 }
 
@@ -560,9 +560,9 @@
     /* Centra horizontalmente */
     border-radius: 8px;
     /* Esquinas redondeadas */
-    background: #ffeaea;
+    background: var(--color-egreso-fondo);
     /* Fondo rojo claro */
-    color: #ff4757;
+    color: var(--color-egreso);
     /* Color rojo */
     text-decoration: none;
     /* Sin subrayado */
@@ -574,15 +574,15 @@
 
 /* Icono dentro del botón eliminar */
 .perfil__lista-eliminar i {
-    color: #ff4757;
+    color: var(--color-egreso);
     /* Color rojo */
 }
 
 /* Estado hover del botón eliminar */
 .perfil__lista-eliminar:hover {
-    background: #ff4757;
+    background: var(--color-egreso);
     /* Fondo rojo sólido */
-    color: white;
+    color: var(--color-blanco);
     /* Texto blanco */
     transform: scale(1.05);
     /* Escala ligeramente */
@@ -590,6 +590,6 @@
 
 /* Icono blanco en hover del botón eliminar */
 .perfil__lista-eliminar:hover i {
-    color: white;
+    color: var(--color-blanco);
     /* Color blanco */
 }

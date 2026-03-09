@@ -32,20 +32,17 @@
 }
 
 /* ========================================================================== */
-/* ===== ACTIVACIÓN DEL MODAL CON :target =================================== */
+/* ===== ACTIVACIÓN DEL MODAL (JS: .modal--activo) ========================= */
 /* ========================================================================== */
 
-.modal:target {
+.modal--activo {
     opacity: 1;
-    /* Hace visible el modal */
     visibility: visible;
-    /* Permite interacción */
 }
 
 /* Animación del contenedor cuando el modal se activa */
-.modal:target .modal__contenedor {
+.modal--activo .modal__contenedor {
     transform: translateY(0);
-    /* Posición final (centrado) */
 }
 
 /* ========================================================================== */
@@ -186,205 +183,21 @@
     /* Espaciado interno del formulario */
 }
 
-/* -------------------------------------------------------------------------- */
-/* ----- Grupo de Campo (Label + Input) ------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-.formulario__grupo {
-    margin-bottom: 16px;
-    /* Espacio entre grupos de campos */
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Fila con Múltiples Campos ------------------------------------------ */
-/* -------------------------------------------------------------------------- */
-/* Permite colocar dos campos en la misma fila (ej: Precio y Stock) */
-
-.formulario__fila {
-    display: grid;
-    /* Grid para columnas */
-    grid-template-columns: 1fr 1fr;
-    /* Dos columnas iguales */
-    gap: 16px;
-    /* Espacio entre columnas */
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Etiqueta del Campo ------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-.formulario__label {
-    display: block;
-    /* Bloque para ocupar toda la línea */
-    margin-bottom: 6px;
-    /* Espacio antes del input */
-    font-size: 13px;
-    /* Tamaño pequeño */
-    font-weight: 600;
-    /* Semi-negrita */
-    color: var(--color-texto);
-    /* Color de texto */
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Input de Texto y Número -------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-.formulario__input {
-    width: 100%;
-    /* Ancho completo */
-    padding: 12px 14px;
-    /* Espaciado interno */
-    border: 1px solid var(--color-borde);
-    /* Borde gris */
-    border-radius: 8px;
-    /* Esquinas redondeadas */
-    font-size: 14px;
-    /* Tamaño de fuente */
-    font-family: var(--fuente-principal);
-    /* Fuente del proyecto */
-    color: var(--color-texto);
-    /* Color del texto */
-    background: var(--color-blanco);
-    /* Fondo blanco */
-    transition: border-color 0.2s ease,
-        /* Animación del borde */
-        box-shadow 0.2s ease;
-    /* Animación de la sombra */
-    box-sizing: border-box;
-    /* Incluye padding en el ancho */
-}
-
-/* Estado focus del input */
-.formulario__input:focus {
-    outline: none;
-    /* Quita outline por defecto */
-    border-color: var(--color-info);
-    /* Borde azul */
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
-    /* Sombra azul suave */
-}
-
-/* Texto placeholder del input */
-.formulario__input::placeholder {
-    color: var(--color-texto-terciario);
-    /* Color gris claro */
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Textarea (Área de Texto) ------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-.formulario__textarea {
-    width: 100%;
-    /* Ancho completo */
-    padding: 12px 14px;
-    /* Espaciado interno */
-    border: 1px solid var(--color-borde);
-    /* Borde gris */
-    border-radius: 8px;
-    /* Esquinas redondeadas */
-    font-size: 14px;
-    /* Tamaño de fuente */
-    font-family: var(--fuente-principal);
-    /* Fuente del proyecto */
-    color: var(--color-texto);
-    /* Color del texto */
-    background: var(--color-blanco);
-    /* Fondo blanco */
-    resize: vertical;
-    /* Solo permite redimensionar verticalmente */
-    min-height: 80px;
-    /* Altura mínima */
-    transition: border-color 0.2s ease,
-        /* Animación del borde */
-        box-shadow 0.2s ease;
-    /* Animación de la sombra */
-    box-sizing: border-box;
-    /* Incluye padding en el ancho */
-}
-
-/* Estado focus del textarea */
-.formulario__textarea:focus {
-    outline: none;
-    /* Quita outline por defecto */
-    border-color: var(--color-info);
-    /* Borde azul */
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
-    /* Sombra azul suave */
-}
-
-/* Texto placeholder del textarea */
-.formulario__textarea::placeholder {
-    color: var(--color-texto-terciario);
-    /* Color gris claro */
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Select (Dropdown) -------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-.formulario__select {
-    width: 100%;
-    /* Ancho completo */
-    padding: 12px 14px;
-    /* Espaciado interno */
-    border: 1px solid var(--color-borde);
-    /* Borde gris */
-    border-radius: 8px;
-    /* Esquinas redondeadas */
-    font-size: 14px;
-    /* Tamaño de fuente */
-    font-family: var(--fuente-principal);
-    /* Fuente del proyecto */
-    color: var(--color-texto);
-    /* Color del texto */
-    background: var(--color-blanco);
-    /* Fondo blanco */
-    cursor: pointer;
-    /* Cursor de mano */
-    transition: border-color 0.2s ease,
-        /* Animación del borde */
-        box-shadow 0.2s ease;
-    /* Animación de la sombra */
-    box-sizing: border-box;
-    /* Incluye padding en el ancho */
-}
-
-/* Estado focus del select */
-.formulario__select:focus {
-    outline: none;
-    /* Quita outline por defecto */
-    border-color: var(--color-info);
-    /* Borde azul */
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
-    /* Sombra azul suave */
-}
-
 /* ========================================================================== */
 /* ===== ACCIONES DEL FORMULARIO ============================================ */
 /* ========================================================================== */
-/* Contenedor de los botones Cancelar y Guardar */
 
 .formulario__acciones {
     display: flex;
-    /* Flexbox para alinear botones */
     justify-content: flex-end;
-    /* Botones alineados a la derecha */
     gap: 12px;
-    /* Espacio entre botones */
     margin-top: 24px;
-    /* Espacio arriba */
     padding-top: 20px;
-    /* Padding arriba */
     border-top: 1px solid var(--color-borde-claro);
-    /* Línea separadora */
 }
 
-/* Quitar subrayado de enlaces en acciones */
 .formulario__acciones a {
     text-decoration: none;
-    /* Sin subrayado */
 }
 
 
