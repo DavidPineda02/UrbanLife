@@ -34,11 +34,11 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="ventas.html" class="sidebar__enlace" title="Ventas">
+                    <a href="categorias.html" class="sidebar__enlace" title="Categorías">
                         <div class="sidebar__enlace-avatar">
-                            <i class="fa-solid fa-bag-shopping"></i>
+                            <i class="fa-solid fa-tags"></i>
                         </div>
-                        <span class="sidebar__enlace-texto">Ventas</span>
+                        <span class="sidebar__enlace-texto">Categorías</span>
                         <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
                     </a>
                 </li>
@@ -52,11 +52,11 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="compras.html" class="sidebar__enlace" title="Compras">
+                    <a href="ventas.html" class="sidebar__enlace" title="Ventas">
                         <div class="sidebar__enlace-avatar">
-                            <i class="fa-solid fa-cart-shopping"></i>
+                            <i class="fa-solid fa-bag-shopping"></i>
                         </div>
-                        <span class="sidebar__enlace-texto">Compras</span>
+                        <span class="sidebar__enlace-texto">Ventas</span>
                         <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
                     </a>
                 </li>
@@ -70,11 +70,11 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="gastos.html" class="sidebar__enlace" title="Gastos">
+                    <a href="compras.html" class="sidebar__enlace" title="Compras">
                         <div class="sidebar__enlace-avatar">
-                            <i class="fa-solid fa-wallet"></i>
+                            <i class="fa-solid fa-cart-shopping"></i>
                         </div>
-                        <span class="sidebar__enlace-texto">Gastos</span>
+                        <span class="sidebar__enlace-texto">Compras</span>
                         <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
                     </a>
                 </li>
@@ -84,6 +84,15 @@
                             <i class="fa-solid fa-users"></i>
                         </div>
                         <span class="sidebar__enlace-texto">Usuarios</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="gastos.html" class="sidebar__enlace" title="Gastos">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Gastos</span>
                         <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
                     </a>
                 </li>
@@ -134,9 +143,6 @@
                 <a href="#" data-modal-open="modal-producto" class="boton-accion boton-accion--primario" title="Agregar Producto">
                     <i class="fa-solid fa-plus"></i>
                     <span>Agregar Producto</span>
-                </a>
-                <a href="#" data-modal-open="modal-categoria" class="boton-accion boton-accion--secundario boton-accion--icono" title="Agregar Categoría">
-                    <i class="fa-solid fa-folder-plus"></i>
                 </a>
             </div>
         </header>
@@ -557,33 +563,6 @@
         </div>
     </div>
 
-    <div class="modal" id="modal-categoria">
-        <a href="#" class="modal__overlay" title="Cerrar"></a>
-        <div class="modal__contenedor">
-            <div class="modal__header">
-                <h2 class="modal__titulo">Agregar Categoría</h2>
-                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
-                    <i class="fa-solid fa-xmark"></i>
-                </a>
-            </div>
-            <form class="modal__formulario">
-                <div class="formulario__grupo">
-                    <label class="formulario__label">Nombre</label>
-                    <input type="text" class="formulario__input" name="nombre" placeholder="Nombre de la categoría"
-                        title="Nombre" required>
-                </div>
-                <div class="formulario__grupo">
-                    <label class="formulario__label">Descripción</label>
-                    <textarea class="formulario__textarea" name="descripcion" placeholder="Descripción de la categoría"
-                        title="Descripción" rows="3"></textarea>
-                </div>
-                <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Categoría agregada correctamente!" class="boton-accion boton-accion--primario" title="Guardar Categoría">Guardar Categoría</a>
-                </div>
-            </form>
-        </div>
-    </div>
 
 
     <script type="module" src="/js/main.js"></script>
