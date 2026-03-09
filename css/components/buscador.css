@@ -23,7 +23,7 @@
     gap: 0.625rem;
     background-color: var(--color-fondo-gris);
     border: 1.5px solid transparent;
-    border-radius: var(--radio);
+    border-radius: var(--radio-mediano);
     padding: 0.575rem 0.875rem;
     transition: border-color 0.2s ease, background-color 0.2s ease;
     min-width: 0;
@@ -67,10 +67,11 @@
 .buscador__select {
     appearance: none;
     border: 1.5px solid var(--color-borde);
-    background-color: var(--color-secundario);
-    border-radius: var(--radio);
-    padding: 0.525rem 2.25rem 0.525rem 0.875rem;
+    background-color: var(--color-fondo-gris);
+    border-radius: var(--radio-grande);
+    padding: 0.575rem 2.25rem 0.575rem 0.875rem;
     font-size: var(--font-size-s);
+    font-weight: var(--font-weight-medium);
     color: var(--color-texto);
     cursor: pointer;
     font-family: var(--fuente-principal);
@@ -78,16 +79,23 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%23888888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .buscador__select:hover {
-    border-color: var(--color-texto-terciario);
+    border-color: var(--color-marca);
+    background-color: var(--color-secundario);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%23E42727' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+    box-shadow: 0 2px 8px var(--color-marca-hover);
 }
 
 .buscador__select:focus {
-    border-color: var(--color-principal);
+    border-color: var(--color-marca);
+    background-color: var(--color-secundario);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%23E42727' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+    box-shadow: 0 0 0 3px var(--color-marca-hover);
 }
 
 /* ============================================
