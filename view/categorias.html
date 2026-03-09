@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/templete.css">
+    <title>Categorías</title>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar__marca">
+            <img src="../assets/img/LogoPage.png" alt="Logo UrbanLife" class="sidebar__logo">
+        </div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__lista">
+                <li class="sidebar__elemento">
+                    <a href="home.html" class="sidebar__enlace" title="Ganancias">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ganancias</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="productos.html" class="sidebar__enlace" title="Productos">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Productos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="categorias.html" class="sidebar__enlace sidebar__enlace--activo" title="Categorías">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-tags"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Categorías</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="clientes.html" class="sidebar__enlace" title="Clientes">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Clientes</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="ventas.html" class="sidebar__enlace" title="Ventas">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Ventas</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="proveedores.html" class="sidebar__enlace" title="Proveedores">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Proveedores</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="compras.html" class="sidebar__enlace" title="Compras">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Compras</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="usuarios.html" class="sidebar__enlace" title="Usuarios">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Usuarios</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento">
+                    <a href="gastos.html" class="sidebar__enlace" title="Gastos">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Gastos</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+                <li class="sidebar__elemento sidebar__elemento--perfil">
+                    <a href="perfil.html" class="sidebar__enlace" title="Perfil">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-gear"></i>
+                        </div>
+                        <div class="sidebar__enlace-info">
+                            <span class="sidebar__enlace-texto">David Pineda</span>
+                            <span class="sidebar__enlace-rol">Super Admin</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="tablero">
+        <header class="pagina-header">
+            <h1 class="pagina-header__titulo">Categorías</h1>
+            <div class="buscador">
+                <div class="buscador__campo">
+                    <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                    <input type="text" class="buscador__input" placeholder="Buscar por nombre...">
+                </div>
+                <div class="buscador__filtros">
+                    <select class="buscador__select" name="filtro-estado" title="Filtrar por estado">
+                        <option value="">Estado</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="pagina-header__acciones">
+                <a href="#" data-modal-open="modal-agregar-categoria" class="boton-accion boton-accion--primario" title="Agregar Categoría">
+                    <i class="fa-solid fa-plus"></i>
+                    Agregar Categoría
+                </a>
+            </div>
+        </header>
+
+        <section class="tabla__contenedor">
+            <table class="tabla">
+                <thead class="tabla__encabezado">
+                    <tr>
+                        <th class="tabla__th">#</th>
+                        <th class="tabla__th">Nombre</th>
+                        <th class="tabla__th">Descripción</th>
+                        <th class="tabla__th">Estado</th>
+                        <th class="tabla__th">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="tabla__cuerpo">
+                    <tr class="tabla__fila">
+                        <td class="tabla__td">1</td>
+                        <td class="tabla__td">Ropa</td>
+                        <td class="tabla__td">Prendas de vestir para hombre, mujer y niños</td>
+                        <td class="tabla__td">
+                            <span class="tabla__badge tabla__badge--activo">Activo</span>
+                        </td>
+                        <td class="tabla__td tabla__td--acciones">
+                            <a href="#" data-modal-open="modal-editar-categoria" class="tabla__accion tabla__accion--editar" title="Editar">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar categoría?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar" title="Eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="tabla__fila">
+                        <td class="tabla__td">2</td>
+                        <td class="tabla__td">Calzado</td>
+                        <td class="tabla__td">Zapatos, tenis y sandalias</td>
+                        <td class="tabla__td">
+                            <span class="tabla__badge tabla__badge--activo">Activo</span>
+                        </td>
+                        <td class="tabla__td tabla__td--acciones">
+                            <a href="#" data-modal-open="modal-editar-categoria" class="tabla__accion tabla__accion--editar" title="Editar">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar categoría?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar" title="Eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="tabla__fila">
+                        <td class="tabla__td">3</td>
+                        <td class="tabla__td">Accesorios</td>
+                        <td class="tabla__td">Bolsos, cinturones y bisutería</td>
+                        <td class="tabla__td">
+                            <span class="tabla__badge tabla__badge--activo">Activo</span>
+                        </td>
+                        <td class="tabla__td tabla__td--acciones">
+                            <a href="#" data-modal-open="modal-editar-categoria" class="tabla__accion tabla__accion--editar" title="Editar">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar categoría?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar" title="Eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="tabla__fila">
+                        <td class="tabla__td">4</td>
+                        <td class="tabla__td">Deportiva</td>
+                        <td class="tabla__td">Ropa y calzado para actividad física</td>
+                        <td class="tabla__td">
+                            <span class="tabla__badge tabla__badge--inactivo">Inactivo</span>
+                        </td>
+                        <td class="tabla__td tabla__td--acciones">
+                            <a href="#" data-modal-open="modal-editar-categoria" class="tabla__accion tabla__accion--editar" title="Editar">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar categoría?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar" title="Eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Modal Agregar Categoría -->
+    <div id="modal-agregar-categoria" class="modal">
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Agregar Categoría</h2>
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <div class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre</label>
+                    <input type="text" class="formulario__input" placeholder="Ej: Ropa" title="Nombre" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Descripción</label>
+                    <textarea class="formulario__input formulario__textarea" placeholder="Describe brevemente la categoría..." title="Descripción" rows="3"></textarea>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Categoría creada correctamente!" class="boton-accion boton-accion--primario" title="Guardar">Guardar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Categoría -->
+    <div id="modal-editar-categoria" class="modal">
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Editar Categoría</h2>
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <div class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nombre</label>
+                    <input type="text" class="formulario__input" value="Ropa" title="Nombre" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Descripción</label>
+                    <textarea class="formulario__input formulario__textarea" title="Descripción" rows="3">Prendas de vestir para hombre, mujer y niños</textarea>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Estado</label>
+                    <select class="formulario__select" title="Estado" required>
+                        <option value="true" selected>Activo</option>
+                        <option value="false">Inactivo</option>
+                    </select>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Categoría actualizada correctamente!" class="boton-accion boton-accion--primario" title="Guardar cambios">Guardar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/main.js"></script>
+    <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
