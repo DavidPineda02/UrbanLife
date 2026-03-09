@@ -78,6 +78,15 @@
                         <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
                     </a>
                 </li>
+                <li class="sidebar__elemento">
+                    <a href="usuarios.html" class="sidebar__enlace" title="Usuarios">
+                        <div class="sidebar__enlace-avatar">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <span class="sidebar__enlace-texto">Usuarios</span>
+                        <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
+                    </a>
+                </li>
                 <li class="sidebar__elemento sidebar__elemento--perfil">
                     <a href="perfil.html" class="sidebar__enlace sidebar__enlace--activo" title="Perfil">
                         <div class="sidebar__enlace-avatar">
@@ -141,6 +150,31 @@
                             <span class="perfil__campo-etiqueta">Correo Principal</span>
                             <span class="perfil__campo-valor">david.pineda@urbanlife.com</span>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Seguridad y Acceso -->
+                <!-- El JS evalúa GOOGLE_ID y CONTRASENA del token y activa el estado correspondiente -->
+                <!-- Estado 1: solo-contrasena | Estado 2: solo-google | Estado 3: ambos -->
+                <div class="perfil__seccion">
+                    <div class="perfil__seccion-header">
+                        <h3 class="perfil__seccion-titulo">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            Seguridad y Acceso
+                        </h3>
+                    </div>
+                    <div class="perfil__campos">
+
+                        <!-- Método: Google (visible si GOOGLE_ID != null) -->
+                        <div class="perfil__campo">
+                            <span class="perfil__campo-etiqueta">Método de acceso</span>
+                            <span class="perfil__campo-valor">
+                                <i class="fa-brands fa-google"></i>
+                                Google
+                            </span>
+                        </div>
+
+                        <!-- Método: Contraseña (visible si CONTRASENA != null) -->
                         <div class="perfil__campo perfil__campo--contrasena">
                             <div class="perfil__campo-info">
                                 <span class="perfil__campo-etiqueta">Contraseña</span>
@@ -151,33 +185,19 @@
                                 Cambiar
                             </a>
                         </div>
-                    </div>
-                </div>
 
-                <div class="perfil__seccion">
-                    <div class="perfil__seccion-header">
-                        <h3 class="perfil__seccion-titulo">
-                            <i class="fa-solid fa-building"></i>
-                            Información de la Empresa
-                        </h3>
-                        <a href="#" data-modal-open="modal-editar-empresa" class="perfil__seccion-editar" title="Editar información de la empresa">
-                            <i class="fa-solid fa-pen"></i>
-                            Editar
-                        </a>
-                    </div>
-                    <div class="perfil__campos">
-                        <div class="perfil__campo">
-                            <span class="perfil__campo-etiqueta">Nombre de la Empresa</span>
-                            <span class="perfil__campo-valor">Urban Life Store</span>
+                        <!-- Acción: Establecer contraseña (visible solo si CONTRASENA = null) -->
+                        <div class="perfil__campo perfil__campo--contrasena">
+                            <div class="perfil__campo-info">
+                                <span class="perfil__campo-etiqueta">Contraseña</span>
+                                <span class="perfil__campo-valor">No establecida</span>
+                            </div>
+                            <a href="#" data-modal-open="modal-establecer-contrasena" class="perfil__campo-boton" title="Establecer contraseña">
+                                <i class="fa-solid fa-plus"></i>
+                                Establecer
+                            </a>
                         </div>
-                        <div class="perfil__campo">
-                            <span class="perfil__campo-etiqueta">Dirección</span>
-                            <span class="perfil__campo-valor">Cra 45 #32-10, Local 201</span>
-                        </div>
-                        <div class="perfil__campo">
-                            <span class="perfil__campo-etiqueta">Ciudad</span>
-                            <span class="perfil__campo-valor">Bogotá, Colombia</span>
-                        </div>
+
                     </div>
                 </div>
 
@@ -245,6 +265,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
     </main>
@@ -276,6 +297,36 @@
         </div>
     </div>
 
+    <!-- Modal Establecer Contraseña (para cuentas Google sin contraseña aún) -->
+    <div class="modal" id="modal-establecer-contrasena">
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
+        <div class="modal__contenedor">
+            <div class="modal__header">
+                <h2 class="modal__titulo">Establecer Contraseña</h2>
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            </div>
+            <form class="modal__formulario">
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Nueva Contraseña</label>
+                    <input type="password" class="formulario__input" name="contrasena_nueva"
+                        placeholder="Mínimo 8 caracteres" title="Nueva Contraseña" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label">Confirmar Contraseña</label>
+                    <input type="password" class="formulario__input" name="contrasena_confirmar"
+                        placeholder="Repite la contraseña" title="Confirmar Contraseña" required>
+                </div>
+                <div class="formulario__acciones">
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Contraseña establecida correctamente!" class="boton-accion boton-accion--primario" title="Establecer contraseña">Establecer</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Cambiar Contraseña (para cuentas con contraseña ya establecida) -->
     <div class="modal" id="modal-cambiar-contrasena">
         <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
@@ -304,37 +355,6 @@
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
                     <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Cambiar contraseña">Cambiar Contraseña</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal" id="modal-editar-empresa">
-        <a href="#" class="modal__overlay" title="Cerrar"></a>
-        <div class="modal__contenedor">
-            <div class="modal__header">
-                <h2 class="modal__titulo">Editar Información de Empresa</h2>
-                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
-                    <i class="fa-solid fa-xmark"></i>
-                </a>
-            </div>
-            <form class="modal__formulario">
-                <div class="formulario__grupo">
-                    <label class="formulario__label">Nombre de la Empresa</label>
-                    <input type="text" class="formulario__input" name="empresa" value="Urban Life Store" title="Nombre de la Empresa" required>
-                </div>
-                <div class="formulario__grupo">
-                    <label class="formulario__label">Dirección</label>
-                    <input type="text" class="formulario__input" name="direccion" value="Cra 45 #32-10, Local 201"
-                        title="Dirección" required>
-                </div>
-                <div class="formulario__grupo">
-                    <label class="formulario__label">Ciudad</label>
-                    <input type="text" class="formulario__input" name="ciudad" value="Bogotá, Colombia" title="Ciudad" required>
-                </div>
-                <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Guardar cambios">Guardar</a>
                 </div>
             </form>
         </div>
