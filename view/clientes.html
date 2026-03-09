@@ -10,13 +10,14 @@
 
 <body>
     <aside class="sidebar">
+        
         <div class="sidebar__marca">
             <img src="../assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
         </div>
         <nav class="sidebar__nav">
             <ul class="sidebar__lista">
                 <li class="sidebar__elemento">
-                    <a href="home.html" class="sidebar__enlace">
+                    <a href="home.html" class="sidebar__enlace" title="Ganancias">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-sack-dollar"></i>
                         </div>
@@ -25,7 +26,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="productos.html" class="sidebar__enlace">
+                    <a href="productos.html" class="sidebar__enlace" title="Productos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-box"></i>
                         </div>
@@ -34,7 +35,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="ventas.html" class="sidebar__enlace">
+                    <a href="ventas.html" class="sidebar__enlace" title="Ventas">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-bag-shopping"></i>
                         </div>
@@ -43,7 +44,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="clientes.html" class="sidebar__enlace sidebar__enlace--activo">
+                    <a href="clientes.html" class="sidebar__enlace sidebar__enlace--activo" title="Clientes">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-user"></i>
                         </div>
@@ -52,7 +53,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="compras.html" class="sidebar__enlace">
+                    <a href="compras.html" class="sidebar__enlace" title="Compras">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </div>
@@ -61,7 +62,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="proveedores.html" class="sidebar__enlace">
+                    <a href="proveedores.html" class="sidebar__enlace" title="Proveedores">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-truck"></i>
                         </div>
@@ -70,7 +71,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="gastos.html" class="sidebar__enlace">
+                    <a href="gastos.html" class="sidebar__enlace" title="Gastos">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-wallet"></i>
                         </div>
@@ -79,7 +80,7 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento sidebar__elemento--perfil">
-                    <a href="perfil.html" class="sidebar__enlace">
+                    <a href="perfil.html" class="sidebar__enlace" title="Perfil">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-gear"></i>
                         </div>
@@ -94,11 +95,27 @@
         </nav>
     </aside>
 
-    <main class="pagina-clientes">
+    <main class="tablero">
         <header class="pagina-header">
             <h1 class="pagina-header__titulo">Clientes</h1>
+            <div class="buscador">
+                <div class="buscador__campo">
+                    <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                    <input type="text" class="buscador__input" placeholder="Buscar por nombre, documento o correo...">
+                </div>
+                <div class="buscador__filtros">
+                    <select class="buscador__select" name="filtro-ciudad" title="Filtrar por ciudad">
+                        <option value="">Ciudad</option>
+                    </select>
+                    <select class="buscador__select" name="filtro-estado" title="Filtrar por estado">
+                        <option value="">Estado</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+            </div>
             <div class="pagina-header__acciones">
-                <a href="#modal-agregar-cliente" class="boton-accion boton-accion--primario">
+                <a href="#" data-modal-open="modal-agregar-cliente" class="boton-accion boton-accion--primario" title="Agregar Cliente">
                     <i class="fa-solid fa-plus"></i>
                     Agregar Cliente
                 </a>
@@ -112,11 +129,11 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="contacto__acciones">
-                        <a href="#modal-editar-cliente" class="contacto__accion contacto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-cliente" class="contacto__accion contacto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar-cliente" class="contacto__accion contacto__accion--eliminar"
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar Cliente?" data-swal-delete-texto="Esta acción no se puede deshacer." class="contacto__accion contacto__accion--eliminar"
                             title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
@@ -157,11 +174,11 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="contacto__acciones">
-                        <a href="#modal-editar-cliente" class="contacto__accion contacto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-cliente" class="contacto__accion contacto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar-cliente" class="contacto__accion contacto__accion--eliminar"
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar Cliente?" data-swal-delete-texto="Esta acción no se puede deshacer." class="contacto__accion contacto__accion--eliminar"
                             title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
@@ -202,11 +219,11 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="contacto__acciones">
-                        <a href="#modal-editar-cliente" class="contacto__accion contacto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-cliente" class="contacto__accion contacto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar-cliente" class="contacto__accion contacto__accion--eliminar"
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar Cliente?" data-swal-delete-texto="Esta acción no se puede deshacer." class="contacto__accion contacto__accion--eliminar"
                             title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
@@ -247,11 +264,11 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="contacto__acciones">
-                        <a href="#modal-editar-cliente" class="contacto__accion contacto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-cliente" class="contacto__accion contacto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar-cliente" class="contacto__accion contacto__accion--eliminar"
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar Cliente?" data-swal-delete-texto="Esta acción no se puede deshacer." class="contacto__accion contacto__accion--eliminar"
                             title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
@@ -292,11 +309,11 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="contacto__acciones">
-                        <a href="#modal-editar-cliente" class="contacto__accion contacto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-cliente" class="contacto__accion contacto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar-cliente" class="contacto__accion contacto__accion--eliminar"
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar Cliente?" data-swal-delete-texto="Esta acción no se puede deshacer." class="contacto__accion contacto__accion--eliminar"
                             title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
@@ -337,11 +354,11 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="contacto__acciones">
-                        <a href="#modal-editar-cliente" class="contacto__accion contacto__accion--editar"
+                        <a href="#" data-modal-open="modal-editar-cliente" class="contacto__accion contacto__accion--editar"
                             title="Editar">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                        <a href="#modal-eliminar-cliente" class="contacto__accion contacto__accion--eliminar"
+                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar Cliente?" data-swal-delete-texto="Esta acción no se puede deshacer." class="contacto__accion contacto__accion--eliminar"
                             title="Eliminar">
                             <i class="fa-solid fa-trash"></i>
                         </a>
@@ -380,40 +397,40 @@
     </main>
 
     <div id="modal-agregar-cliente" class="modal">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Agregar Cliente</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <div class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Nombre Completo</label>
-                    <input type="text" class="formulario__input" placeholder="Ej: María García López">
+                    <input type="text" class="formulario__input" placeholder="Ej: María García López" title="Nombre Completo">
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Correo Electrónico</label>
-                    <input type="email" class="formulario__input" placeholder="Ej: correo@ejemplo.com">
+                    <input type="email" class="formulario__input" placeholder="Ej: correo@ejemplo.com" title="Correo Electrónico">
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label">Teléfono</label>
-                        <input type="tel" class="formulario__input" placeholder="Ej: +57 300 123 4567">
+                        <input type="tel" class="formulario__input" placeholder="Ej: +57 300 123 4567" title="Teléfono">
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label">Ciudad</label>
-                        <input type="text" class="formulario__input" placeholder="Ej: Bogotá">
+                        <input type="text" class="formulario__input" placeholder="Ej: Bogotá" title="Ciudad">
                     </div>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Dirección</label>
-                    <input type="text" class="formulario__input" placeholder="Ej: Cra 45 #32-10">
+                    <input type="text" class="formulario__input" placeholder="Ej: Cra 45 #32-10" title="Dirección">
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-exito-cliente" class="boton-accion boton-accion--primario">
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Guardar Cliente">
                         Guardar Cliente
                     </a>
                 </div>
@@ -422,40 +439,40 @@
     </div>
 
     <div id="modal-editar-cliente" class="modal">
-        <a href="#" class="modal__overlay"></a>
+        <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
             <div class="modal__header">
                 <h2 class="modal__titulo">Editar Cliente</h2>
-                <a href="#" class="modal__cerrar">
+                <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
             <div class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Nombre Completo</label>
-                    <input type="text" class="formulario__input" value="María García López">
+                    <input type="text" class="formulario__input" value="María García López" title="Nombre Completo">
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Correo Electrónico</label>
-                    <input type="email" class="formulario__input" value="maria.garcia@email.com">
+                    <input type="email" class="formulario__input" value="maria.garcia@email.com" title="Correo Electrónico">
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label">Teléfono</label>
-                        <input type="tel" class="formulario__input" value="+57 300 123 4567">
+                        <input type="tel" class="formulario__input" value="+57 300 123 4567" title="Teléfono">
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label">Ciudad</label>
-                        <input type="text" class="formulario__input" value="Bogotá">
+                        <input type="text" class="formulario__input" value="Bogotá" title="Ciudad">
                     </div>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Dirección</label>
-                    <input type="text" class="formulario__input" value="Cra 45 #32-10">
+                    <input type="text" class="formulario__input" value="Cra 45 #32-10" title="Dirección">
                 </div>
                 <div class="formulario__acciones">
-                    <a href="#" class="boton-accion boton-accion--secundario">Cancelar</a>
-                    <a href="#modal-exito-cliente" class="boton-accion boton-accion--primario">
+                    <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Actualizar Cliente">
                         Actualizar Cliente
                     </a>
                 </div>
@@ -463,59 +480,8 @@
         </div>
     </div>
 
-    <div id="modal-eliminar-cliente" class="modal">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--eliminar">
-            <div class="alerta">
-                <h2 class="alerta__titulo">¿Eliminar Cliente?</h2>
-                <p class="alerta__mensaje">
-                    Esta acción eliminará al cliente <strong>María García López</strong> permanentemente.
-                    ¿Estás seguro de que deseas continuar?
-                </p>
-                <div class="alerta__acciones">
-                    <a href="#" class="boton-alerta boton-alerta--cancelar">Cancelar</a>
-                    <a href="#modal-eliminado-cliente" class="boton-alerta boton-alerta--eliminar">Eliminar</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div id="modal-eliminado-cliente" class="modal">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <h2 class="alerta__titulo">¡Cliente Eliminado!</h2>
-                <p class="alerta__mensaje">
-                    El cliente ha sido eliminado exitosamente del sistema.
-                </p>
-                <div class="alerta__acciones">
-                    <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-exito-cliente" class="modal">
-        <a href="#" class="modal__overlay"></a>
-        <div class="modal__contenedor modal__contenedor--alerta modal__contenedor--exito">
-            <div class="alerta alerta--exito">
-                <div class="alerta__icono">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <h2 class="alerta__titulo">¡Cliente Guardado!</h2>
-                <p class="alerta__mensaje">
-                    El cliente ha sido guardado exitosamente en el sistema.
-                </p>
-                <div class="alerta__acciones">
-                    <a href="#" class="boton-alerta boton-alerta--volver">Volver</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <script type="module" src="/js/main.js"></script>
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 
