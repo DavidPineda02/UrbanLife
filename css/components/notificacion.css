@@ -1,0 +1,185 @@
+/* ========================================================================== */
+/* ===== NOTIFICACIONES TOAST =============================================== */
+/* ========================================================================== */
+
+/* -------------------------------------------------------------------------- */
+/* ----- Contenedor Principal ----------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+.notificaciones {
+    position: fixed;
+    /* Fijo en la pantalla */
+    top: 24px;
+    /* Separación desde arriba */
+    right: 24px;
+    /* Separación desde la derecha */
+    z-index: 2000;
+    /* Por encima de modales */
+    display: flex;
+    flex-direction: column;
+    /* Apila verticalmente */
+    gap: 12px;
+    /* Espacio entre notificaciones */
+    pointer-events: none;
+    /* No bloquea clics excepto en hijos */
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Notificación Individual -------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+.notificacion {
+    display: flex;
+    /* Flexbox para alinear icono + texto + cerrar */
+    align-items: center;
+    gap: 12px;
+    /* Espacio entre elementos */
+    padding: 14px 18px;
+    /* Espaciado interno */
+    background: var(--color-blanco);
+    /* Fondo blanco */
+    border-radius: 12px;
+    /* Esquinas redondeadas */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    /* Sombra suave */
+    border-left: 4px solid transparent;
+    /* Borde izquierdo (color por tipo) */
+    min-width: 300px;
+    /* Ancho mínimo */
+    max-width: 420px;
+    /* Ancho máximo */
+    pointer-events: all;
+    /* Permite clics */
+    transform: translateX(120%);
+    /* Posición inicial fuera de pantalla */
+    opacity: 0;
+    /* Invisible al inicio */
+    transition: transform 0.4s cubic-bezier(0.21, 1.02, 0.73, 1),
+        opacity 0.4s ease;
+    /* Animación suave */
+}
+
+/* Estado visible (la clase se agrega con JS) */
+.notificacion--visible {
+    transform: translateX(0);
+    /* Posición final */
+    opacity: 1;
+    /* Visible */
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Tipos de Notificación ---------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/* Éxito */
+.notificacion--success {
+    border-left-color: var(--color-ingreso);
+    /* Borde verde */
+}
+
+.notificacion--success .notificacion__icono {
+    color: var(--color-ingreso);
+    /* Icono verde */
+}
+
+/* Error */
+.notificacion--error {
+    border-left-color: var(--color-egreso);
+    /* Borde rojo */
+}
+
+.notificacion--error .notificacion__icono {
+    color: var(--color-egreso);
+    /* Icono rojo */
+}
+
+/* Información */
+.notificacion--info {
+    border-left-color: var(--color-info);
+    /* Borde azul */
+}
+
+.notificacion--info .notificacion__icono {
+    color: var(--color-info);
+    /* Icono azul */
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Icono de la Notificación ------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+.notificacion__icono {
+    font-size: 20px;
+    /* Tamaño del icono */
+    flex-shrink: 0;
+    /* No se encoge */
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Mensaje de la Notificación ----------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+.notificacion__mensaje {
+    flex: 1;
+    /* Ocupa espacio disponible */
+    font-size: 14px;
+    /* Tamaño de fuente */
+    font-weight: 500;
+    /* Peso medio */
+    color: var(--color-texto);
+    /* Color de texto principal */
+    margin: 0;
+    /* Sin margen */
+    line-height: 1.4;
+    /* Altura de línea */
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Botón Cerrar ------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+.notificacion__cerrar {
+    background: none;
+    /* Sin fondo */
+    border: none;
+    /* Sin borde */
+    color: var(--color-texto-terciario);
+    /* Color gris claro */
+    cursor: pointer;
+    /* Cursor de mano */
+    font-size: 14px;
+    /* Tamaño del icono */
+    padding: 4px;
+    /* Pequeño padding para área de clic */
+    border-radius: 4px;
+    /* Esquinas sutilmente redondeadas */
+    transition: color 0.2s ease, background 0.2s ease;
+    /* Animación suave */
+    flex-shrink: 0;
+    /* No se encoge */
+}
+
+.notificacion__cerrar:hover {
+    color: var(--color-egreso);
+    /* Rojo al hover */
+    background: var(--color-egreso-fondo);
+    /* Fondo rojo claro */
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Animación de Salida ------------------------------------------------ */
+/* -------------------------------------------------------------------------- */
+
+.notificacion--saliendo {
+    animation: notificacion-salir 0.3s ease forwards;
+    /* Animación de salida */
+}
+
+@keyframes notificacion-salir {
+    to {
+        transform: translateX(120%);
+        /* Sale hacia la derecha */
+        opacity: 0;
+        /* Se desvanece */
+    }
+}

@@ -1,0 +1,243 @@
+/* ========================================================================== */
+/* ===== VALIDACIÓN DE FORMULARIOS ========================================== */
+/* ========================================================================== */
+
+/* -------------------------------------------------------------------------- */
+/* ----- Estado de Error en Inputs ------------------------------------------ */
+/* -------------------------------------------------------------------------- */
+
+.formulario__input--error,
+.formulario__textarea--error,
+.formulario__select--error {
+    border-color: var(--color-egreso) !important;
+    /* Borde rojo */
+    box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.15) !important;
+    /* Sombra roja suave */
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Estado Válido en Inputs -------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+.formulario__input--valido,
+.formulario__textarea--valido,
+.formulario__select--valido {
+    border-color: var(--color-ingreso) !important;
+    /* Borde verde */
+    box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.15) !important;
+    /* Sombra verde suave */
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Mensaje de Error --------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+.formulario__error {
+    display: block;
+    /* Bloque para nueva línea */
+    margin-top: 6px;
+    /* Espacio arriba */
+    font-size: 12px;
+    /* Tamaño pequeño */
+    font-weight: 500;
+    /* Peso medio */
+    color: var(--color-egreso);
+    /* Color rojo */
+    animation: error-aparecer 0.3s ease;
+    /* Animación de aparición */
+}
+
+@keyframes error-aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+        /* Desde arriba */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Posición final */
+    }
+}
+
+/* ========================================================================== */
+/* ===== BARRA DE FUERZA DE CONTRASEÑA ====================================== */
+/* ========================================================================== */
+
+.fuerza-password {
+    margin-top: 8px;
+    /* Espacio desde el input */
+}
+
+.fuerza-password__barra {
+    height: 4px;
+    /* Altura de la barra */
+    background: var(--color-borde-claro);
+    /* Fondo gris claro */
+    border-radius: 4px;
+    /* Esquinas redondeadas */
+    overflow: hidden;
+    /* Contiene el progreso */
+}
+
+.fuerza-password__progreso {
+    height: 100%;
+    /* Altura completa */
+    width: 0%;
+    /* Ancho inicial */
+    border-radius: 4px;
+    /* Esquinas redondeadas */
+    transition: width 0.4s ease, background 0.4s ease;
+    /* Animación suave */
+}
+
+.fuerza-password__texto {
+    margin-top: 4px;
+    /* Espacio desde la barra */
+    font-size: 12px;
+    /* Tamaño pequeño */
+    font-weight: 600;
+    /* Semi-negrita */
+    transition: color 0.4s ease;
+    /* Animación de color */
+}
+
+/* ========================================================================== */
+/* ===== TOOLTIP DE GRÁFICAS ================================================ */
+/* ========================================================================== */
+
+.grafica__tooltip {
+    position: absolute;
+    /* Posición absoluta respecto al body */
+    background: var(--color-principal);
+    /* Fondo oscuro */
+    color: var(--color-blanco);
+    /* Texto blanco */
+    padding: 8px 12px;
+    /* Espaciado interno */
+    border-radius: 8px;
+    /* Esquinas redondeadas */
+    font-size: 12px;
+    /* Tamaño pequeño */
+    font-weight: 600;
+    /* Semi-negrita */
+    white-space: nowrap;
+    /* Sin salto de línea */
+    pointer-events: none;
+    /* No bloquea clics */
+    z-index: 3000;
+    /* Por encima de todo */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* Sombra */
+    animation: tooltip-aparecer 0.2s ease;
+    /* Animación de aparición */
+}
+
+.grafica__tooltip::after {
+    content: '';
+    position: absolute;
+    /* Posición absoluta */
+    bottom: -6px;
+    /* Debajo del tooltip */
+    left: 50%;
+    /* Centrado */
+    transform: translateX(-50%);
+    /* Centrado */
+    border-width: 6px 6px 0 6px;
+    /* Triángulo apuntando abajo */
+    border-style: solid;
+    border-color: var(--color-principal) transparent transparent transparent;
+    /* Color del triángulo */
+}
+
+@keyframes tooltip-aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================================================== */
+/* ===== TOGGLE DE CONTRASEÑA =============================================== */
+/* ========================================================================== */
+
+.input-password-wrapper {
+    position: relative;
+    /* Para posicionar el botón toggle */
+}
+
+.password-toggle {
+    position: absolute;
+    /* Posición absoluta dentro del wrapper */
+    right: 12px;
+    /* Separación desde la derecha */
+    top: 50%;
+    /* Centrado vertical */
+    transform: translateY(-50%);
+    /* Ajuste centrado */
+    background: none;
+    /* Sin fondo */
+    border: none;
+    /* Sin borde */
+    color: var(--color-texto-terciario);
+    /* Color gris */
+    cursor: pointer;
+    /* Cursor de mano */
+    font-size: 16px;
+    /* Tamaño del icono */
+    padding: 4px;
+    /* Pequeño padding */
+    transition: color 0.2s ease;
+    /* Animación suave */
+}
+
+.password-toggle:hover {
+    color: var(--color-texto);
+    /* Color más oscuro al hover */
+}
+
+/* ========================================================================== */
+/* ===== BOTÓN CON ESTADO DE CARGA ========================================== */
+/* ========================================================================== */
+
+.boton--cargando {
+    pointer-events: none;
+    /* No permite clics */
+    opacity: 0.7;
+    /* Más transparente */
+    position: relative;
+    /* Para posicionar el spinner */
+}
+
+.boton__spinner {
+    display: inline-block;
+    /* Inline para estar junto al texto */
+    width: 16px;
+    /* Tamaño del spinner */
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    /* Borde semi-transparente */
+    border-top-color: var(--color-blanco);
+    /* Borde superior blanco */
+    border-radius: 50%;
+    /* Círculo */
+    animation: spinner-girar 0.6s linear infinite;
+    /* Rotación continua */
+    margin-right: 8px;
+    /* Espacio antes del texto */
+    vertical-align: middle;
+    /* Alineamiento vertical */
+}
+
+@keyframes spinner-girar {
+    to {
+        transform: rotate(360deg);
+        /* Gira 360° */
+    }
+}
