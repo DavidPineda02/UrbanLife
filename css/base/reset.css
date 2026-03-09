@@ -28,21 +28,19 @@ h1, h2, h3, h4, h5, h6,
 /* Estilos base del body */
 body {
     height: 100vh;
-    /* Altura completa del viewport */
-    width: 100vw;
-    /* Ancho completo del viewport */
+    max-width: 100%;
+    /* Evita desbordamiento horizontal (100vw incluiría el scrollbar) */
+    overflow-x: hidden;
     background: var(--color-fondo);
-    /* Color de fondo gris claro del sistema */
 }
 
 /* Contenedor principal de la aplicación */
 main {
     margin-left: 17%;
-    /* Espacio para el sidebar (17% del ancho) */
     padding: 20px;
-    /* Espaciado interno de 20px */
     height: 100vh;
-    /* Altura completa del viewport */
     overflow-y: auto;
-    /* Permite scroll vertical si el contenido excede */
+    overflow-x: hidden;
+    /* Nunca genera scroll horizontal */
+    min-width: 0;
 }

@@ -586,18 +586,48 @@
         /* Reduce tamaño */
     }
 
-    /* ---------- PAGINA HEADER (Laptop L) ---------- */
+    /* ---------- PAGINA HEADER (≤1280px) ---------- */
 
+    /*
+     * A partir de 1280px el buscador pasa a su propia fila.
+     * Así el input nunca se comprime entre el título y el botón.
+     *
+     *  Fila 1: [Título                    ] [Botón]
+     *  Fila 2: [Buscador — ancho completo         ]
+     */
     .pagina-header {
-        margin-bottom: 22px;
-        /* Reduce el margen */
-        gap: 14px;
-        /* Reduce el espacio */
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 12px;
+        margin-bottom: 20px;
+        width: 100%;
     }
 
     .pagina-header__titulo {
+        grid-column: 1;
+        grid-row: 1;
         font-size: 22px;
-        /* Reduce el tamaño */
+        align-self: center;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .pagina-header__acciones {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: center;
+        justify-self: end;
+    }
+
+    /* Buscador: fila 2 completa */
+    .pagina-header .buscador {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        margin: 0;
+        width: 100%;
     }
 
     /* ---------- BOTON ACCION (Laptop L) ---------- */
@@ -872,6 +902,21 @@
     .grafico__titulo {
         font-size: 15px;
         /* Reduce ligeramente */
+    }
+
+    /* ---------- PAGINA HEADER (Laptop pequeña ≤1024px) ---------- */
+
+    /* ---------- PAGINA HEADER (≤1024px) ---------- */
+
+    /* El grid 2-filas ya viene del bloque ≤1280px.
+       Aquí solo ajustamos tamaños para pantallas más pequeñas. */
+    .pagina-header {
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .pagina-header__titulo {
+        font-size: 20px;
     }
 }
 
@@ -1432,15 +1477,62 @@
         /* Padding reducido */
     }
 
-    /* ---------- PAGINA HEADER (Tablet) ---------- */
+    /* ---------- PAGINA HEADER (Tablet / Móvil) ---------- */
 
-    /* Permite que título, buscador y botones rompan línea */
+    /* Header muestra solo el buscador */
     .pagina-header {
-        flex-wrap: wrap;
+        display: block;
+        margin-bottom: 16px;
     }
 
+    /* Título oculto en móvil */
     .pagina-header__titulo {
-        font-size: 20px;
+        display: none;
+    }
+
+    /* Buscador ocupa todo el ancho */
+    .pagina-header .buscador {
+        width: 100%;
+        margin: 0;
+    }
+
+    /* Contenedor del botón sale del flujo → FAB flotante */
+    .pagina-header__acciones {
+        position: fixed;
+        bottom: 96px;
+        right: 20px;
+        z-index: 60;
+        width: auto;
+        gap: 0;
+    }
+
+    /* Botón se convierte en FAB circular */
+    .pagina-header__acciones .boton-accion {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        padding: 0;
+        font-size: 0;
+        /* oculta texto, mantiene icono */
+        gap: 0;
+        /* sin gap para que el icono quede perfectamente centrado */
+        flex: unset;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 16px rgba(26, 26, 26, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Restaura el tamaño del icono */
+    .pagina-header__acciones .boton-accion i {
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    /* Hover del FAB */
+    .pagina-header__acciones .boton-accion:hover {
+        transform: scale(1.08) translateY(-2px);
+        box-shadow: 0 8px 24px rgba(26, 26, 26, 0.4);
     }
 
     /* ---------- NOTIFICACIONES (Tablet) ---------- */
@@ -1592,86 +1684,108 @@
         /* Más pequeño */
     }
 
-    /* ---------- PRODUCTOS (Mobile L) ---------- */
+    /* ---------- PAGINA HEADER (Mobile L) ---------- */
 
-    /* Acciones siempre visibles (hereda del tablet, reforzamos) */
-    .producto__acciones {
-        opacity: 1;
-        /* Siempre visible */
+    /* Ajusta el margen del header */
+    .pagina-header {
+        margin-bottom: 14px;
     }
 
-    /* Grid de 2 columnas en mobile */
+    /* FAB sube un poco más en móviles con barra inferior más alta */
+    .pagina-header__acciones {
+        bottom: 90px;
+        right: 16px;
+    }
+
+    /* ---------- PRODUCTOS (Mobile L) — Layout horizontal ---------- */
+
+    /* Grid de 1 columna */
     .productos__grid {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 columnas fijas */
-        gap: 12px;
-        /* Espacio reducido */
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 
-    /* Imagen más pequeña */
+    /* Card horizontal: imagen izquierda, contenido derecha */
+    /* La card es el contexto de posicionamiento para las acciones */
+    .producto {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        border-radius: 14px;
+        position: relative;
+    }
+
+    /* Imagen cuadrada — deja de ser contexto de posicionamiento */
+    /* para que las acciones salgan del área de imagen */
     .producto__imagen {
-        height: 120px;
-        /* Altura reducida */
+        width: 130px;
+        height: 130px;
+        flex-shrink: 0;
+        border-radius: 14px 0 0 14px;
+        position: static;
     }
 
-    /* Contenido más compacto */
-    .producto__contenido {
-        padding: 12px;
-        /* Padding reducido */
-    }
-
-    /* Nombre más pequeño */
-    .producto__nombre {
-        font-size: 13px;
-        /* Más pequeño */
-        margin-bottom: 4px;
-        /* Menos margen */
-    }
-
-    /* Descripción oculta en móviles pequeños */
-    .producto__descripcion {
-        display: none;
-        /* Oculta para ahorrar espacio */
-    }
-
-    /* Footer más compacto */
-    .producto__footer {
-        padding-top: 10px;
-        /* Menos padding */
-    }
-
-    /* Precio más pequeño */
-    .producto__precio {
-        font-size: 14px;
-        /* Más pequeño */
-    }
-
-    /* Stock más pequeño */
-    .producto__stock {
-        font-size: 11px;
-        /* Más pequeño */
-    }
-
-    /* Botones de acción más pequeños */
-    .producto__accion {
-        width: 28px;
-        /* Más pequeño */
-        height: 28px;
-        /* Más pequeño */
-        font-size: 11px;
-        /* Icono más pequeño */
-    }
-
-    /* Categoría más pequeña */
+    /* La categoría se ancla al card (mismo top/left queda sobre la imagen) */
     .producto__categoria {
         font-size: 10px;
-        /* Más pequeño */
-        padding: 5px 10px;
-        /* Padding reducido */
+        padding: 4px 8px;
+        top: 8px;
+        left: 8px;
+        border-radius: 6px;
+    }
+
+    /* Acciones se posicionan en la esquina superior derecha del card */
+    /* que visualmente cae dentro del área de contenido */
+    .producto__acciones {
+        opacity: 1;
         top: 10px;
-        /* Ajusta posición */
-        left: 10px;
-        /* Ajusta posición */
+        right: 10px;
+        gap: 6px;
+    }
+
+    /* Botones de acción compactos */
+    .producto__accion {
+        width: 26px;
+        height: 26px;
+        font-size: 10px;
+        border-radius: 6px;
+    }
+
+    /* Contenido ocupa el espacio restante */
+    .producto__contenido {
+        flex: 1;
+        padding: 12px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-width: 0;
+    }
+
+    /* Título deja espacio a la derecha para los botones */
+    .producto__nombre {
+        font-size: 14px;
+        margin-bottom: 4px;
+        padding-right: 68px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Descripción oculta en móvil */
+    .producto__descripcion {
+        display: none;
+    }
+
+    .producto__footer {
+        padding-top: 8px;
+    }
+
+    .producto__precio {
+        font-size: 15px;
+    }
+
+    .producto__stock {
+        font-size: 11px;
     }
 
     /* ---------- GRÁFICO DE BARRAS (Mobile L) ---------- */
@@ -1783,6 +1897,22 @@
         /* Reduce el espacio */
     }
 
+    /* ---------- PAGINA HEADER (Mobile S ≤375px) ---------- */
+
+    .pagina-header {
+        margin-bottom: 10px;
+    }
+
+    /* FAB ligeramente más pequeño en móviles muy pequeños */
+    .pagina-header__acciones .boton-accion {
+        width: 50px;
+        height: 50px;
+    }
+
+    .pagina-header__acciones .boton-accion i {
+        font-size: 16px;
+    }
+
     /* Mantiene las tarjetas en 2 columnas */
     .tablero__tarjetas {
         grid-template-columns: repeat(2, 1fr);
@@ -1823,18 +1953,20 @@
 
     /* ---------- PRODUCTOS (Mobile ≤375px) ---------- */
 
-    /* Grid de 1 columna en móviles pequeños */
-    .productos__grid {
-        grid-template-columns: 1fr;
-        /* 1 sola columna */
-        gap: 12px;
-        /* Espacio reducido */
+    /* Imagen cuadrada más pequeña, mantiene position: static */
+    .producto__imagen {
+        width: 110px;
+        height: 110px;
+        position: static;
     }
 
-    /* Imagen un poco más grande al tener más espacio horizontal */
-    .producto__imagen {
-        height: 140px;
-        /* Altura ajustada */
+    .producto__nombre {
+        font-size: 13px;
+        padding-right: 64px;
+    }
+
+    .producto__precio {
+        font-size: 14px;
     }
 
     /* Gráficos */

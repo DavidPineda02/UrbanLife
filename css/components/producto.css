@@ -9,18 +9,18 @@
     justify-content: space-between;
     gap: 1rem;
     margin-bottom: 20px;
+    width: 100%;
+    min-width: 0;
 }
 
 /* Título principal de la página */
 .pagina-header__titulo {
     font-size: 24px;
-    /* Tamaño grande para jerarquía visual */
     font-weight: 700;
-    /* Negrita para destacar */
     color: var(--color-texto);
-    /* Color de texto principal */
     margin: 0;
-    /* Sin márgenes por defecto */
+    min-width: 0;
+    /* Permite que el título se comprima sin desbordar */
 }
 
 /* Contenedor de los botones de acción */

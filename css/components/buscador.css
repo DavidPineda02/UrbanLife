@@ -12,6 +12,8 @@
     border-radius: var(--radio-grande);
     border: 1px solid var(--color-borde-claro);
     margin-bottom: 1rem;
+    min-width: 0;
+    /* Permite que el buscador se comprima sin desbordar */
 }
 
 /* ---- Campo de búsqueda ---- */
@@ -61,7 +63,9 @@
     display: flex;
     align-items: center;
     gap: 0.625rem;
-    flex-shrink: 0;
+    flex-shrink: 1;
+    /* Permite comprimir si el espacio es limitado */
+    min-width: 0;
 }
 
 .buscador__select {
@@ -143,5 +147,22 @@
     .buscador__select {
         font-size: var(--font-size-xs);
         padding: 0.475rem 2rem 0.475rem 0.75rem;
+        min-width: 110px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE — Mobile S (≤ 375px)
+   ============================================ */
+
+@media screen and (max-width: 375px) {
+
+    .buscador__select {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .buscador__input {
+        font-size: var(--font-size-xs);
     }
 }
