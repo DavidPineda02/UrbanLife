@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find d:David-TardeProyectoFinalBackend-UrbanLife -type f -name package.json -o -name requirements.txt -o -name *.env*)"
+    ]
+  }
+}

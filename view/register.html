@@ -50,27 +50,28 @@
                     </div>
                     <div class="formulario__grupo">
                         <label for="password" class="formulario__etiqueta">Contraseña</label>
-                        <div class="formulario__campo--password">
-                            <input id="password" type="password" placeholder="••••••••"
-                                class="formulario__campo" required>
-                            <i class="formulario__icono fa-regular fa-eye-slash"></i>
+                        <input id="password" type="password" placeholder="••••••••"
+                            class="formulario__campo" required>
+                        <div class="fuerza-password" id="fuerza-password" style="display:none">
+                            <div class="fuerza-password__barra">
+                                <div class="fuerza-password__progreso" id="fuerza-progreso"></div>
+                            </div>
+                            <span class="fuerza-password__texto" id="fuerza-texto"></span>
                         </div>
                     </div>
                     <div class="formulario__grupo">
                         <label for="confirm-password" class="formulario__etiqueta">Confirmar Contraseña</label>
-                        <div class="formulario__campo--password">
-                            <input id="confirm-password" type="password" placeholder="••••••••"
-                                class="formulario__campo" required>
-                            <i class="formulario__icono fa-regular fa-eye-slash"></i>
-                        </div>
+                        <input id="confirm-password" type="password" placeholder="••••••••"
+                            class="formulario__campo" required>
                     </div>
                     <div class="formulario__botones">
-                        <button type="submit" onclick="location.href='home.html'; return false;"
+                        <button type="submit" id="btn-register"
                             class="formulario__boton formulario__boton--principal">
                             Crear Cuenta
                         </button>
                         <span class="formulario__separador">o</span>
-                        <a href="#" class="formulario__boton formulario__boton--google" title="Continuar con Google">
+                        <button type="button" id="btn-google"
+                            class="formulario__boton formulario__boton--google" title="Continuar con Google">
                             <svg class="formulario__icono-google" viewBox="-3 0 262 262"
                                 xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" fill="none">
                                 <path d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" fill="#4285F4" />
@@ -79,7 +80,7 @@
                                 <path d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251" fill="#EB4335" />
                             </svg>
                             <span>Continuar con Google</span>
-                        </a>
+                        </button>
                     </div>
                 </form>
             </div>
