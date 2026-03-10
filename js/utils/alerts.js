@@ -29,6 +29,62 @@ const SWAL_BASE = {
 /* ----- Inicialización ----------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
+/* -------------------------------------------------------------------------- */
+/* ----- Alerta de Éxito ---------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Muestra una alerta de éxito con el mensaje recibido.
+ * Se auto-cierra después de 1.8 segundos.
+ * @param {string} titulo - Mensaje a mostrar (usa el `message` del backend)
+ * @returns {Promise} Resuelve cuando el Swal se cierra
+ */
+export function mostrarAlertaExito(titulo) {
+    return Swal.fire({
+        ...SWAL_BASE,
+        customClass: {
+            ...SWAL_BASE.customClass,
+            popup: 'swal-popup swal-popup--exito',
+        },
+        icon: 'success',
+        iconColor: '#00b894',
+        title: titulo,
+        showConfirmButton: false,
+        timer: 1800,
+        timerProgressBar: true,
+    });
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Alerta de Error ---------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Muestra una alerta de error con el mensaje recibido.
+ * Requiere confirmación del usuario para cerrar.
+ * @param {string}      titulo - Título principal del alert
+ * @param {string|null} html   - Contenido HTML opcional (ej: lista de errores de validación)
+ * @returns {Promise} Resuelve cuando el usuario confirma
+ */
+export function mostrarAlertaError(titulo, html = null) {
+    return Swal.fire({
+        ...SWAL_BASE,
+        customClass: {
+            ...SWAL_BASE.customClass,
+            popup: 'swal-popup swal-popup--eliminar',
+        },
+        icon: 'error',
+        iconColor: '#E42727',
+        title: titulo,
+        ...(html ? { html } : {}),
+        confirmButtonText: 'Entendido',
+    });
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Inicialización (data attributes) ----------------------------------- */
+/* -------------------------------------------------------------------------- */
+
 export function initAlerts() {
     document.addEventListener('click', async (e) => {
 
