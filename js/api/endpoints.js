@@ -65,6 +65,7 @@ export const ENDPOINTS = {
         CREATE:     '/productos',
         UPDATE:     '/productos/id',
         DELETE:     '/productos/id',
+        IMAGEN:     '/productos/imagen',
     },
     CATEGORIAS: {
         GET_ALL:    '/categorias',
