@@ -5,6 +5,31 @@
 import { evaluarFuerzaPassword } from '../utils/formValidation.js';
 import { validarTokenRecuperacion, resetPassword } from '../api/services/auth.service.js';
 
+/* ------------------------------------------------------------------ */
+/* ----- Helpers de validación visual -------------------------------- */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Bloquea el ingreso de espacios en un input.
+ * Cubre: tecla Space, pegado con Ctrl+V y cualquier otro método de entrada.
+ * @param {HTMLInputElement} input
+ */
+function bloquearEspacios(input) {
+    if (!input) return;
+    input.addEventListener('keydown', (e) => {
+        if (e.key === ' ') e.preventDefault();
+    });
+    input.addEventListener('input', () => {
+        const pos = input.selectionStart;
+        const sinEspacios = input.value.replace(/ /g, '');
+        if (sinEspacios !== input.value) {
+            input.value = sinEspacios;
+            input.setSelectionRange(pos - 1, pos - 1);
+        }
+    });
+}
+
+/** Marca un input en rojo y lo limpia cuando el usuario vuelve a escribir */
 function marcarError(form, ...ids) {
     ids.forEach(id => {
         const el = form.querySelector(id);
@@ -15,6 +40,10 @@ function marcarError(form, ...ids) {
     });
 }
 
+/**
+ * Aplica feedback visual en tiempo real: verde al perder el foco si el campo
+ * está completo y sin error; quita verde mientras el campo esté en error.
+ */
 function initValidacionVisual(form) {
     form.querySelectorAll('.formulario__campo').forEach(el => {
         el.addEventListener('blur', () => {
@@ -31,6 +60,8 @@ function initValidacionVisual(form) {
         });
     });
 }
+
+/* ------------------------------------------------------------------ */
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -59,6 +90,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     initValidacionVisual(form);
+
+    /* ----- Bloquear espacios en ambos campos de contraseña ----- */
+    bloquearEspacios(form.querySelector('#password'));
+    bloquearEspacios(form.querySelector('#confirm-password'));
 
     /* ------------------------------------------------------------------ */
     /* ----- Barra de fuerza de contraseña ------------------------------ */
@@ -93,7 +128,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         e.preventDefault();
         form.querySelectorAll('.formulario__input--error').forEach(el => el.classList.remove('formulario__input--error'));
 
-        /* Única validación client-side: confirm-password (nunca llega al backend) */
+        /* Única validación client-side: las contraseñas deben coincidir */
         const pass    = form.querySelector('#password').value;
         const confirm = form.querySelector('#confirm-password').value;
         if (pass !== confirm) {
@@ -108,12 +143,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
             const data = await resetPassword(token, pass);
-            alert(data.message);
+            alert(data.message || '¡Contraseña restablecida!');
             window.location.href = '/';
 
         } catch (error) {
             console.error('[ResetPassword] Error:', error);
-            alert(error.message || 'Error al restablecer la contraseña');
+            alert(error.message || 'No se pudo restablecer la contraseña');
             marcarError(form, '#password');
             btnSubmit.disabled = false;
             btnSubmit.classList.remove('boton--cargando');
