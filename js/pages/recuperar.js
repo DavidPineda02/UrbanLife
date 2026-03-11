@@ -4,6 +4,11 @@
 
 import { forgotPassword } from '../api/services/auth.service.js';
 
+/* ------------------------------------------------------------------ */
+/* ----- Helpers de validación visual -------------------------------- */
+/* ------------------------------------------------------------------ */
+
+/** Marca un input en rojo y lo limpia cuando el usuario vuelve a escribir */
 function marcarError(form, ...ids) {
     ids.forEach(id => {
         const el = form.querySelector(id);
@@ -14,6 +19,10 @@ function marcarError(form, ...ids) {
     });
 }
 
+/**
+ * Aplica feedback visual en tiempo real: verde al perder el foco si el campo
+ * está completo y sin error; quita verde mientras el campo esté en error.
+ */
 function initValidacionVisual(form) {
     form.querySelectorAll('.formulario__campo').forEach(el => {
         el.addEventListener('blur', () => {
@@ -30,6 +39,8 @@ function initValidacionVisual(form) {
         });
     });
 }
+
+/* ------------------------------------------------------------------ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -49,12 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await forgotPassword(
                 form.querySelector('#email').value.trim(),
             );
-            alert(data.message);
+            alert(data.message || 'Enlace enviado correctamente');
             window.location.href = '../index.html';
 
         } catch (error) {
             console.error('[ForgotPassword] Error:', error);
-            alert(error.message || 'Error al procesar la solicitud');
+            alert(error.message || 'No se pudo procesar la solicitud');
             marcarError(form, '#email');
             btnSubmit.disabled = false;
             btnSubmit.classList.remove('boton--cargando');

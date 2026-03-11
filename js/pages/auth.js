@@ -11,6 +11,30 @@ const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 /* ----- Helpers de validación visual -------------------------------------- */
 /* ========================================================================== */
 
+/**
+ * Bloquea el ingreso de espacios en un input.
+ * Cubre: tecla Space, pegado con Ctrl+V y cualquier otro método de entrada.
+ * @param {HTMLInputElement} input
+ */
+function bloquearEspacios(input) {
+    if (!input) return;
+    // Bloquear la tecla espacio directamente
+    input.addEventListener('keydown', (e) => {
+        if (e.key === ' ') e.preventDefault();
+    });
+    // Limpiar espacios en cualquier evento de entrada (pegado, autocompletar, etc.)
+    input.addEventListener('input', () => {
+        const pos = input.selectionStart;
+        const sinEspacios = input.value.replace(/ /g, '');
+        if (sinEspacios !== input.value) {
+            input.value = sinEspacios;
+            // Restaurar la posición del cursor ajustada por los espacios eliminados
+            input.setSelectionRange(pos - 1, pos - 1);
+        }
+    });
+}
+
+/** Marca uno o más inputs en rojo y limpia el verde */
 function marcarError(form, ...ids) {
     ids.forEach(id => {
         const el = form.querySelector(id);
@@ -23,12 +47,17 @@ function marcarError(form, ...ids) {
     });
 }
 
+/** Elimina todos los estados de error del formulario */
 function limpiarErrores(form) {
     form.querySelectorAll('.formulario__input--error').forEach(el => {
         el.classList.remove('formulario__input--error');
     });
 }
 
+/**
+ * Aplica feedback visual en tiempo real: verde al perder el foco si el campo
+ * está completo y sin error; quita verde mientras el campo esté en error.
+ */
 function initValidacionVisual(form) {
     form.querySelectorAll('.formulario__campo').forEach(el => {
         el.addEventListener('blur', () => {
@@ -44,6 +73,57 @@ function initValidacionVisual(form) {
             }
         });
     });
+}
+
+/**
+ * Mapea el mensaje de error del backend al/los input(s) correspondiente(s).
+ * Cubre todos los mensajes posibles de AuthService y UserService.
+ * @param {HTMLFormElement} form
+ * @param {string} mensaje - Mensaje retornado por el backend
+ */
+function mapearErrorAInput(form, mensaje) {
+    const msg = (mensaje || '').toLowerCase();
+
+    /* ----- Nombre ----- */
+    if (msg.includes('nombre') && !msg.includes('apellido')) {
+        marcarError(form, '#nombre');
+        return;
+    }
+
+    /* ----- Apellido ----- */
+    if (msg.includes('apellido')) {
+        marcarError(form, '#apellido');
+        return;
+    }
+
+    /* ----- Correo ----- */
+    if (msg.includes('correo') || msg.includes('email')) {
+        marcarError(form, '#email');
+        return;
+    }
+
+    /* ----- Contraseña ----- */
+    if (msg.includes('contraseña') || msg.includes('password')) {
+        marcarError(form, '#password');
+        return;
+    }
+
+    /* ----- Credenciales inválidas (login: ambos campos) ----- */
+    if (msg.includes('credenciales') || msg.includes('inválidas')) {
+        marcarError(form, '#email', '#password');
+        return;
+    }
+
+    /* ----- Cuenta Google / inactivo → solo correo ----- */
+    if (msg.includes('google') || msg.includes('inactivo')) {
+        marcarError(form, '#email');
+        return;
+    }
+
+    /* ----- Fallback: marcar todos los campos disponibles ----- */
+    const campos = ['#nombre', '#apellido', '#email', '#password'];
+    const existentes = campos.filter(id => form.querySelector(id));
+    marcarError(form, ...existentes);
 }
 
 /* ========================================================================== */
@@ -106,7 +186,7 @@ function initGoogleSignIn() {
 async function handleGoogleCredential(response) {
     try {
         const data = await loginConGoogle(response.credential);
-        alert(data.message);
+        alert(data.message || '¡Bienvenido!');
         window.location.href = '/view/home.html';
     } catch (error) {
         console.error('[Google Auth] Error:', error);
@@ -127,8 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnLogin = document.getElementById('btn-login');
 
     if (btnLogin) {
-        initValidacionVisual(document.querySelector('.formulario__form'));
         const form = document.querySelector('.formulario__form');
+        initValidacionVisual(form);
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -143,13 +223,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     form.querySelector('#email').value.trim(),
                     form.querySelector('#password').value,
                 );
-                alert(data.message);
+                alert(data.message || '¡Bienvenido!');
                 window.location.href = '/view/home.html';
 
             } catch (error) {
                 console.error('[Login] Error:', error);
                 alert(error.message || 'Credenciales incorrectas');
-                marcarError(form, '#email', '#password');
+                mapearErrorAInput(form, error.message);
                 btnLogin.disabled = false;
                 btnLogin.classList.remove('boton--cargando');
                 btnLogin.textContent = 'Iniciar Sesión';
@@ -166,6 +246,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnRegister) {
         const form = document.querySelector('.formulario__form');
         initValidacionVisual(form);
+
+        /* ----- Bloquear espacios en nombre, apellido y contraseñas ----- */
+        bloquearEspacios(form.querySelector('#nombre'));
+        bloquearEspacios(form.querySelector('#apellido'));
+        bloquearEspacios(form.querySelector('#password'));
+        bloquearEspacios(form.querySelector('#confirm-password'));
 
         /* ----- Barra de fuerza de contraseña ----- */
         const passwordInput   = form.querySelector('#password');
@@ -193,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             limpiarErrores(form);
 
-            /* Única validación client-side: confirm-password (nunca llega al backend) */
+            /* Única validación client-side: las contraseñas deben coincidir */
             const pass    = form.querySelector('#password').value;
             const confirm = form.querySelector('#confirm-password').value;
             if (pass !== confirm) {
@@ -213,25 +299,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     form.querySelector('#email').value.trim(),
                     pass,
                 );
-                alert(data.message);
+                alert(data.message || '¡Cuenta creada!');
                 window.location.href = '/view/home.html';
 
             } catch (error) {
                 console.error('[Register] Error:', error);
-                alert(error.message || 'Error al crear la cuenta');
-
-                const msg = (error.message || '').toLowerCase();
-                if (msg.includes('nombre') || msg.includes('apellido')) {
-                    if (msg.includes('nombre'))   marcarError(form, '#nombre');
-                    if (msg.includes('apellido')) marcarError(form, '#apellido');
-                } else if (msg.includes('correo') || msg.includes('email')) {
-                    marcarError(form, '#email');
-                } else if (msg.includes('contraseña') || msg.includes('password')) {
-                    marcarError(form, '#password');
-                } else {
-                    marcarError(form, '#nombre', '#apellido', '#email', '#password');
-                }
-
+                alert(error.message || 'No se pudo crear la cuenta');
+                mapearErrorAInput(form, error.message);
                 btnRegister.disabled = false;
                 btnRegister.classList.remove('boton--cargando');
                 btnRegister.textContent = 'Crear Cuenta';
