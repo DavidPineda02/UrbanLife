@@ -102,8 +102,8 @@
                             <i class="fa-solid fa-gear"></i>
                         </div>
                         <div class="sidebar__enlace-info">
-                            <span class="sidebar__enlace-texto">David Pineda</span>
-                            <span class="sidebar__enlace-rol">Super Admin</span>
+                            <span class="sidebar__enlace-texto" id="sidebar-nombre-usuario">Cargando...</span>
+                            <span class="sidebar__enlace-rol" id="sidebar-rol-usuario"></span>
                         </div>
                         <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
                     </a>
@@ -116,7 +116,7 @@
         <header class="pagina-header">
             <h1 class="pagina-header__titulo">Mi Perfil</h1>
             <div class="pagina-header__acciones">
-                <a href="../index.html" class="boton-accion boton-accion--primario" title="Cerrar sesión">
+                <a href="#" id="btn-cerrar-sesion" class="boton-accion boton-accion--primario" title="Cerrar sesión">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span>Cerrar Sesión</span>
                 </a>
@@ -126,13 +126,13 @@
         <section class="perfil">
             <div class="perfil__header">
                 <div class="perfil__avatar">
-                    <span class="perfil__iniciales">DP</span>
+                    <span class="perfil__iniciales" id="perfil-iniciales"></span>
                 </div>
                 <div class="perfil__info-principal">
-                    <h2 class="perfil__nombre">David Pineda</h2>
-                    <p class="perfil__rol">
+                    <h2 class="perfil__nombre" id="perfil-nombre-completo">Cargando...</h2>
+                    <p class="perfil__rol" id="perfil-rol">
                         <i class="fa-solid fa-shield-halved"></i>
-                        Super Admin
+                        <span id="perfil-rol-texto"></span>
                     </p>
                 </div>
                 <span class="perfil__badge perfil__badge--activo">Activo</span>
@@ -153,15 +153,15 @@
                     <div class="perfil__campos">
                         <div class="perfil__campo">
                             <span class="perfil__campo-etiqueta">Nombre</span>
-                            <span class="perfil__campo-valor">David</span>
+                            <span class="perfil__campo-valor" id="perfil-nombre"></span>
                         </div>
                         <div class="perfil__campo">
                             <span class="perfil__campo-etiqueta">Apellido</span>
-                            <span class="perfil__campo-valor">Pineda</span>
+                            <span class="perfil__campo-valor" id="perfil-apellido"></span>
                         </div>
                         <div class="perfil__campo">
                             <span class="perfil__campo-etiqueta">Correo Principal</span>
-                            <span class="perfil__campo-valor">david.pineda@urbanlife.com</span>
+                            <span class="perfil__campo-valor" id="perfil-correo"></span>
                         </div>
                     </div>
                 </div>
@@ -178,8 +178,8 @@
                     </div>
                     <div class="perfil__campos">
 
-                        <!-- Método: Google (visible si GOOGLE_ID != null) -->
-                        <div class="perfil__campo">
+                        <!-- Método: Google (visible si tieneGoogle = true) -->
+                        <div class="perfil__campo" id="campo-metodo-google" style="display:none;">
                             <span class="perfil__campo-etiqueta">Método de acceso</span>
                             <span class="perfil__campo-valor">
                                 <i class="fa-brands fa-google"></i>
@@ -187,8 +187,17 @@
                             </span>
                         </div>
 
-                        <!-- Método: Contraseña (visible si CONTRASENA != null) -->
-                        <div class="perfil__campo perfil__campo--contrasena">
+                        <!-- Método: Correo y contraseña (visible si tieneContrasena = true) -->
+                        <div class="perfil__campo" id="campo-metodo-contrasena" style="display:none;">
+                            <span class="perfil__campo-etiqueta">Método de acceso</span>
+                            <span class="perfil__campo-valor">
+                                <i class="fa-solid fa-lock"></i>
+                                Correo y contraseña
+                            </span>
+                        </div>
+
+                        <!-- Contraseña: Cambiar (visible si tieneContrasena = true) -->
+                        <div class="perfil__campo perfil__campo--contrasena" id="campo-cambiar-contrasena" style="display:none;">
                             <div class="perfil__campo-info">
                                 <span class="perfil__campo-etiqueta">Contraseña</span>
                                 <span class="perfil__campo-valor">••••••••</span>
@@ -199,8 +208,8 @@
                             </a>
                         </div>
 
-                        <!-- Acción: Establecer contraseña (visible solo si CONTRASENA = null) -->
-                        <div class="perfil__campo perfil__campo--contrasena">
+                        <!-- Acción: Establecer contraseña (visible solo si tieneContrasena = false) -->
+                        <div class="perfil__campo perfil__campo--contrasena" id="campo-establecer-contrasena" style="display:none;">
                             <div class="perfil__campo-info">
                                 <span class="perfil__campo-etiqueta">Contraseña</span>
                                 <span class="perfil__campo-valor">No establecida</span>
@@ -225,22 +234,8 @@
                             Agregar
                         </a>
                     </div>
-                    <div class="perfil__lista">
-                        <div class="perfil__lista-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <span>ventas@urbanlife.com</span>
-                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este correo?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo?" class="perfil__lista-eliminar" title="Eliminar correo">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </div>
-                        <div class="perfil__lista-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <span>contacto@urbanlife.com</span>
-                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este correo?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo?" class="perfil__lista-eliminar" title="Eliminar correo">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <!-- Contenedor dinámico: los correos se cargan desde el backend -->
+                    <div class="perfil__lista" id="lista-correos"></div>
                 </div>
 
                 <div class="perfil__seccion">
@@ -254,29 +249,8 @@
                             Agregar
                         </a>
                     </div>
-                    <div class="perfil__lista">
-                        <div class="perfil__lista-item">
-                            <i class="fa-solid fa-phone"></i>
-                            <span>+57 300 123 4567</span>
-                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este teléfono?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo?" class="perfil__lista-eliminar" title="Eliminar teléfono">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </div>
-                        <div class="perfil__lista-item">
-                            <i class="fa-solid fa-phone"></i>
-                            <span>+57 315 987 6543</span>
-                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este teléfono?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo?" class="perfil__lista-eliminar" title="Eliminar teléfono">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </div>
-                        <div class="perfil__lista-item">
-                            <i class="fa-solid fa-phone"></i>
-                            <span>+57 (1) 234 5678</span>
-                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este teléfono?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo?" class="perfil__lista-eliminar" title="Eliminar teléfono">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <!-- Contenedor dinámico: los teléfonos se cargan desde el backend -->
+                    <div class="perfil__lista" id="lista-telefonos"></div>
                 </div>
 
             </div>
@@ -292,23 +266,23 @@
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
-            <form class="modal__formulario">
+            <form class="modal__formulario" id="form-editar-personal">
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Nombre</label>
-                    <input type="text" class="formulario__input" name="nombre" value="David" title="Nombre" required>
+                    <label class="formulario__label" for="editar-nombre">Nombre</label>
+                    <input type="text" class="formulario__input formulario__campo" id="editar-nombre" name="nombre" title="Nombre" required>
                 </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Apellido</label>
-                    <input type="text" class="formulario__input" name="apellido" value="Pineda" title="Apellido" required>
+                    <label class="formulario__label" for="editar-apellido">Apellido</label>
+                    <input type="text" class="formulario__input formulario__campo" id="editar-apellido" name="apellido" title="Apellido" required>
                 </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Correo Principal</label>
-                    <input type="email" class="formulario__input" name="correo" value="david.pineda@urbanlife.com"
+                    <label class="formulario__label" for="editar-correo">Correo Principal</label>
+                    <input type="email" class="formulario__input formulario__campo" id="editar-correo" name="correo"
                         title="Correo Principal" required>
                 </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Guardar cambios">Guardar</a>
+                    <button type="button" id="btn-guardar-personal" class="boton-accion boton-accion--primario" title="Guardar cambios">Guardar</button>
                 </div>
             </form>
         </div>
@@ -324,20 +298,26 @@
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
-            <form class="modal__formulario">
+            <form class="modal__formulario" id="form-establecer-contrasena">
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Nueva Contraseña</label>
-                    <input type="password" class="formulario__input" name="contrasena_nueva"
+                    <label class="formulario__label" for="establecer-contrasena">Nueva Contraseña</label>
+                    <input type="password" class="formulario__input formulario__campo" id="establecer-contrasena" name="contrasena_nueva"
                         placeholder="Mínimo 8 caracteres" title="Nueva Contraseña" required>
                 </div>
+                <div class="fuerza-password" id="fuerza-password-establecer" style="display:none">
+                    <div class="fuerza-password__barra">
+                        <div class="fuerza-password__progreso"></div>
+                    </div>
+                    <span class="fuerza-password__texto"></span>
+                </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Confirmar Contraseña</label>
-                    <input type="password" class="formulario__input" name="contrasena_confirmar"
+                    <label class="formulario__label" for="establecer-contrasena-confirmar">Confirmar Contraseña</label>
+                    <input type="password" class="formulario__input formulario__campo" id="establecer-contrasena-confirmar" name="contrasena_confirmar"
                         placeholder="Repite la contraseña" title="Confirmar Contraseña" required>
                 </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Contraseña establecida correctamente!" class="boton-accion boton-accion--primario" title="Establecer contraseña">Establecer</a>
+                    <button type="button" id="btn-establecer-contrasena" class="boton-accion boton-accion--primario" title="Establecer contraseña">Establecer</button>
                 </div>
             </form>
         </div>
@@ -353,25 +333,31 @@
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
-            <form class="modal__formulario">
+            <form class="modal__formulario" id="form-cambiar-contrasena">
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Contraseña Actual</label>
-                    <input type="password" class="formulario__input" name="contrasena_actual"
+                    <label class="formulario__label" for="cambiar-contrasena-actual">Contraseña Actual</label>
+                    <input type="password" class="formulario__input formulario__campo" id="cambiar-contrasena-actual" name="contrasena_actual"
                         placeholder="Ingresa tu contraseña actual" title="Contraseña Actual" required>
                 </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Nueva Contraseña</label>
-                    <input type="password" class="formulario__input" name="contrasena_nueva"
+                    <label class="formulario__label" for="cambiar-contrasena-nueva">Nueva Contraseña</label>
+                    <input type="password" class="formulario__input formulario__campo" id="cambiar-contrasena-nueva" name="contrasena_nueva"
                         placeholder="Mínimo 8 caracteres" title="Nueva Contraseña" required>
                 </div>
+                <div class="fuerza-password" id="fuerza-password-cambiar" style="display:none">
+                    <div class="fuerza-password__barra">
+                        <div class="fuerza-password__progreso"></div>
+                    </div>
+                    <span class="fuerza-password__texto"></span>
+                </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Confirmar Nueva Contraseña</label>
-                    <input type="password" class="formulario__input" name="contrasena_confirmar"
+                    <label class="formulario__label" for="cambiar-contrasena-confirmar">Confirmar Nueva Contraseña</label>
+                    <input type="password" class="formulario__input formulario__campo" id="cambiar-contrasena-confirmar" name="contrasena_confirmar"
                         placeholder="Repite la nueva contraseña" title="Confirmar Nueva Contraseña" required>
                 </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Cambiar contraseña">Cambiar Contraseña</a>
+                    <button type="button" id="btn-cambiar-contrasena" class="boton-accion boton-accion--primario" title="Cambiar contraseña">Cambiar Contraseña</button>
                 </div>
             </form>
         </div>
@@ -386,15 +372,15 @@
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
-            <form class="modal__formulario">
+            <form class="modal__formulario" id="form-agregar-correo">
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Correo Electrónico</label>
-                    <input type="email" class="formulario__input" name="correo" placeholder="ejemplo@correo.com"
+                    <label class="formulario__label" for="agregar-correo">Correo Electrónico</label>
+                    <input type="email" class="formulario__input formulario__campo" id="agregar-correo" name="correo" placeholder="ejemplo@correo.com"
                         title="Correo Electrónico" required>
                 </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Agregar">Agregar</a>
+                    <button type="button" id="btn-agregar-correo" class="boton-accion boton-accion--primario" title="Agregar">Agregar</button>
                 </div>
             </form>
         </div>
@@ -409,14 +395,14 @@
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
-            <form class="modal__formulario">
+            <form class="modal__formulario" id="form-agregar-telefono">
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Número de Teléfono</label>
-                    <input type="tel" class="formulario__input" name="telefono" placeholder="+57 300 000 0000" title="Número de Teléfono" required>
+                    <label class="formulario__label" for="agregar-telefono">Número de Teléfono</label>
+                    <input type="tel" class="formulario__input formulario__campo" id="agregar-telefono" name="telefono" placeholder="3001234567" title="Número de Teléfono" required>
                 </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Cambios guardados correctamente!" class="boton-accion boton-accion--primario" title="Agregar">Agregar</a>
+                    <button type="button" id="btn-agregar-telefono" class="boton-accion boton-accion--primario" title="Agregar">Agregar</button>
                 </div>
             </form>
         </div>
@@ -424,6 +410,7 @@
 
 
     <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/pages/perfil.js"></script>
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 

@@ -560,10 +560,14 @@
     /* Centra horizontalmente */
     border-radius: 8px;
     /* Esquinas redondeadas */
+    border: none;
+    /* Sin borde del navegador */
     background: var(--color-egreso-fondo);
     /* Fondo rojo claro */
     color: var(--color-egreso);
     /* Color rojo */
+    cursor: pointer;
+    /* Cursor de mano al pasar */
     text-decoration: none;
     /* Sin subrayado */
     transition: all 0.2s ease;
