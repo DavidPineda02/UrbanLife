@@ -148,70 +148,7 @@
                     </tr>
                 </thead>
                 <tbody class="tabla__cuerpo">
-                    <tr class="tabla__fila">
-                        <td class="tabla__td">1</td>
-                        <td class="tabla__td">Ropa</td>
-                        <td class="tabla__td">Prendas de vestir para hombre, mujer y niños</td>
-                        <td class="tabla__td">
-                            <span class="tabla__badge tabla__badge--activo">Activo</span>
-                        </td>
-                        <td class="tabla__td tabla__td--acciones">
-                            <a href="#" data-modal-open="modal-editar-categoria" class="tabla__accion tabla__accion--editar" title="Editar">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar categoría?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar" title="Eliminar">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="tabla__fila">
-                        <td class="tabla__td">2</td>
-                        <td class="tabla__td">Calzado</td>
-                        <td class="tabla__td">Zapatos, tenis y sandalias</td>
-                        <td class="tabla__td">
-                            <span class="tabla__badge tabla__badge--activo">Activo</span>
-                        </td>
-                        <td class="tabla__td tabla__td--acciones">
-                            <a href="#" data-modal-open="modal-editar-categoria" class="tabla__accion tabla__accion--editar" title="Editar">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar categoría?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar" title="Eliminar">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="tabla__fila">
-                        <td class="tabla__td">3</td>
-                        <td class="tabla__td">Accesorios</td>
-                        <td class="tabla__td">Bolsos, cinturones y bisutería</td>
-                        <td class="tabla__td">
-                            <span class="tabla__badge tabla__badge--activo">Activo</span>
-                        </td>
-                        <td class="tabla__td tabla__td--acciones">
-                            <a href="#" data-modal-open="modal-editar-categoria" class="tabla__accion tabla__accion--editar" title="Editar">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar categoría?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar" title="Eliminar">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="tabla__fila">
-                        <td class="tabla__td">4</td>
-                        <td class="tabla__td">Deportiva</td>
-                        <td class="tabla__td">Ropa y calzado para actividad física</td>
-                        <td class="tabla__td">
-                            <span class="tabla__badge tabla__badge--inactivo">Inactivo</span>
-                        </td>
-                        <td class="tabla__td tabla__td--acciones">
-                            <a href="#" data-modal-open="modal-editar-categoria" class="tabla__accion tabla__accion--editar" title="Editar">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                            <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar categoría?" data-swal-delete-texto="Esta acción no se puede deshacer." class="tabla__accion tabla__accion--eliminar" title="Eliminar">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    <!-- Las filas se generan dinámicamente desde categorias.js -->
                 </tbody>
             </table>
         </section>
@@ -229,16 +166,16 @@
             </div>
             <div class="modal__formulario">
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Nombre</label>
-                    <input type="text" class="formulario__input" placeholder="Ej: Ropa" title="Nombre" required>
+                    <label class="formulario__label" for="agregar-categoria-nombre">Nombre</label>
+                    <input type="text" id="agregar-categoria-nombre" class="formulario__input" placeholder="Ej: Ropa" title="Nombre" maxlength="100" required>
                 </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Descripción</label>
-                    <textarea class="formulario__input formulario__textarea" placeholder="Describe brevemente la categoría..." title="Descripción" rows="3"></textarea>
+                    <label class="formulario__label" for="agregar-categoria-descripcion">Descripción</label>
+                    <textarea id="agregar-categoria-descripcion" class="formulario__input formulario__textarea" placeholder="Describe brevemente la categoría..." title="Descripción" rows="3" maxlength="255"></textarea>
                 </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Categoría creada correctamente!" class="boton-accion boton-accion--primario" title="Guardar">Guardar</a>
+                    <a href="#" id="btn-guardar-categoria" class="boton-accion boton-accion--primario" title="Guardar">Guardar</a>
                 </div>
             </div>
         </div>
@@ -256,29 +193,30 @@
             </div>
             <div class="modal__formulario">
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Nombre</label>
-                    <input type="text" class="formulario__input" value="Ropa" title="Nombre" required>
+                    <label class="formulario__label" for="editar-categoria-nombre">Nombre</label>
+                    <input type="text" id="editar-categoria-nombre" class="formulario__input" title="Nombre" maxlength="100" required>
                 </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Descripción</label>
-                    <textarea class="formulario__input formulario__textarea" title="Descripción" rows="3">Prendas de vestir para hombre, mujer y niños</textarea>
+                    <label class="formulario__label" for="editar-categoria-descripcion">Descripción</label>
+                    <textarea id="editar-categoria-descripcion" class="formulario__input formulario__textarea" title="Descripción" rows="3" maxlength="255"></textarea>
                 </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Estado</label>
-                    <select class="formulario__select" title="Estado" required>
-                        <option value="true" selected>Activo</option>
+                    <label class="formulario__label" for="editar-categoria-estado">Estado</label>
+                    <select id="editar-categoria-estado" class="formulario__select" title="Estado" required>
+                        <option value="true">Activo</option>
                         <option value="false">Inactivo</option>
                     </select>
                 </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Categoría actualizada correctamente!" class="boton-accion boton-accion--primario" title="Guardar cambios">Guardar</a>
+                    <a href="#" id="btn-actualizar-categoria" class="boton-accion boton-accion--primario" title="Guardar cambios">Guardar</a>
                 </div>
             </div>
         </div>
     </div>
 
     <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/pages/categorias.js"></script>
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 

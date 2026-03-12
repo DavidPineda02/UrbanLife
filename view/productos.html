@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/templete.css">
-    <title>Inicio</title>
+    <title>Productos</title>
 </head>
 
 <body>
     <aside class="sidebar">
         <div class="sidebar__marca">
-            <img src="../assets/img/LogoPage.png" alt="Logo Puna" class="sidebar__logo">
+            <img src="../assets/img/LogoPage.png" alt="Logo UrbanLife" class="sidebar__logo">
         </div>
         <nav class="sidebar__nav">
             <ul class="sidebar__lista">
@@ -34,11 +34,11 @@
                     </a>
                 </li>
                 <li class="sidebar__elemento">
-                    <a href="categorias.html" class="sidebar__enlace" title="Categorías">
+                    <a href="categorias.html" class="sidebar__enlace" title="Categorias">
                         <div class="sidebar__enlace-avatar">
                             <i class="fa-solid fa-tags"></i>
                         </div>
-                        <span class="sidebar__enlace-texto">Categorías</span>
+                        <span class="sidebar__enlace-texto">Categorias</span>
                         <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
                     </a>
                 </li>
@@ -111,6 +111,7 @@
             </ul>
         </nav>
     </aside>
+
     <main class="tablero">
         <header class="pagina-header">
             <h1 class="pagina-header__titulo">Productos</h1>
@@ -120,11 +121,9 @@
                     <input type="text" class="buscador__input" placeholder="Buscar producto por nombre...">
                 </div>
                 <div class="buscador__filtros">
-                    <select class="buscador__select" name="filtro-categoria" title="Filtrar por categoría">
-                        <option value="">Categoría</option>
-                        <option value="ropa">Ropa</option>
-                        <option value="calzado">Calzado</option>
-                        <option value="accesorios">Accesorios</option>
+                    <select class="buscador__select" name="filtro-categoria" title="Filtrar por categoria">
+                        <option value="">Categoria</option>
+                        <!-- Las opciones se cargan dinamicamente desde productos.js -->
                     </select>
                     <select class="buscador__select" name="filtro-estado" title="Filtrar por estado">
                         <option value="">Estado</option>
@@ -148,296 +147,11 @@
         </header>
 
         <section class="productos__grid">
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">Accesorios</span>
-                    <div class="producto__acciones">
-                        <a href="#" data-modal-open="modal-editar-producto" class="producto__accion producto__accion--editar"
-                            title="Editar">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="#" data-swal-delete data-swal-delete-titulo="¿Eliminar este producto?" data-swal-delete-texto="¿Estás seguro que quieres eliminarlo de tus productos?" class="producto__accion producto__accion--eliminar" title="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </div>
-                    <img src="../assets/img/producto.png" alt="Gorra New Era">
-                </div>
-                <div class="producto__contenido">
-                    <h3 class="producto__nombre">Gorra New Era</h3>
-                    <p class="producto__descripcion">Gorra original de la marca New Era, diseño clásico y cómodo.</p>
-                    <div class="producto__footer">
-                        <span class="producto__precio">$ 120.000</span>
-                        <span class="producto__stock">Stock: 100</span>
-                    </div>
-                </div>
-            </article>
+            <!-- Las tarjetas se renderizan dinamicamente desde productos.js -->
         </section>
     </main>
 
+    <!-- Modal Agregar Producto -->
     <div class="modal" id="modal-producto">
         <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
@@ -447,60 +161,64 @@
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
-            <form class="modal__formulario">
+            <div class="modal__formulario">
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
-                        <label class="formulario__label">Nombre</label>
-                        <input type="text" class="formulario__input" name="nombre" placeholder="Nombre del producto"
-                            title="Nombre" required>
+                        <label class="formulario__label" for="agregar-producto-nombre">Nombre</label>
+                        <input type="text" id="agregar-producto-nombre" class="formulario__input formulario__campo"
+                            placeholder="Nombre del producto" title="Nombre">
                     </div>
                     <div class="formulario__grupo">
-                        <label class="formulario__label">Categoría</label>
-                        <select class="formulario__select" name="categoria" title="Categoría" required>
+                        <label class="formulario__label" for="agregar-producto-categoria">Categoria</label>
+                        <select id="agregar-producto-categoria" class="formulario__select formulario__campo" title="Categoria">
                             <option value="">Seleccionar</option>
-                            <option value="accesorios">Accesorios</option>
-                            <option value="ropa-hombre">Ropa Hombre</option>
-                            <option value="ropa-mujer">Ropa Mujer</option>
+                            <!-- Las opciones se cargan dinamicamente desde productos.js -->
                         </select>
                     </div>
                 </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Descripción</label>
-                    <textarea class="formulario__textarea" name="descripcion" placeholder="Descripción del producto"
-                        title="Descripción" rows="2"></textarea>
+                    <label class="formulario__label" for="agregar-producto-descripcion">Descripcion</label>
+                    <textarea id="agregar-producto-descripcion" class="formulario__textarea formulario__campo"
+                        placeholder="Descripcion del producto" title="Descripcion" rows="2"></textarea>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
-                        <label class="formulario__label">Precio Venta</label>
-                        <input type="number" class="formulario__input" name="precio" placeholder="$ 0" title="Precio Venta" required>
+                        <label class="formulario__label" for="agregar-producto-precio">Precio Venta</label>
+                        <input type="number" id="agregar-producto-precio" class="formulario__input formulario__campo"
+                            placeholder="$ 0" title="Precio Venta">
                     </div>
                     <div class="formulario__grupo">
-                        <label class="formulario__label">Costo Promedio</label>
-                        <input type="number" class="formulario__input" name="costo" placeholder="$ 0" title="Costo Promedio">
+                        <label class="formulario__label" for="agregar-producto-costo">Costo Promedio</label>
+                        <input type="number" id="agregar-producto-costo" class="formulario__input formulario__campo"
+                            placeholder="$ 0" title="Costo Promedio">
                     </div>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo formulario__grupo--pequeno">
-                        <label class="formulario__label">Stock</label>
-                        <input type="number" class="formulario__input" name="stock" placeholder="0" title="Stock" required>
+                        <label class="formulario__label" for="agregar-producto-stock">Stock</label>
+                        <input type="number" id="agregar-producto-stock" class="formulario__input formulario__campo"
+                            placeholder="0" title="Stock">
                     </div>
                     <div class="formulario__grupo formulario__grupo--grande">
                         <label class="formulario__label">Imagen</label>
                         <label class="formulario__archivo" title="Seleccionar imagen">
                             <i class="fa-solid fa-paperclip"></i>
                             <span class="formulario__archivo-texto">Seleccionar imagen...</span>
-                            <input type="file" name="imagen" accept="image/*">
+                            <input type="file" id="agregar-producto-imagen" accept="image/*">
                         </label>
                     </div>
                 </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Producto agregado correctamente!" class="boton-accion boton-accion--primario" title="Guardar Producto">Guardar Producto</a>
+                    <button type="button" id="btn-guardar-producto" class="boton-accion boton-accion--primario" title="Guardar Producto">
+                        Guardar Producto
+                    </button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
+    <!-- Modal Editar Producto -->
     <div class="modal" id="modal-editar-producto">
         <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
@@ -510,62 +228,72 @@
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
-            <form class="modal__formulario">
+            <div class="modal__formulario">
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
-                        <label class="formulario__label">Nombre</label>
-                        <input type="text" class="formulario__input" name="nombre" value="Gorra New Era" title="Nombre" required>
+                        <label class="formulario__label" for="editar-producto-nombre">Nombre</label>
+                        <input type="text" id="editar-producto-nombre" class="formulario__input formulario__campo"
+                            title="Nombre">
                     </div>
                     <div class="formulario__grupo">
-                        <label class="formulario__label">Categoría</label>
-                        <select class="formulario__select" name="categoria" title="Categoría" required>
+                        <label class="formulario__label" for="editar-producto-categoria">Categoria</label>
+                        <select id="editar-producto-categoria" class="formulario__select formulario__campo" title="Categoria">
                             <option value="">Seleccionar</option>
-                            <option value="accesorios" selected>Accesorios</option>
-                            <option value="ropa-hombre">Ropa Hombre</option>
-                            <option value="ropa-mujer">Ropa Mujer</option>
+                            <!-- Las opciones se cargan dinamicamente desde productos.js -->
                         </select>
                     </div>
                 </div>
                 <div class="formulario__grupo">
-                    <label class="formulario__label">Descripción</label>
-                    <textarea class="formulario__textarea" name="descripcion"
-                        title="Descripción" rows="2">Gorra original de la marca New Era, diseño clásico y cómodo.</textarea>
+                    <label class="formulario__label" for="editar-producto-descripcion">Descripcion</label>
+                    <textarea id="editar-producto-descripcion" class="formulario__textarea formulario__campo"
+                        title="Descripcion" rows="2"></textarea>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
-                        <label class="formulario__label">Precio Venta</label>
-                        <input type="number" class="formulario__input" name="precio" value="120000" title="Precio Venta" required>
+                        <label class="formulario__label" for="editar-producto-precio">Precio Venta</label>
+                        <input type="number" id="editar-producto-precio" class="formulario__input formulario__campo"
+                            title="Precio Venta">
                     </div>
                     <div class="formulario__grupo">
-                        <label class="formulario__label">Costo Promedio</label>
-                        <input type="number" class="formulario__input" name="costo" value="80000" title="Costo Promedio">
+                        <label class="formulario__label" for="editar-producto-costo">Costo Promedio</label>
+                        <input type="number" id="editar-producto-costo" class="formulario__input formulario__campo"
+                            title="Costo Promedio">
                     </div>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo formulario__grupo--pequeno">
-                        <label class="formulario__label">Stock</label>
-                        <input type="number" class="formulario__input" name="stock" value="100" title="Stock" required>
+                        <label class="formulario__label" for="editar-producto-stock">Stock</label>
+                        <input type="number" id="editar-producto-stock" class="formulario__input formulario__campo"
+                            title="Stock">
                     </div>
                     <div class="formulario__grupo formulario__grupo--grande">
                         <label class="formulario__label">Imagen</label>
                         <label class="formulario__archivo" title="Seleccionar imagen">
                             <i class="fa-solid fa-paperclip"></i>
                             <span class="formulario__archivo-texto">Seleccionar imagen...</span>
-                            <input type="file" name="imagen" accept="image/*">
+                            <input type="file" id="editar-producto-imagen" accept="image/*">
                         </label>
                     </div>
                 </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-producto-estado">Estado</label>
+                    <select id="editar-producto-estado" class="formulario__select formulario__campo" title="Estado">
+                        <option value="true">Activo</option>
+                        <option value="false">Inactivo</option>
+                    </select>
+                </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
-                    <a href="#" data-swal-ok="¡Producto actualizado correctamente!" class="boton-accion boton-accion--primario" title="Actualizar Producto">Actualizar Producto</a>
+                    <button type="button" id="btn-actualizar-producto" class="boton-accion boton-accion--primario" title="Actualizar Producto">
+                        Actualizar Producto
+                    </button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
-
-
     <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/pages/productos.js"></script>
     <script src="https://kit.fontawesome.com/3d24cd6467.js" crossorigin="anonymous"></script>
 </body>
 
