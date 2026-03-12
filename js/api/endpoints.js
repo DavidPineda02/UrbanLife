@@ -64,7 +64,7 @@ export const ENDPOINTS = {
         GET_BY_ID:  '/productos/id',
         CREATE:     '/productos',
         UPDATE:     '/productos/id',
-        DELETE:     '/productos/id',
+        PATCH:      '/productos/id',
         IMAGEN:     '/productos/imagen',
     },
     CATEGORIAS: {
@@ -72,7 +72,7 @@ export const ENDPOINTS = {
         GET_BY_ID:  '/categorias/id',
         CREATE:     '/categorias',
         UPDATE:     '/categorias/id',
-        DELETE:     '/categorias/id',
+        PATCH:      '/categorias/id',
     },
     VENTAS: {
         GET_ALL:    '/ventas',
@@ -85,20 +85,21 @@ export const ENDPOINTS = {
         GET_BY_ID:  '/compras/id',
         CREATE:     '/compras',
         UPDATE:     '/compras/id',
+        DELETE:     '/compras/id',
     },
     CLIENTES: {
         GET_ALL:    '/clientes',
         GET_BY_ID:  '/clientes/id',
         CREATE:     '/clientes',
         UPDATE:     '/clientes/id',
-        DELETE:     '/clientes/id',
+        PATCH:      '/clientes/id',
     },
     PROVEEDORES: {
         GET_ALL:    '/proveedores',
         GET_BY_ID:  '/proveedores/id',
         CREATE:     '/proveedores',
         UPDATE:     '/proveedores/id',
-        DELETE:     '/proveedores/id',
+        PATCH:      '/proveedores/id',
     },
     GASTOS: {
         GET_ALL:    '/gastos',
@@ -106,5 +107,15 @@ export const ENDPOINTS = {
         CREATE:     '/gastos',
         UPDATE:     '/gastos/id',
         DELETE:     '/gastos/id',
+    },
+    CORREOS_USUARIO: {
+        GET_ALL:    '/correos-usuario',
+        CREATE:     '/correos-usuario',
+        DELETE:     '/correos-usuario',
+    },
+    NUMEROS_USUARIO: {
+        GET_ALL:    '/numeros-usuario',
+        CREATE:     '/numeros-usuario',
+        DELETE:     '/numeros-usuario',
     },
 };
