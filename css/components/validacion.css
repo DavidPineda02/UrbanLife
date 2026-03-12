@@ -167,12 +167,24 @@
 /* ===== TOGGLE DE CONTRASEÑA =============================================== */
 /* ========================================================================== */
 
-.input-password-wrapper {
-    position: relative;
-    /* Para posicionar el botón toggle */
+/* Ocultar el ojo nativo del navegador (Edge / Chrome) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+    display: none;
 }
 
-.password-toggle {
+.formulario__campo--password {
+    position: relative;
+    /* Para posicionar el icono toggle */
+}
+
+.formulario__campo--password .formulario__campo {
+    padding-right: 40px;
+    /* Espacio para el icono del ojo */
+}
+
+.formulario__campo--password .formulario__icono {
     position: absolute;
     /* Posición absoluta dentro del wrapper */
     right: 12px;
@@ -197,7 +209,7 @@
     /* Animación suave */
 }
 
-.password-toggle:hover {
+.formulario__campo--password .formulario__icono:hover {
     color: var(--color-texto);
     /* Color más oscuro al hover */
 }

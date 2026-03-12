@@ -191,6 +191,69 @@ export function clearFormState(form) {
 }
 
 /* -------------------------------------------------------------------------- */
+/* ----- Validación Visual en Tiempo Real ---------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/** Regex simple para validar formato de email en tiempo real */
+const EMAIL_REGEX_VISUAL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Aplica feedback visual en tiempo real (input + blur).
+ * Soporta reglas: { regex, email, match, minLength }.
+ *
+ * @param {HTMLFormElement} form
+ * @param {Object} [reglas] - Mapa selector → { regex?, email?, match?, minLength? }
+ *   Ejemplo: { '#nombre': { regex: /^[a-zA-Z]+$/ }, '#email': { email: true } }
+ */
+export function initValidacionVisual(form, reglas = {}) {
+    /* Iterar sobre cada input con clase .formulario__campo dentro del formulario */
+    form.querySelectorAll('.formulario__campo').forEach(input => {
+        /* Buscar si este input tiene una regla asignada por su selector CSS */
+        const regla = Object.entries(reglas).find(([sel]) => input.matches(sel))?.[1];
+
+        /**
+         * Evalúa si el valor actual del input es válido según su regla.
+         * @returns {boolean} true si el valor cumple todas las condiciones
+         */
+        function esValido() {
+            const valor = input.value.trim();                                   // Obtener valor sin espacios extremos
+            if (!valor) return false;                                           // Campo vacío → inválido
+            if (!regla) return true;                                            // Sin regla → cualquier valor es válido
+            if (regla.minLength && valor.length < regla.minLength) return false; // No cumple longitud mínima
+            if (regla.regex && !regla.regex.test(valor)) return false;          // No cumple patrón regex
+            if (regla.email && !EMAIL_REGEX_VISUAL.test(valor)) return false;   // No cumple formato email
+            if (regla.match) {                                                  // Validar coincidencia con otro campo
+                const otro = form.querySelector(regla.match);                   // Buscar el campo de referencia
+                if (otro && otro.value !== input.value) return false;           // Los valores no coinciden
+            }
+            return true;                                                        // Todas las validaciones pasaron
+        }
+
+        /**
+         * Aplica las clases CSS visuales según el estado de validación.
+         * Verde si es válido, rojo si es inválido, neutro si está vacío.
+         */
+        function aplicarEstado() {
+            const valor = input.value.trim();                                              // Obtener valor actual
+            if (!valor) {                                                                  // Si el campo está vacío
+                input.classList.remove('formulario__input--valido', 'formulario__input--error'); // Quitar ambos estados
+                return;                                                                    // Salir sin aplicar estado
+            }
+            if (esValido()) {                                                              // Si el valor es válido
+                input.classList.add('formulario__input--valido');                           // Agregar borde verde
+                input.classList.remove('formulario__input--error');                         // Quitar borde rojo
+            } else {                                                                       // Si el valor es inválido
+                input.classList.remove('formulario__input--valido');                        // Quitar borde verde
+                input.classList.add('formulario__input--error');                            // Agregar borde rojo
+            }
+        }
+
+        input.addEventListener('blur', aplicarEstado);  // Validar al perder el foco
+        input.addEventListener('input', aplicarEstado); // Validar en cada tecla
+    });
+}
+
+/* -------------------------------------------------------------------------- */
 /* ----- Fuerza de Contraseña ----------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
