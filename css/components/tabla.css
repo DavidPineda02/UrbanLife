@@ -239,6 +239,12 @@
     /* Centrado vertical */
     justify-content: center;
     /* Centrado horizontal */
+    border: none;
+    /* Sin borde (reset para button) */
+    background: none;
+    /* Sin fondo (reset para button) */
+    cursor: pointer;
+    /* Cursor de mano al pasar */
     border-radius: 6px;
     /* Esquinas redondeadas */
     font-size: 14px;
