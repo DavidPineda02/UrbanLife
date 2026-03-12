@@ -9,6 +9,9 @@
  * - validateForm retorna { valido, errores[] } para mostrar mensajes en alertas
  */
 
+// Importar patrones de validación globales
+import { EMAIL_REGEX, TELEFONO_REGEX } from '../constants/validationPatterns.js';
+
 /* -------------------------------------------------------------------------- */
 /* ----- Mensajes de Error por Defecto -------------------------------------- */
 /* -------------------------------------------------------------------------- */
@@ -46,8 +49,7 @@ function _getFieldError(input, reglas = {}) {
          *  - Dominio: empieza con alfanumérico (no punto), puede tener . y -
          *  - TLD: mínimo 2 letras
          * Invalida: @gmail (sin TLD), @.co (dominio vacío), @gmail. (TLD vacío) */
-        const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9][a-zA-Z0-9.\-]*\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(valor)) return MENSAJES.email;
+        if (!EMAIL_REGEX.test(valor)) return MENSAJES.email;
     }
 
     if (reglas.minLength && valor !== '') {
@@ -74,8 +76,7 @@ function _getFieldError(input, reglas = {}) {
     }
 
     if (reglas.phone && valor !== '') {
-        const phoneRegex = /^[\d\s\-\+\(\)]{7,15}$/;
-        if (!phoneRegex.test(valor)) return MENSAJES.phone;
+        if (!TELEFONO_REGEX.test(valor)) return MENSAJES.phone;
     }
 
     return '';

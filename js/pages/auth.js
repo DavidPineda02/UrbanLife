@@ -12,19 +12,15 @@ import { validateForm, evaluarFuerzaPassword, initValidacionVisual } from '../ut
 import { mostrarAlertaExito, mostrarAlertaError } from '../utils/alerts.js';                            // Alertas SweetAlert2
 import { login, register, loginConGoogle } from '../api/services/auth.service.js';                      // Servicios de autenticación
 import { initPasswordToggle } from '../utils/auth.js';                                                  // Toggle mostrar/ocultar contraseña
+// Importar patrones de validación globales
+import { NOMBRE_REGEX, PASSWORD_REGEX, EMAIL_REGEX } from '../constants/validationPatterns.js';
+
+/* ========================================================================== */
+/* ----- Configuración de Google OAuth 2.0 --------------------------------- */
+/* ========================================================================== */
 
 /** ID de cliente de Google OAuth 2.0 desde las variables de entorno */
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-
-/* ========================================================================== */
-/* ----- Regex que coinciden con el backend (ValidationHelper.java) --------- */
-/* ========================================================================== */
-
-/** Solo letras (incluye acentos y ñ), sin espacios ni números */
-const NOMBRE_REGEX = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$/;
-
-/** 8-20 chars, al menos una mayúscula, una minúscula, un dígito, sin espacios */
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)\S{8,20}$/;
 
 /* ========================================================================== */
 /* ----- Helpers de validación visual -------------------------------------- */
@@ -232,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         /* Activar validación visual en tiempo real */
         initValidacionVisual(form, {
-            '#email':    { email: true },           // Email: validar formato
+            '#email':    { regex: EMAIL_REGEX },           // Email: validar formato
             '#password': { regex: PASSWORD_REGEX },  // Contraseña: validar con regex
         });
 
@@ -247,10 +243,13 @@ document.addEventListener('DOMContentLoaded', () => {
             /* ----- Validación client-side ----- */
             const { valido, errores } = validateForm(form, {
                 '#email': {
-                    required: true,                         // Campo obligatorio
-                    requiredMsg: 'El correo es requerido',  // Mensaje si está vacío
-                    email: true,                            // Validar formato de email
+                required: true,                         // Campo obligatorio
+                requiredMsg: 'El correo es requerido',  // Mensaje si está vacío
+                pattern: {
+                    regex: EMAIL_REGEX,
+                    mensaje: 'Ingrese un correo electrónico válido',
                 },
+            },
                 '#password': {
                     required: true,                             // Campo obligatorio
                     requiredMsg: 'La contraseña es requerida',  // Mensaje si está vacío
@@ -299,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initValidacionVisual(form, {
             '#nombre':           { regex: NOMBRE_REGEX, minLength: 2 }, // Solo letras, mín 2 chars
             '#apellido':         { regex: NOMBRE_REGEX, minLength: 2 }, // Solo letras, mín 2 chars
-            '#email':            { email: true },                       // Formato de email
+            '#email':            { regex: EMAIL_REGEX },                       // Formato de email
             '#password':         { regex: PASSWORD_REGEX },             // Regex de contraseña segura
             '#confirm-password': { match: '#password' },                // Debe coincidir con password
         });
@@ -361,7 +360,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 '#email': {
                     required: true,                         // Obligatorio
                     requiredMsg: 'El correo es requerido',  // Mensaje vacío
-                    email: true,                            // Formato de email
+                    pattern: {
+                        regex: EMAIL_REGEX,
+                        mensaje: 'Ingrese un correo electrónico válido',
+                    },
                 },
                 '#password': {
                     required: true,                             // Obligatorio

@@ -12,9 +12,8 @@ import { validateForm, evaluarFuerzaPassword, initValidacionVisual } from '../ut
 import { mostrarAlertaExito, mostrarAlertaError } from '../utils/alerts.js';                            // Alertas SweetAlert2
 import { validarTokenRecuperacion, resetPassword } from '../api/services/auth.service.js';              // Servicios de recuperación
 import { initPasswordToggle } from '../utils/auth.js';                                                  // Toggle mostrar/ocultar contraseña
-
-/** 8-20 chars, al menos una mayúscula, una minúscula, un dígito, sin espacios */
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)\S{8,20}$/;
+// Importar patrones de validación globales
+import { PASSWORD_REGEX } from '../constants/validationPatterns.js';
 
 /* ========================================================================== */
 /* ----- Helpers de validación visual -------------------------------------- */

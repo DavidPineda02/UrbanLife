@@ -8,8 +8,10 @@
  */
 
 import { validateForm, initValidacionVisual } from '../utils/formValidation.js'; // Validación de formularios
-import { mostrarAlertaExito, mostrarAlertaError } from '../utils/alerts.js';     // Alertas SweetAlert2
-import { forgotPassword } from '../api/services/auth.service.js';                // Servicio de recuperación
+import { mostrarAlertaExito, mostrarAlertaError } from '../utils/alerts.js';                            // Alertas SweetAlert2
+import { forgotPassword } from '../api/services/auth.service.js';                                        // Servicio de recuperación
+// Importar patrones de validación globales
+import { EMAIL_REGEX } from '../constants/validationPatterns.js';
 
 /* ========================================================================== */
 /* ----- Helpers de validación visual -------------------------------------- */
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Activar validación visual en tiempo real */
     initValidacionVisual(form, {
-        '#email': { email: true }, // Email: validar formato en tiempo real
+        '#email': { regex: EMAIL_REGEX }, // Email: validar formato
     });
 
     /* Manejar envío del formulario */
@@ -61,7 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
             '#email': {
                 required: true,                         // Campo obligatorio
                 requiredMsg: 'El correo es requerido',  // Mensaje si está vacío
-                email: true,                            // Validar formato de email
+                pattern: {
+                    regex: EMAIL_REGEX,
+                    mensaje: 'Ingrese un correo electrónico válido',
+                },
             },
         });
 
