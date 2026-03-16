@@ -37,6 +37,7 @@ export async function login(correo, contrasena) {
 
     /* Guardar sesión en localStorage */
     guardarSesion(data.token, {
+        userId:   data.userId,      // ← Agregado el ID del usuario
         nombre:   data.nombre,
         apellido: data.apellido,
         correo:   data.correo,
@@ -73,6 +74,7 @@ export async function register(nombre, apellido, correo, contrasena) {
 
     /* Auto-login: guardar sesión igual que en login */
     guardarSesion(data.token, {
+        userId:   data.userId,      // ← Agregado el ID del usuario
         nombre:   data.nombre,
         apellido: data.apellido,
         correo:   data.correo,
@@ -105,6 +107,7 @@ export async function loginConGoogle(credential) {
     }
 
     guardarSesion(data.token, {
+        userId:   data.userId,      // ← Agregado el ID del usuario
         nombre:   data.nombre,
         apellido: data.apellido,
         correo:   data.correo,

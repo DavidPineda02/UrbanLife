@@ -14,18 +14,8 @@
  *  DELETE /gastos/id?id=X   → Elimina un gasto (lógico)
  *
  * Modelo Gasto (respuesta del backend):
- *  { idGasto: number, descripcion: string, monto: number,
- *    fechaGasto: string, tipoGastoId: number, usuarioId: number, estado: boolean }
- *
- * Modelo TipoGasto:
- *  { idTipoGasto: number, nombre: string }
- *
- * Modelo MovimientoFinanciero (creado automáticamente):
- *  { idMovimiento: number, tipo: number, monto: number, 
- *    fecha: string, referencia: string }
- *
- * Nota: Los gastos pueden editarse pero no eliminarse físicamente (borrado lógico).
- *       Cada gasto crea un movimiento financiero tipo=2 (egreso).
+ *  { idGastosAdic: number, monto: number, descripcion: string,
+ *    fechaRegistro: string, metodoPago: string }
  */
 
 // Importar los métodos HTTP del cliente centralizado
@@ -54,11 +44,11 @@ export async function obtenerGastos() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* ----- Obtener Gasto por ID ------------------------------------------------ */
+/* ----- Obtener Gasto por ID ----------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Obtiene un gasto específico por su ID.
+ * Obtiene un gasto específico desde el backend.
  *
  * Response: { success: true, data: Gasto }
  *
@@ -75,24 +65,26 @@ export async function obtenerGastoPorId(id) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* ----- Registrar Gasto ---------------------------------------------------- */
+/* ----- Crear Nuevo Gasto ------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Registra un nuevo gasto en el sistema.
- * Crea automáticamente un movimiento financiero tipo=2 (egreso).
+ * Registra un nuevo gasto en el backend.
+ * El backend crea automáticamente el movimiento financiero correspondiente.
  *
- * Request:  { descripcion: string, monto: number, fechaGasto: "YYYY-MM-DD",
- *             tipoGastoId: number }
+ * Request body: {
+ *   monto: number,
+ *   descripcion: string,
+ *   fechaRegistro: string (YYYY-MM-DD),
+ *   metodoPago: 'Transferencia'|'Efectivo'
+ * }
+ * Nota: el usuarioId se obtiene del JWT en el backend, no se envía en el body.
+ *
  * Response: { success: true, message: string, data: Gasto }
  *
- * @param {Object} datos - Datos del gasto a registrar
- * @param {string} datos.descripcion - Descripción del gasto
- * @param {number} datos.monto - Monto del gasto
- * @param {string} datos.fechaGasto - Fecha en formato YYYY-MM-DD
- * @param {number} datos.tipoGastoId - ID del tipo de gasto
- * @returns {Promise<Object>} Respuesta del backend con el gasto creado
- * @throws {{ status: number, message: string }} Error HTTP (400 validación, 404 no encontrado)
+ * @param {Object} datos - Datos del nuevo gasto
+ * @returns {Promise<Object>} Respuesta del backend con gasto creado
+ * @throws {{ status: number, message: string }} Error HTTP
  */
 export async function crearGasto(datos) {
     /* Enviar POST con el body JSON al endpoint de creación */
@@ -107,21 +99,15 @@ export async function crearGasto(datos) {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Actualiza un gasto existente.
- * Ajusta automáticamente el movimiento financiero asociado.
+ * Actualiza un gasto existente en el backend.
  *
- * Request:  { descripcion: string, monto: number, fechaGasto: "YYYY-MM-DD",
- *             tipoGastoId: number }
+ * Request body: mismo formato que crearGasto()
  * Response: { success: true, message: string, data: Gasto }
  *
  * @param {number} id - ID del gasto a actualizar
  * @param {Object} datos - Datos actualizados del gasto
- * @param {string} datos.descripcion - Descripción del gasto
- * @param {number} datos.monto - Monto del gasto
- * @param {string} datos.fechaGasto - Fecha en formato YYYY-MM-DD
- * @param {number} datos.tipoGastoId - ID del tipo de gasto
- * @returns {Promise<Object>} Respuesta del backend con el gasto actualizado
- * @throws {{ status: number, message: string }} Error HTTP (400 validación, 404 no encontrado)
+ * @returns {Promise<Object>} Respuesta del backend con gasto actualizado
+ * @throws {{ status: number, message: string }} Error HTTP
  */
 export async function actualizarGasto(id, datos) {
     /* Enviar PUT con el body JSON al endpoint de actualización */
@@ -132,19 +118,18 @@ export async function actualizarGasto(id, datos) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* ----- Eliminar Gasto (Lógica) -------------------------------------------- */
+/* ----- Eliminar Gasto --------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Elimina un gasto lógicamente (cambia estado a false).
- * Elimina automáticamente el movimiento financiero asociado.
- * El gasto permanece en la BD pero con estado=false.
+ * Elimina un gasto (borrado lógico) en el backend.
+ * También elimina el movimiento financiero asociado.
  *
  * Response: { success: true, message: string }
  *
  * @param {number} id - ID del gasto a eliminar
- * @returns {Promise<Object>} Respuesta del backend con mensaje de confirmación
- * @throws {{ status: number, message: string }} Error HTTP (404 si no existe)
+ * @returns {Promise<Object>} Respuesta del backend
+ * @throws {{ status: number, message: string }} Error HTTP
  */
 export async function eliminarGasto(id) {
     /* Enviar DELETE al endpoint de eliminación lógica */
@@ -152,34 +137,4 @@ export async function eliminarGasto(id) {
 
     /* Retornar la respuesta completa (incluye message) */
     return data;
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Obtener Tipos de Gasto --------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Obtiene la lista de tipos de gasto disponibles.
- * Usado para llenar el select en el formulario.
- *
- * Response: { success: true, data: TipoGasto[] }
- *
- * @returns {Promise<Object[]>} Array de tipos de gasto
- * @throws {{ status: number, message: string }} Error HTTP
- */
-export async function obtenerTiposGasto() {
-    /* Realizar petición GET al endpoint de tipos de gasto (si existe) */
-    try {
-        const data = await get('/tipos-gasto'); // Endpoint hipotético
-        return data.data;
-    } catch (error) {
-        /* Si el endpoint no existe, retornar tipos por defecto */
-        return [
-            { idTipoGasto: 1, nombre: 'Servicios' },
-            { idTipoGasto: 2, nombre: 'Suministros' },
-            { idTipoGasto: 3, nombre: 'Mantenimiento' },
-            { idTipoGasto: 4, nombre: 'Impuestos' },
-            { idTipoGasto: 5, nombre: 'Otros' }
-        ];
-    }
 }

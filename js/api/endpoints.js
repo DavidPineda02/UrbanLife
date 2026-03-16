@@ -118,4 +118,11 @@ export const ENDPOINTS = {
         CREATE:     '/numeros-usuario',
         DELETE:     '/numeros-usuario',
     },
+    DASHBOARD: {
+        RESUMEN:              '/dashboard/resumen',
+        VENTAS_SEMANALES:     '/dashboard/ventas-semanales',
+        RESUMEN_SEMANAL:      '/dashboard/resumen-semanal',
+        STOCK_CATEGORIAS:     '/dashboard/stock-categorias',
+        PRODUCTOS_RENTABLES:  '/dashboard/productos-rentables',
+    },
 };

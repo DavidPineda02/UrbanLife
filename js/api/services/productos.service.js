@@ -151,7 +151,7 @@ export async function toggleEstadoProducto(id, nuevoEstado) {
 /**
  * Obtiene todas las imágenes asociadas a un producto.
  *
- * Response: { success: true, data: ImagenProducto[] }
+ * Response: { success: true, imagenes: ImagenProducto[] }
  *
  * @param {number} productoId - ID del producto
  * @returns {Promise<Object[]>} Array de imágenes del producto
@@ -161,8 +161,8 @@ export async function obtenerImagenesProducto(productoId) {
     /* Realizar petición GET al endpoint de imágenes con el ID del producto */
     const data = await get(`${ENDPOINTS.PRODUCTOS.IMAGEN}?id=${productoId}`);
 
-    /* Retornar el array de imágenes contenido en data */
-    return data.data;
+    /* Retornar el array de imágenes contenido en el campo 'imagenes' */
+    return data.imagenes || [];  // Backend envía en campo 'imagenes', no 'data'
 }
 
 /* -------------------------------------------------------------------------- */
