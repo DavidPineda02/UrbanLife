@@ -102,10 +102,12 @@ function limpiarErrores(form) {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Punto de entrada: se ejecuta cuando el DOM está listo.
+ * Punto de entrada del módulo de perfil.
  * Carga los datos del perfil y registra todos los event listeners.
  */
-document.addEventListener('DOMContentLoaded', () => {
+export async function inicializar() {
+    // Resetear estado local
+    perfilUsuario = null;
     // Cargar los datos del perfil desde el backend
     cargarPerfil();
     // Cargar correos adicionales del usuario
@@ -116,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     registrarEventos();
     // Inicializar validaciones visuales en todos los formularios
     inicializarValidaciones();
-});
+}
 
 /* -------------------------------------------------------------------------- */
 /* ----- Inicialización de Validaciones Visuales --------------------------- */
@@ -695,7 +697,23 @@ async function handleAgregarCorreo() {
     }
 
     // Obtener valor validado
-    const correo = document.getElementById('agregar-correo').value.trim();
+    const correo = document.getElementById('agregar-correo').value.trim().toLowerCase();
+
+    // Verificar que el correo no sea el mismo correo principal del usuario
+    if (perfilUsuario && correo === perfilUsuario.correo.toLowerCase()) {
+        mostrarAlertaError('Correo duplicado', 'Este correo ya es tu correo principal. Ingresa uno diferente.');
+        marcarErrorVisual(form, '#agregar-correo');
+        return;
+    }
+
+    // Verificar que el correo no esté ya en la lista de correos adicionales
+    const correosExistentes = document.querySelectorAll('#lista-correos .perfil__lista-item span');
+    const yaRegistrado = Array.from(correosExistentes).some(span => span.textContent.trim().toLowerCase() === correo);
+    if (yaRegistrado) {
+        mostrarAlertaError('Correo duplicado', 'Este correo ya está registrado como correo adicional.');
+        marcarErrorVisual(form, '#agregar-correo');
+        return;
+    }
 
     try {
         await agregarCorreo(correo);

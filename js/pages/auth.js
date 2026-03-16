@@ -201,7 +201,7 @@ async function handleGoogleCredential(response) {
     try {
         const data = await loginConGoogle(response.credential);                                   // Enviar token al backend
         await mostrarAlertaExito(data.message || '¡Bienvenido!');                                 // Mostrar alerta de éxito
-        window.location.href = '/view/home.html';                                                 // Redirigir al dashboard
+        window.location.href = '/view/app.html#/home';                                                 // Redirigir al dashboard
     } catch (error) {
         console.error('[Google Auth] Error:', error);                                              // Log del error en consola
         mostrarAlertaError('Error de autenticación', error.message || 'Error al autenticar con Google'); // Mostrar alerta de error
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     form.querySelector('#password').value,                                      // Contraseña tal cual
                 );
                 await mostrarAlertaExito(data.message || '¡Bienvenido!');                      // Alerta de éxito
-                window.location.href = '/view/home.html';                                      // Redirigir al dashboard
+                window.location.href = '/view/app.html#/home';                                      // Redirigir al dashboard
 
             } catch (error) {
                 console.error('[Login] Error:', error);                                        // Log en consola
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     form.querySelector('#password').value,                                      // Contraseña tal cual
                 );
                 await mostrarAlertaExito(data.message || '¡Cuenta creada!');                   // Alerta de éxito
-                window.location.href = '/view/home.html';                                      // Redirigir al dashboard
+                window.location.href = '/view/app.html#/home';                                      // Redirigir al dashboard
 
             } catch (error) {
                 console.error('[Register] Error:', error);                                     // Log en consola
