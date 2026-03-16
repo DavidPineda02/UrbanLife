@@ -62,49 +62,49 @@ let productos = [];
 /* -------------------------------------------------------------------------- */
 
 /** Cuerpo de la tabla donde se renderizan las filas de ventas */
-const tbody = document.querySelector('.tabla__cuerpo');
+let tbody;
 
 /** Input de búsqueda por cliente o ID de venta */
-const inputBusqueda = document.querySelector('.buscador__input');
+let inputBusqueda;
 
 /** Select de filtro por método de pago */
-const selectMetodo = document.querySelector('[name="filtro-metodo"]');
+let selectMetodo;
 
 /** Select de filtro por período de tiempo */
-const selectPeriodo = document.querySelector('[name="filtro-periodo"]');
+let selectPeriodo;
 
 /* ----- Modal Paso 1: Datos Generales ----- */
 
 /** Select de cliente en el modal paso 1 */
-const selectCliente = document.getElementById('venta-cliente');
+let selectCliente;
 
 /** Input de fecha en el modal paso 1 */
-const inputFecha = document.getElementById('venta-fecha');
+let inputFecha;
 
 /** Select de método de pago en el modal paso 1 */
-const selectMetodoPago = document.getElementById('venta-metodo-pago');
+let selectMetodoPago;
 
 /** Botón "Agregar Productos" para avanzar al paso 2 */
-const btnSiguiente = document.getElementById('btn-siguiente-productos');
+let btnSiguiente;
 
 /* ----- Modal Paso 2: Productos de la Venta ----- */
 
 /** Contenedor de la lista de filas de productos en el paso 2 */
-const listaProductos = document.querySelector('#modal-productos-venta .factura__lista');
+let listaProductos;
 
 /** Elemento que muestra el total calculado en tiempo real */
-const totalValor = document.querySelector('#modal-productos-venta .factura__total-valor');
+let totalValor;
 
 /** Botón "Guardar Venta" para enviar la venta al backend */
-const btnGuardarVenta = document.getElementById('btn-guardar-venta');
+let btnGuardarVenta;
 
 /** Botón "Volver" para regresar al paso 1 */
-const btnVolverPaso1 = document.getElementById('btn-volver-paso1');
+let btnVolverPaso1;
 
 /* ----- Modal Detalle de Venta ----- */
 
 /** Contenedor del modal de detalle de venta */
-const modalDetalle = document.getElementById('modal-detalle-venta');
+let modalDetalle;
 
 /* -------------------------------------------------------------------------- */
 /* ----- Cargar Clientes desde el Backend ----------------------------------- */
@@ -148,12 +148,8 @@ async function cargarProductos() {
         /* Petición GET al backend para obtener productos */
         productos = await obtenerProductos();
 
-        /* Filtrar solo los productos activos con stock disponible */
-        const activos = productos.filter(p => p.estado === true);
-
-        /* Construir las opciones HTML para los selects de productos */
-        const opciones = '<option value="">Seleccionar</option>' +
-            activos.map(p => `<option value="${p.idProducto}">${p.nombre} (Stock: ${p.stock})</option>`).join('');
+        /* Generar las opciones HTML para los selects de productos */
+        const opciones = generarOpcionesProductos();
 
         /* Llenar todos los selects de productos en el modal paso 2 */
         const selects = document.querySelectorAll('#modal-productos-venta .factura__fila select');
@@ -225,8 +221,24 @@ function obtenerNombreProducto(productoId) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* ----- Formatear Precio -------------------------------------------------- */
+/* ----- Utilidades de Formato ----------------------------------------------- */
 /* -------------------------------------------------------------------------- */
+
+/**
+ * Retorna la fecha de hoy en formato YYYY-MM-DD usando la zona horaria local.
+ * Evita el bug de toISOString() que convierte a UTC y puede dar la fecha de mañana.
+ * @returns {string} Fecha local en formato "YYYY-MM-DD"
+ */
+function obtenerFechaLocal() {
+    /* Crear objeto Date con la hora local */
+    const hoy = new Date();
+    /* Obtener año, mes (0-based) y día en zona horaria local */
+    const anio = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    /* Retornar en formato YYYY-MM-DD */
+    return `${anio}-${mes}-${dia}`;
+}
 
 /**
  * Formatea un número como precio colombiano con separador de miles.
@@ -354,7 +366,7 @@ function renderizarTabla() {
                 </td>
                 <td class="tabla__td tabla__td--acciones">
                     <button type="button" class="tabla__accion tabla__accion--ver" title="Ver Detalle"
-                            data-accion="ver" data-id="${venta.id}">
+                            data-accion="ver" data-id="${venta.idVenta}">
                         <i class="fa-solid fa-eye"></i>
                     </button>
                 </td>
@@ -429,6 +441,154 @@ function handleVolverPaso1(e) {
 }
 
 /* -------------------------------------------------------------------------- */
+/* ----- Contador de Filas de Producto -------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/** Contador incremental para asignar nombres únicos a cada fila de producto */
+let contadorFilas = 1;
+
+/* -------------------------------------------------------------------------- */
+/* ----- Generar Opciones de Productos para Selects ------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Construye el HTML de las opciones de productos activos para un select.
+ * @returns {string} HTML con las opciones de productos activos
+ */
+function generarOpcionesProductos() {
+    /* Filtrar solo los productos activos con stock disponible */
+    const activos = productos.filter(p => p.estado === true);
+
+    /* Retornar las opciones HTML con el stock entre paréntesis */
+    return '<option value="">Seleccionar</option>' +
+        activos.map(p => `<option value="${p.idProducto}">${p.nombre} (Stock: ${p.stock})</option>`).join('');
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Crear Fila de Producto (HTML Dinámico) ----------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Genera el HTML de una fila de producto para el modal paso 2.
+ * La primera fila no tiene botón de eliminar, las demás sí.
+ * @param {number} num - Número de fila (para nombres únicos)
+ * @param {boolean} conEliminar - true si la fila debe tener botón de eliminar
+ * @returns {string} HTML de la fila de producto
+ */
+function crearFilaProductoHTML(num, conEliminar) {
+    /* Generar las opciones de productos activos para el select */
+    const opciones = generarOpcionesProductos();
+
+    /* Generar el botón de eliminar o un placeholder deshabilitado */
+    const botonEliminar = conEliminar
+        ? `<button type="button" class="factura__eliminar btn-eliminar-fila" title="Eliminar producto">
+               <i class="fa-solid fa-trash"></i>
+           </button>`
+        : `<span class="factura__eliminar factura__eliminar--disabled">
+               <i class="fa-solid fa-trash"></i>
+           </span>`;
+
+    /* Retornar el HTML completo de la fila */
+    return `
+        <div class="factura__fila">
+            <span class="factura__fila-numero"></span>
+            <select class="formulario__select" name="producto_${num}" title="Producto">
+                ${opciones}
+            </select>
+            <input type="number" class="formulario__input" name="cantidad_${num}" placeholder="0" title="Cantidad" min="1">
+            <input type="number" class="formulario__input" name="precio_${num}" placeholder="$ 0" title="Precio Unitario" min="1" step="any">
+            ${botonEliminar}
+        </div>
+    `;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Agregar Fila de Producto ------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Agrega una nueva fila de producto al final de la lista en el modal paso 2.
+ * Cada nueva fila tiene botón de eliminar y opciones de productos actualizadas.
+ */
+function agregarFilaVenta() {
+    /* Incrementar el contador de filas para nombre único */
+    contadorFilas++;
+
+    /* Generar el HTML de la nueva fila con botón de eliminar */
+    const nuevaFilaHTML = crearFilaProductoHTML(contadorFilas, true);
+
+    /* Insertar la nueva fila al final de la lista de productos */
+    listaProductos.insertAdjacentHTML('beforeend', nuevaFilaHTML);
+
+    /* Renumerar todas las filas visibles */
+    renumerarFilas();
+
+    /* Hacer scroll hacia la nueva fila agregada */
+    const filas = listaProductos.querySelectorAll('.factura__fila');
+    const ultimaFila = filas[filas.length - 1];
+    if (ultimaFila) {
+        ultimaFila.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Eliminar Fila de Producto ------------------------------------------ */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Elimina una fila de producto del modal paso 2 al hacer clic en el botón de eliminar.
+ * No permite eliminar si solo queda una fila.
+ * @param {Event} e - Evento de clic en el botón de eliminar
+ */
+function eliminarFilaVenta(e) {
+    /* Buscar el botón de eliminar más cercano al clic */
+    const boton = e.target.closest('.btn-eliminar-fila');
+
+    /* Si no se hizo clic en un botón de eliminar, salir */
+    if (!boton) return;
+
+    /* Obtener todas las filas actuales del modal */
+    const filas = listaProductos.querySelectorAll('.factura__fila');
+
+    /* No permitir eliminar si solo queda una fila */
+    if (filas.length <= 1) return;
+
+    /* Obtener la fila contenedora del botón */
+    const fila = boton.closest('.factura__fila');
+
+    /* Eliminar la fila del DOM */
+    fila.remove();
+
+    /* Renumerar las filas restantes */
+    renumerarFilas();
+
+    /* Recalcular el total después de eliminar */
+    calcularTotal();
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Renumerar Filas de Producto ---------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Actualiza los números de fila visibles después de agregar o eliminar filas.
+ * Los números CSS se manejan con counter, pero esto asegura consistencia visual.
+ */
+function renumerarFilas() {
+    /* Obtener todas las filas actuales del modal */
+    const filas = listaProductos.querySelectorAll('.factura__fila');
+
+    /* Iterar cada fila y actualizar su número visual */
+    filas.forEach((fila, index) => {
+        /* Obtener el span del número de fila */
+        const numero = fila.querySelector('.factura__fila-numero');
+
+        /* Asignar el número correspondiente con formato de dos dígitos */
+        if (numero) numero.textContent = String(index + 1).padStart(2, '0');
+    });
+}
+
+/* -------------------------------------------------------------------------- */
 /* ----- Auto-llenar Precio al Seleccionar Producto ------------------------- */
 /* -------------------------------------------------------------------------- */
 
@@ -450,16 +610,8 @@ function handleProductoChange(e) {
     /* Obtener el ID del producto seleccionado */
     const productoId = parseInt(e.target.value);
 
-    /* Si hay un producto seleccionado, auto-llenar el precio */
-    if (productoId && precioInput) {
-        /* Buscar el producto en el cache local */
-        const producto = productos.find(p => p.idProducto === productoId);
-        /* Si se encontró, asignar el precio de venta */
-        if (producto) {
-            precioInput.value = producto.precioVenta;
-        }
-    } else if (precioInput) {
-        /* Si se deseleccionó el producto, limpiar el precio */
+    /* Si se deseleccionó el producto, limpiar el precio */
+    if (!productoId && precioInput) {
         precioInput.value = '';
     }
 
@@ -473,7 +625,7 @@ function handleProductoChange(e) {
 
 /**
  * Calcula y muestra el total de la venta sumando cantidad × precio
- * de todas las filas visibles que tengan producto seleccionado.
+ * de todas las filas que tengan producto seleccionado.
  */
 function calcularTotal() {
     /* Inicializar el acumulador del total */
@@ -483,48 +635,24 @@ function calcularTotal() {
     const filas = document.querySelectorAll('#modal-productos-venta .factura__fila');
 
     /* Iterar cada fila para sumar su subtotal */
-    filas.forEach((fila, index) => {
-        /* Verificar si la fila es visible (primera siempre, demás por checkbox) */
-        if (index === 0 || esFilaVisible(index + 1)) {
-            /* Obtener los valores de cantidad y precio de la fila */
-            const cantidadInput = fila.querySelector('input[name^="cantidad"]');
-            const precioInput = fila.querySelector('input[name^="precio"]');
+    filas.forEach(fila => {
+        /* Obtener los valores de cantidad y precio de la fila */
+        const cantidadInput = fila.querySelector('input[name^="cantidad"]');
+        const precioInput = fila.querySelector('input[name^="precio"]');
 
-            /* Calcular el subtotal si ambos campos tienen valor */
-            if (cantidadInput && cantidadInput.value && precioInput && precioInput.value) {
-                /* Parsear la cantidad como entero */
-                const cantidad = parseInt(cantidadInput.value) || 0;
-                /* Parsear el precio como decimal */
-                const precio = parseFloat(precioInput.value) || 0;
-                /* Sumar al total */
-                total += cantidad * precio;
-            }
+        /* Calcular el subtotal si ambos campos tienen valor */
+        if (cantidadInput && cantidadInput.value && precioInput && precioInput.value) {
+            /* Parsear la cantidad como entero */
+            const cantidad = parseInt(cantidadInput.value) || 0;
+            /* Parsear el precio como decimal */
+            const precio = parseFloat(precioInput.value) || 0;
+            /* Sumar al total */
+            total += cantidad * precio;
         }
     });
 
     /* Actualizar el texto del total en el modal */
     totalValor.textContent = formatearPrecio(total);
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Verificar Visibilidad de Fila -------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Verifica si una fila de producto extra está visible (checkbox marcado).
- * La fila 1 siempre es visible. Las filas 2-10 dependen de sus checkboxes.
- * @param {number} numFila - Número de la fila (2-10)
- * @returns {boolean} true si la fila está visible
- */
-function esFilaVisible(numFila) {
-    /* La fila 1 siempre está visible */
-    if (numFila <= 1) return true;
-
-    /* Buscar el checkbox correspondiente a la fila */
-    const checkbox = document.getElementById(`agregar-${numFila}`);
-
-    /* Retornar true si el checkbox existe y está marcado */
-    return checkbox ? checkbox.checked : false;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -546,26 +674,25 @@ async function handleCrearVenta(e) {
     const fechaVenta = inputFecha.value;                                       // Fecha YYYY-MM-DD
     const metodoPago = selectMetodoPago.value;                                 // "Efectivo" o "Transferencia"
 
-    /* Recolectar los ítems de todas las filas visibles con producto seleccionado */
+    /* Recolectar los ítems de todas las filas con producto seleccionado */
     const items = [];
     /* Obtener todas las filas de producto del modal */
     const filas = document.querySelectorAll('#modal-productos-venta .factura__fila');
 
     /* Iterar cada fila para recolectar los datos */
-    filas.forEach((fila, index) => {
-        /* Solo procesar filas visibles */
-        if (index === 0 || esFilaVisible(index + 1)) {
-            /* Obtener el select de producto y el input de cantidad */
-            const select = fila.querySelector('select');
-            const cantidadInput = fila.querySelector('input[name^="cantidad"]');
+    filas.forEach(fila => {
+        /* Obtener el select de producto, el input de cantidad y el input de precio */
+        const select = fila.querySelector('select');
+        const cantidadInput = fila.querySelector('input[name^="cantidad"]');
+        const precioInput = fila.querySelector('input[name^="precio"]');
 
-            /* Si ambos tienen valor, agregar el ítem al array */
-            if (select?.value && cantidadInput?.value) {
-                items.push({
-                    productoId: parseInt(select.value),                        // ID del producto
-                    cantidad: parseInt(cantidadInput.value),                    // Cantidad solicitada
-                });
-            }
+        /* Si todos tienen valor, agregar el ítem al array */
+        if (select?.value && cantidadInput?.value && precioInput?.value) {
+            items.push({
+                productoId: parseInt(select.value),                        // ID del producto
+                cantidad: parseInt(cantidadInput.value),                    // Cantidad solicitada
+                precioUnitario: parseFloat(precioInput.value),             // Precio de venta ingresado
+            });
         }
     });
 
@@ -579,6 +706,11 @@ async function handleCrearVenta(e) {
     for (const item of items) {
         if (!item.cantidad || item.cantidad <= 0) {
             mostrarAlertaError('La cantidad debe ser mayor a 0');
+            return;
+        }
+        /* Validar que todos los precios sean mayores a 0 */
+        if (!item.precioUnitario || item.precioUnitario <= 0) {
+            mostrarAlertaError('El precio unitario debe ser mayor a 0');
             return;
         }
     }
@@ -611,33 +743,37 @@ async function handleCrearVenta(e) {
 
 /**
  * Resetea todos los campos del formulario de venta (pasos 1 y 2).
- * Restaura los checkboxes a su estado por defecto.
+ * Elimina todas las filas extra y deja solo la primera fila limpia.
  */
 function limpiarFormularioVenta() {
     /* Limpiar campos del paso 1 */
     selectCliente.value = '';                                                  // Resetear cliente
-    inputFecha.value = new Date().toISOString().split('T')[0];                 // Restaurar fecha de hoy
+    inputFecha.value = obtenerFechaLocal();                 // Restaurar fecha de hoy
     selectMetodoPago.value = '';                                               // Resetear método de pago
 
-    /* Limpiar todos los selects de producto en el paso 2 */
-    const selects = document.querySelectorAll('#modal-productos-venta .factura__fila select');
-    selects.forEach(sel => { sel.value = ''; });
+    /* Eliminar todas las filas de producto excepto la primera */
+    const filas = listaProductos.querySelectorAll('.factura__fila');
+    filas.forEach((fila, index) => {
+        /* Mantener solo la primera fila */
+        if (index > 0) fila.remove();
+    });
 
-    /* Limpiar todos los inputs de cantidad en el paso 2 */
-    const cantidades = document.querySelectorAll('#modal-productos-venta .factura__fila input[name^="cantidad"]');
-    cantidades.forEach(input => { input.value = ''; });
-
-    /* Limpiar todos los inputs de precio en el paso 2 */
-    const precios = document.querySelectorAll('#modal-productos-venta .factura__fila input[name^="precio"]');
-    precios.forEach(input => { input.value = ''; });
-
-    /* Restaurar los checkboxes a su estado por defecto (2 y 3 activos) */
-    for (let i = 2; i <= 10; i++) {
-        /* Obtener el checkbox correspondiente */
-        const cb = document.getElementById(`agregar-${i}`);
-        /* Las filas 2 y 3 están marcadas por defecto, las demás no */
-        if (cb) cb.checked = (i <= 3);
+    /* Limpiar los campos de la primera fila */
+    const primeraFila = listaProductos.querySelector('.factura__fila');
+    if (primeraFila) {
+        /* Resetear el select de producto de la primera fila */
+        const select = primeraFila.querySelector('select');
+        if (select) select.value = '';
+        /* Resetear el input de cantidad de la primera fila */
+        const cantidad = primeraFila.querySelector('input[name^="cantidad"]');
+        if (cantidad) cantidad.value = '';
+        /* Resetear el input de precio de la primera fila */
+        const precio = primeraFila.querySelector('input[name^="precio"]');
+        if (precio) precio.value = '';
     }
+
+    /* Reiniciar el contador de filas a 1 */
+    contadorFilas = 1;
 
     /* Restaurar el texto del total */
     totalValor.textContent = '$ ---';
@@ -654,23 +790,59 @@ function limpiarFormularioVenta() {
  */
 async function handleVerDetalle(id) {
     try {
+        console.log('🔍 Iniciando handleVerDetalle para venta ID:', id);
+        
         /* Petición GET al backend para obtener la venta con sus detalles */
         const venta = await obtenerVentaPorId(id);
+        console.log('✅ Venta obtenida del backend:', venta);
+
+        /* Verificar que el modal exista */
+        if (!modalDetalle) {
+            console.error('❌ Modal de detalle no encontrado');
+            mostrarAlertaError('Error: Modal de detalle no encontrado');
+            return;
+        }
 
         /* Actualizar el título del modal con el ID de la venta */
         const titulo = modalDetalle.querySelector('.modal__titulo');
-        titulo.textContent = `Detalle de Venta #${venta.idVenta}`;
+        if (titulo) {
+            titulo.textContent = `Detalle de Venta #${venta.idVenta}`;
+        } else {
+            console.error('❌ Elemento .modal__titulo no encontrado');
+        }
 
         /* Actualizar el subtítulo con la fecha, método y cliente */
         const subtitulo = modalDetalle.querySelector('.modal__subtitulo');
         const nombreCliente = obtenerNombreCliente(venta.clienteId);
-        subtitulo.innerHTML = `${formatearFecha(venta.fechaVenta)} &bull; ${venta.metodoPago} &bull; ${nombreCliente}`;
+        console.log('👤 Cliente:', nombreCliente, 'ID:', venta.clienteId);
+        
+        if (subtitulo) {
+            subtitulo.innerHTML = `${formatearFecha(venta.fechaVenta)} &bull; ${venta.metodoPago} &bull; ${nombreCliente}`;
+        } else {
+            console.error('❌ Elemento .modal__subtitulo no encontrado');
+        }
+
+        /* Verificar que existan detalles */
+        if (!venta.detalles || !Array.isArray(venta.detalles)) {
+            console.error('❌ La venta no tiene detalles válidos:', venta.detalles);
+            mostrarAlertaError('Error: La venta no tiene detalles');
+            return;
+        }
+        
+        console.log('📦 Detalles de venta:', venta.detalles);
 
         /* Construir el HTML de la tabla de detalles */
         const tableBody = modalDetalle.querySelector('.factura__tabla tbody');
-        tableBody.innerHTML = venta.detalles.map(det => {
+        if (!tableBody) {
+            console.error('❌ Elemento .factura__tabla tbody no encontrado');
+            mostrarAlertaError('Error: Tabla de detalles no encontrada');
+            return;
+        }
+        
+        tableBody.innerHTML = venta.detalles.map((det, index) => {
             /* Obtener el nombre del producto desde el cache */
             const nombreProducto = obtenerNombreProducto(det.productoId);
+            console.log(`📋 Detalle ${index + 1}:`, { det, nombreProducto });
 
             /* Retornar el HTML de la fila del detalle */
             return `
@@ -685,11 +857,18 @@ async function handleVerDetalle(id) {
 
         /* Actualizar el total del modal */
         const totalEl = modalDetalle.querySelector('.factura__total-valor');
-        totalEl.textContent = formatearPrecio(venta.totalVenta);
+        if (totalEl) {
+            totalEl.textContent = formatearPrecio(venta.totalVenta);
+        } else {
+            console.error('❌ Elemento .factura__total-valor no encontrado');
+        }
 
+        console.log('🎯 Abriendo modal de detalle...');
         /* Abrir el modal de detalle */
         openModal('modal-detalle-venta');
+        
     } catch (error) {
+        console.error('❌ Error en handleVerDetalle:', error);
         /* Mostrar el mensaje de error */
         mostrarAlertaError(error.message || 'Error al cargar el detalle de la venta');
     }
@@ -727,11 +906,66 @@ function handleAccionesTabla(e) {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Punto de entrada de la página de ventas.
- * Se ejecuta cuando el DOM está completamente cargado.
- * Conecta todos los event listeners y carga los datos iniciales.
+ * Punto de entrada de la página de ventas (compatible con SPA).
+ * Consulta los elementos del DOM, conecta event listeners y carga datos iniciales.
+ * Se exporta para ser invocada por el router del SPA.
  */
-document.addEventListener('DOMContentLoaded', () => {
+export async function inicializar() {
+
+    /* ===== Resetear Estado del Módulo ===== */
+
+    /* Vaciar el cache de ventas para forzar recarga */
+    ventas = [];
+
+    /* Vaciar el cache de clientes para forzar recarga */
+    clientes = [];
+
+    /* Vaciar el cache de productos para forzar recarga */
+    productos = [];
+
+    /* Reiniciar el contador de filas a 1 */
+    contadorFilas = 1;
+
+    /* ===== Consultar Elementos del DOM ===== */
+
+    /* Obtener el cuerpo de la tabla de ventas */
+    tbody = document.querySelector('.tabla__cuerpo');
+
+    /* Obtener el input de búsqueda */
+    inputBusqueda = document.querySelector('.buscador__input');
+
+    /* Obtener el select de filtro por método de pago */
+    selectMetodo = document.querySelector('[name="filtro-metodo"]');
+
+    /* Obtener el select de filtro por período */
+    selectPeriodo = document.querySelector('[name="filtro-periodo"]');
+
+    /* Obtener el select de cliente del modal paso 1 */
+    selectCliente = document.getElementById('venta-cliente');
+
+    /* Obtener el input de fecha del modal paso 1 */
+    inputFecha = document.getElementById('venta-fecha');
+
+    /* Obtener el select de método de pago del modal paso 1 */
+    selectMetodoPago = document.getElementById('venta-metodo-pago');
+
+    /* Obtener el botón "Agregar Productos" del modal paso 1 */
+    btnSiguiente = document.getElementById('btn-siguiente-productos');
+
+    /* Obtener el contenedor de filas de productos del modal paso 2 */
+    listaProductos = document.querySelector('#modal-productos-venta .factura__lista');
+
+    /* Obtener el elemento del total calculado del modal paso 2 */
+    totalValor = document.querySelector('#modal-productos-venta .factura__total-valor');
+
+    /* Obtener el botón "Guardar Venta" del modal paso 2 */
+    btnGuardarVenta = document.getElementById('btn-guardar-venta');
+
+    /* Obtener el botón "Volver" del modal paso 2 */
+    btnVolverPaso1 = document.getElementById('btn-volver-paso1');
+
+    /* Obtener el contenedor del modal de detalle de venta */
+    modalDetalle = document.getElementById('modal-detalle-venta');
 
     /* ===== Event Listeners de la Tabla ===== */
 
@@ -765,16 +999,23 @@ document.addEventListener('DOMContentLoaded', () => {
     /* Auto-llenar precio cuando se selecciona un producto */
     listaProductos.addEventListener('change', handleProductoChange);
 
-    /* Recalcular total cuando cambia una cantidad */
+    /* Recalcular total cuando cambia una cantidad o un precio */
     listaProductos.addEventListener('input', (e) => {
-        /* Solo recalcular si el evento viene de un input de cantidad */
-        if (e.target.matches('input[name^="cantidad"]')) calcularTotal();
+        /* Recalcular si el evento viene de un input de cantidad o precio */
+        if (e.target.matches('input[name^="cantidad"]') || e.target.matches('input[name^="precio"]')) calcularTotal();
     });
+
+    /* Delegación de eventos para eliminar filas de producto dinámicas */
+    listaProductos.addEventListener('click', eliminarFilaVenta);
+
+    /* Botón "Agregar producto" → agregar nueva fila de producto */
+    const btnAgregarFila = document.getElementById('btn-agregar-fila-venta');
+    btnAgregarFila.addEventListener('click', agregarFilaVenta);
 
     /* ===== Carga Inicial de Datos ===== */
 
     /* Establecer la fecha de hoy como valor por defecto */
-    inputFecha.value = new Date().toISOString().split('T')[0];
+    inputFecha.value = obtenerFechaLocal();
 
     /* Cargar los clientes para el select del paso 1 */
     cargarClientes();
@@ -784,4 +1025,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Cargar las ventas desde el backend y renderizar la tabla */
     cargarVentas();
-});
+
+    /* Numerar la primera fila de producto que viene pre-renderizada en el HTML */
+    renumerarFilas();
+}

@@ -36,6 +36,8 @@ import { openModal, closeModal } from '../utils/modal.js';                     /
 import { showNotification } from '../utils/notifications.js';                  // Toasts
 import { validateForm, clearFormState } from '../utils/formValidation.js';     // Validación de formularios
 import Swal from 'sweetalert2';                                                // SweetAlert2 para confirmaciones
+// Importar validaciones en tiempo real
+import '../utils/realtimeValidations.js';                                      // Validaciones automáticas
 
 /* -------------------------------------------------------------------------- */
 /* ----- Estado Local del Módulo -------------------------------------------- */
@@ -52,68 +54,68 @@ let clienteEditandoId = null;
 /* -------------------------------------------------------------------------- */
 
 /** Contenedor grid donde se renderizan las tarjetas de clientes */
-const grid = document.querySelector('.contactos__grid');
+let grid;
 
 /** Input de búsqueda por nombre, documento o correo */
-const inputBusqueda = document.querySelector('.buscador__input');
+let inputBusqueda;
 
 /** Select de filtro por estado (activo/inactivo) */
-const selectEstado = document.querySelector('[name="filtro-estado"]');
+let selectEstado;
 
 /* ----- Modal Agregar ----- */
 
 /** Contenedor del modal de agregar cliente */
-const modalAgregar = document.getElementById('modal-agregar-cliente');
+let modalAgregar;
 
 /** Input del nombre en el modal de agregar */
-const inputNombreAgregar = document.getElementById('agregar-cliente-nombre');
+let inputNombreAgregar;
 
 /** Input del documento en el modal de agregar */
-const inputDocumentoAgregar = document.getElementById('agregar-cliente-documento');
+let inputDocumentoAgregar;
 
 /** Input del correo en el modal de agregar */
-const inputCorreoAgregar = document.getElementById('agregar-cliente-correo');
+let inputCorreoAgregar;
 
 /** Input del teléfono en el modal de agregar */
-const inputTelefonoAgregar = document.getElementById('agregar-cliente-telefono');
+let inputTelefonoAgregar;
 
 /** Input de la ciudad en el modal de agregar */
-const inputCiudadAgregar = document.getElementById('agregar-cliente-ciudad');
+let inputCiudadAgregar;
 
 /** Input de la dirección en el modal de agregar */
-const inputDireccionAgregar = document.getElementById('agregar-cliente-direccion');
+let inputDireccionAgregar;
 
 /** Botón "Guardar" del modal de agregar */
-const btnGuardar = document.getElementById('btn-guardar-cliente');
+let btnGuardar;
 
 /* ----- Modal Editar ----- */
 
 /** Contenedor del modal de editar cliente */
-const modalEditar = document.getElementById('modal-editar-cliente');
+let modalEditar;
 
 /** Input del nombre en el modal de editar */
-const inputNombreEditar = document.getElementById('editar-cliente-nombre');
+let inputNombreEditar;
 
 /** Input del documento en el modal de editar */
-const inputDocumentoEditar = document.getElementById('editar-cliente-documento');
+let inputDocumentoEditar;
 
 /** Input del correo en el modal de editar */
-const inputCorreoEditar = document.getElementById('editar-cliente-correo');
+let inputCorreoEditar;
 
 /** Input del teléfono en el modal de editar */
-const inputTelefonoEditar = document.getElementById('editar-cliente-telefono');
+let inputTelefonoEditar;
 
 /** Input de la ciudad en el modal de editar */
-const inputCiudadEditar = document.getElementById('editar-cliente-ciudad');
+let inputCiudadEditar;
 
 /** Input de la dirección en el modal de editar */
-const inputDireccionEditar = document.getElementById('editar-cliente-direccion');
+let inputDireccionEditar;
 
 /** Select del estado en el modal de editar */
-const selectEstadoEditar = document.getElementById('editar-cliente-estado');
+let selectEstadoEditar;
 
 /** Botón "Actualizar" del modal de editar */
-const btnActualizar = document.getElementById('btn-actualizar-cliente');
+let btnActualizar;
 
 /* -------------------------------------------------------------------------- */
 /* ----- Cargar Clientes desde el Backend ----------------------------------- */
@@ -526,11 +528,82 @@ function handleAccionesGrid(e) {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Punto de entrada de la página de clientes.
- * Se ejecuta cuando el DOM está completamente cargado.
- * Conecta todos los event listeners y carga los datos iniciales.
+ * Punto de entrada de la página de clientes (SPA).
+ * Consulta los elementos del DOM, conecta los event listeners
+ * y carga los datos iniciales.
+ * @returns {Promise<void>}
  */
-document.addEventListener('DOMContentLoaded', () => {
+export async function inicializar() {
+
+    /* ===== Resetear Estado del Módulo ===== */
+
+    /* Vaciar el cache local de clientes */
+    clientes = [];
+
+    /* Reiniciar el ID del cliente en edición */
+    clienteEditandoId = null;
+
+    /* ===== Consultar Referencias al DOM ===== */
+
+    /* Contenedor grid donde se renderizan las tarjetas de clientes */
+    grid = document.querySelector('.contactos__grid');
+
+    /* Input de búsqueda por nombre, documento o correo */
+    inputBusqueda = document.querySelector('.buscador__input');
+
+    /* Select de filtro por estado (activo/inactivo) */
+    selectEstado = document.querySelector('[name="filtro-estado"]');
+
+    /* Contenedor del modal de agregar cliente */
+    modalAgregar = document.getElementById('modal-agregar-cliente');
+
+    /* Input del nombre en el modal de agregar */
+    inputNombreAgregar = document.getElementById('agregar-cliente-nombre');
+
+    /* Input del documento en el modal de agregar */
+    inputDocumentoAgregar = document.getElementById('agregar-cliente-documento');
+
+    /* Input del correo en el modal de agregar */
+    inputCorreoAgregar = document.getElementById('agregar-cliente-correo');
+
+    /* Input del teléfono en el modal de agregar */
+    inputTelefonoAgregar = document.getElementById('agregar-cliente-telefono');
+
+    /* Input de la ciudad en el modal de agregar */
+    inputCiudadAgregar = document.getElementById('agregar-cliente-ciudad');
+
+    /* Input de la dirección en el modal de agregar */
+    inputDireccionAgregar = document.getElementById('agregar-cliente-direccion');
+
+    /* Botón "Guardar" del modal de agregar */
+    btnGuardar = document.getElementById('btn-guardar-cliente');
+
+    /* Contenedor del modal de editar cliente */
+    modalEditar = document.getElementById('modal-editar-cliente');
+
+    /* Input del nombre en el modal de editar */
+    inputNombreEditar = document.getElementById('editar-cliente-nombre');
+
+    /* Input del documento en el modal de editar */
+    inputDocumentoEditar = document.getElementById('editar-cliente-documento');
+
+    /* Input del correo en el modal de editar */
+    inputCorreoEditar = document.getElementById('editar-cliente-correo');
+
+    /* Input del teléfono en el modal de editar */
+    inputTelefonoEditar = document.getElementById('editar-cliente-telefono');
+
+    /* Input de la ciudad en el modal de editar */
+    inputCiudadEditar = document.getElementById('editar-cliente-ciudad');
+
+    /* Input de la dirección en el modal de editar */
+    inputDireccionEditar = document.getElementById('editar-cliente-direccion');
+
+    /* Select del estado en el modal de editar */
+    selectEstadoEditar = document.getElementById('editar-cliente-estado');
+
+    /* Botón "Actualizar" del modal de editar */
+    btnActualizar = document.getElementById('btn-actualizar-cliente');
 
     /* ===== Event Listeners del Modal Agregar ===== */
 
@@ -558,5 +631,5 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ===== Carga Inicial de Datos ===== */
 
     /* Cargar los clientes desde el backend y renderizar las tarjetas */
-    cargarClientes();
-});
+    await cargarClientes();
+}

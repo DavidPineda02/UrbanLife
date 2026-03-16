@@ -50,44 +50,44 @@ let categoriaEditandoId = null;
 /* -------------------------------------------------------------------------- */
 
 /** Cuerpo de la tabla donde se renderizan las filas de categorías */
-const tbody = document.querySelector('.tabla__cuerpo');
+let tbody;
 
 /** Input de búsqueda por nombre */
-const inputBusqueda = document.querySelector('.buscador__input');
+let inputBusqueda;
 
 /** Select de filtro por estado (activo/inactivo) */
-const selectEstado = document.querySelector('.buscador__select');
+let selectEstado;
 
 /* ----- Modal Agregar ----- */
 
 /** Contenedor del modal de agregar categoría */
-const modalAgregar = document.getElementById('modal-agregar-categoria');
+let modalAgregar;
 
 /** Input del nombre en el modal de agregar */
-const inputNombreAgregar = document.getElementById('agregar-categoria-nombre');
+let inputNombreAgregar;
 
 /** Textarea de la descripción en el modal de agregar */
-const inputDescAgregar = document.getElementById('agregar-categoria-descripcion');
+let inputDescAgregar;
 
 /** Botón "Guardar" del modal de agregar */
-const btnGuardar = document.getElementById('btn-guardar-categoria');
+let btnGuardar;
 
 /* ----- Modal Editar ----- */
 
 /** Contenedor del modal de editar categoría */
-const modalEditar = document.getElementById('modal-editar-categoria');
+let modalEditar;
 
 /** Input del nombre en el modal de editar */
-const inputNombreEditar = document.getElementById('editar-categoria-nombre');
+let inputNombreEditar;
 
 /** Textarea de la descripción en el modal de editar */
-const inputDescEditar = document.getElementById('editar-categoria-descripcion');
+let inputDescEditar;
 
 /** Select del estado en el modal de editar */
-const selectEstadoEditar = document.getElementById('editar-categoria-estado');
+let selectEstadoEditar;
 
 /** Botón "Guardar cambios" del modal de editar */
-const btnActualizar = document.getElementById('btn-actualizar-categoria');
+let btnActualizar;
 
 /* -------------------------------------------------------------------------- */
 /* ----- Cargar Categorías desde el Backend --------------------------------- */
@@ -437,10 +437,47 @@ function handleAccionesTabla(e) {
 
 /**
  * Punto de entrada de la página de categorías.
- * Se ejecuta cuando el DOM está completamente cargado.
- * Conecta todos los event listeners y carga los datos iniciales.
+ * Se ejecuta cuando el SPA navega a esta página.
+ * Consulta los elementos del DOM, conecta los event listeners y carga los datos iniciales.
+ * @returns {Promise<void>}
  */
-document.addEventListener('DOMContentLoaded', () => {
+export async function inicializar() {
+
+    /* ===== Reiniciar Estado del Módulo ===== */
+
+    /* Vaciar el array de categorías cargadas */
+    categorias = [];
+    /* Reiniciar el ID de categoría en edición */
+    categoriaEditandoId = null;
+
+    /* ===== Consultar Elementos del DOM ===== */
+
+    /* Obtener el cuerpo de la tabla donde se renderizan las filas */
+    tbody = document.querySelector('.tabla__cuerpo');
+    /* Obtener el input de búsqueda por nombre */
+    inputBusqueda = document.querySelector('.buscador__input');
+    /* Obtener el select de filtro por estado */
+    selectEstado = document.querySelector('.buscador__select');
+
+    /* Obtener el contenedor del modal de agregar categoría */
+    modalAgregar = document.getElementById('modal-agregar-categoria');
+    /* Obtener el input del nombre en el modal de agregar */
+    inputNombreAgregar = document.getElementById('agregar-categoria-nombre');
+    /* Obtener el textarea de la descripción en el modal de agregar */
+    inputDescAgregar = document.getElementById('agregar-categoria-descripcion');
+    /* Obtener el botón "Guardar" del modal de agregar */
+    btnGuardar = document.getElementById('btn-guardar-categoria');
+
+    /* Obtener el contenedor del modal de editar categoría */
+    modalEditar = document.getElementById('modal-editar-categoria');
+    /* Obtener el input del nombre en el modal de editar */
+    inputNombreEditar = document.getElementById('editar-categoria-nombre');
+    /* Obtener el textarea de la descripción en el modal de editar */
+    inputDescEditar = document.getElementById('editar-categoria-descripcion');
+    /* Obtener el select del estado en el modal de editar */
+    selectEstadoEditar = document.getElementById('editar-categoria-estado');
+    /* Obtener el botón "Guardar cambios" del modal de editar */
+    btnActualizar = document.getElementById('btn-actualizar-categoria');
 
     /* ===== Event Listeners del Modal Agregar ===== */
 
@@ -468,5 +505,5 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ===== Carga Inicial de Datos ===== */
 
     /* Cargar las categorías desde el backend y renderizar la tabla */
-    cargarCategorias();
-});
+    await cargarCategorias();
+}

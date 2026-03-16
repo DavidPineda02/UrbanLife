@@ -51,33 +51,36 @@ let usuarioEditandoId = null;
 /* -------------------------------------------------------------------------- */
 
 /** Contenedor grid donde se renderizan las tarjetas de usuarios */
-const grid = document.querySelector('.contactos__grid');
+let grid;
 
 /** Input de búsqueda por nombre o correo */
-const inputBusqueda = document.querySelector('.buscador__input');
+let inputBusqueda;
 
 /** Select de filtro por rol (admin/empleado) */
-const selectRol = document.querySelector('[name="filtro-rol"]');
+let selectRol;
 
 /** Select de filtro por estado (activo/inactivo) */
-const selectEstado = document.querySelector('[name="filtro-estado"]');
+let selectEstado;
 
 /* ----- Modal Editar ----- */
 
 /** Contenedor del modal de editar usuario */
-const modalEditar = document.getElementById('modal-editar-usuario');
+let modalEditar;
 
 /** Input del nombre en el modal de editar */
-const inputNombreEditar = document.getElementById('editar-usuario-nombre');
+let inputNombreEditar;
+
+/** Input del apellido en el modal de editar */
+let inputApellidoEditar;
 
 /** Input del correo en el modal de editar */
-const inputCorreoEditar = document.getElementById('editar-usuario-correo');
+let inputCorreoEditar;
 
 /** Select del estado en el modal de editar */
-const selectEstadoEditar = document.getElementById('editar-usuario-estado');
+let selectEstadoEditar;
 
 /** Botón "Actualizar" del modal de editar */
-const btnActualizar = document.getElementById('btn-actualizar-usuario');
+let btnActualizar;
 
 /* -------------------------------------------------------------------------- */
 /* ----- Cargar Usuarios desde el Backend ----------------------------------- */
@@ -264,7 +267,8 @@ function abrirModalEditar(id) {
     usuarioEditandoId = id;
 
     /* Pre-llenar los inputs con los valores actuales */
-    inputNombreEditar.value = usr.nombre + (usr.apellido ? ' ' + usr.apellido : '');
+    inputNombreEditar.value = usr.nombre;
+    inputApellidoEditar.value = usr.apellido || '';
     inputCorreoEditar.value = usr.correo;
     selectEstadoEditar.value = String(usr.estado);
 
@@ -303,6 +307,11 @@ async function handleActualizar(e) {
             requiredMsg: 'El nombre es obligatorio',                           // Mensaje personalizado
             minLength: 2,                                                      // Mínimo 2 caracteres
         },
+        '#editar-usuario-apellido': {
+            required: true,                                                    // El apellido es obligatorio
+            requiredMsg: 'El apellido es obligatorio',                         // Mensaje personalizado
+            minLength: 2,                                                      // Mínimo 2 caracteres
+        },
         '#editar-usuario-correo': {
             required: true,                                                    // El correo es obligatorio
             requiredMsg: 'El correo es obligatorio',                           // Mensaje personalizado
@@ -317,10 +326,8 @@ async function handleActualizar(e) {
     }
 
     /* Obtener los valores actualizados de los inputs */
-    const nombreCompleto = inputNombreEditar.value.trim();                     // Nombre completo del input
-    const partes = nombreCompleto.split(' ');                                  // Separar nombre y apellido
-    const nombre = partes[0];                                                  // Primera palabra como nombre
-    const apellido = partes.slice(1).join(' ') || null;                        // Resto como apellido
+    const nombre = inputNombreEditar.value.trim();                             // Nombre del usuario
+    const apellido = inputApellidoEditar.value.trim();                         // Apellido del usuario
     const correo = inputCorreoEditar.value.trim();                             // Correo actualizado
     const estado = selectEstadoEditar.value === 'true';                        // Estado convertido a boolean
 
@@ -436,11 +443,42 @@ function handleAccionesGrid(e) {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Punto de entrada de la página de usuarios.
- * Se ejecuta cuando el DOM está completamente cargado.
- * Conecta todos los event listeners y carga los datos iniciales.
+ * Punto de entrada de la página de usuarios (SPA).
+ * Consulta los elementos del DOM, conecta los event listeners,
+ * reinicia el estado local y carga los datos iniciales.
+ * @returns {Promise<void>}
  */
-document.addEventListener('DOMContentLoaded', () => {
+export async function inicializar() {
+
+    /* ===== Reiniciar Estado Local ===== */
+
+    /* Vaciar el cache local de usuarios */
+    usuarios = [];
+    /* Limpiar el ID de usuario en edición */
+    usuarioEditandoId = null;
+
+    /* ===== Consultar Elementos del DOM ===== */
+
+    /* Obtener el contenedor grid de tarjetas */
+    grid = document.querySelector('.contactos__grid');
+    /* Obtener el input de búsqueda */
+    inputBusqueda = document.querySelector('.buscador__input');
+    /* Obtener el select de filtro por rol */
+    selectRol = document.querySelector('[name="filtro-rol"]');
+    /* Obtener el select de filtro por estado */
+    selectEstado = document.querySelector('[name="filtro-estado"]');
+    /* Obtener el contenedor del modal de editar */
+    modalEditar = document.getElementById('modal-editar-usuario');
+    /* Obtener el input de nombre del modal de editar */
+    inputNombreEditar = document.getElementById('editar-usuario-nombre');
+    /* Obtener el input de apellido del modal de editar */
+    inputApellidoEditar = document.getElementById('editar-usuario-apellido');
+    /* Obtener el input de correo del modal de editar */
+    inputCorreoEditar = document.getElementById('editar-usuario-correo');
+    /* Obtener el select de estado del modal de editar */
+    selectEstadoEditar = document.getElementById('editar-usuario-estado');
+    /* Obtener el botón "Actualizar" del modal de editar */
+    btnActualizar = document.getElementById('btn-actualizar-usuario');
 
     /* ===== Event Listeners del Modal Editar ===== */
 
@@ -466,5 +504,5 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ===== Carga Inicial de Datos ===== */
 
     /* Cargar los usuarios desde el backend y renderizar las tarjetas */
-    cargarUsuarios();
-});
+    await cargarUsuarios();
+}

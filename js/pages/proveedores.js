@@ -52,74 +52,74 @@ let proveedorEditandoId = null;
 /* -------------------------------------------------------------------------- */
 
 /** Contenedor grid donde se renderizan las tarjetas de proveedores */
-const grid = document.querySelector('.contactos__grid');
+let grid;
 
 /** Input de búsqueda por nombre, NIT o razón social */
-const inputBusqueda = document.querySelector('.buscador__input');
+let inputBusqueda;
 
 /** Select de filtro por estado (activo/inactivo) */
-const selectEstado = document.querySelector('[name="filtro-estado"]');
+let selectEstado;
 
 /* ----- Modal Agregar ----- */
 
 /** Contenedor del modal de agregar proveedor */
-const modalAgregar = document.getElementById('modal-agregar-proveedor');
+let modalAgregar;
 
 /** Input del nombre en el modal de agregar */
-const inputNombreAgregar = document.getElementById('agregar-proveedor-nombre');
+let inputNombreAgregar;
 
 /** Input de la razón social en el modal de agregar */
-const inputRazonSocialAgregar = document.getElementById('agregar-proveedor-razon-social');
+let inputRazonSocialAgregar;
 
 /** Input del NIT en el modal de agregar */
-const inputNitAgregar = document.getElementById('agregar-proveedor-nit');
+let inputNitAgregar;
 
 /** Input del correo en el modal de agregar */
-const inputCorreoAgregar = document.getElementById('agregar-proveedor-correo');
+let inputCorreoAgregar;
 
 /** Input del teléfono en el modal de agregar */
-const inputTelefonoAgregar = document.getElementById('agregar-proveedor-telefono');
+let inputTelefonoAgregar;
 
 /** Input de la ciudad en el modal de agregar */
-const inputCiudadAgregar = document.getElementById('agregar-proveedor-ciudad');
+let inputCiudadAgregar;
 
 /** Input de la dirección en el modal de agregar */
-const inputDireccionAgregar = document.getElementById('agregar-proveedor-direccion');
+let inputDireccionAgregar;
 
 /** Botón "Guardar" del modal de agregar */
-const btnGuardar = document.getElementById('btn-guardar-proveedor');
+let btnGuardar;
 
 /* ----- Modal Editar ----- */
 
 /** Contenedor del modal de editar proveedor */
-const modalEditar = document.getElementById('modal-editar-proveedor');
+let modalEditar;
 
 /** Input del nombre en el modal de editar */
-const inputNombreEditar = document.getElementById('editar-proveedor-nombre');
+let inputNombreEditar;
 
 /** Input de la razón social en el modal de editar */
-const inputRazonSocialEditar = document.getElementById('editar-proveedor-razon-social');
+let inputRazonSocialEditar;
 
 /** Input del NIT en el modal de editar */
-const inputNitEditar = document.getElementById('editar-proveedor-nit');
+let inputNitEditar;
 
 /** Input del correo en el modal de editar */
-const inputCorreoEditar = document.getElementById('editar-proveedor-correo');
+let inputCorreoEditar;
 
 /** Input del teléfono en el modal de editar */
-const inputTelefonoEditar = document.getElementById('editar-proveedor-telefono');
+let inputTelefonoEditar;
 
 /** Input de la ciudad en el modal de editar */
-const inputCiudadEditar = document.getElementById('editar-proveedor-ciudad');
+let inputCiudadEditar;
 
 /** Input de la dirección en el modal de editar */
-const inputDireccionEditar = document.getElementById('editar-proveedor-direccion');
+let inputDireccionEditar;
 
 /** Select del estado en el modal de editar */
-const selectEstadoEditar = document.getElementById('editar-proveedor-estado');
+let selectEstadoEditar;
 
 /** Botón "Actualizar" del modal de editar */
-const btnActualizar = document.getElementById('btn-actualizar-proveedor');
+let btnActualizar;
 
 /* -------------------------------------------------------------------------- */
 /* ----- Cargar Proveedores desde el Backend -------------------------------- */
@@ -542,11 +542,88 @@ function handleAccionesGrid(e) {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Punto de entrada de la página de proveedores.
- * Se ejecuta cuando el DOM está completamente cargado.
- * Conecta todos los event listeners y carga los datos iniciales.
+ * Punto de entrada de la página de proveedores (SPA).
+ * Consulta los elementos del DOM, conecta los event listeners
+ * y carga los datos iniciales.
+ * @returns {Promise<void>}
  */
-document.addEventListener('DOMContentLoaded', () => {
+export async function inicializar() {
+
+    /* ===== Resetear Estado del Módulo ===== */
+
+    /* Vaciar el cache local de proveedores */
+    proveedores = [];
+
+    /* Reiniciar el ID del proveedor en edición */
+    proveedorEditandoId = null;
+
+    /* ===== Consultar Referencias al DOM ===== */
+
+    /* Contenedor grid donde se renderizan las tarjetas de proveedores */
+    grid = document.querySelector('.contactos__grid');
+
+    /* Input de búsqueda por nombre, NIT o razón social */
+    inputBusqueda = document.querySelector('.buscador__input');
+
+    /* Select de filtro por estado (activo/inactivo) */
+    selectEstado = document.querySelector('[name="filtro-estado"]');
+
+    /* Contenedor del modal de agregar proveedor */
+    modalAgregar = document.getElementById('modal-agregar-proveedor');
+
+    /* Input del nombre en el modal de agregar */
+    inputNombreAgregar = document.getElementById('agregar-proveedor-nombre');
+
+    /* Input de la razón social en el modal de agregar */
+    inputRazonSocialAgregar = document.getElementById('agregar-proveedor-razon-social');
+
+    /* Input del NIT en el modal de agregar */
+    inputNitAgregar = document.getElementById('agregar-proveedor-nit');
+
+    /* Input del correo en el modal de agregar */
+    inputCorreoAgregar = document.getElementById('agregar-proveedor-correo');
+
+    /* Input del teléfono en el modal de agregar */
+    inputTelefonoAgregar = document.getElementById('agregar-proveedor-telefono');
+
+    /* Input de la ciudad en el modal de agregar */
+    inputCiudadAgregar = document.getElementById('agregar-proveedor-ciudad');
+
+    /* Input de la dirección en el modal de agregar */
+    inputDireccionAgregar = document.getElementById('agregar-proveedor-direccion');
+
+    /* Botón "Guardar" del modal de agregar */
+    btnGuardar = document.getElementById('btn-guardar-proveedor');
+
+    /* Contenedor del modal de editar proveedor */
+    modalEditar = document.getElementById('modal-editar-proveedor');
+
+    /* Input del nombre en el modal de editar */
+    inputNombreEditar = document.getElementById('editar-proveedor-nombre');
+
+    /* Input de la razón social en el modal de editar */
+    inputRazonSocialEditar = document.getElementById('editar-proveedor-razon-social');
+
+    /* Input del NIT en el modal de editar */
+    inputNitEditar = document.getElementById('editar-proveedor-nit');
+
+    /* Input del correo en el modal de editar */
+    inputCorreoEditar = document.getElementById('editar-proveedor-correo');
+
+    /* Input del teléfono en el modal de editar */
+    inputTelefonoEditar = document.getElementById('editar-proveedor-telefono');
+
+    /* Input de la ciudad en el modal de editar */
+    inputCiudadEditar = document.getElementById('editar-proveedor-ciudad');
+
+    /* Input de la dirección en el modal de editar */
+    inputDireccionEditar = document.getElementById('editar-proveedor-direccion');
+
+    /* Select del estado en el modal de editar */
+    selectEstadoEditar = document.getElementById('editar-proveedor-estado');
+
+    /* Botón "Actualizar" del modal de editar */
+    btnActualizar = document.getElementById('btn-actualizar-proveedor');
 
     /* ===== Event Listeners del Modal Agregar ===== */
 
@@ -574,5 +651,5 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ===== Carga Inicial de Datos ===== */
 
     /* Cargar los proveedores desde el backend y renderizar las tarjetas */
-    cargarProveedores();
-});
+    await cargarProveedores();
+}

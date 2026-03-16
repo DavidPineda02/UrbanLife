@@ -9,14 +9,16 @@
  * Funcionalidades:
  *  - Carga y renderiza la tabla de compras desde el API
  *  - Registrar compra en 2 pasos (datos generales → productos)
- *  - Editar compra existente (modal editar → PUT)
- *  - Eliminar compra (confirmación SweetAlert → DELETE lógico)
  *  - Ver detalle de una compra (modal con detalles)
  *  - Búsqueda por proveedor o ID en tiempo real (client-side)
  *  - Filtro por método de pago y período (client-side)
  *  - Carga dinámica de proveedores y productos para los selects
- *  - Precio unitario auto-llenado desde el catálogo (solo lectura)
+ *  - Costo unitario editable (el usuario ingresa el precio del proveedor)
  *  - Cálculo del total en tiempo real antes de guardar
+ *  - Filas de producto dinámicas e ilimitadas (agregar/eliminar con JS)
+ *
+ * Nota: Las compras son INMUTABLES — no se pueden editar ni eliminar.
+ *       El costoUnitario lo ingresa el usuario (precio del proveedor).
  *
  * Dependencias:
  *  - compras.service.js   → llamadas al API de compras
@@ -32,8 +34,6 @@ import {
     obtenerCompras,                                                             // GET todas las compras
     obtenerCompraPorId,                                                         // GET compra con detalles
     crearCompra,                                                                // POST registrar compra
-    actualizarCompra,                                                           // PUT actualizar compra
-    eliminarCompra,                                                              // DELETE eliminar compra
 } from '../api/services/compras.service.js';
 
 // Importar funciones de otros servicios para poblar selects
@@ -58,62 +58,57 @@ let proveedores = [];
 /** Array de productos cargados desde el backend (para selects y lookup) */
 let productos = [];
 
+/** Contador incremental para asignar nombres únicos a cada fila de producto */
+let contadorFilas = 1;
+
 /* -------------------------------------------------------------------------- */
 /* ----- Referencias al DOM ------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
 /** Cuerpo de la tabla donde se renderizan las filas de compras */
-const tbody = document.querySelector('.tabla__cuerpo');
+let tbody;
 
 /** Input de búsqueda por proveedor o ID de compra */
-const inputBusqueda = document.querySelector('.buscador__input');
+let inputBusqueda;
 
 /** Select de filtro por método de pago */
-const selectMetodo = document.querySelector('[name="filtro-metodo"]');
+let selectMetodo;
 
 /** Select de filtro por período de tiempo */
-const selectPeriodo = document.querySelector('[name="filtro-periodo"]');
+let selectPeriodo;
 
 /* ----- Modal Paso 1: Datos Generales ----- */
 
 /** Select de proveedor en el modal paso 1 */
-const selectProveedor = document.getElementById('compra-proveedor');
+let selectProveedor;
 
 /** Input de fecha en el modal paso 1 */
-const inputFecha = document.getElementById('compra-fecha');
+let inputFecha;
 
 /** Select de método de pago en el modal paso 1 */
-const selectMetodoPago = document.getElementById('compra-metodo-pago');
+let selectMetodoPago;
 
 /** Botón "Agregar Productos" para avanzar al paso 2 */
-const btnSiguiente = document.getElementById('btn-siguiente-productos');
+let btnSiguiente;
 
 /* ----- Modal Paso 2: Productos de la Compra ----- */
 
 /** Contenedor de la lista de filas de productos en el paso 2 */
-const listaProductos = document.querySelector('#modal-productos-compra .factura__lista');
+let listaProductos;
 
 /** Elemento que muestra el total calculado en tiempo real */
-const totalValor = document.querySelector('#modal-productos-compra .factura__total-valor');
+let totalValor;
 
 /** Botón "Guardar Compra" para enviar la compra al backend */
-const btnGuardarCompra = document.getElementById('btn-guardar-compra');
+let btnGuardarCompra;
 
 /** Botón "Volver" para regresar al paso 1 */
-const btnVolverPaso1 = document.getElementById('btn-volver-paso1');
+let btnVolverPaso1;
 
 /* ----- Modal Detalle de Compra ----- */
 
 /** Contenedor del modal de detalle de compra */
-const modalDetalle = document.getElementById('modal-detalle-compra');
-
-/* ----- Modal Editar Compra ----- */
-
-/** Contenedor del modal de editar compra */
-const modalEditar = document.getElementById('modal-editar-compra');
-
-/** Botón "Actualizar Compra" en el modal de editar */
-const btnActualizarCompra = document.getElementById('btn-actualizar-compra');
+let modalDetalle;
 
 /* -------------------------------------------------------------------------- */
 /* ----- Cargar Proveedores desde el Backend --------------------------------- */
@@ -156,12 +151,8 @@ async function cargarProductos() {
         /* Petición GET al backend para obtener productos */
         productos = await obtenerProductos();
 
-        /* Filtrar solo los productos activos */
-        const activos = productos.filter(p => p.estado === true);
-
-        /* Construir las opciones HTML para los selects de productos */
-        const opciones = '<option value="">Seleccionar</option>' +
-            activos.map(p => `<option value="${p.idProducto}">${p.nombre}</option>`).join('');
+        /* Generar las opciones HTML para los selects de productos */
+        const opciones = generarOpcionesProductos();
 
         /* Llenar todos los selects de productos en el modal paso 2 */
         const selects = document.querySelectorAll('#modal-productos-compra .factura__fila select');
@@ -233,8 +224,24 @@ function obtenerNombreProducto(productoId) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* ----- Formatear Precio -------------------------------------------------- */
+/* ----- Utilidades de Formato ----------------------------------------------- */
 /* -------------------------------------------------------------------------- */
+
+/**
+ * Retorna la fecha de hoy en formato YYYY-MM-DD usando la zona horaria local.
+ * Evita el bug de toISOString() que convierte a UTC y puede dar la fecha de mañana.
+ * @returns {string} Fecha local en formato "YYYY-MM-DD"
+ */
+function obtenerFechaLocal() {
+    /* Crear objeto Date con la hora local */
+    const hoy = new Date();
+    /* Obtener año, mes (0-based) y día en zona horaria local */
+    const anio = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    /* Retornar en formato YYYY-MM-DD */
+    return `${anio}-${mes}-${dia}`;
+}
 
 /**
  * Formatea un número como precio colombiano con separador de miles.
@@ -356,7 +363,6 @@ function renderizarTabla() {
                 <td class="tabla__td">${compra.idCompra}</td>
                 <td class="tabla__td">${formatearFecha(compra.fechaCompra)}</td>
                 <td class="tabla__td">${obtenerNombreProveedor(compra.proveedorId)}</td>
-                <td class="tabla__td">${compra.detalles ? compra.detalles.length : 0} items</td>
                 <td class="tabla__td tabla__td--precio">${formatearPrecio(compra.totalCompra)}</td>
                 <td class="tabla__td">
                     <span class="tabla__badge ${badgeClase}">${compra.metodoPago}</span>
@@ -374,7 +380,7 @@ function renderizarTabla() {
     /* Si no hay resultados, mostrar un mensaje vacío */
     if (filtradas.length === 0) {
         tbody.innerHTML = `
-            <tr><td colspan="7" style="text-align: center; padding: 2rem; color: var(--color-texto-suave);">
+            <tr><td colspan="6" style="text-align: center; padding: 2rem; color: var(--color-texto-suave);">
                 No se encontraron compras
             </td></tr>
         `;
@@ -438,42 +444,144 @@ function handleVolverPaso1(e) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* ----- Auto-llenar Precio al Seleccionar Producto ------------------------- */
+/* ----- Generar Opciones de Productos para Selects ------------------------- */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Cuando el usuario selecciona un producto, auto-llena el precio unitario
- * desde el catálogo (solo lectura) y recalcula el total.
- * @param {Event} e - Evento change en un select de producto
+ * Construye el HTML de las opciones de productos activos para un select.
+ * @returns {string} HTML con las opciones de productos activos
  */
-function handleProductoChange(e) {
-    /* Verificar que el evento venga de un select de producto */
-    if (!e.target.matches('.factura__fila select')) return;
+function generarOpcionesProductos() {
+    /* Filtrar solo los productos activos */
+    const activos = productos.filter(p => p.estado === true);
 
-    /* Obtener la fila contenedora del select */
-    const fila = e.target.closest('.factura__fila');
+    /* Retornar las opciones HTML con el nombre del producto */
+    return '<option value="">Seleccionar</option>' +
+        activos.map(p => `<option value="${p.idProducto}">${p.nombre}</option>`).join('');
+}
 
-    /* Obtener el input de precio de la misma fila */
-    const precioInput = fila.querySelector('input[name^="precio"]');
+/* -------------------------------------------------------------------------- */
+/* ----- Crear Fila de Producto (HTML Dinámico) ----------------------------- */
+/* -------------------------------------------------------------------------- */
 
-    /* Obtener el ID del producto seleccionado */
-    const productoId = parseInt(e.target.value);
+/**
+ * Genera el HTML de una fila de producto para el modal paso 2.
+ * La primera fila no tiene botón de eliminar, las demás sí.
+ * A diferencia de ventas, el costo unitario es EDITABLE (el usuario lo ingresa).
+ * @param {number} num - Número de fila (para nombres únicos)
+ * @param {boolean} conEliminar - true si la fila debe tener botón de eliminar
+ * @returns {string} HTML de la fila de producto
+ */
+function crearFilaProductoHTML(num, conEliminar) {
+    /* Generar las opciones de productos activos para el select */
+    const opciones = generarOpcionesProductos();
 
-    /* Si hay un producto seleccionado, auto-llenar el precio */
-    if (productoId && precioInput) {
-        /* Buscar el producto en el cache local */
-        const producto = productos.find(p => p.idProducto === productoId);
-        /* Si se encontró, asignar el precio de compra (usamos precioVenta como referencia) */
-        if (producto) {
-            precioInput.value = producto.precioVenta;
-        }
-    } else if (precioInput) {
-        /* Si se deseleccionó el producto, limpiar el precio */
-        precioInput.value = '';
+    /* Generar el botón de eliminar o un placeholder deshabilitado */
+    const botonEliminar = conEliminar
+        ? `<button type="button" class="factura__eliminar btn-eliminar-fila" title="Eliminar producto">
+               <i class="fa-solid fa-trash"></i>
+           </button>`
+        : `<span class="factura__eliminar factura__eliminar--disabled">
+               <i class="fa-solid fa-trash"></i>
+           </span>`;
+
+    /* Retornar el HTML completo de la fila (costo unitario editable, sin readonly) */
+    return `
+        <div class="factura__fila">
+            <span class="factura__fila-numero"></span>
+            <select class="formulario__select" name="producto_${num}" title="Producto">
+                ${opciones}
+            </select>
+            <input type="number" class="formulario__input" name="cantidad_${num}" placeholder="0" title="Cantidad" min="1">
+            <input type="number" class="formulario__input" name="costo_${num}" placeholder="$ 0" title="Costo Unitario">
+            ${botonEliminar}
+        </div>
+    `;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Agregar Fila de Producto ------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Agrega una nueva fila de producto al final de la lista en el modal paso 2.
+ * Cada nueva fila tiene botón de eliminar y opciones de productos actualizadas.
+ */
+function agregarFilaCompra() {
+    /* Incrementar el contador de filas para nombre único */
+    contadorFilas++;
+
+    /* Generar el HTML de la nueva fila con botón de eliminar */
+    const nuevaFilaHTML = crearFilaProductoHTML(contadorFilas, true);
+
+    /* Insertar la nueva fila al final de la lista de productos */
+    listaProductos.insertAdjacentHTML('beforeend', nuevaFilaHTML);
+
+    /* Renumerar todas las filas visibles */
+    renumerarFilas();
+
+    /* Hacer scroll hacia la nueva fila agregada */
+    const filas = listaProductos.querySelectorAll('.factura__fila');
+    const ultimaFila = filas[filas.length - 1];
+    if (ultimaFila) {
+        ultimaFila.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+}
 
-    /* Recalcular el total con los nuevos valores */
+/* -------------------------------------------------------------------------- */
+/* ----- Eliminar Fila de Producto ------------------------------------------ */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Elimina una fila de producto del modal paso 2 al hacer clic en el botón de eliminar.
+ * No permite eliminar si solo queda una fila.
+ * @param {Event} e - Evento de clic en el botón de eliminar
+ */
+function eliminarFilaCompra(e) {
+    /* Buscar el botón de eliminar más cercano al clic */
+    const boton = e.target.closest('.btn-eliminar-fila');
+
+    /* Si no se hizo clic en un botón de eliminar, salir */
+    if (!boton) return;
+
+    /* Obtener todas las filas actuales del modal */
+    const filas = listaProductos.querySelectorAll('.factura__fila');
+
+    /* No permitir eliminar si solo queda una fila */
+    if (filas.length <= 1) return;
+
+    /* Obtener la fila contenedora del botón */
+    const fila = boton.closest('.factura__fila');
+
+    /* Eliminar la fila del DOM */
+    fila.remove();
+
+    /* Renumerar las filas restantes */
+    renumerarFilas();
+
+    /* Recalcular el total después de eliminar */
     calcularTotal();
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Renumerar Filas de Producto ---------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Actualiza los números de fila visibles después de agregar o eliminar filas.
+ */
+function renumerarFilas() {
+    /* Obtener todas las filas actuales del modal */
+    const filas = listaProductos.querySelectorAll('.factura__fila');
+
+    /* Iterar cada fila y actualizar su número visual */
+    filas.forEach((fila, index) => {
+        /* Obtener el span del número de fila */
+        const numero = fila.querySelector('.factura__fila-numero');
+
+        /* Asignar el número correspondiente con formato de dos dígitos */
+        if (numero) numero.textContent = String(index + 1).padStart(2, '0');
+    });
 }
 
 /* -------------------------------------------------------------------------- */
@@ -481,8 +589,8 @@ function handleProductoChange(e) {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Calcula y muestra el total de la compra sumando cantidad × precio
- * de todas las filas visibles que tengan producto seleccionado.
+ * Calcula y muestra el total de la compra sumando cantidad × costoUnitario
+ * de todas las filas que tengan producto seleccionado.
  */
 function calcularTotal() {
     /* Inicializar el acumulador del total */
@@ -492,19 +600,19 @@ function calcularTotal() {
     const filas = document.querySelectorAll('#modal-productos-compra .factura__fila');
 
     /* Iterar cada fila para sumar su subtotal */
-    filas.forEach((fila, index) => {
-        /* Verificar si la fila es visible (primera siempre, demás por checkbox) */
-        if (index === 0 || esFilaVisible(index + 1)) {
-            /* Obtener los valores de cantidad y precio de la fila */
-            const cantidadInput = fila.querySelector('input[name^="cantidad"]');
-            const precioInput = fila.querySelector('input[name^="precio"]');
+    filas.forEach(fila => {
+        /* Obtener los valores de cantidad y costo de la fila */
+        const cantidadInput = fila.querySelector('input[name^="cantidad"]');
+        const costoInput = fila.querySelector('input[name^="costo"]');
 
-            /* Si ambos tienen valor, sumar al total */
-            if (cantidadInput?.value && precioInput?.value) {
-                const cantidad = parseInt(cantidadInput.value);
-                const precio = parseFloat(precioInput.value);
-                total += cantidad * precio;
-            }
+        /* Calcular el subtotal si ambos campos tienen valor */
+        if (cantidadInput && cantidadInput.value && costoInput && costoInput.value) {
+            /* Parsear la cantidad como entero */
+            const cantidad = parseInt(cantidadInput.value) || 0;
+            /* Parsear el costo como decimal */
+            const costo = parseFloat(costoInput.value) || 0;
+            /* Sumar al total */
+            total += cantidad * costo;
         }
     });
 
@@ -513,91 +621,12 @@ function calcularTotal() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* ----- Verificar Visibilidad de Fila -------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Verifica si una fila de producto extra está visible (checkbox marcado).
- * La fila 1 siempre es visible. Las filas 2-10 dependen de sus checkboxes.
- * @param {number} numFila - Número de la fila (2-10)
- * @returns {boolean} true si la fila está visible
- */
-function esFilaVisible(numFila) {
-    /* La fila 1 siempre está visible */
-    if (numFila <= 1) return true;
-
-    /* Buscar el checkbox correspondiente a la fila */
-    const checkbox = document.getElementById(`agregar-${numFila}`);
-
-    /* Retornar true si el checkbox existe y está marcado */
-    return checkbox ? checkbox.checked : false;
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Verificar Visibilidad de Fila (Modo Edición) ----------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Verifica si una fila de producto extra está visible (checkbox marcado) en modo edición.
- * @param {number} numFila - Número de la fila (2-10)
- * @returns {boolean} true si la fila está visible
- */
-function esFilaVisibleEditar(numFila) {
-    /* La fila 1 siempre está visible */
-    if (numFila <= 1) return true;
-
-    /* Buscar el checkbox correspondiente a la fila en el modal de edición */
-    const checkbox = document.getElementById(`editar-agregar-${numFila}`);
-
-    /* Retornar true si el checkbox existe y está marcado */
-    return checkbox ? checkbox.checked : false;
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Calcular Total en Tiempo Real (Modo Edición) ------------------------ */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Calcula y muestra el total de la compra en modo edición.
- */
-function calcularTotalEditar() {
-    /* Inicializar el acumulador del total */
-    let total = 0;
-
-    /* Obtener todas las filas de producto del modal de edición */
-    const filas = document.querySelectorAll('#modal-editar-compra .factura__fila');
-
-    /* Iterar cada fila para sumar su subtotal */
-    filas.forEach((fila, index) => {
-        /* Verificar si la fila es visible (primera siempre, demás por checkbox) */
-        if (index === 0 || esFilaVisibleEditar(index + 1)) {
-            /* Obtener los valores de cantidad y precio de la fila */
-            const cantidadInput = fila.querySelector('input[name^="cantidad"]');
-            const precioInput = fila.querySelector('input[name^="precio"]');
-
-            /* Si ambos tienen valor, sumar al total */
-            if (cantidadInput?.value && precioInput?.value) {
-                const cantidad = parseInt(cantidadInput.value);
-                const precio = parseFloat(precioInput.value);
-                total += cantidad * precio;
-            }
-        }
-    });
-
-    /* Actualizar el texto del total en el modal de edición */
-    const totalEditar = document.querySelector('#modal-editar-compra .factura__total-valor');
-    if (totalEditar) {
-        totalEditar.textContent = formatearPrecio(total);
-    }
-}
-
-/* -------------------------------------------------------------------------- */
 /* ----- Registrar Compra (Enviar al Backend) ------------------------------- */
 /* -------------------------------------------------------------------------- */
 
 /**
  * Recolecta los datos de ambos pasos, valida y envía POST al backend.
- * Solo envía productoId y cantidad — el backend lee el precio de la BD.
+ * Envía productoId, cantidad y costoUnitario — el costo viene del usuario.
  * @param {Event} e - Evento de clic
  * @returns {Promise<void>}
  */
@@ -610,32 +639,31 @@ async function handleCrearCompra(e) {
     const fechaCompra = inputFecha.value;                                       // Fecha YYYY-MM-DD
     const metodoPago = selectMetodoPago.value;                                 // "Efectivo" o "Transferencia"
 
-    /* Recolectar los ítems de todas las filas visibles con producto seleccionado */
+    /* Recolectar los ítems de todas las filas con producto seleccionado */
     const items = [];
     /* Obtener todas las filas de producto del modal */
     const filas = document.querySelectorAll('#modal-productos-compra .factura__fila');
 
     /* Iterar cada fila para recolectar los datos */
-    filas.forEach((fila, index) => {
-        /* Solo procesar filas visibles */
-        if (index === 0 || esFilaVisible(index + 1)) {
-            /* Obtener el select de producto y el input de cantidad */
-            const select = fila.querySelector('select');
-            const cantidadInput = fila.querySelector('input[name^="cantidad"]');
+    filas.forEach(fila => {
+        /* Obtener el select de producto, input de cantidad e input de costo */
+        const select = fila.querySelector('select');
+        const cantidadInput = fila.querySelector('input[name^="cantidad"]');
+        const costoInput = fila.querySelector('input[name^="costo"]');
 
-            /* Si ambos tienen valor, agregar el ítem al array */
-            if (select?.value && cantidadInput?.value) {
-                items.push({
-                    productoId: parseInt(select.value),                        // ID del producto
-                    cantidad: parseInt(cantidadInput.value),                    // Cantidad solicitada
-                });
-            }
+        /* Si los tres tienen valor, agregar el ítem al array */
+        if (select?.value && cantidadInput?.value && costoInput?.value) {
+            items.push({
+                productoId: parseInt(select.value),                        // ID del producto
+                cantidad: parseInt(cantidadInput.value),                    // Cantidad comprada
+                costoUnitario: parseFloat(costoInput.value),                // Costo del proveedor
+            });
         }
     });
 
     /* Validar que haya al menos un producto */
     if (items.length === 0) {
-        mostrarAlertaError('Agregue al menos un producto');
+        mostrarAlertaError('Agregue al menos un producto con cantidad y costo');
         return;
     }
 
@@ -643,6 +671,11 @@ async function handleCrearCompra(e) {
     for (const item of items) {
         if (!item.cantidad || item.cantidad <= 0) {
             mostrarAlertaError('La cantidad debe ser mayor a 0');
+            return;
+        }
+        /* Validar que el costo unitario sea mayor a 0 */
+        if (!item.costoUnitario || item.costoUnitario <= 0) {
+            mostrarAlertaError('El costo unitario debe ser mayor a 0');
             return;
         }
     }
@@ -663,6 +696,16 @@ async function handleCrearCompra(e) {
         /* Recargar la tabla y los productos (stock actualizado) */
         await cargarProductos();
         await cargarCompras();
+        
+        /* ACTUALIZAR DASHBOARD: Refrescar egresos en tiempo real */
+        try {
+            // Actualizar dashboard si estamos en la página home
+            if (typeof actualizarDashboard === 'function') {
+                await actualizarDashboard();
+            }
+        } catch (error) {
+            console.log('Dashboard no disponible para actualizar');
+        }
     } catch (error) {
         /* Mostrar el mensaje de error del backend o un mensaje genérico */
         mostrarAlertaError(error.message || 'Error al registrar la compra');
@@ -675,33 +718,37 @@ async function handleCrearCompra(e) {
 
 /**
  * Resetea todos los campos del formulario de compra (pasos 1 y 2).
- * Restaura los checkboxes a su estado por defecto.
+ * Elimina todas las filas extra y deja solo la primera fila limpia.
  */
 function limpiarFormularioCompra() {
     /* Limpiar campos del paso 1 */
     selectProveedor.value = '';                                                 // Resetear proveedor
-    inputFecha.value = new Date().toISOString().split('T')[0];                 // Restaurar fecha de hoy
+    inputFecha.value = obtenerFechaLocal();                 // Restaurar fecha de hoy
     selectMetodoPago.value = '';                                               // Resetear método de pago
 
-    /* Limpiar todos los selects de producto en el paso 2 */
-    const selects = document.querySelectorAll('#modal-productos-compra .factura__fila select');
-    selects.forEach(sel => { sel.value = ''; });
+    /* Eliminar todas las filas de producto excepto la primera */
+    const filas = listaProductos.querySelectorAll('.factura__fila');
+    filas.forEach((fila, index) => {
+        /* Mantener solo la primera fila */
+        if (index > 0) fila.remove();
+    });
 
-    /* Limpiar todos los inputs de cantidad en el paso 2 */
-    const cantidades = document.querySelectorAll('#modal-productos-compra .factura__fila input[name^="cantidad"]');
-    cantidades.forEach(input => { input.value = ''; });
-
-    /* Limpiar todos los inputs de precio en el paso 2 */
-    const precios = document.querySelectorAll('#modal-productos-compra .factura__fila input[name^="precio"]');
-    precios.forEach(input => { input.value = ''; });
-
-    /* Restaurar los checkboxes a su estado por defecto (2 y 3 activos) */
-    for (let i = 2; i <= 10; i++) {
-        /* Obtener el checkbox correspondiente */
-        const cb = document.getElementById(`agregar-${i}`);
-        /* Las filas 2 y 3 están marcadas por defecto, las demás no */
-        if (cb) cb.checked = (i <= 3);
+    /* Limpiar los campos de la primera fila */
+    const primeraFila = listaProductos.querySelector('.factura__fila');
+    if (primeraFila) {
+        /* Resetear el select de producto de la primera fila */
+        const select = primeraFila.querySelector('select');
+        if (select) select.value = '';
+        /* Resetear el input de cantidad de la primera fila */
+        const cantidad = primeraFila.querySelector('input[name^="cantidad"]');
+        if (cantidad) cantidad.value = '';
+        /* Resetear el input de costo de la primera fila */
+        const costo = primeraFila.querySelector('input[name^="costo"]');
+        if (costo) costo.value = '';
     }
+
+    /* Reiniciar el contador de filas a 1 */
+    contadorFilas = 1;
 
     /* Restaurar el texto del total */
     totalValor.textContent = '$ ---';
@@ -760,172 +807,11 @@ async function handleVerDetalle(id) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* ----- Editar Compra ------------------------------------------------------ */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Carga los datos de una compra existente en el modal de edición.
- * @param {number} id - ID de la compra a editar
- * @returns {Promise<void>}
- */
-async function handleEditarCompra(id) {
-    try {
-        /* Petición GET al backend para obtener la compra con sus detalles */
-        const compra = await obtenerCompraPorId(id);
-
-        /* Guardar el ID de la compra en el modal para referencia */
-        modalEditar.dataset.id = id;
-
-        /* Actualizar el título del modal */
-        const titulo = modalEditar.querySelector('.modal__titulo');
-        titulo.textContent = `Editar Compra #${compra.idCompra}`;
-
-        /* Llenar los campos del paso 1 */
-        selectProveedor.value = compra.proveedorId;
-        inputFecha.value = compra.fechaCompra;
-        selectMetodoPago.value = compra.metodoPago;
-
-        /* Llenar los productos del paso 2 */
-        const filas = document.querySelectorAll('#modal-editar-compra .factura__fila');
-        
-        /* Limpiar y llenar cada fila con los datos de la compra */
-        compra.detalles.forEach((detalle, index) => {
-            if (index < filas.length) {
-                const fila = filas[index];
-                const select = fila.querySelector('select');
-                const cantidadInput = fila.querySelector('input[name^="cantidad"]');
-                const precioInput = fila.querySelector('input[name^="precio"]');
-
-                if (select) select.value = detalle.productoId;
-                if (cantidadInput) cantidadInput.value = detalle.cantidad;
-                if (precioInput) precioInput.value = detalle.precioUnitario;
-            }
-        });
-
-        /* Calcular el total */
-        calcularTotalEditar();
-
-        /* Abrir el modal de edición */
-        openModal('modal-editar-compra');
-    } catch (error) {
-        /* Mostrar el mensaje de error */
-        mostrarAlertaError(error.message || 'Error al cargar los datos de la compra');
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Actualizar Compra (Confirmar Edición) -------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Envía los datos actualizados de la compra al backend.
- * @param {Event} e - Evento de clic
- * @returns {Promise<void>}
- */
-async function handleActualizarCompra(e) {
-    /* Prevenir comportamiento por defecto */
-    e.preventDefault();
-
-    /* Obtener el ID de la compra desde el dataset del modal */
-    const id = parseInt(modalEditar.dataset.id);
-    if (!id) {
-        mostrarAlertaError('ID de compra no encontrado');
-        return;
-    }
-
-    /* Obtener los datos generales del paso 1 */
-    const proveedorId = parseInt(selectProveedor.value);
-    const fechaCompra = inputFecha.value;
-    const metodoPago = selectMetodoPago.value;
-
-    /* Recolectar los ítems actualizados */
-    const items = [];
-    const filas = document.querySelectorAll('#modal-editar-compra .factura__fila');
-
-    filas.forEach((fila, index) => {
-        if (index === 0 || esFilaVisibleEditar(index + 1)) {
-            const select = fila.querySelector('select');
-            const cantidadInput = fila.querySelector('input[name^="cantidad"]');
-
-            if (select?.value && cantidadInput?.value) {
-                items.push({
-                    productoId: parseInt(select.value),
-                    cantidad: parseInt(cantidadInput.value),
-                });
-            }
-        }
-    });
-
-    /* Validaciones */
-    if (items.length === 0) {
-        mostrarAlertaError('Agregue al menos un producto');
-        return;
-    }
-
-    try {
-        /* Enviar petición PUT al backend */
-        const respuesta = await actualizarCompra(id, { fechaCompra, metodoPago, proveedorId, items });
-
-        /* Cerrar el modal de edición */
-        closeModal('modal-editar-compra');
-
-        /* Mostrar alerta de éxito */
-        await mostrarAlertaExito(respuesta.message || 'Compra actualizada exitosamente');
-
-        /* Recargar datos */
-        await cargarProductos();
-        await cargarCompras();
-    } catch (error) {
-        mostrarAlertaError(error.message || 'Error al actualizar la compra');
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Eliminar Compra ---------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Muestra confirmación y elimina una compra lógicamente.
- * @param {number} id - ID de la compra a eliminar
- * @returns {Promise<void>}
- */
-async function handleEliminarCompra(id) {
-    try {
-        /* Mostrar confirmación con SweetAlert */
-        const resultado = await Swal.fire({
-            title: '¿Eliminar esta compra?',
-            text: 'Esta acción no se puede deshacer. La compra se marcará como inactiva.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar'
-        });
-
-        /* Si el usuario confirma, proceder con la eliminación */
-        if (resultado.isConfirmed) {
-            /* Enviar petición DELETE al backend */
-            const respuesta = await eliminarCompra(id);
-
-            /* Mostrar alerta de éxito */
-            await mostrarAlertaExito(respuesta.message || 'Compra eliminada exitosamente');
-
-            /* Recargar la tabla y los productos (stock revertido) */
-            await cargarProductos();
-            await cargarCompras();
-        }
-    } catch (error) {
-        mostrarAlertaError(error.message || 'Error al eliminar la compra');
-    }
-}
-
-/* -------------------------------------------------------------------------- */
 /* ----- Delegación de Eventos en la Tabla ---------------------------------- */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Maneja los clics en los botones de acción de la tabla (ver, editar, eliminar).
+ * Maneja los clics en los botones de acción de la tabla (ver detalle).
  * Usa delegación de eventos en el tbody para manejar filas dinámicas.
  * @param {Event} e - Evento de clic
  */
@@ -952,11 +838,66 @@ function handleAccionesTabla(e) {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Punto de entrada de la página de compras.
- * Se ejecuta cuando el DOM está completamente cargado.
- * Conecta todos los event listeners y carga los datos iniciales.
+ * Punto de entrada de la página de compras (compatible con SPA).
+ * Consulta los elementos del DOM, conecta event listeners y carga datos iniciales.
+ * Se exporta para ser invocada por el router del SPA.
  */
-document.addEventListener('DOMContentLoaded', () => {
+export async function inicializar() {
+
+    /* ===== Resetear Estado del Módulo ===== */
+
+    /* Vaciar el cache de compras para forzar recarga */
+    compras = [];
+
+    /* Vaciar el cache de proveedores para forzar recarga */
+    proveedores = [];
+
+    /* Vaciar el cache de productos para forzar recarga */
+    productos = [];
+
+    /* Reiniciar el contador de filas a 1 */
+    contadorFilas = 1;
+
+    /* ===== Consultar Elementos del DOM ===== */
+
+    /* Obtener el cuerpo de la tabla de compras */
+    tbody = document.querySelector('.tabla__cuerpo');
+
+    /* Obtener el input de búsqueda */
+    inputBusqueda = document.querySelector('.buscador__input');
+
+    /* Obtener el select de filtro por método de pago */
+    selectMetodo = document.querySelector('[name="filtro-metodo"]');
+
+    /* Obtener el select de filtro por período */
+    selectPeriodo = document.querySelector('[name="filtro-periodo"]');
+
+    /* Obtener el select de proveedor del modal paso 1 */
+    selectProveedor = document.getElementById('compra-proveedor');
+
+    /* Obtener el input de fecha del modal paso 1 */
+    inputFecha = document.getElementById('compra-fecha');
+
+    /* Obtener el select de método de pago del modal paso 1 */
+    selectMetodoPago = document.getElementById('compra-metodo-pago');
+
+    /* Obtener el botón "Agregar Productos" del modal paso 1 */
+    btnSiguiente = document.getElementById('btn-siguiente-productos');
+
+    /* Obtener el contenedor de filas de productos del modal paso 2 */
+    listaProductos = document.querySelector('#modal-productos-compra .factura__lista');
+
+    /* Obtener el elemento del total calculado del modal paso 2 */
+    totalValor = document.querySelector('#modal-productos-compra .factura__total-valor');
+
+    /* Obtener el botón "Guardar Compra" del modal paso 2 */
+    btnGuardarCompra = document.getElementById('btn-guardar-compra');
+
+    /* Obtener el botón "Volver" del modal paso 2 */
+    btnVolverPaso1 = document.getElementById('btn-volver-paso1');
+
+    /* Obtener el contenedor del modal de detalle de compra */
+    modalDetalle = document.getElementById('modal-detalle-compra');
 
     /* ===== Event Listeners de la Tabla ===== */
 
@@ -987,26 +928,25 @@ document.addEventListener('DOMContentLoaded', () => {
     /* Botón "Guardar Compra" → enviar la compra al backend */
     btnGuardarCompra.addEventListener('click', handleCrearCompra);
 
-    /* Auto-llenar precio cuando se selecciona un producto */
-    listaProductos.addEventListener('change', handleProductoChange);
-
-    /* Recalcular total cuando cambia una cantidad */
+    /* Recalcular total cuando cambia una cantidad o costo */
     listaProductos.addEventListener('input', (e) => {
-        /* Solo recalcular si el evento viene de un input de cantidad */
-        if (e.target.matches('input[name^="cantidad"]')) calcularTotal();
+        /* Recalcular si el evento viene de un input de cantidad o costo */
+        if (e.target.matches('input[name^="cantidad"]') || e.target.matches('input[name^="costo"]')) {
+            calcularTotal();
+        }
     });
 
-    /* ===== Event Listeners del Modal Editar ===== */
+    /* Delegación de eventos para eliminar filas de producto dinámicas */
+    listaProductos.addEventListener('click', eliminarFilaCompra);
 
-    /* Botón "Actualizar Compra" → confirmar edición */
-    if (btnActualizarCompra) {
-        btnActualizarCompra.addEventListener('click', handleActualizarCompra);
-    }
+    /* Botón "Agregar producto" → agregar nueva fila de producto */
+    const btnAgregarFila = document.getElementById('btn-agregar-fila-compra');
+    btnAgregarFila.addEventListener('click', agregarFilaCompra);
 
     /* ===== Carga Inicial de Datos ===== */
 
     /* Establecer la fecha de hoy como valor por defecto */
-    inputFecha.value = new Date().toISOString().split('T')[0];
+    inputFecha.value = obtenerFechaLocal();
 
     /* Cargar los proveedores para el select del paso 1 */
     cargarProveedores();
@@ -1016,4 +956,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Cargar las compras desde el backend y renderizar la tabla */
     cargarCompras();
-});
+
+    /* Numerar la primera fila de producto que viene pre-renderizada en el HTML */
+    renumerarFilas();
+}

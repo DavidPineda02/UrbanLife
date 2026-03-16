@@ -43,6 +43,10 @@ import { openModal, closeModal } from '../utils/modal.js';                     /
 import { showNotification } from '../utils/notifications.js';                  // Toasts
 import { validateForm, clearFormState } from '../utils/formValidation.js';     // Validación de formularios
 import Swal from 'sweetalert2';                                                // SweetAlert2 para confirmaciones
+// Importar validaciones en tiempo real
+import '../utils/realtimeValidations.js';                                      // Validaciones automáticas
+// Importar función para obtener el rol del usuario autenticado
+import { obtenerRol } from '../store/auth.store.js';                           // Rol del localStorage
 
 /* -------------------------------------------------------------------------- */
 /* ----- Estado Local del Módulo -------------------------------------------- */
@@ -68,86 +72,86 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || 'http
 /* -------------------------------------------------------------------------- */
 
 /** Contenedor grid donde se renderizan las tarjetas de productos */
-const grid = document.querySelector('.productos__grid');
+let grid;
 
 /** Input de búsqueda por nombre */
-const inputBusqueda = document.querySelector('.buscador__input');
+let inputBusqueda;
 
 /** Select de filtro por categoría */
-const selectCategoria = document.querySelector('[name="filtro-categoria"]');
+let selectCategoria;
 
 /** Select de filtro por estado (activo/inactivo) */
-const selectEstado = document.querySelector('[name="filtro-estado"]');
+let selectEstado;
 
 /** Select de filtro por stock */
-const selectStock = document.querySelector('[name="filtro-stock"]');
+let selectStock;
 
 /* ----- Modal Agregar ----- */
 
 /** Contenedor del modal de agregar producto */
-const modalAgregar = document.getElementById('modal-producto');
+let modalAgregar;
 
 /** Input del nombre en el modal de agregar */
-const inputNombreAgregar = document.getElementById('agregar-producto-nombre');
+let inputNombreAgregar;
 
 /** Select de categoría en el modal de agregar */
-const selectCategoriaAgregar = document.getElementById('agregar-producto-categoria');
+let selectCategoriaAgregar;
 
 /** Textarea de la descripción en el modal de agregar */
-const inputDescAgregar = document.getElementById('agregar-producto-descripcion');
+let inputDescAgregar;
 
 /** Input del precio de venta en el modal de agregar */
-const inputPrecioAgregar = document.getElementById('agregar-producto-precio');
+let inputPrecioAgregar;
 
 /** Input del costo promedio en el modal de agregar */
-const inputCostoAgregar = document.getElementById('agregar-producto-costo');
+let inputCostoAgregar;
 
 /** Input del stock en el modal de agregar */
-const inputStockAgregar = document.getElementById('agregar-producto-stock');
+let inputStockAgregar;
 
 /** Input file de la imagen en el modal de agregar */
-const inputImagenAgregar = document.getElementById('agregar-producto-imagen');
+let inputImagenAgregar;
 
 /** Span de texto del archivo seleccionado en el modal de agregar */
-const textoArchivoAgregar = modalAgregar ? modalAgregar.querySelector('.formulario__archivo-texto') : null;
+let textoArchivoAgregar;
 
 /** Botón "Guardar" del modal de agregar */
-const btnGuardar = document.getElementById('btn-guardar-producto');
+let btnGuardar;
 
 /* ----- Modal Editar ----- */
 
 /** Contenedor del modal de editar producto */
-const modalEditar = document.getElementById('modal-editar-producto');
+let modalEditar;
 
 /** Input del nombre en el modal de editar */
-const inputNombreEditar = document.getElementById('editar-producto-nombre');
+let inputNombreEditar;
 
 /** Select de categoría en el modal de editar */
-const selectCategoriaEditar = document.getElementById('editar-producto-categoria');
+let selectCategoriaEditar;
 
 /** Textarea de la descripción en el modal de editar */
-const inputDescEditar = document.getElementById('editar-producto-descripcion');
+let inputDescEditar;
 
 /** Input del precio de venta en el modal de editar */
-const inputPrecioEditar = document.getElementById('editar-producto-precio');
+let inputPrecioEditar;
 
 /** Input del costo promedio en el modal de editar */
-const inputCostoEditar = document.getElementById('editar-producto-costo');
+let inputCostoEditar;
 
 /** Input del stock en el modal de editar */
-const inputStockEditar = document.getElementById('editar-producto-stock');
+let inputStockEditar;
 
 /** Input file de la imagen en el modal de editar */
-const inputImagenEditar = document.getElementById('editar-producto-imagen');
+let inputImagenEditar;
 
 /** Span de texto del archivo seleccionado en el modal de editar */
-const textoArchivoEditar = modalEditar ? modalEditar.querySelector('.formulario__archivo-texto') : null;
+let textoArchivoEditar;
 
 /** Select del estado en el modal de editar */
-const selectEstadoEditar = document.getElementById('editar-producto-estado');
+let selectEstadoEditar;
 
 /** Botón "Actualizar" del modal de editar */
-const btnActualizar = document.getElementById('btn-actualizar-producto');
+let btnActualizar;
 
 /* -------------------------------------------------------------------------- */
 /* ----- Cargar Categorías desde el Backend --------------------------------- */
@@ -236,11 +240,12 @@ async function cargarImagenes() {
             }
         } catch (error) {
             /* Silenciar errores de imágenes individuales para no bloquear la carga */
+            console.error(`Error cargando imagen del producto ${prod.idProducto}:`, error);
         }
     });
 
     /* Esperar a que todas las peticiones de imágenes terminen */
-    await Promise.allSettled(promesas);
+    await Promise.all(promesas);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -339,6 +344,9 @@ function renderizarGrid() {
         return coincideBusqueda && coincideCategoria && coincideEstado && coincideStock;
     });
 
+    /* Obtener el rol del usuario para condicionar botones de acción */
+    const rolUsuario = obtenerRol();
+
     /* Construir el HTML de todas las tarjetas filtradas */
     grid.innerHTML = filtrados.map(prod => {
         /* Obtener el nombre de la categoría desde el cache */
@@ -351,11 +359,8 @@ function renderizarGrid() {
         const stockClase = prod.stock === 0 ? 'producto__stock--agotado'
             : prod.stock <= 10 ? 'producto__stock--bajo' : '';
 
-        /* Retornar el HTML de la tarjeta con la misma estructura del diseño original */
-        return `
-            <article class="producto">
-                <div class="producto__imagen">
-                    <span class="producto__categoria">${nombreCategoria}</span>
+        /* Generar botones de acción solo si el usuario NO es EMPLEADO */
+        const botonesAccion = rolUsuario !== 'EMPLEADO' ? `
                     <div class="producto__acciones">
                         <button type="button" class="producto__accion producto__accion--editar" title="Editar"
                                 data-accion="editar" data-id="${prod.idProducto}">
@@ -365,7 +370,14 @@ function renderizarGrid() {
                                 data-accion="toggle" data-id="${prod.idProducto}" data-estado="${prod.estado}">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-                    </div>
+                    </div>` : '';
+
+        /* Retornar el HTML de la tarjeta con la misma estructura del diseño original */
+        return `
+            <article class="producto">
+                <div class="producto__imagen">
+                    <span class="producto__categoria">${nombreCategoria}</span>
+                    ${botonesAccion}
                     <img src="${urlImagen}" alt="${prod.nombre}">
                 </div>
                 <div class="producto__contenido">
@@ -493,6 +505,9 @@ async function handleCrear(e) {
                 const { base64, extension } = await archivoABase64(inputImagenAgregar.files[0]);
                 /* Subir la imagen al backend */
                 await subirImagenProducto(nuevoProductoId, base64, extension);
+                
+                /* ACTUALIZAR IMÁGENES: Recargar las imágenes para mostrar la nueva */
+                await cargarImagenes();
             }
         }
 
@@ -631,6 +646,9 @@ async function handleActualizar(e) {
             const { base64, extension } = await archivoABase64(inputImagenEditar.files[0]);
             /* Subir la imagen al backend */
             await subirImagenProducto(productoEditandoId, base64, extension);
+            
+            /* ACTUALIZAR IMÁGENES: Recargar las imágenes para mostrar la nueva */
+            await cargarImagenes();
         }
 
         /* Cerrar el modal de edición */
@@ -760,10 +778,104 @@ function handleFileChange(e, textoSpan) {
 
 /**
  * Punto de entrada de la página de productos.
- * Se ejecuta cuando el DOM está completamente cargado.
- * Conecta todos los event listeners y carga los datos iniciales.
+ * Se ejecuta cuando el SPA navega a esta página.
+ * Consulta los elementos del DOM, conecta event listeners y carga los datos iniciales.
  */
-document.addEventListener('DOMContentLoaded', () => {
+export async function inicializar() {
+
+    /* ===== Consultar Elementos del DOM ===== */
+
+    /* Contenedor grid donde se renderizan las tarjetas de productos */
+    grid = document.querySelector('.productos__grid');
+
+    /* Input de búsqueda por nombre */
+    inputBusqueda = document.querySelector('.buscador__input');
+
+    /* Select de filtro por categoría */
+    selectCategoria = document.querySelector('[name="filtro-categoria"]');
+
+    /* Select de filtro por estado (activo/inactivo) */
+    selectEstado = document.querySelector('[name="filtro-estado"]');
+
+    /* Select de filtro por stock */
+    selectStock = document.querySelector('[name="filtro-stock"]');
+
+    /* Contenedor del modal de agregar producto */
+    modalAgregar = document.getElementById('modal-producto');
+
+    /* Input del nombre en el modal de agregar */
+    inputNombreAgregar = document.getElementById('agregar-producto-nombre');
+
+    /* Select de categoría en el modal de agregar */
+    selectCategoriaAgregar = document.getElementById('agregar-producto-categoria');
+
+    /* Textarea de la descripción en el modal de agregar */
+    inputDescAgregar = document.getElementById('agregar-producto-descripcion');
+
+    /* Input del precio de venta en el modal de agregar */
+    inputPrecioAgregar = document.getElementById('agregar-producto-precio');
+
+    /* Input del costo promedio en el modal de agregar */
+    inputCostoAgregar = document.getElementById('agregar-producto-costo');
+
+    /* Input del stock en el modal de agregar */
+    inputStockAgregar = document.getElementById('agregar-producto-stock');
+
+    /* Input file de la imagen en el modal de agregar */
+    inputImagenAgregar = document.getElementById('agregar-producto-imagen');
+
+    /* Span de texto del archivo seleccionado en el modal de agregar */
+    textoArchivoAgregar = modalAgregar ? modalAgregar.querySelector('.formulario__archivo-texto') : null;
+
+    /* Botón "Guardar" del modal de agregar */
+    btnGuardar = document.getElementById('btn-guardar-producto');
+
+    /* Contenedor del modal de editar producto */
+    modalEditar = document.getElementById('modal-editar-producto');
+
+    /* Input del nombre en el modal de editar */
+    inputNombreEditar = document.getElementById('editar-producto-nombre');
+
+    /* Select de categoría en el modal de editar */
+    selectCategoriaEditar = document.getElementById('editar-producto-categoria');
+
+    /* Textarea de la descripción en el modal de editar */
+    inputDescEditar = document.getElementById('editar-producto-descripcion');
+
+    /* Input del precio de venta en el modal de editar */
+    inputPrecioEditar = document.getElementById('editar-producto-precio');
+
+    /* Input del costo promedio en el modal de editar */
+    inputCostoEditar = document.getElementById('editar-producto-costo');
+
+    /* Input del stock en el modal de editar */
+    inputStockEditar = document.getElementById('editar-producto-stock');
+
+    /* Input file de la imagen en el modal de editar */
+    inputImagenEditar = document.getElementById('editar-producto-imagen');
+
+    /* Span de texto del archivo seleccionado en el modal de editar */
+    textoArchivoEditar = modalEditar ? modalEditar.querySelector('.formulario__archivo-texto') : null;
+
+    /* Select del estado en el modal de editar */
+    selectEstadoEditar = document.getElementById('editar-producto-estado');
+
+    /* Botón "Actualizar" del modal de editar */
+    btnActualizar = document.getElementById('btn-actualizar-producto');
+
+    /* ===== Reiniciar Estado del Módulo ===== */
+
+    /* Reiniciar el array de productos */
+    productos = [];
+
+    /* Reiniciar el array de categorías */
+    categorias = [];
+
+    /* Reiniciar el mapa de imágenes */
+    imagenesProductos = {};
+
+    /* Reiniciar el ID del producto en edición */
+    productoEditandoId = null;
 
     /* ===== Event Listeners del Modal Agregar ===== */
 
@@ -804,11 +916,20 @@ document.addEventListener('DOMContentLoaded', () => {
     /* Filtrar las tarjetas cuando cambia el select de stock */
     selectStock.addEventListener('change', renderizarGrid);
 
+    /* ===== Restricción de acciones para EMPLEADO (solo lectura) ===== */
+
+    /* Si el usuario es EMPLEADO, ocultar el botón de agregar producto */
+    if (obtenerRol() === 'EMPLEADO') {
+        /* Buscar el botón de agregar producto y ocultarlo */
+        const btnAgregar = document.querySelector('[data-modal-open="modal-producto"]');
+        if (btnAgregar) btnAgregar.style.display = 'none';
+    }
+
     /* ===== Carga Inicial de Datos ===== */
 
     /* Cargar las categorías para llenar los selects */
-    cargarCategorias();
+    await cargarCategorias();
 
     /* Cargar los productos desde el backend y renderizar las tarjetas */
-    cargarProductos();
-});
+    await cargarProductos();
+}
