@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/templete.css">
+    <link rel="stylesheet" href="../css/validations.css">
     <title>Inicio</title>
 </head>
 
@@ -118,14 +119,10 @@
                     <div class="tarjeta__icono tarjeta__icono--ingreso">
                         <i class="fa-solid fa-arrow-trend-up"></i>
                     </div>
-                    <div class="tarjeta__insignia tarjeta__insignia--arriba">
-                        <i class="fa-solid fa-caret-up"></i>
-                        <span>12%</span>
-                    </div>
                 </div>
                 <div class="tarjeta__cuerpo">
-                    <h3 class="tarjeta__titulo">Ventas del día</h3>
-                    <p class="tarjeta__valor">$ 450.000</p>
+                    <h3 class="tarjeta__titulo">Ventas del dia</h3>
+                    <p class="tarjeta__valor" id="tarjeta-ventas-valor">Cargando...</p>
                 </div>
             </div>
 
@@ -134,14 +131,10 @@
                     <div class="tarjeta__icono tarjeta__icono--egreso">
                         <i class="fa-solid fa-arrow-trend-down"></i>
                     </div>
-                    <div class="tarjeta__insignia tarjeta__insignia--abajo">
-                        <i class="fa-solid fa-caret-up"></i>
-                        <span>8%</span>
-                    </div>
                 </div>
                 <div class="tarjeta__cuerpo">
-                    <h3 class="tarjeta__titulo">Egresos Proveedores</h3>
-                    <p class="tarjeta__valor">$ 500.000</p>
+                    <h3 class="tarjeta__titulo">Egresos del dia</h3>
+                    <p class="tarjeta__valor" id="tarjeta-egresos-valor">Cargando...</p>
                 </div>
             </div>
 
@@ -150,14 +143,10 @@
                     <div class="tarjeta__icono tarjeta__icono--ganancia">
                         <i class="fa-solid fa-sack-dollar"></i>
                     </div>
-                    <div class="tarjeta__insignia tarjeta__insignia--arriba">
-                        <i class="fa-solid fa-caret-up"></i>
-                        <span>23%</span>
-                    </div>
                 </div>
                 <div class="tarjeta__cuerpo">
                     <h3 class="tarjeta__titulo">Ganancias del mes</h3>
-                    <p class="tarjeta__valor">$ 3.200.000</p>
+                    <p class="tarjeta__valor" id="tarjeta-ganancias-valor">Cargando...</p>
                 </div>
             </div>
 
@@ -169,7 +158,7 @@
                 </div>
                 <div class="tarjeta__cuerpo">
                     <h3 class="tarjeta__titulo">Productos activos</h3>
-                    <p class="tarjeta__valor">128</p>
+                    <p class="tarjeta__valor" id="tarjeta-productos-valor">---</p>
                 </div>
             </div>
         </section>
@@ -198,37 +187,11 @@
                         </div>
 
                         <div class="barras">
-                            <div class="barras__elemento" data-altura="70%" data-valor="350">
-                                <span class="barras__valor">350</span>
-                            </div>
-                            <div class="barras__elemento" data-altura="40%" data-valor="200">
-                                <span class="barras__valor">200</span>
-                            </div>
-                            <div class="barras__elemento" data-altura="85%" data-valor="425">
-                                <span class="barras__valor">425</span>
-                            </div>
-                            <div class="barras__elemento" data-altura="55%" data-valor="275">
-                                <span class="barras__valor">275</span>
-                            </div>
-                            <div class="barras__elemento" data-altura="95%" data-valor="475">
-                                <span class="barras__valor">475</span>
-                            </div>
-                            <div class="barras__elemento" data-altura="60%" data-valor="300">
-                                <span class="barras__valor">300</span>
-                            </div>
-                            <div class="barras__elemento" data-altura="75%" data-valor="375">
-                                <span class="barras__valor">375</span>
-                            </div>
+                            <!-- Las barras se renderizan dinamicamente desde home.js -->
                         </div>
 
                         <div class="barras__eje-x">
-                            <span class="barras__dia">Lun</span>
-                            <span class="barras__dia">Mar</span>
-                            <span class="barras__dia">Mié</span>
-                            <span class="barras__dia">Jue</span>
-                            <span class="barras__dia">Vie</span>
-                            <span class="barras__dia">Sáb</span>
-                            <span class="barras__dia">Dom</span>
+                            <!-- Los dias se renderizan dinamicamente desde home.js -->
                         </div>
                     </div>
                 </div>
@@ -244,8 +207,8 @@
                             <span class="resumen-semanal__etiqueta">Ingresos</span>
                         </div>
                         <div class="resumen-semanal__barra-contenedor">
-                            <div class="resumen-semanal__barra resumen-semanal__barra--ingreso" data-ancho="85%">
-                                <span class="resumen-semanal__valor">$ 5.150.000</span>
+                            <div class="resumen-semanal__barra resumen-semanal__barra--ingreso" data-ancho="0%">
+                                <span class="resumen-semanal__valor">Cargando...</span>
                             </div>
                         </div>
                     </div>
@@ -256,8 +219,8 @@
                             <span class="resumen-semanal__etiqueta">Egresos</span>
                         </div>
                         <div class="resumen-semanal__barra-contenedor">
-                            <div class="resumen-semanal__barra resumen-semanal__barra--egreso" data-ancho="55%">
-                                <span class="resumen-semanal__valor">$ 3.030.000</span>
+                            <div class="resumen-semanal__barra resumen-semanal__barra--egreso" data-ancho="0%">
+                                <span class="resumen-semanal__valor">Cargando...</span>
                             </div>
                         </div>
                     </div>
@@ -268,8 +231,8 @@
                             <span class="resumen-semanal__etiqueta">Ganancias</span>
                         </div>
                         <div class="resumen-semanal__barra-contenedor">
-                            <div class="resumen-semanal__barra resumen-semanal__barra--ganancia" data-ancho="40%">
-                                <span class="resumen-semanal__valor">$ 2.120.000</span>
+                            <div class="resumen-semanal__barra resumen-semanal__barra--ganancia" data-ancho="0%">
+                                <span class="resumen-semanal__valor">Cargando...</span>
                             </div>
                         </div>
                     </div>
@@ -283,37 +246,14 @@
                     <div class="pastel-dona">
                         <div class="pastel-dona__centro">
                             <span class="pastel-dona__total-etiqueta">Total</span>
-                            <span class="pastel-dona__total-valor">128</span>
+                            <span class="pastel-dona__total-valor">---</span>
                             <span class="pastel-dona__total-unidad">productos</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="pastel-leyenda">
-                    <div class="pastel-leyenda__elemento">
-                        <div class="pastel-leyenda__indicador pastel-leyenda__indicador--1"></div>
-                        <div class="pastel-leyenda__info">
-                            <span class="pastel-leyenda__etiqueta">Accesorios</span>
-                            <span class="pastel-leyenda__valor">52 unidades</span>
-                        </div>
-                        <span class="pastel-leyenda__porcentaje">41%</span>
-                    </div>
-                    <div class="pastel-leyenda__elemento">
-                        <div class="pastel-leyenda__indicador pastel-leyenda__indicador--2"></div>
-                        <div class="pastel-leyenda__info">
-                            <span class="pastel-leyenda__etiqueta">Ropa Hombre</span>
-                            <span class="pastel-leyenda__valor">44 unidades</span>
-                        </div>
-                        <span class="pastel-leyenda__porcentaje">34%</span>
-                    </div>
-                    <div class="pastel-leyenda__elemento">
-                        <div class="pastel-leyenda__indicador pastel-leyenda__indicador--3"></div>
-                        <div class="pastel-leyenda__info">
-                            <span class="pastel-leyenda__etiqueta">Ropa Mujer</span>
-                            <span class="pastel-leyenda__valor">32 unidades</span>
-                        </div>
-                        <span class="pastel-leyenda__porcentaje">25%</span>
-                    </div>
+                    <!-- La leyenda se renderiza dinamicamente desde home.js -->
                 </div>
             </div>
 
@@ -322,85 +262,7 @@
                 <p class="grafico__subtitulo">Top Margen de Ganancia</p>
 
                 <div class="margen__lista">
-                    <div class="margen-elemento margen-elemento--alto">
-                        <div class="margen-elemento__icono">
-                            <i class="fa-solid fa-trophy"></i>
-                        </div>
-                        <div class="margen-elemento__contenido">
-                            <div class="margen-elemento__header">
-                                <span class="margen-elemento__nombre">Pantalonetas</span>
-                                <span class="margen-elemento__porcentaje margen-elemento__porcentaje--alto">65%</span>
-                            </div>
-                            <div class="margen-elemento__barra-contenedor">
-                                <div class="margen-elemento__barra margen-elemento__barra--alto"
-                                    data-ancho-barra="65%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="margen-elemento">
-                        <div class="margen-elemento__icono margen-elemento__icono--2">
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="margen-elemento__contenido">
-                            <div class="margen-elemento__header">
-                                <span class="margen-elemento__nombre">Bermudas</span>
-                                <span class="margen-elemento__porcentaje margen-elemento__porcentaje--medio">55%</span>
-                            </div>
-                            <div class="margen-elemento__barra-contenedor">
-                                <div class="margen-elemento__barra margen-elemento__barra--medio"
-                                    data-ancho-barra="55%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="margen-elemento">
-                        <div class="margen-elemento__icono margen-elemento__icono--3">
-                            <i class="fa-solid fa-shirt"></i>
-                        </div>
-                        <div class="margen-elemento__contenido">
-                            <div class="margen-elemento__header">
-                                <span class="margen-elemento__nombre">Camisetas</span>
-                                <span class="margen-elemento__porcentaje margen-elemento__porcentaje--medio">42%</span>
-                            </div>
-                            <div class="margen-elemento__barra-contenedor">
-                                <div class="margen-elemento__barra margen-elemento__barra--medio"
-                                    data-ancho-barra="42%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="margen-elemento">
-                        <div class="margen-elemento__icono margen-elemento__icono--4">
-                            <i class="fa-solid fa-hat-cowboy"></i>
-                        </div>
-                        <div class="margen-elemento__contenido">
-                            <div class="margen-elemento__header">
-                                <span class="margen-elemento__nombre">Gorras</span>
-                                <span class="margen-elemento__porcentaje margen-elemento__porcentaje--bajo">30%</span>
-                            </div>
-                            <div class="margen-elemento__barra-contenedor">
-                                <div class="margen-elemento__barra margen-elemento__barra--bajo"
-                                    data-ancho-barra="30%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="margen-elemento">
-                        <div class="margen-elemento__icono margen-elemento__icono--5">
-                            <i class="fa-solid fa-water"></i>
-                        </div>
-                        <div class="margen-elemento__contenido">
-                            <div class="margen-elemento__header">
-                                <span class="margen-elemento__nombre">Vestidos de Baño</span>
-                                <span class="margen-elemento__porcentaje margen-elemento__porcentaje--bajo">28%</span>
-                            </div>
-                            <div class="margen-elemento__barra-contenedor">
-                                <div class="margen-elemento__barra margen-elemento__barra--bajo"
-                                    data-ancho-barra="28%"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Los productos rentables se renderizan dinamicamente desde home.js -->
                 </div>
             </div>
 

@@ -79,12 +79,12 @@
 |---|---|
 | **Id. del Requisito** | RF-05 |
 | **Nombre del Requisito** | Gestión de usuarios por rol |
-| **Componente** | Sección de administración de usuarios, formulario de registro de usuario, lista de usuarios, botones de editar y eliminar |
+| **Componente** | Sección de administración de usuarios, lista de usuarios con tarjetas, botones de editar y activar/desactivar, filtros por rol y estado |
 | **Característica asociada** | Administración de usuarios, control de acceso por roles |
-| **Descripción del Requisito** | El sistema debe permitir gestionar las cuentas de los usuarios según el rol de quien esté usando el sistema. El SUPER-ADMIN puede crear, editar y eliminar cuentas de ADMIN. El ADMIN puede crear, editar y eliminar cuentas de EMPLEADO. En ambos casos se ingresan los datos básicos del usuario como nombre, correo y contraseña. Si un usuario intenta acceder a una pantalla que no le corresponde, el sistema le muestra un mensaje de acceso no permitido. |
-| **Características** | No se pueden registrar dos usuarios con el mismo correo. La contraseña debe tener mínimo 6 caracteres. Cada usuario solo puede ver y gestionar las cuentas del rol que le corresponde administrar. |
+| **Descripción del Requisito** | El sistema debe permitir gestionar las cuentas de los usuarios según el rol de quien esté usando el sistema. Los usuarios se registran de forma autónoma desde la pantalla de registro, donde crean su cuenta con nombre, apellido, correo y contraseña. Una vez registrados, el SUPER-ADMIN y el ADMIN pueden ver la lista de usuarios en tarjetas con su nombre, rol, correo, estado y método de acceso (contraseña, Google o ambos). Desde esta vista pueden editar la información del usuario y activar o desactivar su cuenta. Si un usuario intenta acceder a una pantalla que no le corresponde, el sistema lo redirige automáticamente a su vista principal. |
+| **Características** | No se pueden registrar dos usuarios con el mismo correo. La contraseña debe tener mínimo 8 caracteres. La lista de usuarios permite filtrar por rol (ADMIN, EMPLEADO) y por estado (activo, inactivo). Un usuario desactivado no puede iniciar sesión en el sistema. |
 | **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | El SUPER-ADMIN solo gestiona cuentas de ADMIN. El ADMIN solo gestiona cuentas de EMPLEADO. El EMPLEADO no puede gestionar cuentas de otros usuarios. |
+| **Restricciones** | Solo el SUPER-ADMIN y el ADMIN pueden acceder a la sección de usuarios. El EMPLEADO no puede ver ni gestionar cuentas de otros usuarios. La desactivación de una cuenta impide el acceso al sistema pero conserva los registros del usuario. |
 | **Interacción Humana - Tecnología** | ☑ Sí   ☐ No |
 | **Interacción Tecnología - Tecnología** | ☑ Sí   ☐ No |
 
@@ -129,13 +129,13 @@
 | Campo | Descripción |
 |---|---|
 | **Id. del Requisito** | RF-08 |
-| **Nombre del Requisito** | Ver, editar y eliminar ventas |
-| **Componente** | Pantalla de ventas, tabla de historial, botón de ver detalle, botón de editar, botón de eliminar con confirmación |
-| **Característica asociada** | Consulta y mantenimiento del historial de ventas |
-| **Descripción del Requisito** | El sistema debe mostrar una tabla con todas las ventas registradas, indicando el número de venta, la fecha, el cliente, la cantidad de productos, el total y el método de pago. Cada venta tiene tres opciones: ver el detalle completo de los productos vendidos, editar la información de la venta y eliminarla. Antes de eliminar, el sistema pide confirmación al usuario. |
-| **Características** | El detalle de la venta muestra la lista de productos, cantidades y precios. El formulario de edición carga los datos actuales de la venta para poder modificarlos. La confirmación de eliminación advierte que la acción no se puede deshacer. |
-| **Prioridad** | ☐ Alta/Esencial   ☑ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | Al editar o eliminar una venta, el stock del inventario debe ajustarse automáticamente para reflejar el cambio. |
+| **Nombre del Requisito** | Ver el historial y detalle de ventas |
+| **Componente** | Pantalla de ventas, tabla de historial, botón de ver detalle, ventana emergente con desglose de productos, campo de búsqueda, filtros por método de pago y período |
+| **Característica asociada** | Consulta del historial de ventas, trazabilidad de transacciones |
+| **Descripción del Requisito** | El sistema debe mostrar una tabla con todas las ventas registradas, indicando el número de venta, la fecha, el nombre del cliente, el total y el método de pago. Cada venta tiene un botón para ver el detalle completo, que abre una ventana emergente con la fecha, el método de pago, el cliente y una tabla con cada producto vendido, su cantidad, su precio unitario y el subtotal. Las ventas son registros inmutables y no pueden editarse ni eliminarse una vez guardadas, garantizando la integridad contable del negocio. |
+| **Características** | La tabla permite buscar ventas por nombre del cliente o número de venta en tiempo real. Se puede filtrar por método de pago (Efectivo, Transferencia) y por período (hoy, esta semana, este mes). El detalle de la venta es de solo lectura y muestra el desglose completo de los productos vendidos. |
+| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
+| **Restricciones** | Las ventas son inmutables para garantizar la integridad de los registros contables. Una vez registrada una venta, no puede modificarse ni eliminarse. Esto asegura que el historial financiero y los movimientos de inventario sean consistentes y auditables. |
 | **Interacción Humana - Tecnología** | ☑ Sí   ☐ No |
 | **Interacción Tecnología - Tecnología** | ☑ Sí   ☐ No |
 
@@ -163,13 +163,13 @@
 | Campo | Descripción |
 |---|---|
 | **Id. del Requisito** | RF-10 |
-| **Nombre del Requisito** | Ver, editar y eliminar compras |
-| **Componente** | Pantalla de compras, tabla de historial, botón de editar, botón de eliminar con confirmación |
-| **Característica asociada** | Consulta y mantenimiento del historial de compras |
-| **Descripción del Requisito** | El sistema debe mostrar una tabla con todas las compras registradas, indicando la fecha, el proveedor, la ciudad, el producto, la cantidad, el costo unitario, el subtotal y el método de pago. Cada compra tiene botones para editar su información o eliminarla. Antes de eliminar se pide confirmación al usuario. |
-| **Características** | El formulario de edición carga los datos actuales de la compra. El mensaje de confirmación de eliminación advierte que la acción no se puede deshacer. |
-| **Prioridad** | ☐ Alta/Esencial   ☑ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | Al eliminar una compra, el sistema debe restar del inventario las unidades que se habían sumado al momento de registrarla. |
+| **Nombre del Requisito** | Ver el historial de compras |
+| **Componente** | Pantalla de compras, tabla de historial, campo de búsqueda, filtros por método de pago y período |
+| **Característica asociada** | Consulta del historial de compras, trazabilidad de egresos a proveedores |
+| **Descripción del Requisito** | El sistema debe mostrar una tabla con todas las compras registradas, indicando el número de compra, la fecha, el proveedor, el total y el método de pago. Las compras son registros inmutables y no pueden editarse ni eliminarse una vez guardadas, garantizando la integridad contable del negocio y la consistencia del costo promedio ponderado de los productos en el inventario. |
+| **Características** | La tabla permite buscar compras por nombre del proveedor o número de compra en tiempo real. Se puede filtrar por método de pago (Efectivo, Transferencia) y por período (hoy, esta semana, este mes). |
+| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
+| **Restricciones** | Las compras son inmutables para garantizar la integridad de los registros contables y del cálculo del costo promedio ponderado del inventario. Una vez registrada una compra, no puede modificarse ni eliminarse. Solo el ADMIN puede acceder al módulo de compras. |
 | **Interacción Humana - Tecnología** | ☑ Sí   ☐ No |
 | **Interacción Tecnología - Tecnología** | ☑ Sí   ☐ No |
 
@@ -197,13 +197,13 @@
 | Campo | Descripción |
 |---|---|
 | **Id. del Requisito** | RF-12 |
-| **Nombre del Requisito** | Ver, editar y eliminar gastos adicionales |
-| **Componente** | Pantalla de gastos, tabla de historial, botón de editar, botón de eliminar con confirmación |
-| **Característica asociada** | Consulta y mantenimiento del historial de gastos |
-| **Descripción del Requisito** | El sistema debe mostrar una tabla con todos los gastos registrados, indicando la fecha, el tipo de gasto, la descripción y el monto. Cada gasto tiene botones para editar su información o eliminarlo. Antes de eliminar, el sistema muestra una ventana de confirmación. |
-| **Características** | El formulario de edición carga los datos actuales del gasto con el tipo ya seleccionado, la fecha y el monto listos para modificar. El mensaje de confirmación advierte que la acción no se puede deshacer. |
-| **Prioridad** | ☐ Alta/Esencial   ☑ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | Solo el ADMIN puede registrar, editar o eliminar gastos adicionales. El EMPLEADO no tiene acceso a este módulo. |
+| **Nombre del Requisito** | Ver el historial de gastos adicionales |
+| **Componente** | Pantalla de gastos, tabla de historial, campo de búsqueda, filtros por método de pago y período |
+| **Característica asociada** | Consulta del historial de gastos, trazabilidad de egresos operativos |
+| **Descripción del Requisito** | El sistema debe mostrar una tabla con todos los gastos registrados, indicando la fecha, el método de pago, la descripción y el monto. Los gastos son registros inmutables y no pueden editarse ni eliminarse una vez guardados, garantizando la integridad contable del negocio y la trazabilidad de todos los egresos operativos registrados en el sistema. |
+| **Características** | La tabla permite buscar gastos por descripción o número de gasto en tiempo real. Se puede filtrar por método de pago (Efectivo, Transferencia) y por período (hoy, esta semana, este mes). |
+| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
+| **Restricciones** | Los gastos son inmutables para garantizar la integridad de los registros contables. Una vez registrado un gasto, no puede modificarse ni eliminarse. Solo el ADMIN puede acceder al módulo de gastos adicionales. El EMPLEADO no tiene acceso a este módulo. |
 | **Interacción Humana - Tecnología** | ☑ Sí   ☐ No |
 | **Interacción Tecnología - Tecnología** | ☑ Sí   ☐ No |
 

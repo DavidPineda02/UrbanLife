@@ -102,8 +102,8 @@
                             <i class="fa-solid fa-gear"></i>
                         </div>
                         <div class="sidebar__enlace-info">
-                            <span class="sidebar__enlace-texto">David Pineda</span>
-                            <span class="sidebar__enlace-rol">Super Admin</span>
+                            <span class="sidebar__enlace-texto" id="sidebar-nombre-usuario">Cargando...</span>
+                            <span class="sidebar__enlace-rol" id="sidebar-rol-usuario"></span>
                         </div>
                         <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
                     </a>
@@ -166,11 +166,11 @@
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="agregar-producto-nombre">Nombre</label>
                         <input type="text" id="agregar-producto-nombre" class="formulario__input formulario__campo"
-                            placeholder="Nombre del producto" title="Nombre">
+                            placeholder="Nombre del producto" title="Nombre" data-validation="letras" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="agregar-producto-categoria">Categoria</label>
-                        <select id="agregar-producto-categoria" class="formulario__select formulario__campo" title="Categoria">
+                        <select id="agregar-producto-categoria" class="formulario__select formulario__campo" title="Categoria" data-required>
                             <option value="">Seleccionar</option>
                             <!-- Las opciones se cargan dinamicamente desde productos.js -->
                         </select>
@@ -179,25 +179,25 @@
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="agregar-producto-descripcion">Descripcion</label>
                     <textarea id="agregar-producto-descripcion" class="formulario__textarea formulario__campo"
-                        placeholder="Descripcion del producto" title="Descripcion" rows="2"></textarea>
+                        placeholder="Descripcion del producto" title="Descripcion" rows="2" data-validation="descripcion"></textarea>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="agregar-producto-precio">Precio Venta</label>
                         <input type="number" id="agregar-producto-precio" class="formulario__input formulario__campo"
-                            placeholder="$ 0" title="Precio Venta">
+                            placeholder="$ 0" title="Precio Venta" data-validation="numeros" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="agregar-producto-costo">Costo Promedio</label>
                         <input type="number" id="agregar-producto-costo" class="formulario__input formulario__campo"
-                            placeholder="$ 0" title="Costo Promedio">
+                            placeholder="$ 0" title="Costo Promedio" data-validation="numeros">
                     </div>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo formulario__grupo--pequeno">
                         <label class="formulario__label" for="agregar-producto-stock">Stock</label>
                         <input type="number" id="agregar-producto-stock" class="formulario__input formulario__campo"
-                            placeholder="0" title="Stock">
+                            placeholder="0" title="Stock" data-validation="enteros" required>
                     </div>
                     <div class="formulario__grupo formulario__grupo--grande">
                         <label class="formulario__label">Imagen</label>
@@ -233,11 +233,11 @@
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="editar-producto-nombre">Nombre</label>
                         <input type="text" id="editar-producto-nombre" class="formulario__input formulario__campo"
-                            title="Nombre">
+                            title="Nombre" data-validation="letras" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="editar-producto-categoria">Categoria</label>
-                        <select id="editar-producto-categoria" class="formulario__select formulario__campo" title="Categoria">
+                        <select id="editar-producto-categoria" class="formulario__select formulario__campo" title="Categoria" data-required>
                             <option value="">Seleccionar</option>
                             <!-- Las opciones se cargan dinamicamente desde productos.js -->
                         </select>
@@ -246,25 +246,25 @@
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="editar-producto-descripcion">Descripcion</label>
                     <textarea id="editar-producto-descripcion" class="formulario__textarea formulario__campo"
-                        title="Descripcion" rows="2"></textarea>
+                        title="Descripcion" rows="2" data-validation="descripcion"></textarea>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="editar-producto-precio">Precio Venta</label>
                         <input type="number" id="editar-producto-precio" class="formulario__input formulario__campo"
-                            title="Precio Venta">
+                            title="Precio Venta" data-validation="numeros" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="editar-producto-costo">Costo Promedio</label>
                         <input type="number" id="editar-producto-costo" class="formulario__input formulario__campo"
-                            title="Costo Promedio">
+                            title="Costo Promedio" data-validation="numeros">
                     </div>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo formulario__grupo--pequeno">
                         <label class="formulario__label" for="editar-producto-stock">Stock</label>
                         <input type="number" id="editar-producto-stock" class="formulario__input formulario__campo"
-                            title="Stock">
+                            title="Stock" data-validation="enteros" required>
                     </div>
                     <div class="formulario__grupo formulario__grupo--grande">
                         <label class="formulario__label">Imagen</label>

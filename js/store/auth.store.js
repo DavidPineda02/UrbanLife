@@ -66,6 +66,20 @@ export function obtenerRol() {
 }
 
 /* -------------------------------------------------------------------------- */
+/* ----- Leer ID Usuario ---------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Retorna el ID del usuario autenticado o null.
+ * @returns {number|null}
+ */
+export function obtenerUsuarioId() {
+    const usuario = obtenerUsuario();
+    // El backend envía 'userId' (camelCase), no 'id'
+    return usuario?.userId ? parseInt(usuario.userId) : null;
+}
+
+/* -------------------------------------------------------------------------- */
 /* ----- Verificar Sesión Activa -------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 

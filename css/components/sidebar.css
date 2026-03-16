@@ -79,6 +79,14 @@
     /* Espacio desde el logo */
     padding: 20px 0;
     /* Espaciado vertical */
+    visibility: hidden;
+    /* Oculto hasta que JS filtre por rol (evita flash del sidebar completo) */
+}
+
+/* Clase que JS agrega después de filtrar el sidebar por rol */
+.sidebar__nav--visible {
+    visibility: visible;
+    /* Muestra la navegación después del filtrado */
 }
 
 /* ========================================

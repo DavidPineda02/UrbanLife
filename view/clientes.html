@@ -103,8 +103,8 @@
                             <i class="fa-solid fa-gear"></i>
                         </div>
                         <div class="sidebar__enlace-info">
-                            <span class="sidebar__enlace-texto">David Pineda</span>
-                            <span class="sidebar__enlace-rol">Super Admin</span>
+                            <span class="sidebar__enlace-texto" id="sidebar-nombre-usuario">Cargando...</span>
+                            <span class="sidebar__enlace-rol" id="sidebar-rol-usuario"></span>
                         </div>
                         <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
                     </a>
@@ -154,29 +154,29 @@
             <div class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="agregar-cliente-nombre">Nombre Completo</label>
-                    <input type="text" id="agregar-cliente-nombre" class="formulario__input formulario__campo" placeholder="Ej: María García López" title="Nombre Completo">
+                    <input type="text" id="agregar-cliente-nombre" class="formulario__input formulario__campo" placeholder="Ej: María García López" title="Nombre Completo" data-validation="letras" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="agregar-cliente-documento">Documento (Cédula)</label>
-                    <input type="text" id="agregar-cliente-documento" class="formulario__input formulario__campo" placeholder="Ej: 1234567890" title="Documento (Cédula)">
+                    <input type="text" id="agregar-cliente-documento" class="formulario__input formulario__campo" placeholder="Ej: 1234567890" title="Documento (Cédula)" data-validation="numerosEnteros" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="agregar-cliente-correo">Correo Electrónico</label>
-                    <input type="email" id="agregar-cliente-correo" class="formulario__input formulario__campo" placeholder="Ej: correo@ejemplo.com" title="Correo Electrónico">
+                    <input type="email" id="agregar-cliente-correo" class="formulario__input formulario__campo" placeholder="Ej: correo@ejemplo.com" title="Correo Electrónico" data-validation="correo" required>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="agregar-cliente-telefono">Teléfono</label>
-                        <input type="tel" id="agregar-cliente-telefono" class="formulario__input formulario__campo" placeholder="Ej: 3001234567" title="Teléfono">
+                        <input type="tel" id="agregar-cliente-telefono" class="formulario__input formulario__campo" placeholder="Ej: 3001234567" title="Teléfono" data-validation="telefono" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="agregar-cliente-ciudad">Ciudad</label>
-                        <input type="text" id="agregar-cliente-ciudad" class="formulario__input formulario__campo" placeholder="Ej: Bogotá" title="Ciudad">
+                        <input type="text" id="agregar-cliente-ciudad" class="formulario__input formulario__campo" placeholder="Ej: Bogotá" title="Ciudad" data-validation="letras" required>
                     </div>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="agregar-cliente-direccion">Dirección</label>
-                    <input type="text" id="agregar-cliente-direccion" class="formulario__input formulario__campo" placeholder="Ej: Cra 45 #32-10" title="Dirección">
+                    <input type="text" id="agregar-cliente-direccion" class="formulario__input formulario__campo" placeholder="Ej: Cra 45 #32-10" title="Dirección" data-validation="texto" required>
                 </div>
                 <div class="formulario__acciones">
                     <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
@@ -200,33 +200,33 @@
             <div class="modal__formulario">
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="editar-cliente-nombre">Nombre Completo</label>
-                    <input type="text" id="editar-cliente-nombre" class="formulario__input formulario__campo" title="Nombre Completo">
+                    <input type="text" id="editar-cliente-nombre" class="formulario__input formulario__campo" title="Nombre Completo" data-validation="letras" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="editar-cliente-documento">Documento (Cédula)</label>
-                    <input type="text" id="editar-cliente-documento" class="formulario__input formulario__campo" title="Documento (Cédula)">
+                    <input type="text" id="editar-cliente-documento" class="formulario__input formulario__campo" title="Documento (Cédula)" data-validation="numerosEnteros" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="editar-cliente-correo">Correo Electrónico</label>
-                    <input type="email" id="editar-cliente-correo" class="formulario__input formulario__campo" title="Correo Electrónico">
+                    <input type="email" id="editar-cliente-correo" class="formulario__input formulario__campo" title="Correo Electrónico" data-validation="correo" required>
                 </div>
                 <div class="formulario__fila">
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="editar-cliente-telefono">Teléfono</label>
-                        <input type="tel" id="editar-cliente-telefono" class="formulario__input formulario__campo" title="Teléfono">
+                        <input type="tel" id="editar-cliente-telefono" class="formulario__input formulario__campo" title="Teléfono" data-validation="telefono" required>
                     </div>
                     <div class="formulario__grupo">
                         <label class="formulario__label" for="editar-cliente-ciudad">Ciudad</label>
-                        <input type="text" id="editar-cliente-ciudad" class="formulario__input formulario__campo" title="Ciudad">
+                        <input type="text" id="editar-cliente-ciudad" class="formulario__input formulario__campo" title="Ciudad" data-validation="letras" required>
                     </div>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="editar-cliente-direccion">Dirección</label>
-                    <input type="text" id="editar-cliente-direccion" class="formulario__input formulario__campo" title="Dirección">
+                    <input type="text" id="editar-cliente-direccion" class="formulario__input formulario__campo" title="Dirección" data-validation="texto" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="editar-cliente-estado">Estado</label>
-                    <select id="editar-cliente-estado" class="formulario__select" title="Estado">
+                    <select id="editar-cliente-estado" class="formulario__select" title="Estado" data-required>
                         <option value="true">Activo</option>
                         <option value="false">Inactivo</option>
                     </select>

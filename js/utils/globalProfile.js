@@ -9,6 +9,7 @@
  */
 
 import { obtenerPerfil } from '../api/services/auth.service.js';
+import { obtenerRol, obtenerUsuario } from '../store/auth.store.js';
 
 /* -------------------------------------------------------------------------- */
 /* ----- Estado Global ------------------------------------------------------ */
@@ -43,11 +44,14 @@ export async function loadGlobalProfile() {
         globalPerfilData = perfilData;
         isProfileLoaded = true;
         
-        // Actualizar sidebar inmediatamente
+        // Actualizar sidebar con los datos frescos del backend
         updateSidebarProfile(perfilData);
-        
+
+        // Reaplicar filtro de rol con el dato confirmado del backend
+        filtrarSidebarPorRol(perfilData.rol);
+
         console.log('[GlobalProfile] Perfil cargado exitosamente:', perfilData.nombre, perfilData.rol);
-        
+
         return perfilData;
     } catch (error) {
         console.error('[GlobalProfile] Error al cargar perfil:', error);
@@ -75,6 +79,63 @@ export async function refreshGlobalProfile() {
     isProfileLoaded = false;
     globalPerfilData = null;
     return await loadGlobalProfile();
+}
+
+/**
+ * Rutas restringidas para el rol EMPLEADO.
+ * El empleado solo puede acceder a: clientes, ventas, productos (solo lectura) y perfil.
+ */
+const RUTAS_RESTRINGIDAS_EMPLEADO = [
+    'home',
+    'categorias',
+    'proveedores',
+    'compras',
+    'usuarios',
+    'gastos'
+];
+
+/**
+ * Oculta los elementos del sidebar que el empleado no puede ver.
+ * Busca los enlaces por su atributo data-route y oculta el <li> padre.
+ * @param {string} rol - Rol del usuario autenticado
+ */
+function filtrarSidebarPorRol(rol) {
+    // Solo aplicar restricciones al rol EMPLEADO
+    if (rol !== 'EMPLEADO') return;
+
+    // Obtener todos los enlaces del sidebar
+    const enlaces = document.querySelectorAll('.sidebar__enlace');
+
+    // Recorrer cada enlace y ocultar los restringidos
+    enlaces.forEach(enlace => {
+        // Obtener el nombre de la ruta desde el atributo data-route del enlace
+        const ruta = enlace.getAttribute('data-route');
+        // Verificar si la ruta está restringida para EMPLEADO
+        if (ruta && RUTAS_RESTRINGIDAS_EMPLEADO.includes(ruta)) {
+            // Ocultar el elemento <li> padre del enlace
+            enlace.closest('.sidebar__elemento').style.display = 'none';
+        }
+    });
+}
+
+/**
+ * Protege las rutas restringidas redirigiendo al empleado.
+ * Si un empleado intenta acceder a una ruta que no le corresponde,
+ * lo redirige a la ruta de clientes (su vista principal).
+ * @param {string} rol - Rol del usuario autenticado
+ */
+function protegerPaginaPorRol(rol) {
+    // Solo aplicar restricciones al rol EMPLEADO
+    if (rol !== 'EMPLEADO') return;
+
+    // Obtener la ruta actual desde el hash de la URL (ej: '#/home' → 'home')
+    const hash = window.location.hash.slice(1);
+    const rutaActual = hash.startsWith('/') ? hash.slice(1) : (hash || 'home');
+
+    // Si la ruta actual está restringida, redirigir a clientes
+    if (RUTAS_RESTRINGIDAS_EMPLEADO.includes(rutaActual)) {
+        window.location.hash = '#/clientes';
+    }
 }
 
 /**
@@ -119,11 +180,52 @@ function formatRole(rol) {
 }
 
 /**
+ * Muestra la navegación del sidebar después de aplicar el filtrado por rol.
+ * Agrega la clase CSS que cambia visibility de hidden a visible.
+ */
+function mostrarSidebar() {
+    // Buscar el contenedor de navegación del sidebar
+    const nav = document.querySelector('.sidebar__nav');
+    // Si existe, agregar la clase que lo hace visible
+    if (nav) nav.classList.add('sidebar__nav--visible');
+}
+
+/**
  * Inicializa el perfil global automáticamente.
  * Se llama desde main.js para asegurar que se ejecute en todas las páginas.
+ * IMPORTANTE: Primero aplica restricciones de rol con localStorage (síncrono,
+ * sin delay) para evitar el parpadeo del sidebar completo. Luego carga los
+ * datos frescos del backend para actualizar nombre y rol en el sidebar.
  */
 export async function initGlobalProfile() {
+    // ── Paso 1: restricciones inmediatas con localStorage (síncrono) ──
+    // Leer el rol guardado en localStorage (instantáneo, sin llamada HTTP)
+    const rolLocal = obtenerRol();
+
+    // Si hay rol en localStorage, aplicar restricciones antes de que se pinte el sidebar
+    if (rolLocal) {
+        // Redirigir si el empleado está en una página que no le corresponde
+        protegerPaginaPorRol(rolLocal);
+        // Ocultar items del sidebar que el empleado no puede ver
+        filtrarSidebarPorRol(rolLocal);
+    }
+
+    // ── Paso 2: pre-cargar nombre del usuario desde localStorage (síncrono) ──
+    // Evita que el sidebar muestre datos de otro usuario mientras carga del backend
+    const usuarioLocal = obtenerUsuario();
+
+    // Si hay datos del usuario en localStorage, mostrarlos inmediatamente
+    if (usuarioLocal) {
+        // Actualizar sidebar con los datos locales (nombre, apellido, rol)
+        updateSidebarProfile(usuarioLocal);
+    }
+
+    // ── Paso 3: mostrar sidebar después del filtrado (ya no hay flash) ──
+    mostrarSidebar();
+
+    // ── Paso 4: cargar datos frescos del backend (asíncrono) ──
     try {
+        // Obtener perfil actualizado del backend y refrescar sidebar
         await loadGlobalProfile();
     } catch (error) {
         console.error('[GlobalProfile] No se pudo inicializar el perfil global:', error);

@@ -22,8 +22,8 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    /* Inicializar contador para filas */
-    counter-reset: fila;
+    /* Contador CSS desactivado - JavaScript maneja la numeración */
+    /* counter-reset: fila; */
 }
 
 /* Scrollbar personalizado */
@@ -82,8 +82,8 @@
     align-items: center;
     padding: 6px 0;
     border-bottom: 1px solid var(--color-borde-claro);
-    /* Incrementar contador solo si la fila es visible */
-    counter-increment: fila;
+    /* Contador CSS desactivado - JavaScript maneja la numeración */
+    /* counter-increment: fila; */
 }
 
 .factura__fila:last-of-type {
@@ -102,11 +102,6 @@
     font-size: 12px;
     font-weight: 600;
     color: var(--color-texto-secundario);
-}
-
-/* Usar contador CSS para el número */
-.factura__fila-numero::before {
-    content: counter(fila);
 }
 
 /* Inputs dentro de las filas de factura */
@@ -128,6 +123,7 @@
     color: var(--color-egreso);
     background: rgba(255, 71, 87, 0.1);
     cursor: pointer;
+    border: none;
     border-radius: 6px;
     transition: all 0.2s ease;
     font-size: 14px;
@@ -375,48 +371,6 @@
 }
 
 /* ========================================================================== */
-/* ===== CHECKBOX HACK — AGREGAR Y ELIMINAR PRODUCTOS ======================= */
-/* ========================================================================== */
-
-.factura__toggle {
-    display: none;
-}
-
-.factura__fila--extra {
-    display: none;
-}
-
-/* Visibilidad de filas dinámicas */
-#agregar-2:checked~.factura__lista .factura__fila--extra-2,
-#agregar-3:checked~.factura__lista .factura__fila--extra-3 {
-    display: grid;
-}
-
-#agregar-4:checked~.factura__lista .factura__fila--extra-4,
-#agregar-5:checked~.factura__lista .factura__fila--extra-5,
-#agregar-6:checked~.factura__lista .factura__fila--extra-6,
-#agregar-7:checked~.factura__lista .factura__fila--extra-7,
-#agregar-8:checked~.factura__lista .factura__fila--extra-8,
-#agregar-9:checked~.factura__lista .factura__fila--extra-9,
-#agregar-10:checked~.factura__lista .factura__fila--extra-10 {
-    display: grid;
-}
-
-#editar-agregar-2:checked~.factura__lista .factura__fila--extra-e2,
-#editar-agregar-3:checked~.factura__lista .factura__fila--extra-e3 {
-    display: grid;
-}
-
-#editar-agregar-4:checked~.factura__lista .factura__fila--extra-e4,
-#editar-agregar-5:checked~.factura__lista .factura__fila--extra-e5,
-#editar-agregar-6:checked~.factura__lista .factura__fila--extra-e6,
-#editar-agregar-7:checked~.factura__lista .factura__fila--extra-e7,
-#editar-agregar-8:checked~.factura__lista .factura__fila--extra-e8,
-#editar-agregar-9:checked~.factura__lista .factura__fila--extra-e9,
-#editar-agregar-10:checked~.factura__lista .factura__fila--extra-e10 {
-    display: grid;
-}
-
 /* ===== CONTENEDOR DE BOTONES "AGREGAR" ==================================== */
 
 .factura__contenedor-agregar {
@@ -424,17 +378,14 @@
     background: var(--color-blanco);
 }
 
-/* ===== BOTONES "AGREGAR PRODUCTO" ========================================= */
+/* ===== BOTON "AGREGAR PRODUCTO" =========================================== */
 
 .factura__agregar-label {
-    display: none;
-}
-
-.factura__agregar-label--4 {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
+    width: 100%;
     padding: 10px 0;
     margin: 4px 0;
     font-size: 13px;
@@ -443,34 +394,7 @@
     cursor: pointer;
     border: 1px dashed var(--color-borde);
     border-radius: var(--radio-mediano);
-    transition: all 0.25s ease;
-    font-family: var(--fuente-principal);
-}
-
-.factura__agregar-label--5,
-.factura__agregar-label--6,
-.factura__agregar-label--7,
-.factura__agregar-label--8,
-.factura__agregar-label--9,
-.factura__agregar-label--10,
-.factura__agregar-label--e4,
-.factura__agregar-label--e5,
-.factura__agregar-label--e6,
-.factura__agregar-label--e7,
-.factura__agregar-label--e8,
-.factura__agregar-label--e9,
-.factura__agregar-label--e10 {
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 10px 0;
-    margin: 4px 0;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--color-texto-secundario);
-    cursor: pointer;
-    border: 1px dashed var(--color-borde);
-    border-radius: var(--radio-mediano);
+    background: transparent;
     transition: all 0.25s ease;
     font-family: var(--fuente-principal);
 }
@@ -479,120 +403,4 @@
     color: var(--color-principal);
     border-color: var(--color-principal);
     background: var(--color-fondo);
-}
-
-/* VISIBILIDAD DE BOTONES "AGREGAR" */
-
-/* Registrar Venta */
-.factura__agregar-label--4 {
-    display: flex;
-}
-
-#agregar-4:checked~.factura__contenedor-agregar .factura__agregar-label--4 {
-    display: none;
-}
-
-#agregar-4:checked~.factura__contenedor-agregar .factura__agregar-label--5 {
-    display: flex;
-}
-
-#agregar-5:checked~.factura__contenedor-agregar .factura__agregar-label--5 {
-    display: none;
-}
-
-#agregar-5:checked~.factura__contenedor-agregar .factura__agregar-label--6 {
-    display: flex;
-}
-
-#agregar-6:checked~.factura__contenedor-agregar .factura__agregar-label--6 {
-    display: none;
-}
-
-#agregar-6:checked~.factura__contenedor-agregar .factura__agregar-label--7 {
-    display: flex;
-}
-
-#agregar-7:checked~.factura__contenedor-agregar .factura__agregar-label--7 {
-    display: none;
-}
-
-#agregar-7:checked~.factura__contenedor-agregar .factura__agregar-label--8 {
-    display: flex;
-}
-
-#agregar-8:checked~.factura__contenedor-agregar .factura__agregar-label--8 {
-    display: none;
-}
-
-#agregar-8:checked~.factura__contenedor-agregar .factura__agregar-label--9 {
-    display: flex;
-}
-
-#agregar-9:checked~.factura__contenedor-agregar .factura__agregar-label--9 {
-    display: none;
-}
-
-#agregar-9:checked~.factura__contenedor-agregar .factura__agregar-label--10 {
-    display: flex;
-}
-
-#agregar-10:checked~.factura__contenedor-agregar .factura__agregar-label--10 {
-    display: none;
-}
-
-/* Editar Venta */
-.factura__agregar-label--e4 {
-    display: flex;
-}
-
-#editar-agregar-4:checked~.factura__contenedor-agregar .factura__agregar-label--e4 {
-    display: none;
-}
-
-#editar-agregar-4:checked~.factura__contenedor-agregar .factura__agregar-label--e5 {
-    display: flex;
-}
-
-#editar-agregar-5:checked~.factura__contenedor-agregar .factura__agregar-label--e5 {
-    display: none;
-}
-
-#editar-agregar-5:checked~.factura__contenedor-agregar .factura__agregar-label--e6 {
-    display: flex;
-}
-
-#editar-agregar-6:checked~.factura__contenedor-agregar .factura__agregar-label--e6 {
-    display: none;
-}
-
-#editar-agregar-6:checked~.factura__contenedor-agregar .factura__agregar-label--e7 {
-    display: flex;
-}
-
-#editar-agregar-7:checked~.factura__contenedor-agregar .factura__agregar-label--e7 {
-    display: none;
-}
-
-#editar-agregar-7:checked~.factura__contenedor-agregar .factura__agregar-label--e8 {
-    display: flex;
-}
-
-#editar-agregar-8:checked~.factura__contenedor-agregar .factura__agregar-label--e8 {
-    display: none;
-}
-
-#editar-agregar-8:checked~.factura__contenedor-agregar .factura__agregar-label--e9 {
-    display: flex;
-}
-
-#editar-agregar-9:checked~.factura__contenedor-agregar .factura__agregar-label--e9 {
-    display: none;
-}
-
-#editar-agregar-9:checked~.factura__contenedor-agregar .factura__agregar-label--e10 {
-    display: flex;
-}
-
-#editar-agregar-10:checked~.factura__contenedor-agregar .factura__agregar-label--e10 {
-    display: none;
 }

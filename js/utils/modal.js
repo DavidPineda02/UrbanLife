@@ -47,6 +47,9 @@ export function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (!modal) return;
 
+    /* Limpia estilos de validación de todos los inputs del modal */
+    limpiarValidacionesModal(modal);
+
     /* Remueve clase activa para ocultar el modal */
     modal.classList.remove('modal--activo');
 
@@ -61,12 +64,46 @@ export function closeModal(modalId) {
 }
 
 /* -------------------------------------------------------------------------- */
+/* ----- Limpiar Validaciones del Modal ------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Limpia todos los estilos de validación dentro de un modal.
+ * Remueve clases error/valid, estilos inline y mensajes de error.
+ * @param {HTMLElement} modal - Elemento modal a limpiar
+ */
+function limpiarValidacionesModal(modal) {
+    /* Limpiar inputs, selects y textareas */
+    modal.querySelectorAll('input, select, textarea').forEach(input => {
+        /* Remover clases de validación */
+        input.classList.remove('error', 'valid', 'shake');
+
+        /* Remover estilos inline de borde y animación */
+        input.style.borderColor = '';
+        input.style.animation = '';
+    });
+
+    /* Limpiar contenedores de grupo */
+    modal.querySelectorAll('.formulario__grupo').forEach(grupo => {
+        /* Remover clases de estado del grupo */
+        grupo.classList.remove('has-error', 'has-success');
+    });
+
+    /* Remover mensajes de error */
+    modal.querySelectorAll('.field-error').forEach(error => {
+        error.remove();
+    });
+}
+
+/* -------------------------------------------------------------------------- */
 /* ----- Cerrar Todos los Modales ------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
 export function closeAllModals() {
     const modalesActivos = document.querySelectorAll('.modal--activo');
     modalesActivos.forEach(modal => {
+        /* Limpia validaciones antes de cerrar */
+        limpiarValidacionesModal(modal);
         modal.classList.remove('modal--activo');
     });
     document.body.style.overflow = '';

@@ -102,8 +102,8 @@
                             <i class="fa-solid fa-gear"></i>
                         </div>
                         <div class="sidebar__enlace-info">
-                            <span class="sidebar__enlace-texto">David Pineda</span>
-                            <span class="sidebar__enlace-rol">Super Admin</span>
+                            <span class="sidebar__enlace-texto" id="sidebar-nombre-usuario">Cargando...</span>
+                            <span class="sidebar__enlace-rol" id="sidebar-rol-usuario"></span>
                         </div>
                         <i class="fa-solid fa-chevron-right sidebar__enlace-flecha"></i>
                     </a>
@@ -209,17 +209,6 @@
     <div class="modal" id="modal-productos-venta">
         <a href="#" class="modal__overlay" title="Cerrar"></a>
         <div class="modal__contenedor">
-            <!-- CHECKBOXES para revelar filas (rows 2-3 checked by default) -->
-            <input type="checkbox" id="agregar-2" class="factura__toggle" title="Agregar producto 2" checked>
-            <input type="checkbox" id="agregar-3" class="factura__toggle" title="Agregar producto 3" checked>
-            <input type="checkbox" id="agregar-4" class="factura__toggle" title="Agregar producto 4">
-            <input type="checkbox" id="agregar-5" class="factura__toggle" title="Agregar producto 5">
-            <input type="checkbox" id="agregar-6" class="factura__toggle" title="Agregar producto 6">
-            <input type="checkbox" id="agregar-7" class="factura__toggle" title="Agregar producto 7">
-            <input type="checkbox" id="agregar-8" class="factura__toggle" title="Agregar producto 8">
-            <input type="checkbox" id="agregar-9" class="factura__toggle" title="Agregar producto 9">
-            <input type="checkbox" id="agregar-10" class="factura__toggle" title="Agregar producto 10">
-
             <div class="modal__header">
                 <h2 class="modal__titulo">Productos de la Venta <span class="modal__paso">(2/2)</span></h2>
                 <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
@@ -237,7 +226,7 @@
                     <span class="factura__lista-th"></span>
                 </div>
 
-                <!-- Fila 1 (siempre visible, sin opcion eliminar) -->
+                <!-- Fila 1 (inicial, las demas se agregan dinamicamente desde ventas.js) -->
                 <div class="factura__fila">
                     <span class="factura__fila-numero"></span>
                     <select class="formulario__select" name="producto_1" title="Producto">
@@ -245,147 +234,18 @@
                         <!-- Opciones cargadas dinamicamente -->
                     </select>
                     <input type="number" class="formulario__input" name="cantidad_1" placeholder="0" title="Cantidad" min="1">
-                    <input type="number" class="formulario__input" name="precio_1" placeholder="$ 0" title="Precio Unitario" readonly>
+                    <input type="number" class="formulario__input" name="precio_1" placeholder="$ 0" title="Precio Unitario" min="1" step="any">
                     <span class="factura__eliminar factura__eliminar--disabled">
                         <i class="fa-solid fa-trash"></i>
                     </span>
                 </div>
-
-                <!-- Fila 2 (dynamic, checked default) -->
-                <div class="factura__fila factura__fila--extra factura__fila--extra-2">
-                    <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_2" title="Producto">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <input type="number" class="formulario__input" name="cantidad_2" placeholder="0" title="Cantidad" min="1">
-                    <input type="number" class="formulario__input" name="precio_2" placeholder="$ 0" title="Precio Unitario" readonly>
-                    <label for="agregar-2" class="factura__eliminar" title="Eliminar producto">
-                        <i class="fa-solid fa-trash"></i>
-                    </label>
-                </div>
-
-                <!-- Fila 3 (dynamic, checked default) -->
-                <div class="factura__fila factura__fila--extra factura__fila--extra-3">
-                    <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_3" title="Producto">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <input type="number" class="formulario__input" name="cantidad_3" placeholder="0" title="Cantidad" min="1">
-                    <input type="number" class="formulario__input" name="precio_3" placeholder="$ 0" title="Precio Unitario" readonly>
-                    <label for="agregar-3" class="factura__eliminar" title="Eliminar producto">
-                        <i class="fa-solid fa-trash"></i>
-                    </label>
-                </div>
-
-                <!-- Filas Extra (ocultas, controladas por checkboxes) -->
-                <div class="factura__fila factura__fila--extra factura__fila--extra-4">
-                    <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_4" title="Producto">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <input type="number" class="formulario__input" name="cantidad_4" placeholder="0" title="Cantidad" min="1">
-                    <input type="number" class="formulario__input" name="precio_4" placeholder="$ 0" title="Precio Unitario" readonly>
-                    <label for="agregar-4" class="factura__eliminar" title="Eliminar producto">
-                        <i class="fa-solid fa-trash"></i>
-                    </label>
-                </div>
-
-                <div class="factura__fila factura__fila--extra factura__fila--extra-5">
-                    <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_5" title="Producto">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <input type="number" class="formulario__input" name="cantidad_5" placeholder="0" title="Cantidad" min="1">
-                    <input type="number" class="formulario__input" name="precio_5" placeholder="$ 0" title="Precio Unitario" readonly>
-                    <label for="agregar-5" class="factura__eliminar" title="Eliminar producto">
-                        <i class="fa-solid fa-trash"></i>
-                    </label>
-                </div>
-
-                <div class="factura__fila factura__fila--extra factura__fila--extra-6">
-                    <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_6" title="Producto">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <input type="number" class="formulario__input" name="cantidad_6" placeholder="0" title="Cantidad" min="1">
-                    <input type="number" class="formulario__input" name="precio_6" placeholder="$ 0" title="Precio Unitario" readonly>
-                    <label for="agregar-6" class="factura__eliminar" title="Eliminar producto">
-                        <i class="fa-solid fa-trash"></i>
-                    </label>
-                </div>
-
-                <div class="factura__fila factura__fila--extra factura__fila--extra-7">
-                    <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_7" title="Producto">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <input type="number" class="formulario__input" name="cantidad_7" placeholder="0" title="Cantidad" min="1">
-                    <input type="number" class="formulario__input" name="precio_7" placeholder="$ 0" title="Precio Unitario" readonly>
-                    <label for="agregar-7" class="factura__eliminar" title="Eliminar producto">
-                        <i class="fa-solid fa-trash"></i>
-                    </label>
-                </div>
-
-                <div class="factura__fila factura__fila--extra factura__fila--extra-8">
-                    <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_8" title="Producto">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <input type="number" class="formulario__input" name="cantidad_8" placeholder="0" title="Cantidad" min="1">
-                    <input type="number" class="formulario__input" name="precio_8" placeholder="$ 0" title="Precio Unitario" readonly>
-                    <label for="agregar-8" class="factura__eliminar" title="Eliminar producto">
-                        <i class="fa-solid fa-trash"></i>
-                    </label>
-                </div>
-
-                <div class="factura__fila factura__fila--extra factura__fila--extra-9">
-                    <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_9" title="Producto">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <input type="number" class="formulario__input" name="cantidad_9" placeholder="0" title="Cantidad" min="1">
-                    <input type="number" class="formulario__input" name="precio_9" placeholder="$ 0" title="Precio Unitario" readonly>
-                    <label for="agregar-9" class="factura__eliminar" title="Eliminar producto">
-                        <i class="fa-solid fa-trash"></i>
-                    </label>
-                </div>
-
-                <div class="factura__fila factura__fila--extra factura__fila--extra-10">
-                    <span class="factura__fila-numero"></span>
-                    <select class="formulario__select" name="producto_10" title="Producto">
-                        <option value="">Seleccionar</option>
-                    </select>
-                    <input type="number" class="formulario__input" name="cantidad_10" placeholder="0" title="Cantidad" min="1">
-                    <input type="number" class="formulario__input" name="precio_10" placeholder="$ 0" title="Precio Unitario" readonly>
-                    <label for="agregar-10" class="factura__eliminar" title="Eliminar producto">
-                        <i class="fa-solid fa-trash"></i>
-                    </label>
-                </div>
             </div>
 
-            <!-- Botones "Agregar Producto" -->
+            <!-- Boton para agregar mas productos (sin limite) -->
             <div class="factura__contenedor-agregar">
-                <label for="agregar-4" class="factura__agregar-label factura__agregar-label--4">
+                <button type="button" id="btn-agregar-fila-venta" class="factura__agregar-label" title="Agregar producto">
                     <i class="fa-solid fa-plus"></i> Agregar producto
-                </label>
-                <label for="agregar-5" class="factura__agregar-label factura__agregar-label--5">
-                    <i class="fa-solid fa-plus"></i> Agregar producto
-                </label>
-                <label for="agregar-6" class="factura__agregar-label factura__agregar-label--6">
-                    <i class="fa-solid fa-plus"></i> Agregar producto
-                </label>
-                <label for="agregar-7" class="factura__agregar-label factura__agregar-label--7">
-                    <i class="fa-solid fa-plus"></i> Agregar producto
-                </label>
-                <label for="agregar-8" class="factura__agregar-label factura__agregar-label--8">
-                    <i class="fa-solid fa-plus"></i> Agregar producto
-                </label>
-                <label for="agregar-9" class="factura__agregar-label factura__agregar-label--9">
-                    <i class="fa-solid fa-plus"></i> Agregar producto
-                </label>
-                <label for="agregar-10" class="factura__agregar-label factura__agregar-label--10">
-                    <i class="fa-solid fa-plus"></i> Agregar producto
-                </label>
+                </button>
             </div>
 
             <!-- Total -->
