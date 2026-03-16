@@ -1,0 +1,102 @@
+<main class="tablero">
+    <header class="pagina-header">
+        <h1 class="pagina-header__titulo">Categorías</h1>
+        <div class="buscador">
+            <div class="buscador__campo">
+                <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                <input type="text" class="buscador__input" placeholder="Buscar por nombre...">
+            </div>
+            <div class="buscador__filtros">
+                <select class="buscador__select" name="filtro-estado" title="Filtrar por estado">
+                    <option value="">Estado</option>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+            </div>
+        </div>
+        <div class="pagina-header__acciones">
+            <a href="#" data-modal-open="modal-agregar-categoria" class="boton-accion boton-accion--primario" title="Agregar Categoría">
+                <i class="fa-solid fa-plus"></i>
+                Agregar Categoría
+            </a>
+        </div>
+    </header>
+
+    <section class="tabla__contenedor">
+        <table class="tabla">
+            <thead class="tabla__encabezado">
+                <tr>
+                    <th class="tabla__th">#</th>
+                    <th class="tabla__th">Nombre</th>
+                    <th class="tabla__th">Descripción</th>
+                    <th class="tabla__th">Estado</th>
+                    <th class="tabla__th">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="tabla__cuerpo">
+                <!-- Las filas se generan dinámicamente desde categorias.js -->
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<!-- Modal Agregar Categoría -->
+<div id="modal-agregar-categoria" class="modal">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Agregar Categoría</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <div class="modal__formulario">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="agregar-categoria-nombre">Nombre</label>
+                <input type="text" id="agregar-categoria-nombre" class="formulario__input" placeholder="Ej: Ropa" title="Nombre" maxlength="100" required data-validation="letras">
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="agregar-categoria-descripcion">Descripción</label>
+                <textarea id="agregar-categoria-descripcion" class="formulario__input formulario__textarea" placeholder="Describe brevemente la categoría..." title="Descripción" rows="3" maxlength="255"></textarea>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <a href="#" id="btn-guardar-categoria" class="boton-accion boton-accion--primario" title="Guardar">Guardar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar Categoría -->
+<div id="modal-editar-categoria" class="modal">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Editar Categoría</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <div class="modal__formulario">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-categoria-nombre">Nombre</label>
+                <input type="text" id="editar-categoria-nombre" class="formulario__input" title="Nombre" maxlength="100" required data-validation="letras">
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-categoria-descripcion">Descripción</label>
+                <textarea id="editar-categoria-descripcion" class="formulario__input formulario__textarea" title="Descripción" rows="3" maxlength="255"></textarea>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-categoria-estado">Estado</label>
+                <select id="editar-categoria-estado" class="formulario__select" title="Estado" required>
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <a href="#" id="btn-actualizar-categoria" class="boton-accion boton-accion--primario" title="Guardar cambios">Guardar</a>
+            </div>
+        </div>
+    </div>
+</div>

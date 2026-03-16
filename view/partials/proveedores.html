@@ -1,0 +1,139 @@
+<main class="tablero">
+    <header class="pagina-header">
+        <h1 class="pagina-header__titulo">Proveedores</h1>
+        <div class="buscador">
+            <div class="buscador__campo">
+                <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                <input type="text" class="buscador__input" placeholder="Buscar por nombre, NIT o razón social...">
+            </div>
+            <div class="buscador__filtros">
+                <select class="buscador__select" name="filtro-estado" title="Filtrar por estado">
+                    <option value="">Estado</option>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+            </div>
+        </div>
+        <div class="pagina-header__acciones">
+            <a href="#" data-modal-open="modal-agregar-proveedor" class="boton-accion boton-accion--primario" title="Agregar Proveedor">
+                <i class="fa-solid fa-plus"></i>
+                Agregar Proveedor
+            </a>
+        </div>
+    </header>
+
+    <section class="contactos__grid">
+        <!-- Las tarjetas se renderizan dinámicamente desde proveedores.js -->
+    </section>
+</main>
+
+<div id="modal-agregar-proveedor" class="modal">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Agregar Proveedor</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <div class="modal__formulario">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="agregar-proveedor-nombre">Nombre del Proveedor</label>
+                <input type="text" id="agregar-proveedor-nombre" class="formulario__input formulario__campo" data-validation="letras" placeholder="Ej: Carlos Martínez" title="Nombre del Proveedor">
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="agregar-proveedor-razon-social">Razón Social</label>
+                <input type="text" id="agregar-proveedor-razon-social" class="formulario__input formulario__campo" data-validation="texto" placeholder="Ej: Distribuidora Fashion S.A.S" title="Razón Social">
+            </div>
+            <div class="formulario__fila">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="agregar-proveedor-nit">NIT</label>
+                    <input type="text" id="agregar-proveedor-nit" class="formulario__input formulario__campo" data-validation="numerosEnteros" placeholder="Ej: 900123456-1" title="NIT">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="agregar-proveedor-correo">Correo Electrónico</label>
+                    <input type="email" id="agregar-proveedor-correo" class="formulario__input formulario__campo" data-validation="correo" placeholder="Ej: correo@empresa.com" title="Correo Electrónico">
+                </div>
+            </div>
+            <div class="formulario__fila">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="agregar-proveedor-telefono">Teléfono</label>
+                    <input type="tel" id="agregar-proveedor-telefono" class="formulario__input formulario__campo" data-validation="telefono" placeholder="Ej: 3001234567" title="Teléfono">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="agregar-proveedor-ciudad">Ciudad</label>
+                    <input type="text" id="agregar-proveedor-ciudad" class="formulario__input formulario__campo" data-validation="letras" placeholder="Ej: Bogotá" title="Ciudad">
+                </div>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="agregar-proveedor-direccion">Dirección</label>
+                <input type="text" id="agregar-proveedor-direccion" class="formulario__input formulario__campo" data-validation="texto" placeholder="Ej: Cra 45 #32-10" title="Dirección">
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-guardar-proveedor" class="boton-accion boton-accion--primario" title="Guardar Proveedor">
+                    Guardar Proveedor
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-editar-proveedor" class="modal">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Editar Proveedor</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <div class="modal__formulario">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-proveedor-nombre">Nombre del Proveedor</label>
+                <input type="text" id="editar-proveedor-nombre" class="formulario__input formulario__campo" data-validation="letras" title="Nombre del Proveedor">
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-proveedor-razon-social">Razón Social</label>
+                <input type="text" id="editar-proveedor-razon-social" class="formulario__input formulario__campo" data-validation="texto" title="Razón Social">
+            </div>
+            <div class="formulario__fila">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-proveedor-nit">NIT</label>
+                    <input type="text" id="editar-proveedor-nit" class="formulario__input formulario__campo" data-validation="numerosEnteros" title="NIT">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-proveedor-correo">Correo Electrónico</label>
+                    <input type="email" id="editar-proveedor-correo" class="formulario__input formulario__campo" data-validation="correo" title="Correo Electrónico">
+                </div>
+            </div>
+            <div class="formulario__fila">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-proveedor-telefono">Teléfono</label>
+                    <input type="tel" id="editar-proveedor-telefono" class="formulario__input formulario__campo" data-validation="telefono" title="Teléfono">
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-proveedor-ciudad">Ciudad</label>
+                    <input type="text" id="editar-proveedor-ciudad" class="formulario__input formulario__campo" data-validation="letras" title="Ciudad">
+                </div>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-proveedor-direccion">Dirección</label>
+                <input type="text" id="editar-proveedor-direccion" class="formulario__input formulario__campo" data-validation="texto" title="Dirección">
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-proveedor-estado">Estado</label>
+                <select id="editar-proveedor-estado" class="formulario__select" data-required title="Estado">
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-actualizar-proveedor" class="boton-accion boton-accion--primario" title="Actualizar Proveedor">
+                    Actualizar Proveedor
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

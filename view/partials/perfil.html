@@ -1,0 +1,281 @@
+<main class="tablero">
+    <header class="pagina-header">
+        <h1 class="pagina-header__titulo">Mi Perfil</h1>
+        <div class="pagina-header__acciones">
+            <a href="#" id="btn-cerrar-sesion" class="boton-accion boton-accion--primario" title="Cerrar sesión">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Cerrar Sesión</span>
+            </a>
+        </div>
+    </header>
+
+    <section class="perfil">
+        <div class="perfil__header">
+            <div class="perfil__avatar">
+                <span class="perfil__iniciales" id="perfil-iniciales"></span>
+            </div>
+            <div class="perfil__info-principal">
+                <h2 class="perfil__nombre" id="perfil-nombre-completo">Cargando...</h2>
+                <p class="perfil__rol" id="perfil-rol">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span id="perfil-rol-texto"></span>
+                </p>
+            </div>
+            <span class="perfil__badge perfil__badge--activo">Activo</span>
+        </div>
+
+        <div class="perfil__contenido">
+            <div class="perfil__seccion">
+                <div class="perfil__seccion-header">
+                    <h3 class="perfil__seccion-titulo">
+                        <i class="fa-solid fa-user"></i>
+                        Información Personal
+                    </h3>
+                    <a href="#" data-modal-open="modal-editar-personal" class="perfil__seccion-editar" title="Editar información personal">
+                        <i class="fa-solid fa-pen"></i>
+                        Editar
+                    </a>
+                </div>
+                <div class="perfil__campos">
+                    <div class="perfil__campo">
+                        <span class="perfil__campo-etiqueta">Nombre</span>
+                        <span class="perfil__campo-valor" id="perfil-nombre"></span>
+                    </div>
+                    <div class="perfil__campo">
+                        <span class="perfil__campo-etiqueta">Apellido</span>
+                        <span class="perfil__campo-valor" id="perfil-apellido"></span>
+                    </div>
+                    <div class="perfil__campo">
+                        <span class="perfil__campo-etiqueta">Correo Principal</span>
+                        <span class="perfil__campo-valor" id="perfil-correo"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="perfil__seccion">
+                <div class="perfil__seccion-header">
+                    <h3 class="perfil__seccion-titulo">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Seguridad y Acceso
+                    </h3>
+                </div>
+                <div class="perfil__campos">
+                    <div class="perfil__campo" id="campo-metodo-google" style="display:none;">
+                        <span class="perfil__campo-etiqueta">Método de acceso</span>
+                        <span class="perfil__campo-valor">
+                            <i class="fa-brands fa-google"></i>
+                            Google
+                        </span>
+                    </div>
+
+                    <div class="perfil__campo" id="campo-metodo-contrasena" style="display:none;">
+                        <span class="perfil__campo-etiqueta">Método de acceso</span>
+                        <span class="perfil__campo-valor">
+                            <i class="fa-solid fa-lock"></i>
+                            Correo y contraseña
+                        </span>
+                    </div>
+
+                    <div class="perfil__campo perfil__campo--contrasena" id="campo-cambiar-contrasena" style="display:none;">
+                        <div class="perfil__campo-info">
+                            <span class="perfil__campo-etiqueta">Contraseña</span>
+                            <span class="perfil__campo-valor">••••••••</span>
+                        </div>
+                        <a href="#" data-modal-open="modal-cambiar-contrasena" class="perfil__campo-boton" title="Cambiar contraseña">
+                            <i class="fa-solid fa-key"></i>
+                            Cambiar
+                        </a>
+                    </div>
+
+                    <div class="perfil__campo perfil__campo--contrasena" id="campo-establecer-contrasena" style="display:none;">
+                        <div class="perfil__campo-info">
+                            <span class="perfil__campo-etiqueta">Contraseña</span>
+                            <span class="perfil__campo-valor">No establecida</span>
+                        </div>
+                        <a href="#" data-modal-open="modal-establecer-contrasena" class="perfil__campo-boton" title="Establecer contraseña">
+                            <i class="fa-solid fa-plus"></i>
+                            Establecer
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="perfil__seccion">
+                <div class="perfil__seccion-header">
+                    <h3 class="perfil__seccion-titulo">
+                        <i class="fa-solid fa-envelope"></i>
+                        Correos Adicionales
+                    </h3>
+                    <a href="#" data-modal-open="modal-agregar-correo" class="perfil__seccion-agregar" title="Agregar correo adicional">
+                        <i class="fa-solid fa-plus"></i>
+                        Agregar
+                    </a>
+                </div>
+                <div class="perfil__lista" id="lista-correos"></div>
+            </div>
+
+            <div class="perfil__seccion">
+                <div class="perfil__seccion-header">
+                    <h3 class="perfil__seccion-titulo">
+                        <i class="fa-solid fa-phone"></i>
+                        Teléfonos Adicionales
+                    </h3>
+                    <a href="#" data-modal-open="modal-agregar-telefono" class="perfil__seccion-agregar" title="Agregar teléfono adicional">
+                        <i class="fa-solid fa-plus"></i>
+                        Agregar
+                    </a>
+                </div>
+                <div class="perfil__lista" id="lista-telefonos"></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="modal" id="modal-editar-personal">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Editar Información Personal</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <form class="modal__formulario" id="form-editar-personal">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-nombre">Nombre</label>
+                <input type="text" class="formulario__input formulario__campo" id="editar-nombre" name="nombre" title="Nombre" data-validation="letras" required>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-apellido">Apellido</label>
+                <input type="text" class="formulario__input formulario__campo" id="editar-apellido" name="apellido" title="Apellido" data-validation="letras" required>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-correo">Correo Principal</label>
+                <input type="email" class="formulario__input formulario__campo" id="editar-correo" name="correo"
+                    title="Correo Principal" data-validation="correo" required>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-guardar-personal" class="boton-accion boton-accion--primario" title="Guardar cambios">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="modal-establecer-contrasena">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Establecer Contraseña</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <form class="modal__formulario" id="form-establecer-contrasena">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="establecer-contrasena">Nueva Contraseña</label>
+                <input type="password" class="formulario__input formulario__campo" id="establecer-contrasena" name="contrasena_nueva"
+                    placeholder="Mínimo 8 caracteres" title="Nueva Contraseña" data-validation="texto" required>
+            </div>
+            <div class="fuerza-password" id="fuerza-password-establecer" style="display:none">
+                <div class="fuerza-password__barra">
+                    <div class="fuerza-password__progreso"></div>
+                </div>
+                <span class="fuerza-password__texto"></span>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="establecer-contrasena-confirmar">Confirmar Contraseña</label>
+                <input type="password" class="formulario__input formulario__campo" id="establecer-contrasena-confirmar" name="contrasena_confirmar"
+                    placeholder="Repite la contraseña" title="Confirmar Contraseña" data-validation="texto" required>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-establecer-contrasena" class="boton-accion boton-accion--primario" title="Establecer contraseña">Establecer</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="modal-cambiar-contrasena">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Cambiar Contraseña</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <form class="modal__formulario" id="form-cambiar-contrasena">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="cambiar-contrasena-actual">Contraseña Actual</label>
+                <input type="password" class="formulario__input formulario__campo" id="cambiar-contrasena-actual" name="contrasena_actual"
+                    placeholder="Ingresa tu contraseña actual" title="Contraseña Actual" data-validation="texto" required>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="cambiar-contrasena-nueva">Nueva Contraseña</label>
+                <input type="password" class="formulario__input formulario__campo" id="cambiar-contrasena-nueva" name="contrasena_nueva"
+                    placeholder="Mínimo 8 caracteres" title="Nueva Contraseña" data-validation="texto" required>
+            </div>
+            <div class="fuerza-password" id="fuerza-password-cambiar" style="display:none">
+                <div class="fuerza-password__barra">
+                    <div class="fuerza-password__progreso"></div>
+                </div>
+                <span class="fuerza-password__texto"></span>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="cambiar-contrasena-confirmar">Confirmar Nueva Contraseña</label>
+                <input type="password" class="formulario__input formulario__campo" id="cambiar-contrasena-confirmar" name="contrasena_confirmar"
+                    placeholder="Repite la nueva contraseña" title="Confirmar Nueva Contraseña" data-validation="texto" required>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-cambiar-contrasena" class="boton-accion boton-accion--primario" title="Cambiar contraseña">Cambiar Contraseña</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="modal-agregar-correo">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Agregar Correo</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <form class="modal__formulario" id="form-agregar-correo">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="agregar-correo">Correo Electrónico</label>
+                <input type="email" class="formulario__input formulario__campo" id="agregar-correo" name="correo" placeholder="ejemplo@correo.com"
+                    title="Correo Electrónico" data-validation="correo" required>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-agregar-correo" class="boton-accion boton-accion--primario" title="Agregar">Agregar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="modal-agregar-telefono">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Agregar Teléfono</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <form class="modal__formulario" id="form-agregar-telefono">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="agregar-telefono">Número de Teléfono</label>
+                <input type="tel" class="formulario__input formulario__campo" id="agregar-telefono" name="telefono" placeholder="3001234567" title="Número de Teléfono" data-validation="telefono" required>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-agregar-telefono" class="boton-accion boton-accion--primario" title="Agregar">Agregar</button>
+            </div>
+        </form>
+    </div>
+</div>

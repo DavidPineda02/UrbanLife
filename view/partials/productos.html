@@ -1,0 +1,179 @@
+<main class="tablero">
+    <header class="pagina-header">
+        <h1 class="pagina-header__titulo">Productos</h1>
+        <div class="buscador">
+            <div class="buscador__campo">
+                <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                <input type="text" class="buscador__input" placeholder="Buscar producto por nombre...">
+            </div>
+            <div class="buscador__filtros">
+                <select class="buscador__select" name="filtro-categoria" title="Filtrar por categoria">
+                    <option value="">Categoria</option>
+                    <!-- Las opciones se cargan dinamicamente desde productos.js -->
+                </select>
+                <select class="buscador__select" name="filtro-estado" title="Filtrar por estado">
+                    <option value="">Estado</option>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+                <select class="buscador__select" name="filtro-stock" title="Filtrar por stock">
+                    <option value="">Stock</option>
+                    <option value="disponible">En stock</option>
+                    <option value="bajo">Stock bajo</option>
+                    <option value="agotado">Agotado</option>
+                </select>
+            </div>
+        </div>
+        <div class="pagina-header__acciones">
+            <a href="#" data-modal-open="modal-producto" class="boton-accion boton-accion--primario" title="Agregar Producto">
+                <i class="fa-solid fa-plus"></i>
+                <span>Agregar Producto</span>
+            </a>
+        </div>
+    </header>
+
+    <section class="productos__grid">
+        <!-- Las tarjetas se renderizan dinamicamente desde productos.js -->
+    </section>
+</main>
+
+<!-- Modal Agregar Producto -->
+<div class="modal" id="modal-producto">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Agregar Producto</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <div class="modal__formulario">
+            <div class="formulario__fila">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="agregar-producto-nombre">Nombre</label>
+                    <input type="text" id="agregar-producto-nombre" class="formulario__input formulario__campo"
+                        placeholder="Nombre del producto" title="Nombre" data-validation="letras" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="agregar-producto-categoria">Categoria</label>
+                    <select id="agregar-producto-categoria" class="formulario__select formulario__campo" title="Categoria" data-required>
+                        <option value="">Seleccionar</option>
+                        <!-- Las opciones se cargan dinamicamente desde productos.js -->
+                    </select>
+                </div>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="agregar-producto-descripcion">Descripcion</label>
+                <textarea id="agregar-producto-descripcion" class="formulario__textarea formulario__campo"
+                    placeholder="Descripcion del producto" title="Descripcion" rows="2" data-validation="descripcion"></textarea>
+            </div>
+            <div class="formulario__fila">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="agregar-producto-precio">Precio Venta</label>
+                    <input type="number" id="agregar-producto-precio" class="formulario__input formulario__campo"
+                        placeholder="$ 0" title="Precio Venta" data-validation="numeros" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="agregar-producto-costo">Costo Promedio</label>
+                    <input type="number" id="agregar-producto-costo" class="formulario__input formulario__campo"
+                        placeholder="$ 0" title="Costo Promedio" data-validation="numeros">
+                </div>
+            </div>
+            <div class="formulario__fila">
+                <div class="formulario__grupo formulario__grupo--pequeno">
+                    <label class="formulario__label" for="agregar-producto-stock">Stock</label>
+                    <input type="number" id="agregar-producto-stock" class="formulario__input formulario__campo"
+                        placeholder="0" title="Stock" data-validation="enteros" required>
+                </div>
+                <div class="formulario__grupo formulario__grupo--grande">
+                    <label class="formulario__label">Imagen</label>
+                    <label class="formulario__archivo" title="Seleccionar imagen">
+                        <i class="fa-solid fa-paperclip"></i>
+                        <span class="formulario__archivo-texto">Seleccionar imagen...</span>
+                        <input type="file" id="agregar-producto-imagen" accept="image/*">
+                    </label>
+                </div>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-guardar-producto" class="boton-accion boton-accion--primario" title="Guardar Producto">
+                    Guardar Producto
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar Producto -->
+<div class="modal" id="modal-editar-producto">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Editar Producto</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <div class="modal__formulario">
+            <div class="formulario__fila">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-producto-nombre">Nombre</label>
+                    <input type="text" id="editar-producto-nombre" class="formulario__input formulario__campo"
+                        title="Nombre" data-validation="letras" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-producto-categoria">Categoria</label>
+                    <select id="editar-producto-categoria" class="formulario__select formulario__campo" title="Categoria" data-required>
+                        <option value="">Seleccionar</option>
+                        <!-- Las opciones se cargan dinamicamente desde productos.js -->
+                    </select>
+                </div>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-producto-descripcion">Descripcion</label>
+                <textarea id="editar-producto-descripcion" class="formulario__textarea formulario__campo"
+                    title="Descripcion" rows="2" data-validation="descripcion"></textarea>
+            </div>
+            <div class="formulario__fila">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-producto-precio">Precio Venta</label>
+                    <input type="number" id="editar-producto-precio" class="formulario__input formulario__campo"
+                        title="Precio Venta" data-validation="numeros" required>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-producto-costo">Costo Promedio</label>
+                    <input type="number" id="editar-producto-costo" class="formulario__input formulario__campo"
+                        title="Costo Promedio" data-validation="numeros">
+                </div>
+            </div>
+            <div class="formulario__fila">
+                <div class="formulario__grupo formulario__grupo--pequeno">
+                    <label class="formulario__label" for="editar-producto-stock">Stock</label>
+                    <input type="number" id="editar-producto-stock" class="formulario__input formulario__campo"
+                        title="Stock" data-validation="enteros" required>
+                </div>
+                <div class="formulario__grupo formulario__grupo--grande">
+                    <label class="formulario__label">Imagen</label>
+                    <label class="formulario__archivo" title="Seleccionar imagen">
+                        <i class="fa-solid fa-paperclip"></i>
+                        <span class="formulario__archivo-texto">Seleccionar imagen...</span>
+                        <input type="file" id="editar-producto-imagen" accept="image/*">
+                    </label>
+                </div>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-producto-estado">Estado</label>
+                <select id="editar-producto-estado" class="formulario__select formulario__campo" title="Estado" data-required>
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-actualizar-producto" class="boton-accion boton-accion--primario" title="Actualizar Producto">
+                    Actualizar Producto
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

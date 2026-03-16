@@ -1,0 +1,157 @@
+<main class="tablero">
+    <section class="tablero__tarjetas">
+        <div class="tarjeta tarjeta--ingreso">
+            <div class="tarjeta__header">
+                <div class="tarjeta__icono tarjeta__icono--ingreso">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+            </div>
+            <div class="tarjeta__cuerpo">
+                <h3 class="tarjeta__titulo">Ventas del dia</h3>
+                <p class="tarjeta__valor" id="tarjeta-ventas-valor">Cargando...</p>
+            </div>
+        </div>
+
+        <div class="tarjeta tarjeta--egreso">
+            <div class="tarjeta__header">
+                <div class="tarjeta__icono tarjeta__icono--egreso">
+                    <i class="fa-solid fa-arrow-trend-down"></i>
+                </div>
+            </div>
+            <div class="tarjeta__cuerpo">
+                <h3 class="tarjeta__titulo">Egresos del dia</h3>
+                <p class="tarjeta__valor" id="tarjeta-egresos-valor">Cargando...</p>
+            </div>
+        </div>
+
+        <div class="tarjeta tarjeta--ganancia">
+            <div class="tarjeta__header">
+                <div class="tarjeta__icono tarjeta__icono--ganancia">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                </div>
+            </div>
+            <div class="tarjeta__cuerpo">
+                <h3 class="tarjeta__titulo">Ganancias del mes</h3>
+                <p class="tarjeta__valor" id="tarjeta-ganancias-valor">Cargando...</p>
+            </div>
+        </div>
+
+        <div class="tarjeta tarjeta--info">
+            <div class="tarjeta__header">
+                <div class="tarjeta__icono tarjeta__icono--info">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+            </div>
+            <div class="tarjeta__cuerpo">
+                <h3 class="tarjeta__titulo">Productos activos</h3>
+                <p class="tarjeta__valor" id="tarjeta-productos-valor">---</p>
+            </div>
+        </div>
+    </section>
+    <section class="tablero__graficos">
+
+        <div class="grafico grafico--barras">
+            <h3 class="grafico__titulo">Ventas por Semana</h3>
+
+            <div class="barras__contenedor">
+                <div class="barras__eje-y">
+                    <span class="barras__eje-etiqueta">500</span>
+                    <span class="barras__eje-etiqueta">400</span>
+                    <span class="barras__eje-etiqueta">300</span>
+                    <span class="barras__eje-etiqueta">200</span>
+                    <span class="barras__eje-etiqueta">100</span>
+                    <span class="barras__eje-etiqueta">0</span>
+                </div>
+
+                <div class="barras__area">
+                    <div class="barras__cuadricula">
+                        <div class="barras__cuadricula-linea"></div>
+                        <div class="barras__cuadricula-linea"></div>
+                        <div class="barras__cuadricula-linea"></div>
+                        <div class="barras__cuadricula-linea"></div>
+                        <div class="barras__cuadricula-linea"></div>
+                    </div>
+
+                    <div class="barras">
+                        <!-- Las barras se renderizan dinamicamente desde home.js -->
+                    </div>
+
+                    <div class="barras__eje-x">
+                        <!-- Los dias se renderizan dinamicamente desde home.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grafico grafico--agrupado">
+            <h3 class="grafico__titulo">Resumen Semanal</h3>
+
+            <div class="resumen-semanal">
+                <div class="resumen-semanal__elemento">
+                    <div class="resumen-semanal__header">
+                        <span class="resumen-semanal__punto resumen-semanal__punto--ingreso"></span>
+                        <span class="resumen-semanal__etiqueta">Ingresos</span>
+                    </div>
+                    <div class="resumen-semanal__barra-contenedor">
+                        <div class="resumen-semanal__barra resumen-semanal__barra--ingreso" data-ancho="0%">
+                            <span class="resumen-semanal__valor">Cargando...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resumen-semanal__elemento">
+                    <div class="resumen-semanal__header">
+                        <span class="resumen-semanal__punto resumen-semanal__punto--egreso"></span>
+                        <span class="resumen-semanal__etiqueta">Egresos</span>
+                    </div>
+                    <div class="resumen-semanal__barra-contenedor">
+                        <div class="resumen-semanal__barra resumen-semanal__barra--egreso" data-ancho="0%">
+                            <span class="resumen-semanal__valor">Cargando...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resumen-semanal__elemento">
+                    <div class="resumen-semanal__header">
+                        <span class="resumen-semanal__punto resumen-semanal__punto--ganancia"></span>
+                        <span class="resumen-semanal__etiqueta">Ganancias</span>
+                    </div>
+                    <div class="resumen-semanal__barra-contenedor">
+                        <div class="resumen-semanal__barra resumen-semanal__barra--ganancia" data-ancho="0%">
+                            <span class="resumen-semanal__valor">Cargando...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grafico grafico--pastel">
+            <h3 class="grafico__titulo">Stock por Categoría</h3>
+
+            <div class="pastel__contenedor">
+                <div class="pastel-dona">
+                    <div class="pastel-dona__centro">
+                        <span class="pastel-dona__total-etiqueta">Total</span>
+                        <span class="pastel-dona__total-valor">---</span>
+                        <span class="pastel-dona__total-unidad">productos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pastel-leyenda">
+                <!-- La leyenda se renderiza dinamicamente desde home.js -->
+            </div>
+        </div>
+
+        <div class="grafico grafico--margen">
+            <h3 class="grafico__titulo">Productos Más Rentables</h3>
+            <p class="grafico__subtitulo">Top Margen de Ganancia</p>
+
+            <div class="margen__lista">
+                <!-- Los productos rentables se renderizan dinamicamente desde home.js -->
+            </div>
+        </div>
+
+    </section>
+
+</main>

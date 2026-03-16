@@ -1,0 +1,184 @@
+<main class="tablero">
+    <header class="pagina-header">
+        <h1 class="pagina-header__titulo">Compras</h1>
+        <div class="buscador">
+            <div class="buscador__campo">
+                <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                <input type="text" class="buscador__input" placeholder="Buscar por proveedor o ID de compra...">
+            </div>
+            <div class="buscador__filtros">
+                <select class="buscador__select" name="filtro-metodo" title="Filtrar por método de pago">
+                    <option value="">Método de pago</option>
+                    <option value="Transferencia">Transferencia</option>
+                    <option value="Efectivo">Efectivo</option>
+                </select>
+                <select class="buscador__select" name="filtro-periodo" title="Filtrar por período">
+                    <option value="">Período</option>
+                    <option value="today">Hoy</option>
+                    <option value="week">Esta semana</option>
+                    <option value="month">Este mes</option>
+                    <option value="year">Este año</option>
+                </select>
+            </div>
+        </div>
+        <div class="pagina-header__acciones">
+            <a href="#" data-modal-open="modal-compra" class="boton-accion boton-accion--primario" title="Registrar Compra">
+                <i class="fa-solid fa-plus"></i>
+                <span>Registrar Compra</span>
+            </a>
+        </div>
+    </header>
+
+    <section class="ventas-contenido">
+        <div class="tabla__contenedor">
+            <table class="tabla">
+                <thead class="tabla__cabecera">
+                    <tr>
+                        <th class="tabla__th">ID</th>
+                        <th class="tabla__th">Fecha</th>
+                        <th class="tabla__th">Proveedor</th>
+                        <th class="tabla__th">Total</th>
+                        <th class="tabla__th">Método</th>
+                        <th class="tabla__th">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="tabla__cuerpo">
+                    <!-- Las filas se renderizan dinamicamente desde compras.js -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<!-- ===== PASO 1: REGISTRAR COMPRA — DATOS GENERALES ===== -->
+<div class="modal" id="modal-compra">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Registrar Compra <span class="modal__paso">(1/2)</span></h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <div class="modal__formulario">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="compra-proveedor">Proveedor</label>
+                <select id="compra-proveedor" class="formulario__select formulario__campo" data-required title="Proveedor">
+                    <option value="">Seleccionar proveedor</option>
+                </select>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="compra-fecha">Fecha</label>
+                <input type="date" id="compra-fecha" class="formulario__input formulario__campo" required title="Fecha">
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="compra-metodo-pago">Metodo de Pago</label>
+                <select id="compra-metodo-pago" class="formulario__select formulario__campo" data-required title="Metodo de Pago">
+                    <option value="">Seleccionar metodo</option>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Transferencia">Transferencia</option>
+                </select>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-siguiente-productos" class="factura__boton-siguiente" title="Siguiente paso">
+                    Agregar Productos
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PASO 2: REGISTRAR COMPRA — PRODUCTOS ===== -->
+<div class="modal" id="modal-productos-compra">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Productos de la Compra <span class="modal__paso">(2/2)</span></h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+
+        <div class="factura__lista">
+            <div class="factura__lista-header">
+                <span class="factura__lista-th">#</span>
+                <span class="factura__lista-th">Producto</span>
+                <span class="factura__lista-th">Cant.</span>
+                <span class="factura__lista-th">Costo Unit.</span>
+                <span class="factura__lista-th"></span>
+            </div>
+
+            <div class="factura__fila">
+                <span class="factura__fila-numero"></span>
+                <select class="formulario__select" name="producto_1" title="Producto">
+                    <option value="">Seleccionar</option>
+                </select>
+                <input type="number" class="formulario__input" name="cantidad_1" placeholder="0" title="Cantidad" min="1">
+                <input type="number" class="formulario__input" name="costo_1" placeholder="$ 0" title="Costo Unitario">
+                <span class="factura__eliminar factura__eliminar--disabled">
+                    <i class="fa-solid fa-trash"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="factura__contenedor-agregar">
+            <button type="button" id="btn-agregar-fila-compra" class="factura__agregar-label" title="Agregar producto">
+                <i class="fa-solid fa-plus"></i> Agregar producto
+            </button>
+        </div>
+
+        <div class="factura__total">
+            <span class="factura__total-label">Total Compra</span>
+            <span class="factura__total-valor">$ ---</span>
+        </div>
+
+        <div class="factura__acciones">
+            <button type="button" id="btn-volver-paso1" class="factura__boton-volver" title="Volver">
+                <i class="fa-solid fa-arrow-left"></i>
+                Volver
+            </button>
+            <button type="button" id="btn-guardar-compra" class="boton-accion boton-accion--primario" title="Guardar Compra">
+                Guardar Compra
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DETALLE DE COMPRA ===== -->
+<div class="modal modal--detalle" id="modal-detalle-compra">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Detalle de Compra</h2>
+            <span class="modal__subtitulo"></span>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+
+        <table class="factura__tabla">
+            <thead>
+                <tr class="factura__tabla-header">
+                    <th class="factura__tabla-th">Producto</th>
+                    <th class="factura__tabla-th">Cant.</th>
+                    <th class="factura__tabla-th">Costo Unit.</th>
+                    <th class="factura__tabla-th">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Las filas se renderizan dinamicamente desde compras.js -->
+            </tbody>
+        </table>
+
+        <div class="factura__total">
+            <span class="factura__total-label">Total</span>
+            <span class="factura__total-valor">$ ---</span>
+        </div>
+
+        <div class="factura__acciones factura__acciones--centrado">
+            <a href="#" class="factura__boton-volver" data-modal-close title="Volver">Volver</a>
+        </div>
+    </div>
+</div>

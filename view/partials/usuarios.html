@@ -1,0 +1,67 @@
+<main class="tablero">
+    <header class="pagina-header">
+        <h1 class="pagina-header__titulo">Usuarios</h1>
+        <div class="buscador">
+            <div class="buscador__campo">
+                <i class="fa-solid fa-magnifying-glass buscador__icono"></i>
+                <input type="text" class="buscador__input" placeholder="Buscar por nombre o correo...">
+            </div>
+            <div class="buscador__filtros">
+                <select class="buscador__select" name="filtro-rol" title="Filtrar por rol">
+                    <option value="">Rol</option>
+                    <option value="admin">Admin</option>
+                    <option value="empleado">Empleado</option>
+                </select>
+                <select class="buscador__select" name="filtro-estado" title="Filtrar por estado">
+                    <option value="">Estado</option>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <section class="contactos__grid">
+        <!-- Las tarjetas se renderizan dinámicamente desde usuarios.js -->
+    </section>
+</main>
+
+<!-- Modal Editar Usuario -->
+<div id="modal-editar-usuario" class="modal">
+    <a href="#" class="modal__overlay" title="Cerrar"></a>
+    <div class="modal__contenedor">
+        <div class="modal__header">
+            <h2 class="modal__titulo">Editar Usuario</h2>
+            <a href="#" class="modal__cerrar" data-modal-close title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <div class="modal__formulario">
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-usuario-nombre">Nombre</label>
+                <input type="text" id="editar-usuario-nombre" class="formulario__input formulario__campo" title="Nombre" data-validation="letras" required>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-usuario-apellido">Apellido</label>
+                <input type="text" id="editar-usuario-apellido" class="formulario__input formulario__campo" title="Apellido" data-validation="letras" required>
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-usuario-correo">Correo Electrónico</label>
+                <input type="email" id="editar-usuario-correo" class="formulario__input formulario__campo" title="Correo Electrónico">
+            </div>
+            <div class="formulario__grupo">
+                <label class="formulario__label" for="editar-usuario-estado">Estado</label>
+                <select id="editar-usuario-estado" class="formulario__select" title="Estado" data-required>
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+            </div>
+            <div class="formulario__acciones">
+                <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
+                <button type="button" id="btn-actualizar-usuario" class="boton-accion boton-accion--primario" title="Actualizar Usuario">
+                    Actualizar Usuario
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
