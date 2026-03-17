@@ -20,11 +20,18 @@
 /* ========================================================================== */
 
 const VALIDATION_RULES = {
-    // Validaciones para campos de texto (solo letras)
+    // Validaciones para campos de texto (solo letras, sin espacios)
     letras: {
+        pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$/,
+        message: 'Solo se permiten letras',
+        transform: (value) => value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ]/g, '')
+    },
+
+    // Validaciones para nombres completos (letras y espacios)
+    letrasEspacios: {
         pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
         message: 'Solo se permiten letras y espacios',
-        transform: (value) => value.trim()
+        transform: (value) => value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')
     },
     
     // Validaciones para campos numéricos
@@ -41,11 +48,25 @@ const VALIDATION_RULES = {
         transform: (value) => value.replace(/[^0-9]/g, '')
     },
     
-    // Validaciones para teléfonos
+    // Validaciones para NIT colombiano (9 dígitos, guión opcional, 1 dígito verificador)
+    nit: {
+        pattern: /^\d{0,9}-?\d{0,1}$/,
+        message: 'Formato: 9 dígitos y dígito verificador (ej: 900123456-1)',
+        transform: (value) => value.replace(/[^\d-]/g, ''),
+        validate: (value) => /^\d{9}-?\d{1}$/.test(value)
+    },
+
+    // Validaciones para teléfonos (7-10 dígitos colombianos)
     telefono: {
         pattern: /^[\d\s\-\(\)]+$/,
-        message: 'Formato de teléfono no válido',
-        transform: (value) => value.replace(/[^\d\s\-\(\)]/g, '')
+        message: 'El teléfono debe tener entre 7 y 10 dígitos',
+        transform: (value) => value.replace(/[^\d\s\-\(\)]/g, ''),
+        validate: (value) => {
+            // Extraer solo los dígitos para validar la cantidad
+            const soloDigitos = value.replace(/\D/g, '');
+            // Verificar que tenga entre 7 y 10 dígitos
+            return soloDigitos.length >= 7 && soloDigitos.length <= 10;
+        }
     },
     
     // Validaciones para correos
@@ -76,20 +97,19 @@ const VALIDATION_RULES = {
         message: 'La fecha no puede ser anterior a hoy',
         validate: (value) => {
             if (!value) return true; // Permitir vacío si no es requerido
-            
-            const fechaSeleccionada = new Date(value);
-            const fechaHoy = new Date();
-            const inicioAnio = new Date(fechaHoy.getFullYear(), 0, 1); // 1 de enero del año actual
-            const finAnio = new Date(fechaHoy.getFullYear(), 11, 31); // 31 de diciembre del año actual
-            
-            // Eliminar horas para comparar solo fechas
-            fechaSeleccionada.setHours(0, 0, 0, 0);
-            fechaHoy.setHours(0, 0, 0, 0);
-            inicioAnio.setHours(0, 0, 0, 0);
-            finAnio.setHours(0, 0, 0, 0);
-            
+
+            // Parsear la fecha seleccionada como componentes locales (evita desfase UTC)
+            const [anio, mes, dia] = value.split('-').map(Number);
+            const ahora = new Date();
+
+            // Comparar usando valores numéricos locales (YYYYMMDD) para evitar problemas de timezone
+            const fechaSelNum = anio * 10000 + mes * 100 + dia;
+            const fechaHoyNum = ahora.getFullYear() * 10000 + (ahora.getMonth() + 1) * 100 + ahora.getDate();
+            const inicioAnioNum = ahora.getFullYear() * 10000 + 101;  // 1 de enero del año actual
+            const finAnioNum = ahora.getFullYear() * 10000 + 1231;    // 31 de diciembre del año actual
+
             // Validar que no sea anterior a hoy y esté dentro del año actual
-            return fechaSeleccionada >= fechaHoy && fechaSeleccionada >= inicioAnio && fechaSeleccionada <= finAnio;
+            return fechaSelNum >= fechaHoyNum && fechaSelNum >= inicioAnioNum && fechaSelNum <= finAnioNum;
         }
     }
 };
@@ -244,8 +264,13 @@ function showFieldError(input, isValid, message) {
  * @param {HTMLElement} modal - Elemento modal
  */
 function applyModalValidations(modal) {
-    // Nombres y apellidos (solo letras)
-    modal.querySelectorAll('input[data-validation="letras"], input[id*="nombre"], input[id*="apellido"]').forEach(input => {
+    // Nombres completos con espacios (clientes y proveedores)
+    modal.querySelectorAll('input[data-validation="letrasEspacios"]').forEach(input => {
+        applyRealtimeValidation(input, 'letrasEspacios');
+    });
+
+    // Nombres y apellidos (solo letras, sin espacios)
+    modal.querySelectorAll('input[data-validation="letras"], input[id*="nombre"]:not([data-validation="letrasEspacios"]), input[id*="apellido"]').forEach(input => {
         applyRealtimeValidation(input, 'letras');
     });
     
@@ -259,6 +284,11 @@ function applyModalValidations(modal) {
         applyRealtimeValidation(input, 'numerosEnteros', { min: 0 });
     });
     
+    // NIT colombiano
+    modal.querySelectorAll('input[data-validation="nit"]').forEach(input => {
+        applyRealtimeValidation(input, 'nit');
+    });
+
     // Teléfonos
     modal.querySelectorAll('input[data-validation="telefono"], input[type="tel"], input[id*="telefono"]').forEach(input => {
         applyRealtimeValidation(input, 'telefono');
@@ -276,12 +306,17 @@ function applyModalValidations(modal) {
     
     // Fechas (no permiten días pasados)
     modal.querySelectorAll('input[type="date"], input[data-validation="fecha"], input[id*="fecha"]').forEach(input => {
-        // Establecer fecha mínima como hoy
-        const hoy = new Date().toISOString().split('T')[0];
+        // Obtener fecha local actual (evita desfase UTC de toISOString)
+        const ahora = new Date();
+        const anio = ahora.getFullYear();
+        const mes = String(ahora.getMonth() + 1).padStart(2, '0');
+        const dia = String(ahora.getDate()).padStart(2, '0');
+        // Establecer fecha mínima como hoy en formato local YYYY-MM-DD
+        const hoy = `${anio}-${mes}-${dia}`;
         input.setAttribute('min', hoy);
-        
+
         // Establecer fecha máxima como 31 de diciembre del año actual
-        const finAnio = new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0];
+        const finAnio = `${anio}-12-31`;
         input.setAttribute('max', finAnio);
         
         // Aplicar validación personalizada

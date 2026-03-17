@@ -104,8 +104,21 @@
             </a>
         </div>
 
-        <div class="modal__contenido">
-            <!-- Se renderiza dinámicamente desde gastos.js -->
+        <table class="factura__tabla">
+            <thead>
+                <tr class="factura__tabla-header">
+                    <th class="factura__tabla-th">Campo</th>
+                    <th class="factura__tabla-th">Detalle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Las filas se renderizan dinámicamente desde gastos.js -->
+            </tbody>
+        </table>
+
+        <div class="factura__total">
+            <span class="factura__total-label">Total</span>
+            <span class="factura__total-valor">$ ---</span>
         </div>
 
         <div class="factura__acciones factura__acciones--centrado">
