@@ -167,9 +167,6 @@
 }
 
 /* ----- ESTADOS ESPECÍFICOS POR TIPO DE VALIDACIÓN ------------------------ */
-.formulario__input[data-validation="letras"]:focus {
-    text-transform: uppercase;
-}
 
 .formulario__input[data-validation="correo"]:focus {
     text-transform: lowercase;

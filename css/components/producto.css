@@ -211,6 +211,58 @@
 }
 
 /* =============================== */
+/* ===== BADGE DE ESTADO ========= */
+/* =============================== */
+/* Indicador visual del estado activo/inactivo del producto */
+
+.producto__estado {
+    position: absolute;
+    /* Posición absoluta sobre la imagen */
+    top: 16px;
+    /* Distancia desde arriba */
+    right: 16px;
+    /* Distancia desde la derecha */
+    font-size: 11px;
+    /* Tamaño pequeño */
+    font-weight: 700;
+    /* Negrita para visibilidad */
+    padding: 6px 12px;
+    /* Espaciado interno */
+    border-radius: 6px;
+    /* Bordes redondeados */
+    z-index: 1;
+    /* Por encima de la imagen */
+    text-transform: uppercase;
+    /* Texto en mayúsculas */
+    letter-spacing: 0.5px;
+    /* Espaciado entre letras */
+    transition: opacity 0.3s ease;
+    /* Transición suave para ocultar en hover */
+}
+
+/* Ocultar badge de estado en hover para no tapar los botones de acción */
+.producto:hover .producto__estado {
+    opacity: 0;
+    /* Invisible cuando aparecen los botones de editar/eliminar */
+}
+
+.producto__estado--activo {
+    background: rgba(39, 174, 96, 0.9);
+    /* Fondo verde semitransparente */
+    color: var(--color-blanco);
+    /* Texto blanco */
+}
+
+.producto__estado--inactivo {
+    background: rgba(231, 76, 60, 0.9);
+    /* Fondo rojo semitransparente */
+    color: var(--color-blanco);
+    /* Texto blanco */
+}
+
+
+
+/* =============================== */
 /* ===== CONTENIDO DEL PRODUCTO === */
 /* =============================== */
 /* Área inferior con nombre, descripción y footer */
