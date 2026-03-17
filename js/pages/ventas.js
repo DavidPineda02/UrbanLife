@@ -492,7 +492,7 @@ function crearFilaProductoHTML(num, conEliminar) {
     return `
         <div class="factura__fila">
             <span class="factura__fila-numero"></span>
-            <select class="formulario__select" name="producto_${num}" title="Producto">
+            <select class="formulario__select" name="producto_${num}" title="Producto" data-required>
                 ${opciones}
             </select>
             <input type="number" class="formulario__input" name="cantidad_${num}" placeholder="0" title="Cantidad" min="1">
