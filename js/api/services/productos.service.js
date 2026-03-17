@@ -28,6 +28,8 @@
 import { get, post, put, patch, del } from '../client.js';
 // Importar las constantes de rutas del API
 import { ENDPOINTS } from '../endpoints.js';
+// Importar librería de compresión de imágenes en el navegador
+import imageCompression from 'browser-image-compression';
 
 /* -------------------------------------------------------------------------- */
 /* ----- Obtener Todos los Productos ---------------------------------------- */
@@ -169,22 +171,46 @@ export async function obtenerImagenesProducto(productoId) {
 /* ----- Subir Imagen de Producto ------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
+/** Opciones de compresión para reducir el tamaño de las imágenes antes de subirlas */
+const OPCIONES_COMPRESION = {
+    maxSizeMB: 1,           // Máximo 1MB después de comprimir
+    maxWidthOrHeight: 1024, // Redimensiona si supera 1024px en cualquier dimensión
+    useWebWorker: true,     // Usa Web Worker para no bloquear el hilo principal
+    fileType: 'image/jpeg', // Convierte todo a JPEG para mayor compatibilidad
+};
+
 /**
- * Sube una imagen en Base64 y la asocia a un producto.
+ * Comprime y sube una imagen asociándola a un producto.
+ * Comprime el archivo con browser-image-compression, lo convierte a Base64 y lo envía al backend.
  *
  * Request:  { base64: string, extension: string }
  * Response: { success: true, message: string, data: ImagenProducto }
  *
  * @param {number} productoId - ID del producto
- * @param {string} base64Data - Imagen codificada en Base64
- * @param {string} extension - Extensión del archivo (jpg, png, webp)
+ * @param {File} archivo - Archivo de imagen seleccionado desde el input
  * @returns {Promise<Object>} Respuesta del backend con la imagen creada
  * @throws {{ status: number, message: string }} Error HTTP
  */
-export async function subirImagenProducto(productoId, base64Data, extension) {
+export async function subirImagenProducto(productoId, archivo) {
+    /* Comprimir la imagen antes de convertirla a Base64 */
+    const archivoComprimido = await imageCompression(archivo, OPCIONES_COMPRESION);
+
+    /* Convertir el archivo comprimido a Base64 usando FileReader */
+    const base64Completo = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error('No se pudo leer el archivo'));
+        reader.readAsDataURL(archivoComprimido);
+    });
+
+    /* Extraer solo la parte Base64 (después de la coma del data URI) */
+    const base64 = base64Completo.split(',')[1];
+    /* Extraer la extensión del tipo MIME (ej: "image/jpeg" → "jpeg") */
+    const extension = archivoComprimido.type.split('/')[1] || 'jpg';
+
     /* Enviar POST con el base64 y extensión al endpoint de imágenes */
     const data = await post(`${ENDPOINTS.PRODUCTOS.IMAGEN}?id=${productoId}`, {
-        base64: base64Data,
+        base64,
         extension,
     });
 
