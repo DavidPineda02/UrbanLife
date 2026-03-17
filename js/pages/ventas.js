@@ -496,7 +496,7 @@ function crearFilaProductoHTML(num, conEliminar) {
                 ${opciones}
             </select>
             <input type="number" class="formulario__input" name="cantidad_${num}" placeholder="0" title="Cantidad" min="1">
-            <input type="number" class="formulario__input" name="precio_${num}" placeholder="$ 0" title="Precio Unitario" min="1" step="any">
+            <input type="number" class="formulario__input" name="precio_${num}" placeholder="$ 0" title="Precio de Venta" min="1" step="any" readonly>
             ${botonEliminar}
         </div>
     `;
@@ -613,6 +613,15 @@ function handleProductoChange(e) {
     /* Si se deseleccionó el producto, limpiar el precio */
     if (!productoId && precioInput) {
         precioInput.value = '';
+    }
+
+    /* Si se seleccionó un producto, auto-llenar el precio desde el catálogo */
+    if (productoId && precioInput) {
+        /* Buscar el producto seleccionado en el array de productos */
+        const producto = productos.find(p => p.idProducto === productoId);
+
+        /* Si se encontró el producto, asignar su precio de venta al input */
+        if (producto) precioInput.value = producto.precioVenta;
     }
 
     /* Recalcular el total con los nuevos valores */

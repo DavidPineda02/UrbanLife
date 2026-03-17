@@ -165,6 +165,9 @@ function renderizarGrid() {
         return coincideBusqueda && coincideRol && coincideEstado;
     });
 
+    /* Ordenar: activos primero, inactivos al final */
+    filtrados.sort((a, b) => b.estado - a.estado);
+
     /* Construir el HTML de todas las tarjetas filtradas */
     grid.innerHTML = filtrados.map(usr => {
         /* Determinar la clase CSS del badge según el estado */

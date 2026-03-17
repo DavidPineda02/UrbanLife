@@ -315,29 +315,29 @@ async function handleVerDetalle(id) {
             subtitulo.innerHTML = `${formatearFecha(gasto.fechaRegistro)} &bull; ${gasto.metodoPago}`;
         }
 
-        /* Mostrar información del gasto */
-        const contenido = modalDetalle.querySelector('.modal__contenido');
-        if (contenido) {
-            contenido.innerHTML = `
-                <div class="detalle__info">
-                    <div class="detalle__fila">
-                        <span class="detalle__label">Descripción:</span>
-                        <span class="detalle__valor">${gasto.descripcion}</span>
-                    </div>
-                    <div class="detalle__fila">
-                        <span class="detalle__label">Monto:</span>
-                        <span class="detalle__valor">${formatearPrecio(gasto.monto)}</span>
-                    </div>
-                    <div class="detalle__fila">
-                        <span class="detalle__label">Fecha:</span>
-                        <span class="detalle__valor">${formatearFecha(gasto.fechaRegistro)}</span>
-                    </div>
-                    <div class="detalle__fila">
-                        <span class="detalle__label">Método de Pago:</span>
-                        <span class="detalle__valor">${gasto.metodoPago}</span>
-                    </div>
-                </div>
+        /* Construir el HTML de la tabla de detalles */
+        const tableBody = modalDetalle.querySelector('.factura__tabla tbody');
+        if (tableBody) {
+            tableBody.innerHTML = `
+                <tr class="factura__tabla-fila">
+                    <td class="factura__tabla-td">Descripción</td>
+                    <td class="factura__tabla-td">${gasto.descripcion}</td>
+                </tr>
+                <tr class="factura__tabla-fila">
+                    <td class="factura__tabla-td">Fecha</td>
+                    <td class="factura__tabla-td">${formatearFecha(gasto.fechaRegistro)}</td>
+                </tr>
+                <tr class="factura__tabla-fila">
+                    <td class="factura__tabla-td">Método de Pago</td>
+                    <td class="factura__tabla-td">${gasto.metodoPago}</td>
+                </tr>
             `;
+        }
+
+        /* Actualizar el total del modal */
+        const totalEl = modalDetalle.querySelector('.factura__total-valor');
+        if (totalEl) {
+            totalEl.textContent = formatearPrecio(gasto.monto);
         }
 
         /* Abrir el modal de detalle */

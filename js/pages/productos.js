@@ -32,6 +32,7 @@ import {
     toggleEstadoProducto,                                                      // PATCH activar/desactivar
     obtenerImagenesProducto,                                                   // GET imágenes de un producto
     subirImagenProducto,                                                       // POST subir imagen base64
+    eliminarImagenProducto,                                                    // DELETE eliminar imagen por ID
 } from '../api/services/productos.service.js';
 
 // Importar función para cargar categorías desde el backend
@@ -103,9 +104,6 @@ let inputDescAgregar;
 /** Input del precio de venta en el modal de agregar */
 let inputPrecioAgregar;
 
-/** Input del costo promedio en el modal de agregar */
-let inputCostoAgregar;
-
 /** Input del stock en el modal de agregar */
 let inputStockAgregar;
 
@@ -134,9 +132,6 @@ let inputDescEditar;
 
 /** Input del precio de venta en el modal de editar */
 let inputPrecioEditar;
-
-/** Input del costo promedio en el modal de editar */
-let inputCostoEditar;
 
 /** Input del stock en el modal de editar */
 let inputStockEditar;
@@ -344,6 +339,9 @@ function renderizarGrid() {
         return coincideBusqueda && coincideCategoria && coincideEstado && coincideStock;
     });
 
+    /* Ordenar: productos activos primero, inactivos al final */
+    filtrados.sort((a, b) => b.estado - a.estado);
+
     /* Obtener el rol del usuario para condicionar botones de acción */
     const rolUsuario = obtenerRol();
 
@@ -372,11 +370,17 @@ function renderizarGrid() {
                         </button>
                     </div>` : '';
 
+        /* Generar badge de estado (visible solo si el producto está inactivo) */
+        const badgeEstado = !prod.estado
+            ? '<span class="producto__estado producto__estado--inactivo">Inactivo</span>'
+            : '<span class="producto__estado producto__estado--activo">Activo</span>';
+
         /* Retornar el HTML de la tarjeta con la misma estructura del diseño original */
         return `
-            <article class="producto">
+            <article class="producto${!prod.estado ? ' producto--inactivo' : ''}">
                 <div class="producto__imagen">
                     <span class="producto__categoria">${nombreCategoria}</span>
+                    ${badgeEstado}
                     ${botonesAccion}
                     <img src="${urlImagen}" alt="${prod.nombre}">
                 </div>
@@ -400,40 +404,6 @@ function renderizarGrid() {
             </div>
         `;
     }
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Convertir Archivo a Base64 ----------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Convierte un archivo de imagen a una cadena Base64.
- * @param {File} archivo - Archivo de imagen seleccionado
- * @returns {Promise<{ base64: string, extension: string }>} Base64 y extensión del archivo
- */
-function archivoABase64(archivo) {
-    return new Promise((resolve, reject) => {
-        /* Crear un FileReader para leer el archivo */
-        const reader = new FileReader();
-
-        /* Cuando la lectura termine, extraer el base64 */
-        reader.onload = () => {
-            /* El resultado tiene formato "data:image/png;base64,xxxxx" */
-            const base64Completo = reader.result;
-            /* Extraer solo la parte base64 (después de la coma) */
-            const base64 = base64Completo.split(',')[1];
-            /* Obtener la extensión del archivo */
-            const extension = archivo.name.split('.').pop().toLowerCase();
-            /* Resolver la promesa con el base64 y la extensión */
-            resolve({ base64, extension });
-        };
-
-        /* Si hay error en la lectura, rechazar la promesa */
-        reader.onerror = reject;
-
-        /* Iniciar la lectura del archivo como Data URL (base64) */
-        reader.readAsDataURL(archivo);
-    });
 }
 
 /* -------------------------------------------------------------------------- */
@@ -486,25 +456,22 @@ async function handleCrear(e) {
     const nombre = inputNombreAgregar.value.trim();                            // Nombre del producto
     const descripcion = inputDescAgregar.value.trim() || null;                 // Descripción (null si vacía)
     const precioVenta = parseFloat(inputPrecioAgregar.value);                  // Precio de venta
-    const costoPromedio = parseFloat(inputCostoAgregar.value) || 0;            // Costo promedio (0 si vacío)
     const stock = parseInt(inputStockAgregar.value);                           // Stock
     const categoriaId = parseInt(selectCategoriaAgregar.value);                // ID de la categoría
 
     try {
         /* Enviar petición POST al backend para crear el producto */
-        const respuesta = await crearProducto({ nombre, descripcion, precioVenta, costoPromedio, stock, categoriaId });
+        const respuesta = await crearProducto({ nombre, descripcion, precioVenta, stock, categoriaId });
 
         /* Si hay una imagen seleccionada, subirla al producto creado */
         if (inputImagenAgregar.files.length > 0) {
             /* Obtener el ID del producto recién creado */
             const nuevoProductoId = respuesta.data?.idProducto;
 
-            /* Si se obtuvo el ID, subir la imagen */
+            /* Si se obtuvo el ID, subir la imagen comprimida */
             if (nuevoProductoId) {
-                /* Convertir el archivo a base64 */
-                const { base64, extension } = await archivoABase64(inputImagenAgregar.files[0]);
-                /* Subir la imagen al backend */
-                await subirImagenProducto(nuevoProductoId, base64, extension);
+                /* Subir la imagen al backend (se comprime automáticamente en el service) */
+                await subirImagenProducto(nuevoProductoId, inputImagenAgregar.files[0]);
                 
                 /* ACTUALIZAR IMÁGENES: Recargar las imágenes para mostrar la nueva */
                 await cargarImagenes();
@@ -518,7 +485,6 @@ async function handleCrear(e) {
         inputNombreAgregar.value = '';
         inputDescAgregar.value = '';
         inputPrecioAgregar.value = '';
-        inputCostoAgregar.value = '';
         inputStockAgregar.value = '';
         selectCategoriaAgregar.value = '';
         inputImagenAgregar.value = '';
@@ -562,7 +528,6 @@ function abrirModalEditar(id) {
     selectCategoriaEditar.value = String(prod.categoriaId);                     // Categoría actual
     inputDescEditar.value = prod.descripcion || '';                             // Descripción actual
     inputPrecioEditar.value = prod.precioVenta;                                // Precio actual
-    inputCostoEditar.value = prod.costoPromedio;                                // Costo actual
     inputStockEditar.value = prod.stock;                                       // Stock actual
     selectEstadoEditar.value = String(prod.estado);                            // Estado actual
     inputImagenEditar.value = '';                                              // Resetear input de imagen
@@ -629,7 +594,6 @@ async function handleActualizar(e) {
     const nombre = inputNombreEditar.value.trim();                             // Nombre actualizado
     const descripcion = inputDescEditar.value.trim() || null;                  // Descripción actualizada
     const precioVenta = parseFloat(inputPrecioEditar.value);                   // Precio actualizado
-    const costoPromedio = parseFloat(inputCostoEditar.value) || 0;             // Costo actualizado
     const stock = parseInt(inputStockEditar.value);                            // Stock actualizado
     const estado = selectEstadoEditar.value === 'true';                        // Estado actualizado
     const categoriaId = parseInt(selectCategoriaEditar.value);                 // Categoría actualizada
@@ -637,16 +601,20 @@ async function handleActualizar(e) {
     try {
         /* Enviar petición PUT al backend para actualizar el producto */
         const respuesta = await actualizarProducto(productoEditandoId, {
-            nombre, descripcion, precioVenta, costoPromedio, stock, estado, categoriaId,
+            nombre, descripcion, precioVenta, stock, estado, categoriaId,
         });
 
-        /* Si hay una imagen seleccionada, subirla al producto */
+        /* Si hay una imagen seleccionada, eliminar la anterior y subir la nueva */
         if (inputImagenEditar.files.length > 0) {
-            /* Convertir el archivo a base64 */
-            const { base64, extension } = await archivoABase64(inputImagenEditar.files[0]);
-            /* Subir la imagen al backend */
-            await subirImagenProducto(productoEditandoId, base64, extension);
-            
+            /* Obtener las imágenes actuales del producto para eliminarlas */
+            const imagenesActuales = await obtenerImagenesProducto(productoEditandoId);
+            /* Eliminar cada imagen existente antes de subir la nueva */
+            for (const img of imagenesActuales) {
+                await eliminarImagenProducto(img.id);
+            }
+            /* Subir la nueva imagen al backend (se comprime automáticamente en el service) */
+            await subirImagenProducto(productoEditandoId, inputImagenEditar.files[0]);
+
             /* ACTUALIZAR IMÁGENES: Recargar las imágenes para mostrar la nueva */
             await cargarImagenes();
         }
@@ -815,9 +783,6 @@ export async function inicializar() {
     /* Input del precio de venta en el modal de agregar */
     inputPrecioAgregar = document.getElementById('agregar-producto-precio');
 
-    /* Input del costo promedio en el modal de agregar */
-    inputCostoAgregar = document.getElementById('agregar-producto-costo');
-
     /* Input del stock en el modal de agregar */
     inputStockAgregar = document.getElementById('agregar-producto-stock');
 
@@ -844,9 +809,6 @@ export async function inicializar() {
 
     /* Input del precio de venta en el modal de editar */
     inputPrecioEditar = document.getElementById('editar-producto-precio');
-
-    /* Input del costo promedio en el modal de editar */
-    inputCostoEditar = document.getElementById('editar-producto-costo');
 
     /* Input del stock en el modal de editar */
     inputStockEditar = document.getElementById('editar-producto-stock');
