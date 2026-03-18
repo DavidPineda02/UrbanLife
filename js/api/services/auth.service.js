@@ -72,15 +72,6 @@ export async function register(nombre, apellido, correo, contrasena) {
         throw { status: data.status ?? 400, message: data.message || 'Error al registrar usuario' };
     }
 
-    /* Auto-login: guardar sesión igual que en login */
-    guardarSesion(data.token, {
-        userId:   data.userId,      // ← Agregado el ID del usuario
-        nombre:   data.nombre,
-        apellido: data.apellido,
-        correo:   data.correo,
-        rol:      data.rol,
-    });
-
     return data;
 }
 
