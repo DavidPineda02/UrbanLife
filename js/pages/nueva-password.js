@@ -98,8 +98,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     /* Activar validación visual en tiempo real */
     initValidacionVisual(form, {
-        '#password':         { regex: PASSWORD_REGEX }, // Contraseña: validar con regex
-        '#confirm-password': { match: '#password' },    // Confirmación: debe coincidir
+        '#password':         { regex: PASSWORD_REGEX, hint: '8-20 caracteres, una mayúscula, una minúscula y un número.', errorMsg: '8-20 caracteres, una mayúscula, una minúscula y un número' },
+        '#confirm-password': { match: '#password', hint: 'Debe coincidir con la contraseña.', matchMsg: 'Las contraseñas no coinciden' },
     });
 
     /* ----- Bloquear espacios en ambos campos de contraseña ----- */

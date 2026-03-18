@@ -134,14 +134,11 @@ function inicializarValidaciones() {
     if (formEditarPersonal) {
         // Activar validación visual en tiempo real
         initValidacionVisual(formEditarPersonal, {
-            '#editar-nombre': { regex: NOMBRE_REGEX, minLength: 2 },
-            '#editar-apellido': { regex: NOMBRE_REGEX, minLength: 2 },
-            '#editar-correo': { regex: EMAIL_REGEX },
+            '#editar-nombre': { regex: NOMBRE_REGEX, minLength: 2, hint: 'Solo letras. Se permite un espacio entre palabras.', errorMsg: 'Solo letras. Se permite un espacio entre palabras.' },
+            '#editar-apellido': { regex: NOMBRE_REGEX, minLength: 2, hint: 'Solo letras. Se permite un espacio entre palabras.', errorMsg: 'Solo letras. Se permite un espacio entre palabras.' },
+            '#editar-correo': { regex: EMAIL_REGEX, hint: 'Formato válido: ejemplo@correo.com', errorMsg: 'Formato de correo no válido' },
         });
         
-        // Bloquear espacios en nombres
-        bloquearEspacios(formEditarPersonal.querySelector('#editar-nombre'));
-        bloquearEspacios(formEditarPersonal.querySelector('#editar-apellido'));
     }
 
     // ----- Formulario Establecer Contraseña -----
@@ -149,8 +146,8 @@ function inicializarValidaciones() {
     if (formEstablecerContrasena) {
         // Activar validación visual en tiempo real
         initValidacionVisual(formEstablecerContrasena, {
-            '#establecer-contrasena': { regex: PASSWORD_REGEX },
-            '#establecer-contrasena-confirmar': { match: '#establecer-contrasena' },
+            '#establecer-contrasena': { regex: PASSWORD_REGEX, hint: '8-20 caracteres, una mayúscula, una minúscula y un número.', errorMsg: '8-20 caracteres, una mayúscula, una minúscula y un número' },
+            '#establecer-contrasena-confirmar': { match: '#establecer-contrasena', hint: 'Debe coincidir con la contraseña.', matchMsg: 'Las contraseñas no coinciden' },
         });
         
         // Bloquear espacios en contraseñas
@@ -166,9 +163,9 @@ function inicializarValidaciones() {
     if (formCambiarContrasena) {
         // Activar validación visual en tiempo real
         initValidacionVisual(formCambiarContrasena, {
-            '#cambiar-contrasena-actual': { required: true },
-            '#cambiar-contrasena-nueva': { regex: PASSWORD_REGEX },
-            '#cambiar-contrasena-confirmar': { match: '#cambiar-contrasena-nueva' },
+            '#cambiar-contrasena-actual': { required: true, hint: 'Ingrese su contraseña actual.' },
+            '#cambiar-contrasena-nueva': { regex: PASSWORD_REGEX, hint: '8-20 caracteres, una mayúscula, una minúscula y un número.', errorMsg: '8-20 caracteres, una mayúscula, una minúscula y un número' },
+            '#cambiar-contrasena-confirmar': { match: '#cambiar-contrasena-nueva', hint: 'Debe coincidir con la nueva contraseña.', matchMsg: 'Las contraseñas no coinciden' },
         });
         
         // Bloquear espacios en contraseñas
@@ -185,7 +182,7 @@ function inicializarValidaciones() {
     if (formAgregarCorreo) {
         // Activar validación visual en tiempo real
         initValidacionVisual(formAgregarCorreo, {
-            '#agregar-correo': { regex: EMAIL_REGEX },
+            '#agregar-correo': { regex: EMAIL_REGEX, hint: 'Formato válido: ejemplo@correo.com', errorMsg: 'Formato de correo no válido' },
         });
     }
 
@@ -194,7 +191,7 @@ function inicializarValidaciones() {
     if (formAgregarTelefono) {
         // Activar validación visual en tiempo real
         initValidacionVisual(formAgregarTelefono, {
-            '#agregar-telefono': { regex: TELEFONO_REGEX },
+            '#agregar-telefono': { regex: TELEFONO_REGEX, hint: 'Entre 7 y 10 dígitos.', errorMsg: 'El teléfono debe tener entre 7 y 10 dígitos' },
         });
     }
 }
@@ -498,7 +495,7 @@ async function handleGuardarPersonal() {
             minLength: 2,
             pattern: {
                 regex: NOMBRE_REGEX,
-                mensaje: 'El nombre solo puede contener letras (sin espacios ni números)',
+                mensaje: 'Solo letras. Se permite un espacio entre palabras.',
             },
         },
         '#editar-apellido': {
@@ -507,7 +504,7 @@ async function handleGuardarPersonal() {
             minLength: 2,
             pattern: {
                 regex: NOMBRE_REGEX,
-                mensaje: 'El apellido solo puede contener letras (sin espacios ni números)',
+                mensaje: 'Solo letras. Se permite un espacio entre palabras.',
             },
         },
         '#editar-correo': {

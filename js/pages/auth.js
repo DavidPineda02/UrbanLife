@@ -228,8 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         /* Activar validación visual en tiempo real */
         initValidacionVisual(form, {
-            '#email':    { regex: EMAIL_REGEX },           // Email: validar formato
-            '#password': { regex: PASSWORD_REGEX },  // Contraseña: validar con regex
+            '#email':    { regex: EMAIL_REGEX, hint: 'Formato válido: ejemplo@correo.com', errorMsg: 'Formato de correo no válido' },
+            '#password': { regex: PASSWORD_REGEX, hint: '8-20 caracteres, una mayúscula, una minúscula y un número.', errorMsg: '8-20 caracteres, una mayúscula, una minúscula y un número' },
         });
 
         /* Bloquear espacios en el campo de contraseña */
@@ -296,16 +296,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         /* Activar validación visual en tiempo real con reglas por campo */
         initValidacionVisual(form, {
-            '#nombre':           { regex: NOMBRE_REGEX, minLength: 2 }, // Solo letras, mín 2 chars
-            '#apellido':         { regex: NOMBRE_REGEX, minLength: 2 }, // Solo letras, mín 2 chars
-            '#email':            { regex: EMAIL_REGEX },                       // Formato de email
-            '#password':         { regex: PASSWORD_REGEX },             // Regex de contraseña segura
-            '#confirm-password': { match: '#password' },                // Debe coincidir con password
+            '#nombre':           { regex: NOMBRE_REGEX, minLength: 2, hint: 'Solo letras. Se permite un espacio entre palabras.', errorMsg: 'Solo letras. Se permite un espacio entre palabras.' },
+            '#apellido':         { regex: NOMBRE_REGEX, minLength: 2, hint: 'Solo letras. Se permite un espacio entre palabras.', errorMsg: 'Solo letras. Se permite un espacio entre palabras.' },
+            '#email':            { regex: EMAIL_REGEX, hint: 'Formato válido: ejemplo@correo.com', errorMsg: 'Formato de correo no válido' },
+            '#password':         { regex: PASSWORD_REGEX, hint: '8-20 caracteres, una mayúscula, una minúscula y un número.', errorMsg: '8-20 caracteres, una mayúscula, una minúscula y un número' },
+            '#confirm-password': { match: '#password', hint: 'Debe coincidir con la contraseña.', matchMsg: 'Las contraseñas no coinciden' },
         });
 
-        /* ----- Bloquear espacios en nombre, apellido y contraseñas ----- */
-        bloquearEspacios(form.querySelector('#nombre'));           // Sin espacios en nombre
-        bloquearEspacios(form.querySelector('#apellido'));         // Sin espacios en apellido
+        /* ----- Bloquear espacios en contraseñas ----- */
         bloquearEspacios(form.querySelector('#password'));         // Sin espacios en contraseña
         bloquearEspacios(form.querySelector('#confirm-password')); // Sin espacios en confirmación
 
@@ -344,8 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     requiredMsg: 'El nombre es requerido',                                       // Mensaje vacío
                     minLength: 2,                                                                // Mínimo 2 caracteres
                     pattern: {
-                        regex: NOMBRE_REGEX,                                                     // Solo letras
-                        mensaje: 'El nombre solo puede contener letras (sin espacios ni números)', // Mensaje de error
+                        regex: NOMBRE_REGEX,                                                     // Letras y un espacio entre palabras
+                        mensaje: 'Solo letras. Se permite un espacio entre palabras.',            // Mensaje de error
                     },
                 },
                 '#apellido': {
@@ -353,8 +351,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     requiredMsg: 'El apellido es requerido',                                       // Mensaje vacío
                     minLength: 2,                                                                  // Mínimo 2 caracteres
                     pattern: {
-                        regex: NOMBRE_REGEX,                                                       // Solo letras
-                        mensaje: 'El apellido solo puede contener letras (sin espacios ni números)', // Mensaje de error
+                        regex: NOMBRE_REGEX,                                                       // Letras y un espacio entre palabras
+                        mensaje: 'Solo letras. Se permite un espacio entre palabras.',              // Mensaje de error
                     },
                 },
                 '#email': {
@@ -398,8 +396,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     form.querySelector('#email').value.trim(),                                  // Email sin espacios
                     form.querySelector('#password').value,                                      // Contraseña tal cual
                 );
-                await mostrarAlertaExito(data.message || '¡Cuenta creada!');                   // Alerta de éxito
-                window.location.href = '/view/app.html#/home';                                      // Redirigir al dashboard
+                await mostrarAlertaExito(data.message || '¡Cuenta creada! Inicia sesión para continuar.'); // Alerta de éxito
+                window.location.href = '/';                                                                // Redirigir al login
 
             } catch (error) {
                 console.error('[Register] Error:', error);                                     // Log en consola

@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Activar validación visual en tiempo real */
     initValidacionVisual(form, {
-        '#email': { regex: EMAIL_REGEX }, // Email: validar formato
+        '#email': { regex: EMAIL_REGEX, hint: 'Formato válido: ejemplo@correo.com', errorMsg: 'Formato de correo no válido' },
     });
 
     /* Manejar envío del formulario */
