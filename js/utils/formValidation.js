@@ -231,26 +231,101 @@ export function initValidacionVisual(form, reglas = {}) {
         }
 
         /**
-         * Aplica las clases CSS visuales según el estado de validación.
-         * Verde si es válido, rojo si es inválido, neutro si está vacío.
+         * Obtiene el mensaje de error específico según la regla que falla.
+         * @returns {string} Mensaje de error o cadena vacía si es válido
+         */
+        function obtenerMensajeError() {
+            const valor = input.value.trim();                                              // Obtener valor sin espacios
+            if (!valor || !regla) return '';                                                // Sin valor o sin regla, no hay error
+            if (regla.minLength && valor.length < regla.minLength) return `Mínimo ${regla.minLength} caracteres`; // Error de longitud
+            if (regla.regex && !regla.regex.test(valor)) return regla.errorMsg || 'Formato no válido';            // Error de patrón
+            if (regla.email && !EMAIL_REGEX_VISUAL.test(valor)) return 'Formato de correo no válido';             // Error de email
+            if (regla.match) {                                                             // Error de coincidencia
+                const otro = form.querySelector(regla.match);                              // Buscar campo de referencia
+                if (otro && otro.value !== input.value) return regla.matchMsg || 'Los campos no coinciden'; // No coinciden
+            }
+            return '';                                                                     // Sin errores
+        }
+
+        /**
+         * Muestra un hint debajo del input al hacer focus.
+         */
+        function mostrarHint() {
+            if (!regla || !regla.hint || input.value.trim() !== '') return;                  // Solo si hay hint y campo vacío
+            const contenedor = input.closest('.formulario__grupo') || input.parentNode;      // Buscar contenedor padre
+            if (contenedor.querySelector('.field-hint') || contenedor.querySelector('.field-error-auth')) return; // No duplicar
+            const hintEl = document.createElement('span');                                   // Crear elemento hint
+            hintEl.className = 'field-hint';                                                 // Clase CSS del hint
+            hintEl.style.cssText = 'color:#7f8c8d;font-size:0.75rem;margin-top:0.25rem;display:block;font-weight:400;font-style:italic;'; // Estilos
+            hintEl.textContent = regla.hint;                                                 // Texto del hint
+            contenedor.appendChild(hintEl);                                                  // Agregar al contenedor
+        }
+
+        /**
+         * Elimina el hint del input.
+         */
+        function ocultarHint() {
+            const contenedor = input.closest('.formulario__grupo') || input.parentNode;      // Buscar contenedor padre
+            const hintEl = contenedor.querySelector('.field-hint');                           // Buscar hint existente
+            if (hintEl) hintEl.remove();                                                     // Eliminar si existe
+        }
+
+        /**
+         * Muestra u oculta el mensaje de error inline debajo del input.
+         * @param {string} mensaje - Mensaje de error a mostrar
+         */
+        function mostrarErrorInline(mensaje) {
+            const contenedor = input.closest('.formulario__grupo') || input.parentNode;      // Buscar contenedor padre
+            let errorEl = contenedor.querySelector('.field-error-auth');                      // Buscar error existente
+
+            if (mensaje) {                                                                   // Si hay mensaje de error
+                ocultarHint();                                                               // Ocultar hint primero
+                if (!errorEl) {                                                              // Si no existe el error
+                    errorEl = document.createElement('span');                                 // Crear elemento de error
+                    errorEl.className = 'field-error-auth';                                  // Clase CSS del error
+                    errorEl.style.cssText = 'color:#e74c3c;font-size:0.75rem;margin-top:0.25rem;display:block;font-weight:500;'; // Estilos
+                    contenedor.appendChild(errorEl);                                         // Agregar al contenedor
+                }
+                errorEl.textContent = mensaje;                                               // Actualizar texto del error
+            } else {                                                                         // Si no hay error
+                if (errorEl) errorEl.remove();                                               // Eliminar el error
+            }
+        }
+
+        /**
+         * Aplica las clases CSS visuales y mensajes según el estado de validación.
+         * Verde si es válido, rojo si es inválido con mensaje, neutro si está vacío.
          */
         function aplicarEstado() {
             const valor = input.value.trim();                                              // Obtener valor actual
             if (!valor) {                                                                  // Si el campo está vacío
                 input.classList.remove('formulario__input--valido', 'formulario__input--error'); // Quitar ambos estados
+                mostrarErrorInline('');                                                     // Quitar mensaje de error
                 return;                                                                    // Salir sin aplicar estado
             }
             if (esValido()) {                                                              // Si el valor es válido
                 input.classList.add('formulario__input--valido');                           // Agregar borde verde
                 input.classList.remove('formulario__input--error');                         // Quitar borde rojo
+                mostrarErrorInline('');                                                     // Quitar mensaje de error
             } else {                                                                       // Si el valor es inválido
                 input.classList.remove('formulario__input--valido');                        // Quitar borde verde
                 input.classList.add('formulario__input--error');                            // Agregar borde rojo
+                mostrarErrorInline(obtenerMensajeError());                                  // Mostrar mensaje de error
             }
         }
 
-        input.addEventListener('blur', aplicarEstado);  // Validar al perder el foco
-        input.addEventListener('input', aplicarEstado); // Validar en cada tecla
+        /* Mostrar hint al hacer focus */
+        input.addEventListener('focus', mostrarHint);                // Mostrar hint al entrar
+        /* Ocultar hint y validar al escribir */
+        input.addEventListener('input', () => {
+            ocultarHint();                                           // Ocultar hint al escribir
+            aplicarEstado();                                         // Validar en cada tecla
+        });
+        /* Limpiar espacios finales y validar al salir */
+        input.addEventListener('blur', () => {
+            ocultarHint();                                           // Ocultar hint al salir
+            aplicarEstado();                                         // Validar al perder el foco
+        });
     });
 }
 

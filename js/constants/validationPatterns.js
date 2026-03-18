@@ -12,11 +12,11 @@
 /* ----- Patrones de Texto -------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
-/** Solo letras (incluye acentos y ñ), sin espacios ni números */
-export const NOMBRE_REGEX = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$/;
+/** Letras (incluye acentos y ñ), permite un solo espacio entre palabras */
+export const NOMBRE_REGEX = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+(\s[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)*$/;
 
-/** Letras y espacios (para nombres completos que permiten espacios) */
-export const NOMBRE_COMPLETO_REGEX = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/;
+/** Letras y un solo espacio entre palabras (para nombres completos) */
+export const NOMBRE_COMPLETO_REGEX = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+(\s[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)*$/;
 
 /* -------------------------------------------------------------------------- */
 /* ----- Patrones de Contraseña --------------------------------------------- */

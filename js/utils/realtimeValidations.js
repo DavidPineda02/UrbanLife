@@ -20,37 +20,51 @@
 /* ========================================================================== */
 
 const VALIDATION_RULES = {
-    // Validaciones para campos de texto (solo letras, sin espacios)
+    // Validaciones para campos de texto (letras, un solo espacio entre palabras)
     letras: {
-        pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$/,
-        message: 'Solo se permiten letras',
-        transform: (value) => value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ]/g, '')
+        hint: 'Solo letras. Se permite un espacio entre palabras.',
+        message: 'Solo se permiten letras y un espacio entre palabras',
+        transform: (value) => value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '').replace(/\s{2,}/g, ' ').replace(/^\s/, ''),
+        validate: (value) => /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+(\s[a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*$/.test(value)
     },
 
-    // Validaciones para nombres completos (letras y espacios)
+    // Validaciones para nombres completos (letras, un solo espacio entre palabras)
     letrasEspacios: {
-        pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-        message: 'Solo se permiten letras y espacios',
-        transform: (value) => value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')
+        hint: 'Solo letras. Se permite un espacio entre palabras.',
+        message: 'Solo se permiten letras y un espacio entre palabras',
+        transform: (value) => value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '').replace(/\s{2,}/g, ' ').replace(/^\s/, ''),
+        validate: (value) => /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+(\s[a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*$/.test(value)
     },
     
     // Validaciones para campos numéricos
     numeros: {
         pattern: /^\d*\.?\d*$/,
+        hint: 'Solo números. Se permiten decimales.',
         message: 'Solo se permiten números',
         transform: (value) => value.replace(/[^0-9.]/g, '')
     },
-    
+
     // Validaciones para números enteros
     numerosEnteros: {
         pattern: /^\d+$/,
+        hint: 'Solo números enteros.',
         message: 'Solo se permiten números enteros',
         transform: (value) => value.replace(/[^0-9]/g, '')
     },
-    
+
+    // Validaciones para documentos (cédula colombiana 6-10 dígitos)
+    documento: {
+        pattern: /^\d+$/,
+        hint: 'Cédula colombiana entre 6 y 10 dígitos.',
+        message: 'El documento debe tener entre 6 y 10 dígitos',
+        transform: (value) => value.replace(/[^0-9]/g, ''),
+        validate: (value) => value.length >= 6 && value.length <= 10
+    },
+
     // Validaciones para NIT colombiano (9 dígitos, guión opcional, 1 dígito verificador)
     nit: {
         pattern: /^\d{0,9}-?\d{0,1}$/,
+        hint: 'Formato: 9 dígitos y dígito verificador (ej: 900123456-1)',
         message: 'Formato: 9 dígitos y dígito verificador (ej: 900123456-1)',
         transform: (value) => value.replace(/[^\d-]/g, ''),
         validate: (value) => /^\d{9}-?\d{1}$/.test(value)
@@ -59,6 +73,7 @@ const VALIDATION_RULES = {
     // Validaciones para teléfonos (7-10 dígitos colombianos)
     telefono: {
         pattern: /^[\d\s\-\(\)]+$/,
+        hint: 'Entre 7 y 10 dígitos.',
         message: 'El teléfono debe tener entre 7 y 10 dígitos',
         transform: (value) => value.replace(/[^\d\s\-\(\)]/g, ''),
         validate: (value) => {
@@ -68,32 +83,36 @@ const VALIDATION_RULES = {
             return soloDigitos.length >= 7 && soloDigitos.length <= 10;
         }
     },
-    
+
     // Validaciones para correos
     correo: {
         pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        hint: 'Formato válido: ejemplo@correo.com',
         message: 'Formato de correo no válido',
         transform: (value) => value.toLowerCase().trim()
     },
-    
+
     // Validaciones para texto general
     texto: {
         minLength: 2,
         maxLength: 255,
+        hint: 'Entre 2 y 255 caracteres.',
         message: 'Debe tener entre 2 y 255 caracteres',
         transform: (value) => value.trim()
     },
-    
+
     // Validaciones para descripciones (textos largos)
     descripcion: {
         minLength: 0,
         maxLength: 1000,
+        hint: 'Máximo 1000 caracteres.',
         message: 'Máximo 1000 caracteres',
         transform: (value) => value.trim()
     },
-    
+
     // Validaciones para fechas (no permite días pasados)
     fecha: {
+        hint: 'Seleccione una fecha de hoy en adelante.',
         message: 'La fecha no puede ser anterior a hoy',
         validate: (value) => {
             if (!value) return true; // Permitir vacío si no es requerido
@@ -127,70 +146,93 @@ const VALIDATION_RULES = {
 function applyRealtimeValidation(input, validationType, options = {}) {
     // Obtener las reglas de validación
     const rules = { ...VALIDATION_RULES[validationType], ...options };
-    
+
+    // Mostrar hint al hacer focus en el campo
+    input.addEventListener('focus', function(e) {
+        if (rules.hint && e.target.value === '') {
+            showFieldHint(e.target, rules.hint);
+        }
+    });
+
     // Agregar evento input para validación en tiempo real
     input.addEventListener('input', function(e) {
         const value = e.target.value;
         let isValid = true;
         let errorMessage = '';
-        
+
+        // Si el campo está vacío, mostrar hint
+        if (value === '') {
+            removeFieldHint(e.target);
+            showFieldError(e.target, true, '');
+            return;
+        }
+
+        // Ocultar hint cuando el usuario empieza a escribir
+        removeFieldHint(e.target);
+
         // Aplicar transformación si existe
         if (rules.transform && value !== '') {
             e.target.value = rules.transform(value);
         }
-        
+
         // Validar patrón si existe
         if (rules.pattern && e.target.value !== '') {
             isValid = rules.pattern.test(e.target.value);
             errorMessage = rules.message;
         }
-        
+
         // Validar con función personalizada si existe
         if (rules.validate && e.target.value !== '') {
             isValid = rules.validate(e.target.value);
             errorMessage = rules.message;
         }
-        
+
         // Validar longitud si existe
         if (rules.minLength !== undefined && e.target.value.length < rules.minLength) {
             isValid = false;
             errorMessage = `Mínimo ${rules.minLength} caracteres`;
         }
-        
+
         if (rules.maxLength !== undefined && e.target.value.length > rules.maxLength) {
             isValid = false;
             errorMessage = `Máximo ${rules.maxLength} caracteres`;
         }
-        
+
         // Validar rango numérico si existe
         if (rules.min !== undefined && parseFloat(e.target.value) < rules.min) {
             isValid = false;
             errorMessage = `Valor mínimo: ${rules.min}`;
         }
-        
+
         if (rules.max !== undefined && parseFloat(e.target.value) > rules.max) {
             isValid = false;
             errorMessage = `Valor máximo: ${rules.max}`;
         }
-        
+
         // Para selects, validar que tenga valor seleccionado
         if (e.target.tagName === 'SELECT') {
             isValid = e.target.value !== '';
             errorMessage = isValid ? '' : 'Debe seleccionar una opción';
         }
-        
+
         // Mostrar u ocultar mensaje de error
         showFieldError(e.target, isValid, errorMessage);
     });
-    
-    // Agregar evento blur para validación final
+
+    // Agregar evento blur para validación final y limpiar espacios al final
     input.addEventListener('blur', function(e) {
+        // Eliminar espacio al final del valor al salir del campo
+        if (e.target.value !== e.target.value.trimEnd()) {
+            e.target.value = e.target.value.trimEnd();
+        }
+        // Ocultar hint al salir del campo
+        removeFieldHint(e.target);
         // Forzar validación al salir del campo
         if (e.target.value !== '' || e.target.tagName === 'SELECT') {
             e.target.dispatchEvent(new Event('input'));
         }
     });
-    
+
     // Agregar evento change para selects
     if (input.tagName === 'SELECT') {
         input.addEventListener('change', function(e) {
@@ -200,12 +242,49 @@ function applyRealtimeValidation(input, validationType, options = {}) {
 }
 
 /**
+ * Muestra un mensaje de ayuda (hint) debajo del input.
+ * Se muestra al hacer focus cuando el campo está vacío.
+ * @param {HTMLInputElement} input - Elemento input
+ * @param {string} hint - Mensaje de ayuda
+ */
+function showFieldHint(input, hint) {
+    // No mostrar hint si ya hay un error visible
+    if (input.parentNode.querySelector('.field-error')) return;
+    // No duplicar hints
+    if (input.parentNode.querySelector('.field-hint')) return;
+
+    const hintEl = document.createElement('span');
+    hintEl.className = 'field-hint';
+    hintEl.style.cssText = `
+        color: #7f8c8d;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        display: block;
+        font-weight: 400;
+        font-style: italic;
+    `;
+    hintEl.textContent = hint;
+    input.parentNode.appendChild(hintEl);
+}
+
+/**
+ * Elimina el mensaje de ayuda (hint) de un input.
+ * @param {HTMLInputElement} input - Elemento input
+ */
+function removeFieldHint(input) {
+    const hintEl = input.parentNode.querySelector('.field-hint');
+    if (hintEl) hintEl.remove();
+}
+
+/**
  * Muestra u oculta el mensaje de error para un campo.
  * @param {HTMLInputElement} input - Elemento input
  * @param {boolean} isValid - Si el campo es válido
  * @param {string} message - Mensaje de error
  */
 function showFieldError(input, isValid, message) {
+    // Limpiar hint si existe antes de mostrar error
+    removeFieldHint(input);
     // Buscar o crear contenedor de error
     let errorContainer = input.parentNode.querySelector('.field-error');
     
@@ -284,6 +363,11 @@ function applyModalValidations(modal) {
         applyRealtimeValidation(input, 'numerosEnteros', { min: 0 });
     });
     
+    // Documentos (cédula colombiana)
+    modal.querySelectorAll('input[data-validation="documento"], input[id*="documento"]').forEach(input => {
+        applyRealtimeValidation(input, 'documento');
+    });
+
     // NIT colombiano
     modal.querySelectorAll('input[data-validation="nit"]').forEach(input => {
         applyRealtimeValidation(input, 'nit');
@@ -335,7 +419,19 @@ function applyModalValidations(modal) {
     
     // Selects requeridos
     modal.querySelectorAll('select[required], select[data-required]').forEach(select => {
+        // Mostrar hint al hacer focus en el select
+        select.addEventListener('focus', function(e) {
+            if (e.target.value === '') {
+                showFieldHint(e.target, 'Debe seleccionar una opción.');
+            }
+        });
+        // Ocultar hint al salir del select
+        select.addEventListener('blur', function(e) {
+            removeFieldHint(e.target);
+        });
+        // Validar al cambiar
         select.addEventListener('change', function(e) {
+            removeFieldHint(e.target);
             const isValid = e.target.value !== '';
             showFieldError(e.target, isValid, isValid ? '' : 'Debe seleccionar una opción');
         });
