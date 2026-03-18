@@ -466,26 +466,17 @@ function generarOpcionesProductos() {
 
 /**
  * Genera el HTML de una fila de producto para el modal paso 2.
- * La primera fila no tiene botón de eliminar, las demás sí.
+ * Todas las filas tienen botón de eliminar activo (la lógica de no eliminar
+ * la última fila se maneja en eliminarFilaCompra).
  * A diferencia de ventas, el costo unitario es EDITABLE (el usuario lo ingresa).
  * @param {number} num - Número de fila (para nombres únicos)
- * @param {boolean} conEliminar - true si la fila debe tener botón de eliminar
  * @returns {string} HTML de la fila de producto
  */
-function crearFilaProductoHTML(num, conEliminar) {
+function crearFilaProductoHTML(num) {
     /* Generar las opciones de productos activos para el select */
     const opciones = generarOpcionesProductos();
 
-    /* Generar el botón de eliminar o un placeholder deshabilitado */
-    const botonEliminar = conEliminar
-        ? `<button type="button" class="factura__eliminar btn-eliminar-fila" title="Eliminar producto">
-               <i class="fa-solid fa-trash"></i>
-           </button>`
-        : `<span class="factura__eliminar factura__eliminar--disabled">
-               <i class="fa-solid fa-trash"></i>
-           </span>`;
-
-    /* Retornar el HTML completo de la fila (costo unitario editable, sin readonly) */
+    /* Retornar el HTML completo de la fila con botón de eliminar siempre activo */
     return `
         <div class="factura__fila">
             <span class="factura__fila-numero"></span>
@@ -494,7 +485,9 @@ function crearFilaProductoHTML(num, conEliminar) {
             </select>
             <input type="number" class="formulario__input" name="cantidad_${num}" placeholder="0" title="Cantidad" min="1">
             <input type="number" class="formulario__input" name="costo_${num}" placeholder="$ 0" title="Costo Unitario">
-            ${botonEliminar}
+            <button type="button" class="factura__eliminar btn-eliminar-fila" title="Eliminar producto">
+                <i class="fa-solid fa-trash"></i>
+            </button>
         </div>
     `;
 }
@@ -511,8 +504,8 @@ function agregarFilaCompra() {
     /* Incrementar el contador de filas para nombre único */
     contadorFilas++;
 
-    /* Generar el HTML de la nueva fila con botón de eliminar */
-    const nuevaFilaHTML = crearFilaProductoHTML(contadorFilas, true);
+    /* Generar el HTML de la nueva fila */
+    const nuevaFilaHTML = crearFilaProductoHTML(contadorFilas);
 
     /* Insertar la nueva fila al final de la lista de productos */
     listaProductos.insertAdjacentHTML('beforeend', nuevaFilaHTML);

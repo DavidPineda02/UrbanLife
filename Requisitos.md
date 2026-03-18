@@ -536,12 +536,12 @@
 | Campo | Descripción |
 |---|---|
 | **Id. del Requisito** | RNF-02 |
-| **Nombre del Requisito** | Facilidad de uso de la interfaz |
+| **Nombre del Requisito** | Validación de datos en formularios |
 | **Categoría** | Usabilidad |
-| **Descripción del Requisito** | La interfaz del sistema debe ser sencilla y fácil de entender para cualquier persona, incluso si no tiene experiencia con software de este tipo. Los formularios, botones y mensajes deben estar bien organizados y ser fáciles de identificar. La navegación desde el menú lateral debe ser clara y consistente en todas las pantallas. |
-| **Criterio de Aceptación** | Una persona que nunca ha usado el sistema debe poder registrar una venta o consultar el inventario en menos de 5 minutos sin necesitar instrucciones escritas. |
+| **Descripción del Requisito** | El sistema debe validar los campos de los formularios en tiempo real mientras el usuario escribe, aplicando reglas específicas por tipo de dato. Los campos de solo letras no deben aceptar números ni caracteres especiales, los campos numéricos no deben aceptar letras, los teléfonos deben validar entre 7 y 10 dígitos, los correos deben validar formato con arroba y dominio, y el NIT debe validar el formato colombiano de 9 dígitos más dígito verificador. Cada campo debe mostrar un indicador visual verde cuando el dato es válido y rojo cuando es inválido. |
+| **Criterio de Aceptación** | Al escribir en cualquier campo de un formulario, el sistema debe mostrar inmediatamente si el dato ingresado es válido o no mediante bordes de color verde o rojo, sin necesidad de enviar el formulario. Los caracteres no permitidos deben bloquearse automáticamente según el tipo de campo. |
 | **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | El diseño, los colores y la estructura del menú deben ser iguales en todas las pantallas para mantener una experiencia consistente. |
+| **Restricciones** | Las validaciones del frontend son una ayuda visual para el usuario. El backend debe realizar sus propias validaciones de forma independiente antes de guardar cualquier dato en la base de datos. |
 
 ---
 
@@ -550,12 +550,12 @@
 | Campo | Descripción |
 |---|---|
 | **Id. del Requisito** | RNF-03 |
-| **Nombre del Requisito** | Velocidad de respuesta del sistema |
-| **Categoría** | Rendimiento |
-| **Descripción del Requisito** | El sistema debe responder rápido a las acciones del usuario. Cuando se guarda una venta, se carga una pantalla o se abre un formulario, el servidor debe dar respuesta en menos de 3 segundos en condiciones normales de uso. |
-| **Criterio de Aceptación** | La mayoría de las acciones del usuario como guardar, consultar o abrir formularios deben completarse y mostrar resultado en menos de 3 segundos. |
-| **Prioridad** | ☐ Alta/Esencial   ☑ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | El tiempo de respuesta puede verse afectado por las características del computador o servidor donde esté instalado el sistema. |
+| **Nombre del Requisito** | Protección de datos sensibles |
+| **Categoría** | Seguridad |
+| **Descripción del Requisito** | El sistema no debe exponer contraseñas, tokens de sesión ni información interna del servidor en las respuestas enviadas al navegador. Las comunicaciones entre el frontend y el backend se realizan mediante tokens JWT que expiran automáticamente, impidiendo el acceso con tokens vencidos. Las contraseñas se almacenan cifradas con BCrypt y nunca se envían en texto plano en ninguna dirección. |
+| **Criterio de Aceptación** | Las respuestas del servidor no deben contener contraseñas, claves secretas ni tokens internos. Un token JWT expirado debe ser rechazado automáticamente por el servidor, obligando al usuario a iniciar sesión nuevamente. Las contraseñas almacenadas en la base de datos deben estar cifradas y no ser reversibles. |
+| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
+| **Restricciones** | La expiración de los tokens implica que el usuario debe volver a iniciar sesión periódicamente. El cifrado de contraseñas impide recuperarlas; en caso de olvido, el usuario debe usar el flujo de recuperación de contraseña. |
 
 ---
 
@@ -564,12 +564,12 @@
 | Campo | Descripción |
 |---|---|
 | **Id. del Requisito** | RNF-04 |
-| **Nombre del Requisito** | Disponibilidad del sistema en horario laboral |
-| **Categoría** | Disponibilidad |
-| **Descripción del Requisito** | El sistema debe estar funcionando y disponible para usarse durante el horario de trabajo del negocio. No debe presentar caídas frecuentes que interrumpan el registro de ventas o la consulta del inventario durante el día. |
-| **Criterio de Aceptación** | El sistema debe estar disponible y funcionando correctamente al menos el 95% del tiempo durante el horario de uso del negocio. |
-| **Prioridad** | ☐ Alta/Esencial   ☑ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | La disponibilidad del sistema depende también del computador o servidor donde esté instalado. Si el equipo se apaga o pierde conexión, el servicio deja de estar disponible. |
+| **Nombre del Requisito** | Retroalimentación visual al usuario |
+| **Categoría** | Usabilidad |
+| **Descripción del Requisito** | El sistema debe mostrar alertas informativas al usuario después de cada acción importante, indicando claramente si la operación fue exitosa o si ocurrió un error. Antes de ejecutar acciones que afecten los datos, como desactivar un producto, eliminar un cliente o registrar una venta, el sistema debe mostrar una ventana de confirmación que permita al usuario cancelar la acción. Los registros activos e inactivos deben diferenciarse visualmente mediante indicadores de color. |
+| **Criterio de Aceptación** | Cada operación de crear, editar, activar o desactivar debe mostrar una alerta con el resultado. Las acciones destructivas o irreversibles deben pedir confirmación antes de ejecutarse. Los estados activo e inactivo deben mostrarse con etiquetas de color verde y rojo respectivamente en todas las vistas del sistema. |
+| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
+| **Restricciones** | Las alertas y confirmaciones no deben bloquear el flujo del sistema de forma permanente. El usuario siempre debe poder cerrarlas o cancelar la acción para continuar usando el sistema. |
 
 ---
 
