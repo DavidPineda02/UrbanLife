@@ -91,7 +91,8 @@ const RUTAS_RESTRINGIDAS_EMPLEADO = [
     'proveedores',
     'compras',
     'usuarios',
-    'gastos'
+    'gastos',
+    'movimientos'
 ];
 
 /**
