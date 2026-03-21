@@ -10,8 +10,6 @@
  *  GET    /compras           → Lista todas las compras
  *  GET    /compras/id?id=X   → Obtiene una compra con sus detalles
  *  POST   /compras           → Registra una nueva compra
- *  PUT    /compras/id?id=X   → Actualiza una compra existente
- *  DELETE /compras/id?id=X   → Elimina una compra (lógica)
  *
  * Modelo Compra (respuesta del backend):
  *  { idCompra: number, fechaCompra: string, totalCompra: number,
@@ -21,12 +19,12 @@
  *  { idDetCompra: number, cantidad: number, precioUnitario: number,
  *    subtotal: number, compraId: number, productoId: number }
  *
- * Nota: Las compras pueden editarse pero no eliminarse físicamente (borrado lógico).
- *       El precio unitario se lee de la BD, no del frontend.
+ * Nota: Las compras son inmutables (sin editar/eliminar) por reglas de contabilidad.
+ *       El costoUnitario viene del frontend (precio del proveedor varía).
  */
 
 // Importar los métodos HTTP del cliente centralizado
-import { get, post, put, del } from '../client.js';
+import { get, post } from '../client.js';
 // Importar las constantes de rutas del API
 import { ENDPOINTS } from '../endpoints.js';
 
@@ -100,55 +98,3 @@ export async function crearCompra(datos) {
     return data;
 }
 
-/* -------------------------------------------------------------------------- */
-/* ----- Actualizar Compra --------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Actualiza una compra existente con sus ítems.
- * Permite modificar proveedor, fecha, método de pago y los productos/cantidades.
- * El backend recalcula totales y ajusta el stock según los cambios.
- *
- * Request:  { fechaCompra: "YYYY-MM-DD", metodoPago: "Efectivo"|"Transferencia",
- *             proveedorId: number, items: [{ productoId: number, cantidad: number }] }
- * Response: { success: true, message: string, data: Compra }
- *
- * @param {number} id - ID de la compra a actualizar
- * @param {Object} datos - Datos actualizados de la compra
- * @param {string} datos.fechaCompra - Fecha en formato YYYY-MM-DD
- * @param {string} datos.metodoPago - "Efectivo" o "Transferencia"
- * @param {number} datos.proveedorId - ID del proveedor asociado
- * @param {Object[]} datos.items - Array de ítems ({ productoId, cantidad })
- * @returns {Promise<Object>} Respuesta del backend con la compra actualizada
- * @throws {{ status: number, message: string }} Error HTTP (400 validación, 404 no encontrado)
- */
-export async function actualizarCompra(id, datos) {
-    /* Enviar PUT con el body JSON al endpoint de actualización */
-    const data = await put(`${ENDPOINTS.COMPRAS.UPDATE}?id=${id}`, datos);
-
-    /* Retornar la respuesta completa (incluye message y data) */
-    return data;
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Eliminar Compra (Lógica) -------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Elimina una compra lógicamente (cambia estado a false).
- * El backend revierte el aumento de stock y elimina el movimiento financiero asociado.
- * La compra permanece en la BD pero con estado=false.
- *
- * Response: { success: true, message: string }
- *
- * @param {number} id - ID de la compra a eliminar
- * @returns {Promise<Object>} Respuesta del backend con mensaje de confirmación
- * @throws {{ status: number, message: string }} Error HTTP (404 si no existe)
- */
-export async function eliminarCompra(id) {
-    /* Enviar DELETE al endpoint de eliminación lógica */
-    const data = await del(`${ENDPOINTS.COMPRAS.DELETE}?id=${id}`);
-
-    /* Retornar la respuesta completa (incluye message) */
-    return data;
-}

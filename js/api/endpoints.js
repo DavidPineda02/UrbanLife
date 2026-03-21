@@ -78,14 +78,11 @@ export const ENDPOINTS = {
         GET_ALL:    '/ventas',
         GET_BY_ID:  '/ventas/id',
         CREATE:     '/ventas',
-        UPDATE:     '/ventas/id',
     },
     COMPRAS: {
         GET_ALL:    '/compras',
         GET_BY_ID:  '/compras/id',
         CREATE:     '/compras',
-        UPDATE:     '/compras/id',
-        DELETE:     '/compras/id',
     },
     CLIENTES: {
         GET_ALL:    '/clientes',
@@ -105,18 +102,19 @@ export const ENDPOINTS = {
         GET_ALL:    '/gastos',
         GET_BY_ID:  '/gastos/id',
         CREATE:     '/gastos',
-        UPDATE:     '/gastos/id',
-        DELETE:     '/gastos/id',
     },
     CORREOS_USUARIO: {
         GET_ALL:    '/correos-usuario',
         CREATE:     '/correos-usuario',
         DELETE:     '/correos-usuario',
     },
-    NUMEROS_USUARIO: {
-        GET_ALL:    '/numeros-usuario',
-        CREATE:     '/numeros-usuario',
-        DELETE:     '/numeros-usuario',
+    TELEFONOS_USUARIO: {
+        GET_ALL:    '/telefonos-usuario',
+        CREATE:     '/telefonos-usuario',
+        DELETE:     '/telefonos-usuario',
+    },
+    MOVIMIENTOS: {
+        GET_ALL:    '/movimientos-financieros',
     },
     DASHBOARD: {
         RESUMEN:              '/dashboard/resumen',

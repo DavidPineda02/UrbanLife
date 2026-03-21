@@ -10,8 +10,6 @@
  *  GET    /gastos           → Lista todos los gastos
  *  GET    /gastos/id?id=X   → Obtiene un gasto específico
  *  POST   /gastos           → Registra un nuevo gasto
- *  PUT    /gastos/id?id=X   → Actualiza un gasto existente
- *  DELETE /gastos/id?id=X   → Elimina un gasto (lógico)
  *
  * Modelo Gasto (respuesta del backend):
  *  { idGastosAdic: number, monto: number, descripcion: string,
@@ -19,7 +17,7 @@
  */
 
 // Importar los métodos HTTP del cliente centralizado
-import { get, post, put, del } from '../client.js';
+import { get, post } from '../client.js';
 // Importar las constantes de rutas del API
 import { ENDPOINTS } from '../endpoints.js';
 
@@ -94,47 +92,3 @@ export async function crearGasto(datos) {
     return data;
 }
 
-/* -------------------------------------------------------------------------- */
-/* ----- Actualizar Gasto --------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Actualiza un gasto existente en el backend.
- *
- * Request body: mismo formato que crearGasto()
- * Response: { success: true, message: string, data: Gasto }
- *
- * @param {number} id - ID del gasto a actualizar
- * @param {Object} datos - Datos actualizados del gasto
- * @returns {Promise<Object>} Respuesta del backend con gasto actualizado
- * @throws {{ status: number, message: string }} Error HTTP
- */
-export async function actualizarGasto(id, datos) {
-    /* Enviar PUT con el body JSON al endpoint de actualización */
-    const data = await put(`${ENDPOINTS.GASTOS.UPDATE}?id=${id}`, datos);
-
-    /* Retornar la respuesta completa (incluye message y data) */
-    return data;
-}
-
-/* -------------------------------------------------------------------------- */
-/* ----- Eliminar Gasto --------------------------------------------------- */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Elimina un gasto (borrado lógico) en el backend.
- * También elimina el movimiento financiero asociado.
- *
- * Response: { success: true, message: string }
- *
- * @param {number} id - ID del gasto a eliminar
- * @returns {Promise<Object>} Respuesta del backend
- * @throws {{ status: number, message: string }} Error HTTP
- */
-export async function eliminarGasto(id) {
-    /* Enviar DELETE al endpoint de eliminación lógica */
-    const data = await del(`${ENDPOINTS.GASTOS.DELETE}?id=${id}`);
-
-    /* Retornar la respuesta completa (incluye message) */
-    return data;
-}
