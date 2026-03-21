@@ -9,7 +9,7 @@
  *
  * Rutas soportadas:
  *  #/home, #/productos, #/categorias, #/clientes, #/ventas,
- *  #/proveedores, #/compras, #/usuarios, #/gastos, #/perfil
+ *  #/proveedores, #/compras, #/usuarios, #/gastos, #/movimientos, #/perfil
  */
 
 /* -------------------------------------------------------------------------- */
@@ -57,6 +57,10 @@ const RUTAS = {
     'gastos': {
         partial: '/view/partials/gastos.html',                                 // Parcial HTML de gastos
         module: () => import('./pages/gastos.js'),                             // Módulo JS de gastos
+    },
+    'movimientos': {
+        partial: '/view/partials/movimientos.html',                            // Parcial HTML de movimientos financieros
+        module: () => import('./pages/movimientos.js'),                        // Módulo JS de movimientos financieros
     },
     'perfil': {
         partial: '/view/partials/perfil.html',                                 // Parcial HTML de perfil
@@ -138,6 +142,7 @@ function actualizarTitulo(ruta) {
         'compras': 'Compras',
         'usuarios': 'Usuarios',
         'gastos': 'Gastos Adicionales',
+        'movimientos': 'Movimientos Financieros',
         'perfil': 'Mi Perfil',
     };
 
