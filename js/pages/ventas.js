@@ -125,8 +125,8 @@ async function cargarClientes() {
         /* Llenar el select de clientes con las opciones dinámicas */
         selectCliente.innerHTML = '<option value="">Seleccionar cliente</option>';
         activos.forEach(cli => {
-            /* Crear opción con el ID como valor y el nombre completo como texto */
-            const nombreCompleto = `${cli.nombre} ${cli.apellido || ''}`.trim();
+            /* Crear opción con el ID como valor y el nombre como texto */
+            const nombreCompleto = cli.nombre;
             selectCliente.innerHTML += `<option value="${cli.idCliente}">${nombreCompleto}</option>`;
         });
     } catch (error) {
@@ -329,8 +329,8 @@ function renderizarTabla() {
 
     /* Filtrar las ventas según todos los criterios */
     const filtradas = ventas.filter(venta => {
-        /* Obtener el nombre del cliente para la búsqueda */
-        const nombreCliente = obtenerNombreCliente(venta.clienteId).toLowerCase();
+        /* Obtener el nombre del cliente del JOIN para la búsqueda */
+        const nombreCliente = (venta.nombreCliente || '').toLowerCase();
 
         /* Verificar si el nombre del cliente o el ID coinciden con la búsqueda */
         const coincideBusqueda = nombreCliente.includes(busqueda)
@@ -359,7 +359,7 @@ function renderizarTabla() {
             <tr class="tabla__fila">
                 <td class="tabla__td">${venta.idVenta}</td>
                 <td class="tabla__td">${formatearFecha(venta.fechaVenta)}</td>
-                <td class="tabla__td">${obtenerNombreCliente(venta.clienteId)}</td>
+                <td class="tabla__td">${venta.nombreCliente || 'Cliente desconocido'}</td>
                 <td class="tabla__td tabla__td--precio">${formatearPrecio(venta.totalVenta)}</td>
                 <td class="tabla__td">
                     <span class="tabla__badge ${badgeClase}">${venta.metodoPago}</span>
@@ -487,7 +487,7 @@ function crearFilaProductoHTML(num) {
                 ${opciones}
             </select>
             <input type="number" class="formulario__input" name="cantidad_${num}" placeholder="0" title="Cantidad" min="1">
-            <input type="number" class="formulario__input" name="precio_${num}" placeholder="$ 0" title="Precio de Venta" min="1" step="any" readonly>
+            <input type="number" class="formulario__input" name="precio_${num}" placeholder="$ 0" title="Precio de Venta" min="1" step="any">
             <button type="button" class="factura__eliminar btn-eliminar-fila" title="Eliminar producto">
                 <i class="fa-solid fa-trash"></i>
             </button>
@@ -728,6 +728,14 @@ async function handleCrearVenta(e) {
             if (item.cantidad > producto.stock) {
                 mostrarAlertaError(`Stock insuficiente para "${producto.nombre}". Disponible: ${producto.stock}`);
                 return;
+            }
+            /* Validar que el precio garantice mínimo 10% de ganancia sobre el costo */
+            if (producto.costoPromedio) {
+                const precioMinimo = producto.costoPromedio * 1.10;            // Costo + 10% de margen mínimo
+                if (item.precioUnitario < precioMinimo) {
+                    mostrarAlertaError(`El precio de "${producto.nombre}" debe ser mínimo ${formatearPrecio(precioMinimo)} (costo + 10%)`);
+                    return;
+                }
             }
         }
     }

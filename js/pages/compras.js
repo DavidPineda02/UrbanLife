@@ -332,8 +332,8 @@ function renderizarTabla() {
 
     /* Filtrar las compras según todos los criterios */
     const filtradas = compras.filter(compra => {
-        /* Obtener el nombre del proveedor para la búsqueda */
-        const nombreProveedor = obtenerNombreProveedor(compra.proveedorId).toLowerCase();
+        /* Obtener el nombre del proveedor del JOIN para la búsqueda */
+        const nombreProveedor = (compra.nombreProveedor || '').toLowerCase();
 
         /* Verificar si el nombre del proveedor o el ID coinciden con la búsqueda */
         const coincideBusqueda = nombreProveedor.includes(busqueda)
@@ -362,7 +362,7 @@ function renderizarTabla() {
             <tr class="tabla__fila">
                 <td class="tabla__td">${compra.idCompra}</td>
                 <td class="tabla__td">${formatearFecha(compra.fechaCompra)}</td>
-                <td class="tabla__td">${obtenerNombreProveedor(compra.proveedorId)}</td>
+                <td class="tabla__td">${compra.nombreProveedor || 'Proveedor desconocido'}</td>
                 <td class="tabla__td tabla__td--precio">${formatearPrecio(compra.totalCompra)}</td>
                 <td class="tabla__td">
                     <span class="tabla__badge ${badgeClase}">${compra.metodoPago}</span>
@@ -781,7 +781,7 @@ async function handleVerDetalle(id) {
                 <tr class="factura__tabla-fila">
                     <td class="factura__tabla-td">${nombreProducto}</td>
                     <td class="factura__tabla-td">${det.cantidad}</td>
-                    <td class="factura__tabla-td">${formatearPrecio(det.precioUnitario)}</td>
+                    <td class="factura__tabla-td">${formatearPrecio(det.costoUnitario)}</td>
                     <td class="factura__tabla-td">${formatearPrecio(det.subtotal)}</td>
                 </tr>
             `;

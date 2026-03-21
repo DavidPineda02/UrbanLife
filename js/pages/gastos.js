@@ -30,8 +30,8 @@ import {
 } from '../api/services/gastos.service.js';
 
 // Importar utilidades
-import { mostrarAlertaExito, mostrarAlertaError } from '../../js/utils/alerts.js';
-import { openModal, closeModal } from '../../js/utils/modal.js';
+import { mostrarAlertaExito, mostrarAlertaError } from '../utils/alerts.js';
+import { openModal, closeModal } from '../utils/modal.js';
 // Importar validaciones en tiempo real
 import '../utils/realtimeValidations.js';                                      // Validaciones automáticas
 
@@ -170,7 +170,7 @@ function renderizarGastos() {
         /* Verificar si coincide el filtro de período */
         let coincidePeriodo = true;
         if (periodoFiltro !== '') {
-            const fechaGasto = new Date(gasto.fechaRegistro);
+            const fechaGasto = new Date(gasto.fechaRegistro + 'T00:00:00');
             const hoy = new Date();
             
             switch (periodoFiltro) {
@@ -205,6 +205,7 @@ function renderizarGastos() {
         /* Retornar el HTML de la fila */
         return `
             <tr class="tabla__fila">
+                <td class="tabla__td">${gasto.idGastosAdic}</td>
                 <td class="tabla__td">${formatearFecha(gasto.fechaRegistro)}</td>
                 <td class="tabla__td">
                     <span class="tabla__badge ${badgeClase}">${gasto.metodoPago}</span>
@@ -224,7 +225,7 @@ function renderizarGastos() {
     /* Si no hay resultados, mostrar un mensaje vacío */
     if (filtradas.length === 0) {
         tbody.innerHTML = `
-            <tr><td colspan="5" style="text-align: center; padding: 2rem; color: var(--color-texto-suave);">
+            <tr><td colspan="6" style="text-align: center; padding: 2rem; color: var(--color-texto-suave);">
                 No se encontraron gastos
             </td></tr>
         `;

@@ -9,7 +9,7 @@
  *  - Edición de información personal (nombre, apellido, correo) vía PATCH /users/id
  *  - Establecer/cambiar contraseña vía PATCH /users/id
  *  - CRUD de correos adicionales (GET, POST, DELETE /correos-usuario)
- *  - CRUD de números telefónicos (GET, POST, DELETE /numeros-usuario)
+ *  - CRUD de números telefónicos (GET, POST, DELETE /telefonos-usuario)
  *  - Cerrar sesión
  */
 
@@ -20,7 +20,7 @@ import { actualizarParcialUsuario } from '../api/services/usuarios.service.js';
 // Servicio para gestionar correos adicionales
 import { obtenerCorreos, agregarCorreo, eliminarCorreo } from '../api/services/correos-usuario.service.js';
 // Servicio para gestionar números telefónicos
-import { obtenerNumeros, agregarNumero, eliminarNumero } from '../api/services/numeros-usuario.service.js';
+import { obtenerTelefonos, agregarTelefono, eliminarTelefono } from '../api/services/telefonos-usuario.service.js';
 // Utilidad para mostrar alertas de éxito con SweetAlert2
 import { mostrarAlertaExito, mostrarAlertaError } from '../utils/alerts.js';
 // Utilidad para abrir y cerrar modales
@@ -113,7 +113,7 @@ export async function inicializar() {
     // Cargar correos adicionales del usuario
     cargarCorreos();
     // Cargar números telefónicos del usuario
-    cargarNumeros();
+    cargarTelefonos();
     // Registrar eventos de los botones de los modales
     registrarEventos();
     // Inicializar validaciones visuales en todos los formularios
@@ -324,8 +324,13 @@ function renderizarCorreos(correos) {
     // Obtener el contenedor de la lista de correos
     const contenedor = document.getElementById('lista-correos');
 
-    // Si no hay correos, mostrar mensaje indicándolo
-    if (correos.length === 0) {
+    // Filtrar el correo principal para no mostrarlo como adicional
+    const correoPrincipal = perfilUsuario?.correo?.toLowerCase();
+    // Excluir el correo que ya se muestra en la sección de información personal
+    const adicionales = correos.filter(c => c.correo.toLowerCase() !== correoPrincipal);
+
+    // Si no hay correos adicionales, mostrar mensaje indicándolo
+    if (adicionales.length === 0) {
         // Mostrar texto indicando que no hay correos adicionales
         contenedor.innerHTML = '<p class="perfil__lista-vacia">No hay correos adicionales registrados</p>';
         // Salir de la función sin continuar
@@ -333,7 +338,7 @@ function renderizarCorreos(correos) {
     }
 
     // Generar el HTML de cada correo con su botón de eliminar
-    contenedor.innerHTML = correos.map(correo => `
+    contenedor.innerHTML = adicionales.map(correo => `
         <div class="perfil__lista-item">
             <i class="fa-solid fa-envelope"></i>
             <span>${correo.correo}</span>
@@ -351,12 +356,12 @@ function renderizarCorreos(correos) {
 /**
  * Obtiene los números telefónicos del usuario y los renderiza en la lista.
  */
-async function cargarNumeros() {
+async function cargarTelefonos() {
     try {
-        // Llamar al backend para obtener los números del usuario
-        const numeros = await obtenerNumeros();
-        // Renderizar la lista de números en el contenedor
-        renderizarNumeros(numeros);
+        // Llamar al backend para obtener los teléfonos del usuario
+        const telefonos = await obtenerTelefonos();
+        // Renderizar la lista de teléfonos en el contenedor
+        renderizarTelefonos(telefonos);
     } catch (error) {
         // Mostrar notificación de error si falla la carga
         showNotification('Error al cargar teléfonos', 'error');
@@ -365,26 +370,26 @@ async function cargarNumeros() {
 
 /**
  * Renderiza la lista de números telefónicos en el contenedor HTML.
- * @param {Array} numeros - Lista de objetos { idNumero, numero, usuarioId }
+ * @param {Array} telefonos - Lista de objetos { idTelefono, telefono, esPrincipal, usuarioId }
  */
-function renderizarNumeros(numeros) {
+function renderizarTelefonos(telefonos) {
     // Obtener el contenedor de la lista de teléfonos
     const contenedor = document.getElementById('lista-telefonos');
 
-    // Si no hay números, mostrar mensaje indicándolo
-    if (numeros.length === 0) {
+    // Si no hay teléfonos, mostrar mensaje indicándolo
+    if (telefonos.length === 0) {
         // Mostrar texto indicando que no hay teléfonos adicionales
         contenedor.innerHTML = '<p class="perfil__lista-vacia">No hay teléfonos adicionales registrados</p>';
         // Salir de la función sin continuar
         return;
     }
 
-    // Generar el HTML de cada número con su botón de eliminar
-    contenedor.innerHTML = numeros.map(numero => `
+    // Generar el HTML de cada teléfono con su botón de eliminar
+    contenedor.innerHTML = telefonos.map(tel => `
         <div class="perfil__lista-item">
             <i class="fa-solid fa-phone"></i>
-            <span>${numero.numero}</span>
-            <button type="button" class="perfil__lista-eliminar" data-eliminar-numero="${numero.idNumero}" title="Eliminar teléfono">
+            <span>${tel.telefono}</span>
+            <button type="button" class="perfil__lista-eliminar" data-eliminar-telefono="${tel.idTelefono}" title="Eliminar teléfono">
                 <i class="fa-solid fa-trash"></i>
             </button>
         </div>
@@ -446,14 +451,14 @@ function registrarEventos() {
         if (boton) handleEliminarCorreo(parseInt(boton.dataset.eliminarCorreo));
     });
 
-    // ----- Delegación de eventos para eliminar números -----
+    // ----- Delegación de eventos para eliminar teléfonos -----
 
     // Registrar evento click con delegación en el contenedor de teléfonos
     document.getElementById('lista-telefonos').addEventListener('click', (evento) => {
         // Buscar el botón de eliminar más cercano al elemento clickeado
-        const boton = evento.target.closest('[data-eliminar-numero]');
+        const boton = evento.target.closest('[data-eliminar-telefono]');
         // Si se encontró un botón de eliminar, ejecutar la eliminación
-        if (boton) handleEliminarNumero(parseInt(boton.dataset.eliminarNumero));
+        if (boton) handleEliminarTelefono(parseInt(boton.dataset.eliminarTelefono));
     });
 
     // ----- Pre-cargar datos en modal de editar personal -----
@@ -780,14 +785,14 @@ async function handleEliminarCorreo(idCorreo) {
 
 /**
  * Maneja la adición de un nuevo número telefónico.
- * Usa POST /numeros-usuario con el número en el body y validaciones profesionales.
+ * Usa POST /telefonos-usuario con el teléfono en el body y validaciones profesionales.
  */
 async function handleAgregarTelefono() {
     const form = document.getElementById('form-agregar-telefono');
-    
+
     // Limpiar errores previos
     limpiarErrores(form);
-    
+
     // Validación client-side con el mismo sistema que autenticación
     const { valido, errores } = validateForm(form, {
         '#agregar-telefono': {
@@ -806,15 +811,15 @@ async function handleAgregarTelefono() {
     }
 
     // Obtener valor validado
-    const numero = document.getElementById('agregar-telefono').value.trim();
+    const telefono = document.getElementById('agregar-telefono').value.trim();
 
     try {
-        await agregarNumero(numero);
+        await agregarTelefono(telefono);
         closeModal('modal-agregar-telefono');
         form.reset();
         clearFormState(form);
         mostrarAlertaExito('Teléfono agregado exitosamente');
-        await cargarNumeros();
+        await cargarTelefonos();
     } catch (error) {
         mostrarAlertaError('Error al agregar teléfono', error.message);
         marcarErrorVisual(form, '#agregar-telefono');
@@ -827,10 +832,10 @@ async function handleAgregarTelefono() {
 
 /**
  * Maneja la eliminación de un número telefónico con confirmación previa.
- * Usa DELETE /numeros-usuario?id=X.
- * @param {number} idNumero - ID del número a eliminar
+ * Usa DELETE /telefonos-usuario?id=X.
+ * @param {number} idTelefono - ID del teléfono a eliminar
  */
-async function handleEliminarNumero(idNumero) {
+async function handleEliminarTelefono(idTelefono) {
     // Mostrar diálogo de confirmación antes de eliminar
     const resultado = await Swal.fire({
         // Título del diálogo de confirmación
@@ -859,11 +864,11 @@ async function handleEliminarNumero(idNumero) {
 
     try {
         // Enviar la solicitud de eliminación al backend
-        await eliminarNumero(idNumero);
+        await eliminarTelefono(idTelefono);
         // Mostrar notificación de éxito
         showNotification('Teléfono eliminado', 'success');
-        // Recargar la lista de números para reflejar la eliminación
-        await cargarNumeros();
+        // Recargar la lista de teléfonos para reflejar la eliminación
+        await cargarTelefonos();
     } catch (error) {
         // Mostrar el error retornado por el backend
         mostrarAlertaError('Error al eliminar teléfono', error.message);
