@@ -1,0 +1,168 @@
+/* ========================================================================== */
+/* ===== TARJETAS RESUMEN — MOVIMIENTOS FINANCIEROS ========================= */
+/* ========================================================================== */
+
+/* Contenedor de las 3 tarjetas resumen (Ingresos, Egresos, Ganancia) */
+.movimientos-resumen {
+    display: grid;
+    /* Grid para distribuir las tarjetas */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columnas iguales */
+    gap: 16px;
+    /* Espacio entre tarjetas */
+    margin-bottom: 20px;
+    /* Espacio antes de la tabla */
+}
+
+/* Tarjeta individual del resumen */
+.movimientos-resumen__tarjeta {
+    display: flex;
+    /* Flexbox para icono + info */
+    align-items: center;
+    /* Centrado vertical */
+    gap: 14px;
+    /* Espacio entre icono y texto */
+    background: var(--color-blanco);
+    /* Fondo blanco */
+    padding: 18px 20px;
+    /* Espaciado interno */
+    border-radius: var(--radio-grande);
+    /* Esquinas redondeadas */
+    border: 1px solid var(--color-borde);
+    /* Borde gris sutil */
+    transition: border-color 0.2s;
+    /* Transición suave del borde */
+}
+
+/* Hover en la tarjeta */
+.movimientos-resumen__tarjeta:hover {
+    border-color: #ccc;
+    /* Borde más oscuro al pasar el mouse */
+}
+
+/* Icono circular de la tarjeta */
+.movimientos-resumen__icono {
+    width: 42px;
+    /* Ancho del contenedor del icono */
+    height: 42px;
+    /* Alto del contenedor del icono */
+    border-radius: 50%;
+    /* Forma circular */
+    display: flex;
+    /* Flexbox para centrar el icono */
+    align-items: center;
+    /* Centrado vertical */
+    justify-content: center;
+    /* Centrado horizontal */
+    font-size: 18px;
+    /* Tamaño del icono FontAwesome */
+    flex-shrink: 0;
+    /* No encoger el icono */
+}
+
+/* Contenedor del label y valor */
+.movimientos-resumen__info {
+    display: flex;
+    /* Flexbox vertical */
+    flex-direction: column;
+    /* Apilar label arriba, valor abajo */
+    gap: 2px;
+    /* Espacio entre label y valor */
+}
+
+/* Label de la tarjeta (ej: "Total Ingresos") */
+.movimientos-resumen__label {
+    font-size: 0.75rem;
+    /* Tamaño pequeño */
+    color: var(--color-texto-suave);
+    /* Color gris suave */
+    font-weight: 500;
+    /* Semi-negrita */
+    text-transform: uppercase;
+    /* Mayúsculas */
+    letter-spacing: 0.3px;
+    /* Espaciado entre letras */
+}
+
+/* Valor monetario de la tarjeta */
+.movimientos-resumen__valor {
+    font-size: 1.25rem;
+    /* Tamaño grande */
+    font-weight: 700;
+    /* Negrita */
+    color: var(--color-texto);
+    /* Color de texto principal */
+}
+
+/* ========================================================================== */
+/* ===== VARIANTES DE COLOR POR TIPO ======================================== */
+/* ========================================================================== */
+
+/* Tarjeta de Ingresos — Verde */
+.movimientos-resumen__tarjeta--ingreso .movimientos-resumen__icono {
+    background: var(--color-ingreso);
+    /* Fondo verde */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+.movimientos-resumen__tarjeta--ingreso .movimientos-resumen__valor {
+    color: var(--color-ingreso);
+    /* Valor en verde */
+}
+
+/* Tarjeta de Egresos — Rojo */
+.movimientos-resumen__tarjeta--egreso .movimientos-resumen__icono {
+    background: var(--color-egreso);
+    /* Fondo rojo */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+.movimientos-resumen__tarjeta--egreso .movimientos-resumen__valor {
+    color: var(--color-egreso);
+    /* Valor en rojo */
+}
+
+/* Tarjeta de Ganancia — Azul info */
+.movimientos-resumen__tarjeta--ganancia .movimientos-resumen__icono {
+    background: var(--color-info);
+    /* Fondo azul */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+.movimientos-resumen__tarjeta--ganancia .movimientos-resumen__valor {
+    color: var(--color-info);
+    /* Valor en azul */
+}
+
+/* ========================================================================== */
+/* ===== TABLA DE MOVIMIENTOS — ALTURA MÁXIMA =============================== */
+/* ========================================================================== */
+
+/* Limitar a 7 filas visibles */
+.tabla__contenedor.tabla__contenedor--movimientos {
+    max-height: 458px;
+    /* Altura máxima para 7 filas de movimientos */
+}
+
+/* ========================================================================== */
+/* ===== RESPONSIVE ========================================================= */
+/* ========================================================================== */
+
+/* Tablet: 2 columnas + 1 */
+@media (max-width: 768px) {
+    .movimientos-resumen {
+        grid-template-columns: 1fr 1fr;
+        /* 2 columnas en tablet */
+    }
+}
+
+/* Móvil: 1 columna */
+@media (max-width: 480px) {
+    .movimientos-resumen {
+        grid-template-columns: 1fr;
+        /* 1 columna en móvil */
+    }
+}
