@@ -16,8 +16,8 @@
     /* Sombra suave */
     overflow: hidden;
     /* Oculta overflow para border-radius */
-    max-height: 550px;
-    /* Altura máxima fija */
+    max-height: 475px;
+    /* Altura máxima: header (45px) + 10 filas (43px × 10 = 430px) = 475px */
     overflow-y: auto;
     /* Scroll vertical */
     overflow-x: auto;
@@ -112,6 +112,8 @@
 .tabla__td {
     padding: 14px 12px;
     /* Espaciado interno */
+    height: 60px;
+    /* Altura consistente: padding (14+14) + contenido (32px) = 60px */
     color: var(--color-texto);
     /* Color de texto */
     text-align: center;
@@ -222,6 +224,30 @@
     /* Fondo rosa claro */
     color: var(--color-nequi);
     /* Texto rosa Nequi */
+}
+
+/* Badge - Ingreso (Verde) */
+.tabla__badge--ingreso {
+    background: var(--color-ingreso-fondo);
+    /* Fondo verde claro */
+    color: var(--color-ingreso);
+    /* Texto verde */
+}
+
+/* Badge - Egreso (Rojo) */
+.tabla__badge--egreso {
+    background: var(--color-egreso-fondo);
+    /* Fondo rojo claro */
+    color: var(--color-egreso);
+    /* Texto rojo */
+}
+
+/* Badge - Gasto Adicional (Naranja) */
+.tabla__badge--gasto {
+    background: var(--color-ganancia-fondo);
+    /* Fondo naranja claro */
+    color: var(--color-ganancia);
+    /* Texto naranja */
 }
 
 /* ========================================================================== */

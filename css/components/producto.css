@@ -8,7 +8,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    /* Margen inferior entre header y contenido */
     width: 100%;
     min-width: 0;
 }

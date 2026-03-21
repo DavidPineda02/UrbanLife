@@ -32,6 +32,7 @@
 @import url(./components/notificacion.css);
 @import url(./components/validacion.css);
 @import url(./components/sweetalert.css);
+@import url(./components/movimientos.css);
 
 /* Responsive */
 @import url(./layout/responsive.css);

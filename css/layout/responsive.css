@@ -262,7 +262,7 @@
     /* ---------- PAGINA HEADER (Desktop Grande) ---------- */
 
     .pagina-header {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         /* Margen moderado */
     }
 
@@ -600,7 +600,7 @@
         grid-template-columns: 1fr auto;
         grid-template-rows: auto auto;
         gap: 12px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         width: 100%;
     }
 
@@ -912,7 +912,7 @@
        Aquí solo ajustamos tamaños para pantallas más pequeñas. */
     .pagina-header {
         gap: 10px;
-        margin-bottom: 16px;
+        margin-bottom: 6px;
     }
 
     .pagina-header__titulo {
@@ -1482,7 +1482,7 @@
     /* Header muestra solo el buscador */
     .pagina-header {
         display: block;
-        margin-bottom: 16px;
+        margin-bottom: 6px;
     }
 
     /* Título oculto en móvil */
@@ -1818,7 +1818,7 @@
 
     /* Ajusta el margen del header */
     .pagina-header {
-        margin-bottom: 14px;
+        margin-bottom: 4px;
     }
 
     /* FAB sube un poco más en móviles con barra inferior más alta */
@@ -2076,7 +2076,7 @@
     /* ---------- PAGINA HEADER (Mobile S ≤375px) ---------- */
 
     .pagina-header {
-        margin-bottom: 10px;
+        margin-bottom: 0;
     }
 
     /* FAB ligeramente más pequeño en móviles muy pequeños */

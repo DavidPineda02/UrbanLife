@@ -484,6 +484,13 @@
     color: var(--color-texto);
 }
 
+/* Indicador de campo opcional dentro del label */
+.formulario__opcional {
+    font-weight: var(--font-weight-normal);
+    color: var(--color-texto-terciario);
+    font-size: var(--font-size-xs);
+}
+
 /* Fila de dos columnas */
 .formulario__fila {
     display: grid;
