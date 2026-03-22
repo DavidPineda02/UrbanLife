@@ -49,12 +49,20 @@
                 <label class="formulario__label" for="editar-usuario-correo">Correo Electrónico</label>
                 <input type="email" id="editar-usuario-correo" class="formulario__input formulario__campo" title="Correo Electrónico">
             </div>
-            <div class="formulario__grupo">
-                <label class="formulario__label" for="editar-usuario-estado">Estado</label>
-                <select id="editar-usuario-estado" class="formulario__select" title="Estado" data-required>
-                    <option value="true">Activo</option>
-                    <option value="false">Inactivo</option>
-                </select>
+            <div class="formulario__fila">
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-usuario-rol">Rol</label>
+                    <select id="editar-usuario-rol" class="formulario__select" title="Rol" data-required>
+                        <!-- Las opciones se llenan dinámicamente desde usuarios.js -->
+                    </select>
+                </div>
+                <div class="formulario__grupo">
+                    <label class="formulario__label" for="editar-usuario-estado">Estado</label>
+                    <select id="editar-usuario-estado" class="formulario__select" title="Estado" data-required>
+                        <option value="true">Activo</option>
+                        <option value="false">Inactivo</option>
+                    </select>
+                </div>
             </div>
             <div class="formulario__acciones">
                 <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>

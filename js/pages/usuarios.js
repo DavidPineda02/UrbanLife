@@ -35,6 +35,7 @@ import { openModal, closeModal } from '../utils/modal.js';                     /
 import { showNotification } from '../utils/notifications.js';                  // Toasts
 import { validateForm, clearFormState } from '../utils/formValidation.js';     // Validación de formularios
 import Swal from 'sweetalert2';                                                // SweetAlert2 para confirmaciones
+import { getGlobalProfile } from '../utils/globalProfile.js';                  // Para obtener el rol del usuario logueado
 
 /* -------------------------------------------------------------------------- */
 /* ----- Estado Local del Módulo -------------------------------------------- */
@@ -75,6 +76,9 @@ let inputApellidoEditar;
 
 /** Input del correo en el modal de editar */
 let inputCorreoEditar;
+
+/** Select del rol en el modal de editar */
+let selectRolEditar;
 
 /** Select del estado en el modal de editar */
 let selectEstadoEditar;
@@ -134,7 +138,14 @@ function formatearRol(rol) {
  * Renderiza las tarjetas de usuarios aplicando los filtros.
  * Se llama cada vez que cambian los datos o los filtros.
  */
-function renderizarGrid() {
+async function renderizarGrid() {
+    /* Obtener el rol del usuario logueado para aplicar restricciones */
+    const perfil = await getGlobalProfile();
+    /* Rol del usuario autenticado */
+    const miRol = perfil?.rol || '';
+    /* ID del usuario autenticado */
+    const miId = Number(perfil?.userId);
+
     /* Obtener el texto de búsqueda en minúsculas */
     const busqueda = inputBusqueda.value.trim().toLowerCase();
 
@@ -146,6 +157,9 @@ function renderizarGrid() {
 
     /* Filtrar los usuarios según búsqueda, rol y estado */
     const filtrados = usuarios.filter(usr => {
+        /* ADMIN no puede ver usuarios SUPER_ADMIN */
+        if (miRol === 'ADMIN' && usr.rol === 'SUPER_ADMIN') return false;
+
         /* Verificar si el nombre o correo coinciden con la búsqueda */
         const coincideBusqueda = usr.nombre.toLowerCase().includes(busqueda)
             || (usr.apellido && usr.apellido.toLowerCase().includes(busqueda))
@@ -189,6 +203,16 @@ function renderizarGrid() {
                 ? 'Google'                                                     // Solo Google
                 : 'Contraseña';                                                // Solo contraseña
 
+        /* Determinar si es el propio usuario */
+        const esPropio = miId === usr.idUsuario;
+
+        /* Construir botón de toggle solo si NO es el propio usuario */
+        const botonToggle = esPropio ? '' : `
+                        <button type="button" class="producto__accion ${usr.estado ? 'producto__accion--eliminar' : 'producto__accion--activar'}" title="${usr.estado ? 'Desactivar' : 'Activar'}"
+                                data-accion="toggle" data-id="${usr.idUsuario}" data-estado="${usr.estado}">
+                            <i class="fa-solid ${usr.estado ? 'fa-toggle-off' : 'fa-toggle-on'}"></i>
+                        </button>`;
+
         /* Retornar el HTML de la tarjeta con la misma estructura del diseño original */
         return `
             <article class="contacto">
@@ -201,10 +225,7 @@ function renderizarGrid() {
                                 data-accion="editar" data-id="${usr.idUsuario}">
                             <i class="fa-solid fa-pen"></i>
                         </button>
-                        <button type="button" class="producto__accion producto__accion--eliminar" title="${usr.estado ? 'Desactivar' : 'Activar'}"
-                                data-accion="toggle" data-id="${usr.idUsuario}" data-estado="${usr.estado}">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
+                        ${botonToggle}
                     </div>
                 </div>
                 <div class="contacto__info">
@@ -256,7 +277,7 @@ function renderizarGrid() {
  * Abre el modal de edición pre-llenando los campos con los datos del usuario.
  * @param {number} id - ID del usuario a editar
  */
-function abrirModalEditar(id) {
+async function abrirModalEditar(id) {
     /* Buscar el usuario en el cache local por su ID */
     const usr = usuarios.find(u => u.idUsuario === id);
 
@@ -274,6 +295,44 @@ function abrirModalEditar(id) {
     inputApellidoEditar.value = usr.apellido || '';
     inputCorreoEditar.value = usr.correo;
     selectEstadoEditar.value = String(usr.estado);
+
+    /* Llenar el select de rol según el rol del usuario logueado */
+    const perfil = await getGlobalProfile();
+    /* Rol del usuario autenticado */
+    const miRol = perfil?.rol || '';
+    /* ID del usuario autenticado (viene como string desde /api/auth/me) */
+    const miId = Number(perfil?.userId);
+
+    /* Determinar si el usuario está editándose a sí mismo */
+    const esPropio = miId === id;
+
+    /* Deshabilitar el select de estado si se está editando a sí mismo */
+    selectEstadoEditar.disabled = esPropio;
+
+    /* Construir las opciones del select de rol */
+    let opcionesRol = '';
+    /* SUPER_ADMIN puede asignar ADMIN y EMPLEADO */
+    if (miRol === 'SUPER_ADMIN') {
+        opcionesRol = `
+            <option value="SUPER_ADMIN">Super Admin</option>
+            <option value="ADMIN">Administrador</option>
+            <option value="EMPLEADO">Empleado</option>
+        `;
+    }
+    /* ADMIN puede asignar ADMIN y EMPLEADO (no SUPER_ADMIN) */
+    else if (miRol === 'ADMIN') {
+        opcionesRol = `
+            <option value="ADMIN">Administrador</option>
+            <option value="EMPLEADO">Empleado</option>
+        `;
+    }
+
+    /* Insertar las opciones y seleccionar el rol actual */
+    selectRolEditar.innerHTML = opcionesRol;
+    selectRolEditar.value = usr.rol;
+
+    /* Si se está editando a sí mismo, deshabilitar el select de rol */
+    selectRolEditar.disabled = esPropio;
 
     /* Limpiar los estados visuales de validación previos */
     const form = modalEditar.querySelector('.modal__formulario');
@@ -333,12 +392,22 @@ async function handleActualizar(e) {
     const apellido = inputApellidoEditar.value.trim();                         // Apellido del usuario
     const correo = inputCorreoEditar.value.trim();                             // Correo actualizado
     const estado = selectEstadoEditar.value === 'true';                        // Estado convertido a boolean
+    const rol = selectRolEditar.value;                                         // Rol seleccionado
+
+    /* Construir el objeto con los datos a enviar */
+    const datos = { nombre, apellido, correo };
+
+    /* Solo enviar estado y rol si NO se está editando a sí mismo */
+    if (!selectEstadoEditar.disabled) {
+        datos.estado = estado;
+    }
+    if (!selectRolEditar.disabled) {
+        datos.rol = rol;
+    }
 
     try {
         /* Enviar petición PATCH al backend para actualizar parcialmente el usuario */
-        const respuesta = await actualizarParcialUsuario(usuarioEditandoId, {
-            nombre, apellido, correo, estado,
-        });
+        const respuesta = await actualizarParcialUsuario(usuarioEditandoId, datos);
 
         /* Cerrar el modal de edición */
         closeModal('modal-editar-usuario');
@@ -368,6 +437,24 @@ async function handleActualizar(e) {
  * @returns {Promise<void>}
  */
 async function handleToggleEstado(id, estadoActual) {
+    /* Obtener el perfil del usuario logueado */
+    const perfil = await getGlobalProfile();
+    /* ID del usuario autenticado */
+    const miId = Number(perfil?.userId);
+
+    /* No permitir que un usuario se desactive a sí mismo */
+    if (miId === id) {
+        mostrarAlertaError('No puedes desactivarte a ti mismo');
+        return;
+    }
+
+    /* ADMIN no puede desactivar SUPER_ADMIN */
+    const usr = usuarios.find(u => u.idUsuario === id);
+    if (perfil?.rol === 'ADMIN' && usr?.rol === 'SUPER_ADMIN') {
+        mostrarAlertaError('No tienes permiso para modificar un Super Administrador');
+        return;
+    }
+
     /* Determinar la acción a realizar para los textos del diálogo */
     const accion = estadoActual ? 'desactivar' : 'activar';                    // Texto de la acción
     const accionPasada = estadoActual ? 'desactivado' : 'activado';            // Texto en pasado
@@ -478,6 +565,8 @@ export async function inicializar() {
     inputApellidoEditar = document.getElementById('editar-usuario-apellido');
     /* Obtener el input de correo del modal de editar */
     inputCorreoEditar = document.getElementById('editar-usuario-correo');
+    /* Obtener el select de rol del modal de editar */
+    selectRolEditar = document.getElementById('editar-usuario-rol');
     /* Obtener el select de estado del modal de editar */
     selectEstadoEditar = document.getElementById('editar-usuario-estado');
     /* Obtener el botón "Actualizar" del modal de editar */

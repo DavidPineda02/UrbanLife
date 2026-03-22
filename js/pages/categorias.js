@@ -164,9 +164,9 @@ function renderizarTabla() {
                             data-accion="editar" data-id="${cat.idCategoria}">
                         <i class="fa-solid fa-pen"></i>
                     </button>
-                    <button type="button" class="tabla__accion tabla__accion--eliminar" title="Eliminar"
+                    <button type="button" class="tabla__accion ${cat.estado ? 'tabla__accion--eliminar' : 'tabla__accion--activar'}" title="${cat.estado ? 'Desactivar' : 'Activar'}"
                             data-accion="toggle" data-id="${cat.idCategoria}" data-estado="${cat.estado}">
-                        <i class="fa-solid fa-trash"></i>
+                        <i class="fa-solid ${cat.estado ? 'fa-toggle-off' : 'fa-toggle-on'}"></i>
                     </button>
                 </td>
             </tr>

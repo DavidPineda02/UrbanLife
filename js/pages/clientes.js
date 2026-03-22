@@ -194,9 +194,9 @@ function renderizarGrid() {
                                 data-accion="editar" data-id="${cli.idCliente}">
                             <i class="fa-solid fa-pen"></i>
                         </button>
-                        <button type="button" class="producto__accion producto__accion--eliminar" title="${cli.estado ? 'Desactivar' : 'Activar'}"
+                        <button type="button" class="producto__accion ${cli.estado ? 'producto__accion--eliminar' : 'producto__accion--activar'}" title="${cli.estado ? 'Desactivar' : 'Activar'}"
                                 data-accion="toggle" data-id="${cli.idCliente}" data-estado="${cli.estado}">
-                            <i class="fa-solid fa-trash"></i>
+                            <i class="fa-solid ${cli.estado ? 'fa-toggle-off' : 'fa-toggle-on'}"></i>
                         </button>
                     </div>
                 </div>

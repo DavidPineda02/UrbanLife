@@ -194,12 +194,28 @@
     /* Texto rojo */
 }
 
-/* Badge - Efectivo (Gris) */
+/* Badge - Activo (Verde) */
+.tabla__badge--activo {
+    background: var(--color-ingreso-fondo);
+    /* Fondo verde claro */
+    color: var(--color-ingreso);
+    /* Texto verde */
+}
+
+/* Badge - Inactivo (Rojo) */
+.tabla__badge--inactivo {
+    background: var(--color-egreso-fondo);
+    /* Fondo rojo claro */
+    color: var(--color-egreso);
+    /* Texto rojo */
+}
+
+/* Badge - Efectivo (Gris oscuro) */
 .tabla__badge--efectivo {
-    background: var(--color-fondo-gris);
-    /* Fondo gris */
-    color: var(--color-texto-secundario);
-    /* Texto gris */
+    background: rgba(108, 117, 125, 0.15);
+    /* Fondo gris oscuro claro */
+    color: #495057;
+    /* Texto gris oscuro */
 }
 
 /* Badge - Tarjeta (Azul) */
@@ -224,6 +240,22 @@
     /* Fondo rosa claro */
     color: var(--color-nequi);
     /* Texto rosa Nequi */
+}
+
+/* Badge - Tipo Venta (Teal) */
+.tabla__badge--venta {
+    background: rgba(0, 150, 136, 0.15);
+    /* Fondo teal claro */
+    color: #009688;
+    /* Texto teal */
+}
+
+/* Badge - Tipo Compra (Azul) */
+.tabla__badge--compra {
+    background: rgba(52, 152, 219, 0.15);
+    /* Fondo azul claro */
+    color: var(--color-info);
+    /* Texto azul */
 }
 
 /* Badge - Ingreso (Verde) */
@@ -331,6 +363,21 @@
 .tabla__accion--eliminar:hover {
     background: var(--color-egreso);
     /* Fondo rojo sólido */
+    color: var(--color-blanco);
+    /* Icono blanco */
+}
+
+/* Acción - Activar (Verde) */
+.tabla__accion--activar {
+    background: rgba(46, 213, 115, 0.1);
+    /* Fondo verde claro */
+    color: var(--color-ingreso);
+    /* Icono verde */
+}
+
+.tabla__accion--activar:hover {
+    background: var(--color-ingreso);
+    /* Fondo verde sólido */
     color: var(--color-blanco);
     /* Icono blanco */
 }

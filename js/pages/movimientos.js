@@ -197,9 +197,9 @@ function renderizarMovimientos() {
     tbody.innerHTML = filtrados.map(mov => {
         /* Determinar clase CSS del badge según el tipo de movimiento */
         let badgeTipoClase = '';                                               // Clase CSS del badge de tipo
-        if (mov.tipoMovimiento === 'Venta') badgeTipoClase = 'tabla__badge--efectivo';           // Verde para ventas
-        else if (mov.tipoMovimiento === 'Compra') badgeTipoClase = 'tabla__badge--transferencia'; // Azul para compras
-        else badgeTipoClase = 'tabla__badge--gasto';                           // Rojo para gastos
+        if (mov.tipoMovimiento === 'Venta') badgeTipoClase = 'tabla__badge--venta';              // Teal para ventas
+        else if (mov.tipoMovimiento === 'Compra') badgeTipoClase = 'tabla__badge--compra';       // Azul para compras
+        else badgeTipoClase = 'tabla__badge--gasto';                           // Naranja para gastos
 
         /* Determinar clase CSS del badge según la naturaleza */
         const badgeNatClase = mov.naturaleza === 'Ingreso'
@@ -214,10 +214,10 @@ function renderizarMovimientos() {
                 <td class="tabla__td">
                     <span class="tabla__badge ${badgeTipoClase}">${mov.tipoMovimiento}</span>
                 </td>
+                <td class="tabla__td">${mov.concepto}</td>
                 <td class="tabla__td">
                     <span class="tabla__badge ${badgeNatClase}">${mov.naturaleza}</span>
                 </td>
-                <td class="tabla__td">${mov.concepto}</td>
                 <td class="tabla__td tabla__td--precio">${formatearPrecio(mov.monto)}</td>
             </tr>
         `;
