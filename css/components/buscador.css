@@ -111,6 +111,52 @@
     margin: 0;
 }
 
+/* ---- Rango de fechas personalizado ---- */
+
+.buscador__rango-fechas {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.buscador__rango-fechas--visible {
+    display: flex;
+}
+
+.buscador__date {
+    border: 1.5px solid var(--color-borde);
+    background-color: var(--color-fondo-gris);
+    border-radius: var(--radio-grande);
+    padding: 0.575rem 0.875rem;
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.buscador__date:hover {
+    border-color: var(--color-marca);
+    background-color: var(--color-secundario);
+    box-shadow: 0 2px 8px var(--color-marca-hover);
+}
+
+.buscador__date:focus {
+    border-color: var(--color-marca);
+    background-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px var(--color-marca-hover);
+}
+
+.buscador__separador {
+    color: var(--color-texto-terciario);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-medium);
+    flex-shrink: 0;
+}
+
 /* ============================================
    RESPONSIVE — Tablet (≤ 900px)
    ============================================ */
@@ -129,6 +175,15 @@
     }
 
     .buscador__select {
+        flex: 1;
+        min-width: 130px;
+    }
+
+    .buscador__rango-fechas {
+        flex-wrap: wrap;
+    }
+
+    .buscador__date {
         flex: 1;
         min-width: 130px;
     }

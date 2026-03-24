@@ -77,6 +77,15 @@ let selectMetodo;
 /** Select de filtro por período de tiempo */
 let selectPeriodo;
 
+/** Contenedor de inputs de rango de fechas personalizado */
+let rangoFechas;
+
+/** Input de fecha "Desde" para filtro personalizado */
+let inputDesde;
+
+/** Input de fecha "Hasta" para filtro personalizado */
+let inputHasta;
+
 /* ----- Modal Paso 1: Datos Generales ----- */
 
 /** Select de proveedor en el modal paso 1 */
@@ -306,6 +315,16 @@ function filtrarPorPeriodo(fechaStr, periodo) {
     } else if (periodo === 'year') {
         /* Verificar si la fecha está en el mismo año */
         return fecha.getFullYear() === hoy.getFullYear();
+    } else if (periodo === 'custom') {
+        /* Obtener valores de los inputs de rango personalizado */
+        const desde = inputDesde?.value;
+        const hasta = inputHasta?.value;
+        /* Si no hay fechas seleccionadas, todos pasan */
+        if (!desde && !hasta) return true;
+        /* Comparar con el rango personalizado */
+        if (desde && fecha < new Date(desde + 'T00:00:00')) return false;
+        if (hasta && fecha > new Date(hasta + 'T00:00:00')) return false;
+        return true;
     }
 
     /* Por defecto, la fecha pasa el filtro */
@@ -865,6 +884,13 @@ export async function inicializar() {
     /* Obtener el select de filtro por período */
     selectPeriodo = document.querySelector('[name="filtro-periodo"]');
 
+    /* Obtener el contenedor de rango de fechas personalizado */
+    rangoFechas = document.querySelector('.buscador__rango-fechas');
+    /* Obtener el input de fecha "Desde" */
+    inputDesde = document.querySelector('[name="filtro-desde"]');
+    /* Obtener el input de fecha "Hasta" */
+    inputHasta = document.querySelector('[name="filtro-hasta"]');
+
     /* Obtener el select de proveedor del modal paso 1 */
     selectProveedor = document.getElementById('compra-proveedor');
 
@@ -906,7 +932,20 @@ export async function inicializar() {
     selectMetodo.addEventListener('change', renderizarTabla);
 
     /* Filtrar la tabla cuando cambia el select de período */
-    selectPeriodo.addEventListener('change', renderizarTabla);
+    selectPeriodo.addEventListener('change', () => {
+        /* Mostrar u ocultar los inputs de rango personalizado */
+        if (selectPeriodo.value === 'custom') {
+            rangoFechas?.classList.add('buscador__rango-fechas--visible');
+        } else {
+            rangoFechas?.classList.remove('buscador__rango-fechas--visible');
+        }
+        /* Renderizar la tabla con el nuevo filtro */
+        renderizarTabla();
+    });
+
+    /* Filtrar la tabla cuando cambian los inputs de rango personalizado */
+    inputDesde?.addEventListener('change', renderizarTabla);
+    inputHasta?.addEventListener('change', renderizarTabla);
 
     /* ===== Event Listeners del Modal Paso 1 ===== */
 

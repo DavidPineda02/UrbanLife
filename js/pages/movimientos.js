@@ -91,6 +91,15 @@ let selectNaturaleza;
 /** Select de filtro por período de tiempo */
 let selectPeriodo;
 
+/** Contenedor de inputs de rango de fechas personalizado */
+let rangoFechas;
+
+/** Input de fecha "Desde" para filtro personalizado */
+let inputDesde;
+
+/** Input de fecha "Hasta" para filtro personalizado */
+let inputHasta;
+
 /** Elemento que muestra el total de ingresos */
 let resumenIngresos;
 
@@ -183,6 +192,15 @@ function renderizarMovimientos() {
                     /* Verificar si la fecha está en el mismo año */
                     coincidePeriodo = fechaMov.getFullYear() === hoy.getFullYear();
                     break;
+                case 'custom': {
+                    /* Filtrar por rango de fechas personalizado */
+                    const desde = inputDesde?.value;
+                    const hasta = inputHasta?.value;
+                    if (!desde && !hasta) break;
+                    if (desde && fechaMov < new Date(desde + 'T00:00:00')) coincidePeriodo = false;
+                    if (hasta && fechaMov > new Date(hasta + 'T00:00:00')) coincidePeriodo = false;
+                    break;
+                }
             }
         }
 
@@ -281,7 +299,20 @@ function configurarEventListeners() {
     selectNaturaleza?.addEventListener('change', renderizarMovimientos);
 
     /* Filtrar cuando cambia el select de período */
-    selectPeriodo?.addEventListener('change', renderizarMovimientos);
+    selectPeriodo?.addEventListener('change', () => {
+        /* Mostrar u ocultar los inputs de rango personalizado */
+        if (selectPeriodo.value === 'custom') {
+            rangoFechas?.classList.add('buscador__rango-fechas--visible');
+        } else {
+            rangoFechas?.classList.remove('buscador__rango-fechas--visible');
+        }
+        /* Renderizar la tabla con el nuevo filtro */
+        renderizarMovimientos();
+    });
+
+    /* Filtrar cuando cambian los inputs de rango personalizado */
+    inputDesde?.addEventListener('change', renderizarMovimientos);
+    inputHasta?.addEventListener('change', renderizarMovimientos);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -313,6 +344,12 @@ export async function inicializar() {
         selectNaturaleza = document.querySelector('[name="filtro-naturaleza"]');
         /* Obtener el select de filtro por período */
         selectPeriodo = document.querySelector('[name="filtro-periodo"]');
+        /* Obtener el contenedor de rango de fechas personalizado */
+        rangoFechas = document.querySelector('.buscador__rango-fechas');
+        /* Obtener el input de fecha "Desde" */
+        inputDesde = document.querySelector('[name="filtro-desde"]');
+        /* Obtener el input de fecha "Hasta" */
+        inputHasta = document.querySelector('[name="filtro-hasta"]');
         /* Obtener los elementos de las tarjetas resumen */
         resumenIngresos = document.getElementById('resumen-ingresos');
         resumenEgresos = document.getElementById('resumen-egresos');

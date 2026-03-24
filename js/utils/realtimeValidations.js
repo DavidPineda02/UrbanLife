@@ -101,12 +101,12 @@ const VALIDATION_RULES = {
         transform: (value) => value.trim()
     },
 
-    // Validaciones para descripciones (textos largos)
+    // Validaciones para descripciones (máximo 255 caracteres según la BD)
     descripcion: {
         minLength: 0,
-        maxLength: 1000,
-        hint: 'Máximo 1000 caracteres.',
-        message: 'Máximo 1000 caracteres',
+        maxLength: 255,
+        hint: 'Máximo 255 caracteres.',
+        message: 'Máximo 255 caracteres',
         transform: (value) => value.trim()
     },
 

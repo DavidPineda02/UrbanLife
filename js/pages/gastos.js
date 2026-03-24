@@ -111,6 +111,15 @@ let selectMetodo;
 /** Select de filtro por período de tiempo */
 let selectPeriodo;
 
+/** Contenedor de inputs de rango de fechas personalizado */
+let rangoFechas;
+
+/** Input de fecha "Desde" para filtro personalizado */
+let inputDesde;
+
+/** Input de fecha "Hasta" para filtro personalizado */
+let inputHasta;
+
 /** Botón "Agregar Gasto" para abrir el modal */
 let btnAgregar;
 
@@ -172,7 +181,7 @@ function renderizarGastos() {
         if (periodoFiltro !== '') {
             const fechaGasto = new Date(gasto.fechaRegistro + 'T00:00:00');
             const hoy = new Date();
-            
+
             switch (periodoFiltro) {
                 case 'today':
                     coincidePeriodo = fechaGasto.toDateString() === hoy.toDateString();
@@ -182,12 +191,21 @@ function renderizarGastos() {
                     coincidePeriodo = fechaGasto >= semanaAtras;
                     break;
                 case 'month':
-                    coincidePeriodo = fechaGasto.getMonth() === hoy.getMonth() && 
+                    coincidePeriodo = fechaGasto.getMonth() === hoy.getMonth() &&
                                    fechaGasto.getFullYear() === hoy.getFullYear();
                     break;
                 case 'year':
                     coincidePeriodo = fechaGasto.getFullYear() === hoy.getFullYear();
                     break;
+                case 'custom': {
+                    /* Filtrar por rango de fechas personalizado */
+                    const desde = inputDesde?.value;
+                    const hasta = inputHasta?.value;
+                    if (!desde && !hasta) break;
+                    if (desde && fechaGasto < new Date(desde + 'T00:00:00')) coincidePeriodo = false;
+                    if (hasta && fechaGasto > new Date(hasta + 'T00:00:00')) coincidePeriodo = false;
+                    break;
+                }
             }
         }
 
@@ -387,7 +405,20 @@ function configurarEventListeners() {
     /* Event listeners para filtros (búsqueda y selects) */
     inputBusqueda?.addEventListener('input', renderizarGastos);
     selectMetodo?.addEventListener('change', renderizarGastos);
-    selectPeriodo?.addEventListener('change', renderizarGastos);
+    selectPeriodo?.addEventListener('change', () => {
+        /* Mostrar u ocultar los inputs de rango personalizado */
+        if (selectPeriodo.value === 'custom') {
+            rangoFechas?.classList.add('buscador__rango-fechas--visible');
+        } else {
+            rangoFechas?.classList.remove('buscador__rango-fechas--visible');
+        }
+        /* Renderizar la tabla con el nuevo filtro */
+        renderizarGastos();
+    });
+
+    /* Filtrar la tabla cuando cambian los inputs de rango personalizado */
+    inputDesde?.addEventListener('change', renderizarGastos);
+    inputHasta?.addEventListener('change', renderizarGastos);
 
     /* Event listener para clics en la tabla (delegación de eventos) */
     tbody?.addEventListener('click', handleAccionesTabla);
@@ -423,6 +454,12 @@ export async function inicializar() {
         selectMetodo = document.querySelector('[name="filtro-metodo"]');
         /* Obtener el select de filtro por período */
         selectPeriodo = document.querySelector('[name="filtro-periodo"]');
+        /* Obtener el contenedor de rango de fechas personalizado */
+        rangoFechas = document.querySelector('.buscador__rango-fechas');
+        /* Obtener el input de fecha "Desde" */
+        inputDesde = document.querySelector('[name="filtro-desde"]');
+        /* Obtener el input de fecha "Hasta" */
+        inputHasta = document.querySelector('[name="filtro-hasta"]');
         /* Obtener el botón de agregar gasto */
         btnAgregar = document.querySelector('[data-modal-open="modal-gasto"]');
         /* Obtener el modal de detalle de gasto */
