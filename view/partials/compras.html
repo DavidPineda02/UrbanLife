@@ -75,7 +75,7 @@
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="compra-fecha">Fecha</label>
-                <input type="date" id="compra-fecha" class="formulario__input formulario__campo" required title="Fecha">
+                <input type="date" id="compra-fecha" class="formulario__input formulario__campo" required title="Fecha" readonly>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="compra-metodo-pago">Metodo de Pago</label>
@@ -122,7 +122,7 @@
                     <option value="">Seleccionar</option>
                 </select>
                 <input type="number" class="formulario__input" name="cantidad_1" placeholder="0" title="Cantidad" min="1">
-                <input type="number" class="formulario__input" name="costo_1" placeholder="$ 0" title="Costo Unitario">
+                <input type="number" class="formulario__input" name="costo_1" placeholder="$ 0" title="Costo Unitario" min="1" step="0.01">
                 <button type="button" class="factura__eliminar btn-eliminar-fila" title="Eliminar producto">
                     <i class="fa-solid fa-trash"></i>
                 </button>

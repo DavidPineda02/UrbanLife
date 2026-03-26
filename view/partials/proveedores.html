@@ -39,11 +39,11 @@
         <div class="modal__formulario">
             <div class="formulario__grupo">
                 <label class="formulario__label" for="agregar-proveedor-nombre">Nombre del Proveedor</label>
-                <input type="text" id="agregar-proveedor-nombre" class="formulario__input formulario__campo" data-validation="letrasEspacios" placeholder="Ej: Carlos Martínez" title="Nombre del Proveedor" required>
+                <input type="text" id="agregar-proveedor-nombre" class="formulario__input formulario__campo" data-validation="letrasEspacios" placeholder="Ej: Carlos Martínez" title="Nombre del Proveedor" maxlength="150" required>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="agregar-proveedor-razon-social">Razón Social</label>
-                <input type="text" id="agregar-proveedor-razon-social" class="formulario__input formulario__campo" data-validation="texto" placeholder="Ej: Distribuidora Fashion S.A.S" title="Razón Social" required>
+                <input type="text" id="agregar-proveedor-razon-social" class="formulario__input formulario__campo" data-validation="razonSocial" placeholder="Ej: Distribuidora Fashion S.A.S" title="Razón Social" maxlength="150" required>
             </div>
             <div class="formulario__fila">
                 <div class="formulario__grupo">
@@ -52,7 +52,7 @@
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="agregar-proveedor-correo">Correo Electrónico</label>
-                    <input type="email" id="agregar-proveedor-correo" class="formulario__input formulario__campo" data-validation="correo" placeholder="Ej: correo@empresa.com" title="Correo Electrónico" required>
+                    <input type="email" id="agregar-proveedor-correo" class="formulario__input formulario__campo" data-validation="correo" placeholder="Ej: correo@empresa.com" title="Correo Electrónico" maxlength="120" required>
                 </div>
             </div>
             <div class="formulario__fila">
@@ -62,12 +62,12 @@
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="agregar-proveedor-ciudad">Ciudad</label>
-                    <input type="text" id="agregar-proveedor-ciudad" class="formulario__input formulario__campo" data-validation="letras" placeholder="Ej: Bogotá" title="Ciudad" required>
+                    <input type="text" id="agregar-proveedor-ciudad" class="formulario__input formulario__campo" data-validation="letras" placeholder="Ej: Bogotá" title="Ciudad" maxlength="100" required>
                 </div>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="agregar-proveedor-direccion">Dirección</label>
-                <input type="text" id="agregar-proveedor-direccion" class="formulario__input formulario__campo" data-validation="texto" placeholder="Ej: Cra 45 #32-10" title="Dirección" required>
+                <input type="text" id="agregar-proveedor-direccion" class="formulario__input formulario__campo" data-validation="direccion" placeholder="Ej: Cra 45 #32-10" title="Dirección" maxlength="200" required>
             </div>
             <div class="formulario__acciones">
                 <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
@@ -91,11 +91,11 @@
         <div class="modal__formulario">
             <div class="formulario__grupo">
                 <label class="formulario__label" for="editar-proveedor-nombre">Nombre del Proveedor</label>
-                <input type="text" id="editar-proveedor-nombre" class="formulario__input formulario__campo" data-validation="letrasEspacios" title="Nombre del Proveedor" required>
+                <input type="text" id="editar-proveedor-nombre" class="formulario__input formulario__campo" data-validation="letrasEspacios" title="Nombre del Proveedor" maxlength="150" required>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="editar-proveedor-razon-social">Razón Social</label>
-                <input type="text" id="editar-proveedor-razon-social" class="formulario__input formulario__campo" data-validation="texto" title="Razón Social" required>
+                <input type="text" id="editar-proveedor-razon-social" class="formulario__input formulario__campo" data-validation="razonSocial" title="Razón Social" maxlength="150" required>
             </div>
             <div class="formulario__fila">
                 <div class="formulario__grupo">
@@ -104,7 +104,7 @@
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="editar-proveedor-correo">Correo Electrónico</label>
-                    <input type="email" id="editar-proveedor-correo" class="formulario__input formulario__campo" data-validation="correo" title="Correo Electrónico" required>
+                    <input type="email" id="editar-proveedor-correo" class="formulario__input formulario__campo" data-validation="correo" title="Correo Electrónico" maxlength="120" required>
                 </div>
             </div>
             <div class="formulario__fila">
@@ -114,12 +114,12 @@
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="editar-proveedor-ciudad">Ciudad</label>
-                    <input type="text" id="editar-proveedor-ciudad" class="formulario__input formulario__campo" data-validation="letras" title="Ciudad" required>
+                    <input type="text" id="editar-proveedor-ciudad" class="formulario__input formulario__campo" data-validation="letras" title="Ciudad" maxlength="100" required>
                 </div>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="editar-proveedor-direccion">Dirección</label>
-                <input type="text" id="editar-proveedor-direccion" class="formulario__input formulario__campo" data-validation="texto" title="Dirección" required>
+                <input type="text" id="editar-proveedor-direccion" class="formulario__input formulario__campo" data-validation="direccion" title="Dirección" maxlength="200" required>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="editar-proveedor-estado">Estado</label>

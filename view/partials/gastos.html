@@ -69,18 +69,18 @@
             <div class="formulario__fila">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Fecha</label>
-                    <input type="date" class="formulario__input" name="fecha" title="Fecha" required>
+                    <input type="date" class="formulario__input" name="fecha" title="Fecha" required readonly>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Monto</label>
-                    <input type="text" class="formulario__input" name="monto" placeholder="$ 0" title="Monto" data-validation="numeros" required>
+                    <input type="number" class="formulario__input" name="monto" placeholder="$ 0" title="Monto" min="1" step="0.01" data-validation="numeros" required>
                 </div>
             </div>
             <div class="formulario__fila">
                 <div class="formulario__grupo">
                     <label class="formulario__label">Descripción</label>
                     <input type="text" class="formulario__input" name="descripcion"
-                        placeholder="Ej: Pago de energía eléctrica" title="Descripción" data-validation="texto" required>
+                        placeholder="Ej: Pago de energía eléctrica" title="Descripción" maxlength="255" data-validation="texto" required>
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label">Método de Pago</label>

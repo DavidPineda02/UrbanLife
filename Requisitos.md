@@ -98,8 +98,8 @@
 | **Nombre del Requisito** | Ver el panel principal con el resumen del negocio |
 | **Componente** | Pantalla principal, tarjetas de resumen, gráfico de ventas de la semana, resumen de ingresos y egresos, distribución de stock por categoría, lista de productos más rentables |
 | **Característica asociada** | Panel de control, resumen visual del estado del negocio |
-| **Descripción del Requisito** | Al ingresar al sistema, el usuario ve una pantalla principal con un resumen del negocio. Se muestran tarjetas con las ventas del día, los egresos a proveedores, las ganancias del mes y la cantidad de productos activos. También hay un gráfico con las ventas de la semana, un comparativo de ingresos y egresos, un gráfico que muestra cuánto stock hay por categoría y una lista de los productos que generan más ganancia. |
-| **Características** | Los valores de las tarjetas y los gráficos deben calcularse con base en los registros reales que hay en el sistema, no con datos de ejemplo. |
+| **Descripción del Requisito** | Al ingresar al sistema, el usuario ve una pantalla principal con un resumen del negocio. Se muestran cuatro tarjetas con las ventas del día, los egresos del día, las ganancias del mes y la cantidad de productos activos. También hay un gráfico de barras con las ventas de los últimos siete días, un resumen semanal que compara con barras horizontales el total de ingresos, egresos y ganancias netas, un gráfico de dona que muestra la distribución de stock por categoría y una lista con los cinco productos más rentables según su margen de ganancia. |
+| **Características** | Los valores de las tarjetas y los gráficos deben calcularse con base en los registros reales que hay en el sistema, no con datos de ejemplo. Los productos más rentables se clasifican por margen de ganancia y se destacan visualmente según si el margen es alto, medio o bajo. |
 | **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
 | **Restricciones** | La información del panel debe mostrar solo los datos del negocio del ADMIN que tiene la sesión activa en ese momento. |
 | **Interacción Humana - Tecnología** | ☑ Sí   ☐ No |
@@ -217,8 +217,8 @@
 | **Nombre del Requisito** | Ver el resumen financiero del negocio |
 | **Componente** | Panel principal, tarjetas de ingresos, egresos y ganancias, sección de resumen semanal con barras comparativas |
 | **Característica asociada** | Contabilidad, visualización de ingresos, egresos y ganancias netas |
-| **Descripción del Requisito** | El sistema debe mostrar en el panel principal el resumen financiero del negocio. Se muestran las ventas del día, los egresos a proveedores y las ganancias del mes en tarjetas. También hay un bloque de resumen semanal que compara con barras el total de ingresos, egresos y ganancias netas de la semana actual. Todos los valores se calculan automáticamente con base en los registros del sistema. |
-| **Características** | Los valores deben actualizarse con los datos reales. Las tarjetas también muestran un indicador de si el valor subió o bajó respecto al período anterior. |
+| **Descripción del Requisito** | El sistema debe mostrar en el panel principal el resumen financiero del negocio. Se muestran las ventas del día, los egresos del día y las ganancias del mes en tarjetas con sus valores en pesos colombianos. También hay un bloque de resumen semanal que compara con barras horizontales el total de ingresos, egresos y ganancias netas de la semana actual. Todos los valores se calculan automáticamente con base en los registros de ventas, compras y gastos del sistema. |
+| **Características** | Los valores deben actualizarse con los datos reales cada vez que el usuario ingresa al panel principal. Las barras del resumen semanal se escalan proporcionalmente al valor más alto para facilitar la comparación visual. |
 | **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
 | **Restricciones** | Solo el ADMIN puede ver el resumen financiero. El EMPLEADO no tiene acceso a los datos contables del negocio. |
 | **Interacción Humana - Tecnología** | ☑ Sí   ☐ No |
@@ -438,8 +438,8 @@
 | **Nombre del Requisito** | Actualizar el stock automáticamente al registrar una venta |
 | **Componente** | Módulo de ventas, lógica interna del sistema al guardar una venta |
 | **Característica asociada** | Control automático del inventario, actualización de stock por ventas |
-| **Descripción del Requisito** | Cada vez que se guarda una venta, el sistema debe restar automáticamente las unidades vendidas del stock de cada producto incluido en esa venta. Esto ocurre sin que el usuario tenga que hacer nada adicional. Si se edita o elimina una venta, el stock también se ajusta de forma automática para reflejar el cambio. |
-| **Características** | La resta del stock se hace de forma automática al confirmar la venta. Si la venta se elimina, las unidades regresan al inventario. Si la venta se edita y se cambia la cantidad, la diferencia se aplica al stock. |
+| **Descripción del Requisito** | Cada vez que se guarda una venta, el sistema debe restar automáticamente las unidades vendidas del stock de cada producto incluido en esa venta. Esto ocurre sin que el usuario tenga que hacer nada adicional. La operación de registro de la venta y la actualización del stock se realizan de forma atómica, garantizando que ambas se completen o ninguna se aplique. |
+| **Características** | La resta del stock se hace de forma automática al confirmar la venta. Como las ventas son registros inmutables que no pueden editarse ni eliminarse, el ajuste de stock es definitivo una vez registrada la transacción. |
 | **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
 | **Restricciones** | El sistema no debe permitir registrar una venta con más unidades de las que hay disponibles en el inventario en ese momento. |
 | **Interacción Humana - Tecnología** | ☐ Sí   ☑ No |
@@ -455,8 +455,8 @@
 | **Nombre del Requisito** | Actualizar el stock automáticamente al registrar una compra |
 | **Componente** | Módulo de compras, lógica interna del sistema al guardar una compra |
 | **Característica asociada** | Control automático del inventario, actualización de stock por compras |
-| **Descripción del Requisito** | Cada vez que se guarda una compra, el sistema debe sumar automáticamente las unidades compradas al stock del producto correspondiente. Esto ocurre sin que el usuario tenga que actualizar el inventario por separado. Si se edita o elimina la compra, el stock también se ajusta de forma automática. |
-| **Características** | La suma al stock se hace de forma automática al confirmar la compra. Si la compra se elimina, las unidades se restan del inventario. Si se edita la cantidad, la diferencia se aplica al stock del producto. |
+| **Descripción del Requisito** | Cada vez que se guarda una compra, el sistema debe sumar automáticamente las unidades compradas al stock del producto correspondiente y recalcular el costo promedio ponderado del producto. Esto ocurre sin que el usuario tenga que actualizar el inventario por separado. La operación de registro de la compra y la actualización del stock se realizan de forma atómica, garantizando que ambas se completen o ninguna se aplique. |
+| **Características** | La suma al stock y el recálculo del costo promedio se hacen de forma automática al confirmar la compra. Como las compras son registros inmutables que no pueden editarse ni eliminarse, el ajuste de stock y el costo promedio son definitivos una vez registrada la transacción. |
 | **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
 | **Restricciones** | El ajuste de stock solo aplica para productos que ya estén registrados en el inventario. No se pueden crear nuevos productos desde el módulo de compras. |
 | **Interacción Humana - Tecnología** | ☐ Sí   ☑ No |
@@ -519,140 +519,12 @@
 
 ### FASE V.ERS – Especificación de Requisitos No Funcionales
 
-| Campo | Descripción |
+| ID | Descripción del Requisito No Funcional |
 |---|---|
-| **Id. del Requisito** | RNF-01 |
-| **Nombre del Requisito** | Seguridad en el acceso y contraseñas |
-| **Categoría** | Seguridad |
-| **Descripción del Requisito** | El sistema debe garantizar que solo los usuarios registrados puedan ingresar a las pantallas internas. Las contraseñas no deben guardarse como texto normal en la base de datos, sino de forma cifrada. Además, el servidor debe verificar que el usuario tenga sesión activa antes de responder a cualquier solicitud del sistema. |
-| **Criterio de Aceptación** | Si alguien intenta entrar a una pantalla protegida sin haber iniciado sesión, el sistema lo redirige a la pantalla de login. Las contraseñas en la base de datos deben estar cifradas y nunca visibles en texto plano. |
-| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | El sistema no debe mostrar contraseñas ni información sensible de los usuarios en ninguna pantalla o respuesta del servidor. |
-
----
-
-### FASE V.ERS – Especificación de Requisitos No Funcionales
-
-| Campo | Descripción |
-|---|---|
-| **Id. del Requisito** | RNF-02 |
-| **Nombre del Requisito** | Validación de datos en formularios |
-| **Categoría** | Usabilidad |
-| **Descripción del Requisito** | El sistema debe validar los campos de los formularios en tiempo real mientras el usuario escribe, aplicando reglas específicas por tipo de dato. Los campos de solo letras no deben aceptar números ni caracteres especiales, los campos numéricos no deben aceptar letras, los teléfonos deben validar entre 7 y 10 dígitos, los correos deben validar formato con arroba y dominio, y el NIT debe validar el formato colombiano de 9 dígitos más dígito verificador. Cada campo debe mostrar un indicador visual verde cuando el dato es válido y rojo cuando es inválido. |
-| **Criterio de Aceptación** | Al escribir en cualquier campo de un formulario, el sistema debe mostrar inmediatamente si el dato ingresado es válido o no mediante bordes de color verde o rojo, sin necesidad de enviar el formulario. Los caracteres no permitidos deben bloquearse automáticamente según el tipo de campo. |
-| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | Las validaciones del frontend son una ayuda visual para el usuario. El backend debe realizar sus propias validaciones de forma independiente antes de guardar cualquier dato en la base de datos. |
-
----
-
-### FASE V.ERS – Especificación de Requisitos No Funcionales
-
-| Campo | Descripción |
-|---|---|
-| **Id. del Requisito** | RNF-03 |
-| **Nombre del Requisito** | Protección de datos sensibles |
-| **Categoría** | Seguridad |
-| **Descripción del Requisito** | El sistema no debe exponer contraseñas, tokens de sesión ni información interna del servidor en las respuestas enviadas al navegador. Las comunicaciones entre el frontend y el backend se realizan mediante tokens JWT que expiran automáticamente, impidiendo el acceso con tokens vencidos. Las contraseñas se almacenan cifradas con BCrypt y nunca se envían en texto plano en ninguna dirección. |
-| **Criterio de Aceptación** | Las respuestas del servidor no deben contener contraseñas, claves secretas ni tokens internos. Un token JWT expirado debe ser rechazado automáticamente por el servidor, obligando al usuario a iniciar sesión nuevamente. Las contraseñas almacenadas en la base de datos deben estar cifradas y no ser reversibles. |
-| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | La expiración de los tokens implica que el usuario debe volver a iniciar sesión periódicamente. El cifrado de contraseñas impide recuperarlas; en caso de olvido, el usuario debe usar el flujo de recuperación de contraseña. |
-
----
-
-### FASE V.ERS – Especificación de Requisitos No Funcionales
-
-| Campo | Descripción |
-|---|---|
-| **Id. del Requisito** | RNF-04 |
-| **Nombre del Requisito** | Retroalimentación visual al usuario |
-| **Categoría** | Usabilidad |
-| **Descripción del Requisito** | El sistema debe mostrar alertas informativas al usuario después de cada acción importante, indicando claramente si la operación fue exitosa o si ocurrió un error. Antes de ejecutar acciones que afecten los datos, como desactivar un producto, eliminar un cliente o registrar una venta, el sistema debe mostrar una ventana de confirmación que permita al usuario cancelar la acción. Los registros activos e inactivos deben diferenciarse visualmente mediante indicadores de color. |
-| **Criterio de Aceptación** | Cada operación de crear, editar, activar o desactivar debe mostrar una alerta con el resultado. Las acciones destructivas o irreversibles deben pedir confirmación antes de ejecutarse. Los estados activo e inactivo deben mostrarse con etiquetas de color verde y rojo respectivamente en todas las vistas del sistema. |
-| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | Las alertas y confirmaciones no deben bloquear el flujo del sistema de forma permanente. El usuario siempre debe poder cerrarlas o cancelar la acción para continuar usando el sistema. |
-
----
-
-### FASE V.ERS – Especificación de Requisitos No Funcionales
-
-| Campo | Descripción |
-|---|---|
-| **Id. del Requisito** | RNF-05 |
-| **Nombre del Requisito** | Organización y legibilidad del código |
-| **Categoría** | Mantenibilidad |
-| **Descripción del Requisito** | El código del proyecto debe estar bien organizado y separado por responsabilidades. El backend debe dividirse en clases para controlar las peticiones, otra para la lógica del negocio y otra para representar los datos. El frontend debe tener cada pantalla en su propio archivo con nombres que describan lo que contienen. El código debe tener comentarios en las partes más importantes. |
-| **Criterio de Aceptación** | La estructura del proyecto debe ser clara para que cualquier desarrollador pueda entender qué hace cada parte del sistema sin necesitar una explicación adicional. |
-| **Prioridad** | ☐ Alta/Esencial   ☑ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | La organización del código debe adaptarse a las tecnologías que ya se están usando en el proyecto, sin agregar herramientas o librerías nuevas que no hayan sido planeadas desde el inicio. |
-
----
-
-### FASE V.ERS – Especificación de Requisitos No Funcionales
-
-| Campo | Descripción |
-|---|---|
-| **Id. del Requisito** | RNF-06 |
-| **Nombre del Requisito** | Compatibilidad con navegadores web modernos |
-| **Categoría** | Portabilidad |
-| **Descripción del Requisito** | El sistema debe funcionar correctamente en los navegadores web más usados actualmente, como Google Chrome, Mozilla Firefox y Microsoft Edge. Las pantallas, los formularios, los modales y los gráficos deben verse y comportarse igual sin importar cuál de esos navegadores use el dueño del negocio o sus empleados. |
-| **Criterio de Aceptación** | Todas las pantallas y funcionalidades del sistema deben verse y funcionar correctamente en las versiones más recientes de Chrome, Firefox y Edge, sin errores visuales ni de funcionamiento. |
-| **Prioridad** | ☐ Alta/Esencial   ☑ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | No se garantiza compatibilidad con versiones muy antiguas de los navegadores ni con Internet Explorer. Se recomienda el uso de navegadores actualizados. |
-
----
-
-### FASE V.ERS – Especificación de Requisitos No Funcionales
-
-| Campo | Descripción |
-|---|---|
-| **Id. del Requisito** | RNF-07 |
-| **Nombre del Requisito** | Integridad de los datos registrados |
-| **Categoría** | Confiabilidad |
-| **Descripción del Requisito** | El sistema debe garantizar que los datos guardados sean consistentes y no queden a medias si ocurre un error durante una operación. Por ejemplo, si se está guardando una venta y el sistema falla a mitad del proceso, no deben quedar registros incompletos ni el inventario desajustado. Las operaciones que afectan a más de una parte del sistema deben completarse todas o no completarse ninguna. |
-| **Criterio de Aceptación** | Si ocurre un error durante el registro de una venta, compra o gasto, el sistema no debe guardar información parcial. Los datos del inventario, ventas y gastos deben quedar siempre en un estado consistente. |
-| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | Esta característica depende de que la base de datos esté configurada para soportar transacciones. Si la base de datos no lo soporta, esta garantía no puede cumplirse completamente. |
-
----
-
-### FASE V.ERS – Especificación de Requisitos No Funcionales
-
-| Campo | Descripción |
-|---|---|
-| **Id. del Requisito** | RNF-08 |
-| **Nombre del Requisito** | Escalabilidad para manejar más datos con el tiempo |
-| **Categoría** | Escalabilidad |
-| **Descripción del Requisito** | El sistema debe seguir funcionando bien a medida que el negocio crece y se acumulan más registros de ventas, compras, productos y clientes. Las consultas que muestra el sistema no deben volverse lentas aunque la base de datos tenga miles de registros guardados. |
-| **Criterio de Aceptación** | El sistema debe mantener tiempos de respuesta aceptables aunque la base de datos tenga más de 10.000 registros en las tablas principales como ventas, compras y productos. |
-| **Prioridad** | ☐ Alta/Esencial   ☑ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | La escalabilidad está limitada por las características del servidor donde esté instalado el sistema. Para negocios muy grandes puede ser necesario mejorar el hardware del servidor. |
-
----
-
-### FASE V.ERS – Especificación de Requisitos No Funcionales
-
-| Campo | Descripción |
-|---|---|
-| **Id. del Requisito** | RNF-09 |
-| **Nombre del Requisito** | Portabilidad del sistema entre equipos |
-| **Categoría** | Portabilidad |
-| **Descripción del Requisito** | El sistema debe poder instalarse y ejecutarse en diferentes computadores sin necesitar cambios en el código. El backend en Java debe poder correrse en cualquier equipo que tenga Java instalado, y el frontend debe abrirse desde cualquier navegador web moderno apuntando a la dirección del servidor. |
-| **Criterio de Aceptación** | El sistema debe poder instalarse en un computador diferente siguiendo los pasos de configuración básicos, sin necesidad de modificar el código fuente. |
-| **Prioridad** | ☐ Alta/Esencial   ☑ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | El equipo donde se instale debe tener Java en una versión compatible y una base de datos MySQL disponible. Sin estos requisitos el sistema no puede funcionar. |
-
----
-
-### FASE V.ERS – Especificación de Requisitos No Funcionales
-
-| Campo | Descripción |
-|---|---|
-| **Id. del Requisito** | RNF-10 |
-| **Nombre del Requisito** | Registro de los movimientos financieros del negocio |
-| **Categoría** | Trazabilidad |
-| **Descripción del Requisito** | El sistema debe guardar un registro de todos los movimientos de dinero que ocurren en el negocio, ya sea por una venta, una compra o un gasto adicional. Este historial debe poder consultarse para saber en qué fechas entró o salió dinero y por qué concepto, lo que permite llevar un control claro de las finanzas del negocio a lo largo del tiempo. |
-| **Criterio de Aceptación** | Cada vez que se registre una venta, una compra o un gasto, el sistema debe guardar automáticamente el movimiento financiero correspondiente con su fecha, tipo y monto. Este registro no debe poder modificarse ni eliminarse directamente. |
-| **Prioridad** | ☑ Alta/Esencial   ☐ Media/Deseado   ☐ Baja/Opcional |
-| **Restricciones** | Los movimientos financieros son de solo lectura para el usuario. Solo se generan automáticamente cuando se registra una transacción y no pueden editarse de forma manual. |
+| **RNF-01** | Las contraseñas de los usuarios deben almacenarse cifradas en la base de datos mediante BCrypt, garantizando que nunca sean visibles en texto plano. |
+| **RNF-02** | Las operaciones que involucran múltiples tablas (ventas, compras, gastos) deben ejecutarse como transacciones atómicas, asegurando que se completen todas o no se guarde ningún registro parcial. |
+| **RNF-03** | Los formularios deben validar los datos en tiempo real mientras el usuario escribe, mostrando indicadores visuales de validez (verde/rojo) y bloqueando caracteres no permitidos según el tipo de campo. |
+| **RNF-04** | El sistema debe funcionar correctamente en las versiones actuales de Google Chrome, Mozilla Firefox y Microsoft Edge, sin diferencias visuales ni de funcionamiento entre navegadores. |
+| **RNF-05** | El código debe estar organizado por capas de responsabilidad (Controllers, Services, DAOs, Models) y documentado con comentarios descriptivos en cada clase y método del proyecto. |
 
 ---

@@ -506,7 +506,7 @@ function crearFilaProductoHTML(num) {
                 ${opciones}
             </select>
             <input type="number" class="formulario__input" name="cantidad_${num}" placeholder="0" title="Cantidad" min="1">
-            <input type="number" class="formulario__input" name="precio_${num}" placeholder="$ 0" title="Precio de Venta" min="1" step="any">
+            <input type="number" class="formulario__input" name="precio_${num}" placeholder="$ 0" title="Precio de Venta" min="1" step="0.01">
             <button type="button" class="factura__eliminar btn-eliminar-fila" title="Eliminar producto">
                 <i class="fa-solid fa-trash"></i>
             </button>

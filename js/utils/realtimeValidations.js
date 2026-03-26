@@ -101,6 +101,24 @@ const VALIDATION_RULES = {
         transform: (value) => value.trim()
     },
 
+    // Validaciones para direcciones (máximo 200 caracteres según la BD)
+    direccion: {
+        minLength: 2,
+        maxLength: 200,
+        hint: 'Entre 2 y 200 caracteres.',
+        message: 'Debe tener entre 2 y 200 caracteres',
+        transform: (value) => value.trim()
+    },
+
+    // Validaciones para razón social (máximo 150 caracteres según la BD)
+    razonSocial: {
+        minLength: 2,
+        maxLength: 150,
+        hint: 'Entre 2 y 150 caracteres.',
+        message: 'Debe tener entre 2 y 150 caracteres',
+        transform: (value) => value.trim()
+    },
+
     // Validaciones para descripciones (máximo 255 caracteres según la BD)
     descripcion: {
         minLength: 0,
@@ -386,6 +404,16 @@ function applyModalValidations(modal) {
     // Texto general
     modal.querySelectorAll('input[data-validation="texto"], input[type="text"]:not([data-validation])').forEach(input => {
         applyRealtimeValidation(input, 'texto');
+    });
+
+    // Direcciones (máximo 200 caracteres)
+    modal.querySelectorAll('input[data-validation="direccion"]').forEach(input => {
+        applyRealtimeValidation(input, 'direccion');
+    });
+
+    // Razón social (máximo 150 caracteres)
+    modal.querySelectorAll('input[data-validation="razonSocial"]').forEach(input => {
+        applyRealtimeValidation(input, 'razonSocial');
     });
     
     // Fechas (no permiten días pasados)

@@ -39,15 +39,15 @@
         <div class="modal__formulario">
             <div class="formulario__grupo">
                 <label class="formulario__label" for="agregar-cliente-nombre">Nombre Completo</label>
-                <input type="text" id="agregar-cliente-nombre" class="formulario__input formulario__campo" placeholder="Ej: María García López" title="Nombre Completo" data-validation="letrasEspacios" required>
+                <input type="text" id="agregar-cliente-nombre" class="formulario__input formulario__campo" placeholder="Ej: María García López" title="Nombre Completo" maxlength="150" data-validation="letrasEspacios" required>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="agregar-cliente-documento">Documento (Cédula)</label>
-                <input type="text" id="agregar-cliente-documento" class="formulario__input formulario__campo" placeholder="Ej: 1234567890" title="Documento (Cédula)" data-validation="documento" required>
+                <input type="text" id="agregar-cliente-documento" class="formulario__input formulario__campo" placeholder="Ej: 1234567890" title="Documento (Cédula)" maxlength="10" data-validation="documento" required>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="agregar-cliente-correo">Correo Electrónico <span class="formulario__opcional">(Opcional)</span></label>
-                <input type="email" id="agregar-cliente-correo" class="formulario__input formulario__campo" placeholder="Ej: correo@ejemplo.com" title="Correo Electrónico" data-validation="correo" required>
+                <input type="email" id="agregar-cliente-correo" class="formulario__input formulario__campo" placeholder="Ej: correo@ejemplo.com" title="Correo Electrónico" maxlength="120" data-validation="correo">
             </div>
             <div class="formulario__fila">
                 <div class="formulario__grupo">
@@ -56,12 +56,12 @@
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="agregar-cliente-ciudad">Ciudad</label>
-                    <input type="text" id="agregar-cliente-ciudad" class="formulario__input formulario__campo" placeholder="Ej: Bogotá" title="Ciudad" data-validation="letras" required>
+                    <input type="text" id="agregar-cliente-ciudad" class="formulario__input formulario__campo" placeholder="Ej: Bogotá" title="Ciudad" maxlength="100" data-validation="letras" required>
                 </div>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="agregar-cliente-direccion">Dirección</label>
-                <input type="text" id="agregar-cliente-direccion" class="formulario__input formulario__campo" placeholder="Ej: Cra 45 #32-10" title="Dirección" data-validation="texto" required>
+                <input type="text" id="agregar-cliente-direccion" class="formulario__input formulario__campo" placeholder="Ej: Cra 45 #32-10" title="Dirección" maxlength="200" data-validation="direccion" required>
             </div>
             <div class="formulario__acciones">
                 <a href="#" class="boton-accion boton-accion--secundario" data-modal-close title="Cancelar">Cancelar</a>
@@ -85,15 +85,15 @@
         <div class="modal__formulario">
             <div class="formulario__grupo">
                 <label class="formulario__label" for="editar-cliente-nombre">Nombre Completo</label>
-                <input type="text" id="editar-cliente-nombre" class="formulario__input formulario__campo" title="Nombre Completo" data-validation="letrasEspacios" required>
+                <input type="text" id="editar-cliente-nombre" class="formulario__input formulario__campo" title="Nombre Completo" maxlength="150" data-validation="letrasEspacios" required>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="editar-cliente-documento">Documento (Cédula)</label>
-                <input type="text" id="editar-cliente-documento" class="formulario__input formulario__campo" title="Documento (Cédula)" data-validation="documento" required>
+                <input type="text" id="editar-cliente-documento" class="formulario__input formulario__campo" title="Documento (Cédula)" maxlength="10" data-validation="documento" required>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="editar-cliente-correo">Correo Electrónico <span class="formulario__opcional">(Opcional)</span></label>
-                <input type="email" id="editar-cliente-correo" class="formulario__input formulario__campo" title="Correo Electrónico" data-validation="correo" required>
+                <input type="email" id="editar-cliente-correo" class="formulario__input formulario__campo" title="Correo Electrónico" maxlength="120" data-validation="correo">
             </div>
             <div class="formulario__fila">
                 <div class="formulario__grupo">
@@ -102,12 +102,12 @@
                 </div>
                 <div class="formulario__grupo">
                     <label class="formulario__label" for="editar-cliente-ciudad">Ciudad</label>
-                    <input type="text" id="editar-cliente-ciudad" class="formulario__input formulario__campo" title="Ciudad" data-validation="letras" required>
+                    <input type="text" id="editar-cliente-ciudad" class="formulario__input formulario__campo" title="Ciudad" maxlength="100" data-validation="letras" required>
                 </div>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="editar-cliente-direccion">Dirección</label>
-                <input type="text" id="editar-cliente-direccion" class="formulario__input formulario__campo" title="Dirección" data-validation="texto" required>
+                <input type="text" id="editar-cliente-direccion" class="formulario__input formulario__campo" title="Dirección" maxlength="200" data-validation="direccion" required>
             </div>
             <div class="formulario__grupo">
                 <label class="formulario__label" for="editar-cliente-estado">Estado</label>
