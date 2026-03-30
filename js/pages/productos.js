@@ -440,9 +440,7 @@ async function handleCrear(e) {
             number: true,                                                      // Debe ser un número
         },
         '#agregar-producto-stock': {
-            required: true,                                                    // El stock es obligatorio
-            requiredMsg: 'El stock es obligatorio',                            // Mensaje personalizado
-            number: true,                                                      // Debe ser un número
+            number: true,                                                      // Debe ser un número si se ingresa
         },
     });
 
@@ -456,7 +454,7 @@ async function handleCrear(e) {
     const nombre = inputNombreAgregar.value.trim();                            // Nombre del producto
     const descripcion = inputDescAgregar.value.trim() || null;                 // Descripción (null si vacía)
     const precioVenta = parseFloat(inputPrecioAgregar.value);                  // Precio de venta
-    const stock = parseInt(inputStockAgregar.value);                           // Stock
+    const stock = parseInt(inputStockAgregar.value) || 0;                      // Stock (0 por defecto si vacío)
     const categoriaId = parseInt(selectCategoriaAgregar.value);                // ID de la categoría
 
     try {

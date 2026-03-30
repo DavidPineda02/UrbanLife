@@ -70,18 +70,13 @@ const VALIDATION_RULES = {
         validate: (value) => /^\d{9}-?\d{1}$/.test(value)
     },
 
-    // Validaciones para teléfonos (7-10 dígitos colombianos)
+    // Validaciones para teléfonos (7-10 dígitos colombianos, solo números)
     telefono: {
-        pattern: /^[\d\s\-\(\)]+$/,
-        hint: 'Entre 7 y 10 dígitos.',
+        pattern: /^\d+$/,
+        hint: 'Entre 7 y 10 dígitos. Solo números.',
         message: 'El teléfono debe tener entre 7 y 10 dígitos',
-        transform: (value) => value.replace(/[^\d\s\-\(\)]/g, ''),
-        validate: (value) => {
-            // Extraer solo los dígitos para validar la cantidad
-            const soloDigitos = value.replace(/\D/g, '');
-            // Verificar que tenga entre 7 y 10 dígitos
-            return soloDigitos.length >= 7 && soloDigitos.length <= 10;
-        }
+        transform: (value) => value.replace(/\D/g, ''),
+        validate: (value) => value.length >= 7 && value.length <= 10
     },
 
     // Validaciones para correos
@@ -92,40 +87,40 @@ const VALIDATION_RULES = {
         transform: (value) => value.toLowerCase().trim()
     },
 
-    // Validaciones para texto general
+    // Validaciones para texto general (un solo espacio entre palabras, sin espacio al inicio)
     texto: {
         minLength: 2,
         maxLength: 255,
         hint: 'Entre 2 y 255 caracteres.',
         message: 'Debe tener entre 2 y 255 caracteres',
-        transform: (value) => value.trim()
+        transform: (value) => value.replace(/\s{2,}/g, ' ').replace(/^\s/, '')
     },
 
-    // Validaciones para direcciones (máximo 200 caracteres según la BD)
+    // Validaciones para direcciones (máximo 200 caracteres según la BD, un solo espacio entre palabras)
     direccion: {
         minLength: 2,
         maxLength: 200,
         hint: 'Entre 2 y 200 caracteres.',
         message: 'Debe tener entre 2 y 200 caracteres',
-        transform: (value) => value.trim()
+        transform: (value) => value.replace(/\s{2,}/g, ' ').replace(/^\s/, '')
     },
 
-    // Validaciones para razón social (máximo 150 caracteres según la BD)
+    // Validaciones para razón social (máximo 150 caracteres según la BD, un solo espacio entre palabras)
     razonSocial: {
         minLength: 2,
         maxLength: 150,
         hint: 'Entre 2 y 150 caracteres.',
         message: 'Debe tener entre 2 y 150 caracteres',
-        transform: (value) => value.trim()
+        transform: (value) => value.replace(/\s{2,}/g, ' ').replace(/^\s/, '')
     },
 
-    // Validaciones para descripciones (máximo 255 caracteres según la BD)
+    // Validaciones para descripciones (máximo 255 caracteres según la BD, un solo espacio entre palabras)
     descripcion: {
         minLength: 0,
         maxLength: 255,
         hint: 'Máximo 255 caracteres.',
         message: 'Máximo 255 caracteres',
-        transform: (value) => value.trim()
+        transform: (value) => value.replace(/\s{2,}/g, ' ').replace(/^\s/, '')
     },
 
     // Validaciones para fechas (no permite días pasados)

@@ -576,6 +576,9 @@ function eliminarFilaVenta(e) {
 
     /* Recalcular el total después de eliminar */
     calcularTotal();
+
+    /* Revalidar stock acumulado después de eliminar */
+    validarStockTiempoReal();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -638,6 +641,9 @@ function handleProductoChange(e) {
 
     /* Recalcular el total con los nuevos valores */
     calcularTotal();
+
+    /* Validar stock acumulado en tiempo real */
+    validarStockTiempoReal();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -674,6 +680,73 @@ function calcularTotal() {
 
     /* Actualizar el texto del total en el modal */
     totalValor.textContent = formatearPrecio(total);
+}
+
+/* -------------------------------------------------------------------------- */
+/* ----- Validar Stock en Tiempo Real --------------------------------------- */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Valida el stock acumulado de cada producto en todas las filas en tiempo real.
+ * Marca visualmente las filas con error cuando la cantidad total excede el stock.
+ */
+function validarStockTiempoReal() {
+    /* Obtener todas las filas de producto del modal paso 2 */
+    const filas = document.querySelectorAll('#modal-productos-venta .factura__fila');
+
+    /* Agrupar las cantidades totales por productoId */
+    const cantidadPorProducto = {};
+    filas.forEach(fila => {
+        /* Obtener el select de producto y el input de cantidad */
+        const select = fila.querySelector('select');
+        const cantidadInput = fila.querySelector('input[name^="cantidad"]');
+        /* Si ambos tienen valor, acumular la cantidad */
+        if (select?.value && cantidadInput?.value) {
+            const productoId = parseInt(select.value);
+            const cantidad = parseInt(cantidadInput.value) || 0;
+            cantidadPorProducto[productoId] = (cantidadPorProducto[productoId] || 0) + cantidad;
+        }
+    });
+
+    /* Recorrer cada fila para marcar o limpiar errores de stock */
+    filas.forEach(fila => {
+        /* Obtener el select de producto y el input de cantidad */
+        const select = fila.querySelector('select');
+        const cantidadInput = fila.querySelector('input[name^="cantidad"]');
+
+        /* Limpiar mensajes de error previos de stock */
+        const errorExistente = fila.querySelector('.stock-error');
+        if (errorExistente) errorExistente.remove();
+
+        /* Si no hay producto seleccionado o cantidad, limpiar estilo y salir */
+        if (!select?.value || !cantidadInput?.value) {
+            cantidadInput?.style.removeProperty('border-color');
+            return;
+        }
+
+        /* Buscar el producto en el cache para obtener stock real */
+        const productoId = parseInt(select.value);
+        const producto = productos.find(p => p.idProducto === productoId);
+        if (!producto) return;
+
+        /* Verificar si la cantidad total acumulada excede el stock */
+        const totalSolicitado = cantidadPorProducto[productoId] || 0;
+        if (totalSolicitado > producto.stock) {
+            /* Marcar el input de cantidad con borde rojo */
+            cantidadInput.style.borderColor = '#e74c3c';
+            /* Crear mensaje de error debajo del input */
+            const errorMsg = document.createElement('span');
+            errorMsg.className = 'stock-error';
+            errorMsg.style.cssText = 'color:#e74c3c;font-size:0.7rem;position:absolute;bottom:-16px;left:0;white-space:nowrap;';
+            errorMsg.textContent = `Stock: ${producto.stock} | Total: ${totalSolicitado}`;
+            /* Agregar el error al contenedor del input */
+            cantidadInput.parentNode.style.position = 'relative';
+            cantidadInput.parentNode.appendChild(errorMsg);
+        } else {
+            /* Limpiar el estilo de error si el stock es suficiente */
+            cantidadInput.style.borderColor = '';
+        }
+    });
 }
 
 /* -------------------------------------------------------------------------- */
@@ -723,6 +796,13 @@ async function handleCrearVenta(e) {
         return;
     }
 
+    /* Agrupar cantidades totales por producto para validar stock acumulado */
+    const cantidadPorProducto = {};
+    for (const item of items) {
+        /* Acumular la cantidad total por cada productoId */
+        cantidadPorProducto[item.productoId] = (cantidadPorProducto[item.productoId] || 0) + item.cantidad;
+    }
+
     /* Validar cantidades, precios y stock disponible */
     for (const item of items) {
         /* Validar que la cantidad sea mayor a 0 */
@@ -743,9 +823,10 @@ async function handleCrearVenta(e) {
                 mostrarAlertaError(`El producto "${producto.nombre}" no tiene stock disponible`);
                 return;
             }
-            /* Validar que la cantidad no exceda el stock disponible */
-            if (item.cantidad > producto.stock) {
-                mostrarAlertaError(`Stock insuficiente para "${producto.nombre}". Disponible: ${producto.stock}`);
+            /* Validar que la cantidad TOTAL acumulada no exceda el stock disponible */
+            const totalSolicitado = cantidadPorProducto[item.productoId];
+            if (totalSolicitado > producto.stock) {
+                mostrarAlertaError(`Stock insuficiente para "${producto.nombre}". Disponible: ${producto.stock}, total solicitado: ${totalSolicitado}`);
                 return;
             }
             /* Validar que el precio garantice mínimo 10% de ganancia sobre el costo */
@@ -1063,10 +1144,13 @@ export async function inicializar() {
     /* Auto-llenar precio cuando se selecciona un producto */
     listaProductos.addEventListener('change', handleProductoChange);
 
-    /* Recalcular total cuando cambia una cantidad o un precio */
+    /* Recalcular total y validar stock cuando cambia una cantidad o un precio */
     listaProductos.addEventListener('input', (e) => {
         /* Recalcular si el evento viene de un input de cantidad o precio */
-        if (e.target.matches('input[name^="cantidad"]') || e.target.matches('input[name^="precio"]')) calcularTotal();
+        if (e.target.matches('input[name^="cantidad"]') || e.target.matches('input[name^="precio"]')) {
+            calcularTotal();
+            validarStockTiempoReal();
+        }
     });
 
     /* Delegación de eventos para eliminar filas de producto dinámicas */
